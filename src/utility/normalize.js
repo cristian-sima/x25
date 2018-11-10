@@ -26,7 +26,7 @@ const timeout = 500;
 
 const defaultNormalizr = (item) => Immutable.Map(item);
 
-export const normalizeArrayByField : Normalize = (raw : Array<any>, field : string, normalizr? : Normalizr = defaultNormalizr) => (
+export const normalizeArrayByField : Normalize = (raw : Array<any>, field : string, normalizr : Normalizr) => (
   raw.reduce((previous, current) => {
     const stringID = String(current[field]);
 
@@ -90,8 +90,8 @@ export const withHandlePDFCallback = (
  * result ---> List([ "1", "2", "3" ])
  */
 
-export const normalizeArray : NormalizeArray = (raw : Array<any>, normalizr?: Normalizr) => (
-  normalizeArrayByField(raw, "ID", normalizr)
+export const normalizeArray : NormalizeArray = (raw : Array<any>, normalizr: Normalizr) => (
+  normalizeArrayByField(raw, "ID", typeof normalizr === null ? defaultNormalizr : normalizr)
 );
 
 export const normalizeBoolean : NormalizeBoolean = (value : boolean | "") => value || false;
