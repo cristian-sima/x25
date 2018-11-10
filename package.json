@@ -65,6 +65,7 @@
     "npm-check-updates": "^2.14.2"
   },
   "dependencies": {
+    "babel": "^6.23.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
