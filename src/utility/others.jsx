@@ -9,8 +9,6 @@ type ReduxError = {
 import React from "react";
 import { SubmissionError } from "redux-form/immutable";
 
-export const mql = window.matchMedia("(min-width: 800px)");
-
 export const getDateSortNumber = (item : string) => (
   Number(new Date(item).getTime())
 );

@@ -1,8 +1,9 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "x25",
   "description": "x25",
   "main": "./lib/index.js",
+  "module": "./src/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
     "clean": "rimraf dist lib",

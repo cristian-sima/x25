@@ -1,10 +1,23 @@
 // @flow
 
-export * from "./calendar";
-export * from "./date";
-export * from "./language";
-export * from "./normalize";
-export * from "./numbers";
-export * from "./others";
-export * from "./strings";
-export * from "./validation";
+import * as calendar from "./calendar";
+import * as date from "./date";
+import * as language from "./language";
+import * as normalize from "./normalize";
+import * as numbers from "./numbers";
+import * as others from "./others";
+import * as strings from "./strings";
+import * as validation from "./validation";
+
+const all = {
+  ...calendar,
+  ...date,
+  ...language,
+  ...normalize,
+  ...numbers,
+  ...others,
+  ...strings,
+  ...validation,
+};
+
+export default all;
