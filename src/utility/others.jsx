@@ -53,18 +53,6 @@ export const delay = () => (
   }) : Promise<any>
 );
 
-export const getFullCompanyCif = (info : any) => {
-  const getPrefix = () => {
-    if (info.get("IsVatPayer")) {
-      return "RO ";
-    }
-
-    return "";
-  };
-
-  return `${getPrefix()}${info.get("Cif")}`;
-};
-
 export const showCheck = (value : boolean) => (
   value ? (
     <i className="fa fa-check text-success" />

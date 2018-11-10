@@ -2,9 +2,7 @@
 
 type This = any;
 
-import {
-  normalizeNumber,
-} from "utility";
+import { normalizeNumber } from "./numbers";
 
 export const handleBlur = (that : This) => {
   const { state, props } = that;

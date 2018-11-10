@@ -3,8 +3,6 @@
 
 import type { List as ListType, Map as MapType } from "immutable";
 
-export * from "./src/sidebar";
-
 export * from "./actions";
 
 import type { Action } from "./actions";

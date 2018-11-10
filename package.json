@@ -1,13 +1,20 @@
 {
   "version": "1.0.0",
+  "name": "x25",
   "scripts": {
-    "dist": "node conf/dist.js & webpack --display-error-details --mode production --optimize-minimize --progress -p",
-    "eslint": "eslint . --ext .jsx,.js --ignore-pattern client/styles --fix",
-    "flow": "flow check --color=always",
-    "start": "node conf/dev.js & node server.js",
-    "test": "jest",
+    "build:lib": "babel src --out-dir lib",
+    "build:umd": "cross-env NODE_ENV=development webpack src/index.js dist/redux-paginator-immutable.js",
+    "build:umd:min": "cross-env NODE_ENV=production webpack src/index.js dist/redux-paginator-immutable.min.js",
+    "build": "npm run build:lib && npm run build:umd && npm run build:umd:min && node ./prepublish.js",
+    "clean": "rimraf dist lib",
     "check": "npm-check-updates -a && npm update",
-    "test:watch": "jest --watch"
+    "flow": "flow check --color=always",
+    "eslint": "eslint src --fix",
+    "prepublish": "npm run test && npm run eslint && npm run flow && npm run clean && npm run build",
+    "test": "mocha --compilers js:babel-register --recursive --recursive \"src/**/__tests__/*\" --require src/__tests__/setup.js",
+    "test:watch": "npm test -- --watch",
+    "test:cov": "babel-node ./node_modules/isparta/bin/isparta cover ./node_modules/mocha/bin/_mocha -- --recursive \"src/**/__tests__/*\" --require src/__tests__/setup.js",
+    "test:codecov": "cat ./coverage/coverage.json | ./node_modules/.bin/codecov"
   },
   "babel": {
     "presets": [
@@ -100,9 +107,9 @@
     "moment": "^2.22.2",
     "node-sass": "^4.9.3",
     "normalizr": "^3.2.4",
+    "npm": "^6.4.1",
     "postcss-loader": "^3.0.0",
     "query-string": "^6.1.0",
-    "raphael": "^2.2.7",
     "react": "^16.5.2",
     "react-addons-shallow-compare": "^15.6.2",
     "react-autosuggest": "^9.4.2",
