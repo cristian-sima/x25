@@ -26,7 +26,7 @@ const timeout = 500;
 
 const defaultNormalizr : Normalizr = (item) => Immutable.Map(item);
 
-export const normalizeArrayByField : Normalize = (raw : Array<any>, field : string, normalizr : Normalizr) => (
+export const normalizeArrayByField : Normalize = (raw : Array<any>, field : string, normalizr? : Normalizr = defaultNormalizr) => (
   raw.reduce((previous, current) => {
     const stringID = String(current[field]);
 
