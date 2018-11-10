@@ -1,0 +1,121 @@
+// @flow
+
+import type { Action, State } from "types";
+
+import { createSelector } from "reselect";
+import * as Immutable from "immutable";
+
+import { isAdministratorAccount, noError } from "utility";
+
+const initialState = Immutable.Map({
+  error    : noError,
+  fetched  : false,
+  fetching : false,
+
+  info: Immutable.Map(),
+});
+
+const
+  fetchCurrentAccountPending = (state : any) => (
+    state.merge({
+      error    : noError,
+      fetching : true,
+    })
+  ),
+  fetchCurrentAccountRejected = (state : any, { payload : { error } }) => (
+    state.merge({
+      error,
+      fetching: false,
+    })
+  ),
+  fetchCurrentAccountFulfilled = (state : any, { payload }) => (
+    state.mergeDeep({
+      fetched  : true,
+      fetching : false,
+
+      info: payload.Account,
+    })
+  ),
+  accountChangePassword = (state : any) => (
+    state.setIn([
+      "info",
+      "RequireChange",
+    ], false)
+  );
+
+const reducer = (state : any = initialState, action : Action) => {
+
+  switch (action.type) {
+    case "FETCH_INITIAL_INFORMATION_PENDING":
+      return fetchCurrentAccountPending(state);
+
+    case "FETCH_INITIAL_INFORMATION_REJECTED":
+      return fetchCurrentAccountRejected(state, action);
+
+    case "FETCH_INITIAL_INFORMATION_FULFILLED":
+      return fetchCurrentAccountFulfilled(state, action);
+
+    case "ACCOUNT_CHANGE_PASSWORD":
+      return accountChangePassword(state);
+
+    default:
+      return state;
+  }
+};
+
+const
+  getFetched = (state : State) => state.getIn([
+    "account",
+    "fetched",
+  ]),
+  getError = (state : State) => state.getIn([
+    "account",
+    "error",
+  ]);
+
+const
+  getInitialInformation = (state : State) => state.getIn([
+    "account",
+    "info",
+  ]),
+  getInitialInformationIsFetching = (state : State) => state.getIn([
+    "account",
+    "fetching",
+  ]),
+  getInitialInformationShouldFetch = createSelector(
+    getInitialInformationIsFetching,
+    getFetched,
+    getError,
+    (isFetching, isFetched, error) => (
+      !isFetching && !isFetched && error === noError
+    )
+  ),
+  getInitialInformationIsFetched = createSelector(
+    getInitialInformationIsFetching,
+    getFetched,
+    getError,
+    (isFetching, isFetched, error) => (
+      !isFetching && isFetched && error === noError
+    )
+  ),
+  getInitialInformationHasError = createSelector(
+    getError,
+    (error) => error !== noError
+  ),
+  getIsCurrentAccountAdministrator = createSelector(
+    getInitialInformation,
+    (account) => (
+      isAdministratorAccount(account.get("Type"))
+    )
+  );
+
+export const selectors = {
+  getInitialInformation,
+  getInitialInformationIsFetching,
+  getInitialInformationShouldFetch,
+  getInitialInformationIsFetched,
+  getInitialInformationHasError,
+  getIsCurrentAccountAdministrator,
+};
+
+export default reducer;
