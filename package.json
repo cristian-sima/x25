@@ -1,16 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.3",
   "name": "x25",
   "description": "x25",
   "main": "./lib/index.js",
   "scripts": {
-    "build:lib": "babel src --out-dir lib",
-    "build": "npm run build:lib",
+    "build": "babel src --out-dir lib",
     "clean": "rimraf dist lib",
     "check": "npm-check-updates -a && npm update",
     "flow": "flow check --color=always",
     "eslint": "eslint src --fix",
-    "prepublishOnly": "npm run clean && npm run build",
+    "prepublishOnly": "npm run test && npm run eslint && npm run flow && npm run clean && npm run build",
     "test": "jest"
   },
   "repository": {
@@ -58,11 +57,6 @@
       }
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/cristian-sima/house.git"
-  },
-  "license": "Apache-2.0",
   "engines": {
     "node": ">= 6.3.1"
   },
@@ -160,8 +154,6 @@
     "webpack-git-hash": "^1.0.2",
     "webpack-preset": "^0.2.0",
     "webpack-preset-babel": "^0.2.0",
-    "webpack-preset-babel-stage-2": "^0.2.0",
-    "x25": "^1.6.3"
-  },
-  "author": "Cristian Sima"
+    "webpack-preset-babel-stage-2": "^0.2.0"
+  }
 }
