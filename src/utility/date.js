@@ -6,32 +6,6 @@ type MonthAndYear =  { year: string, month: string };
 import { isValidDate } from "./validation/validate";
 
 const ten = 10;
-//
-// export const isWeekendDay = ({ year, month, day} : { year: string, month : string, day : number}) => {
-//   const
-//   dayNumber = (new Date(Number(year), Number(month), day)).getDay(),
-//   saturday = 6,
-//   sunday = 0;
-//
-//   return (
-//     dayNumber === saturday ||
-//     dayNumber === sunday
-//   );
-// }
-
-// export const getPreviousMonth = (year : string, month: string) => {
-//   if (month === "0") {
-//     return {
-//       previousMonth : "11",
-//       previousYear  : String(Number(year) - 1),
-//     };
-//   }
-//
-//   return {
-//     previousMonth : String(Number(month) - 1),
-//     previousYear  : String(year),
-//   };
-// };
 
 // new Date("2016-08-25T00:00:00Z") ---> 25.08.2016
 export const formatDateObject = (date : Date) : string => {

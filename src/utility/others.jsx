@@ -1,18 +1,21 @@
 // @flow
 
 import type { List as ImmutableList, Map as ImmutableMap } from "immutable";
-import type { Action } from "types";
+
+type ReduxError = {
+  error: any;
+}
 
 import React from "react";
 import { SubmissionError } from "redux-form/immutable";
 
 export const mql = window.matchMedia("(min-width: 800px)");
 
-export const getDateSortNumber = (item) => (
+export const getDateSortNumber = (item : string) => (
   Number(new Date(item).getTime())
 );
 
-export const createModal = (modalType : string, modalProps? : any) : Action => ({
+export const createModal = (modalType : string, modalProps? : any) => ({
   type    : "SHOW_MODAL",
   payload : {
     modalType,
@@ -33,7 +36,7 @@ export const addID = (payload : ImmutableMap<string, any>) => (list : ImmutableL
   list.push(String(payload.get("ID")))
 );
 
-export const ReduxFormSubmissionError = (error? : string) => {
+export const ReduxFormSubmissionError = (error? : ReduxError) => {
   if (error) {
     if (error instanceof SubmissionError) {
       throw error;
