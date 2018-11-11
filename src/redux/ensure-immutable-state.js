@@ -26,16 +26,21 @@ export const ensureImmutableState = (ignored : Array<*> = []) => {
 
   const listCurrentProblems = () => {
     if (currentKey.size !== 0) {
-      const log = (el) => {
-        const { data, state, key } = el;
+      const log = ({ data, state, key }) => {
+        const itExists = (
+          typeof data !== "undefined" ||
+          typeof state !== "undefined" ||
+          typeof key !== "undefined"
+        );
 
-        console.group("redux-ensure-state-is-immutable");
-        console.log("data:", data);
-        console.log("parent:", state.toJS());
-        console.log("typeof data:", typeof data);
-        console.log("key:", key);
-
-        console.groupEnd();
+        if (itExists) {
+          console.group("redux-ensure-state-is-immutable");
+          console.log("data:", data);
+          console.log("parent:", state.toJS());
+          console.log("typeof data:", typeof data);
+          console.log("key:", key);
+          console.groupEnd();
+        }
       };
 
       alert("something is not immutable. check console");

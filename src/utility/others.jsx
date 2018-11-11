@@ -13,6 +13,10 @@ export const getDateSortNumber = (item : string) => (
   Number(new Date(item).getTime())
 );
 
+export const isAdministratorAccount = (current : number) => (
+  current === 0
+);
+
 export const createModal = (modalType : string, modalProps? : any) => ({
   type    : "SHOW_MODAL",
   payload : {
@@ -27,6 +31,7 @@ export const
   nothingFetched = -1;
 
 export const removeID = (payload : ImmutableMap<string, any>) => (list : ImmutableList<string>) => (
+  // $FlowFixMe
   list.delete(list.findIndex((current : string) => current === String(payload.get("ID"))))
 );
 
@@ -83,3 +88,75 @@ export const userHasPressedCKeyAlone = (currentEvent : KeyboardEvent) : boolean 
     isNotInputOrTextarea
   );
 };
+
+export const mql = window.matchMedia("(min-width: 800px)");
+
+export const years = [
+  {
+    value : 2018,
+    name  : "2018",
+  },
+  {
+    value : 2019,
+    name  : "2019",
+  },
+  {
+    value : 2020,
+    name  : "2020",
+  },
+  {
+    value : 2021,
+    name  : "2021",
+  },
+];
+
+export const months = [
+  {
+    value : 0,
+    name  : "Ianuarie",
+  },
+  {
+    value : 1,
+    name  : "Februarie",
+  },
+  {
+    value : 2,
+    name  : "Martie",
+  },
+  {
+    value : 3,
+    name  : "Aprilie",
+  },
+  {
+    value : 4,
+    name  : "Mai",
+  },
+  {
+    value : 5,
+    name  : "Iunie",
+  },
+  {
+    value : 6,
+    name  : "Iulie",
+  },
+  {
+    value : 7,
+    name  : "August",
+  },
+  {
+    value : 8,
+    name  : "Septembrie",
+  },
+  {
+    value : 9,
+    name  : "Octombrie",
+  },
+  {
+    value : 10,
+    name  : "Noiembrie",
+  },
+  {
+    value : 11,
+    name  : "Decembrie",
+  },
+];

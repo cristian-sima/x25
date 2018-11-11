@@ -3,7 +3,7 @@
 import agent from "superagent";
 import * as Immutable from "immutable";
 
-import { noError, normalizeArrayByField, withPromiseCallback } from "utility";
+import { noError, normalizeArrayByField, withPromiseCallback } from "../../utility";
 
 const normalizeInitialInformation = (info : any) => {
 

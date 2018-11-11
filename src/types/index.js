@@ -5,6 +5,8 @@ import type { List as ListType, Map as MapType } from "immutable";
 
 export type State = any;
 
+export type Action = any;
+
 export type ErrorType = string;
 export type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 export type Dispatch = (action: any | ThunkAction | PromiseAction) => any;

@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 
 import ToggleMenuButton from "./ToggleMenuButton";
 
-import { mql } from "utility";
+import { mql } from "../../utility";
 
 const
   mapDispatchToProps = (dispatch : Dispatch, { updateUI } : OwnProps) => ({

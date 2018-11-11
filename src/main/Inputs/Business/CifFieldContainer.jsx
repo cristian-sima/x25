@@ -26,9 +26,9 @@ import { connect } from "react-redux";
 
 import { getCompanyDetails } from "./request";
 
-import { actions } from "main";
+import { actions } from "../../";
 
-import { delay, isValidCIF } from "utility";
+import { delay, isValidCIF } from "../../../utility";
 
 import CifField from "./CifField";
 

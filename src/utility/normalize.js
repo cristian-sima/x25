@@ -8,6 +8,7 @@ type Normalizr = (item : any) => any;
 type NormalizeBoolean = (input : "" | bool) => bool;
 type NormalizeArray = (raw : Array<any>) => NormalizedResult;
 type Normalize = (raw : Array<any>, field : string, normalizr : Normalizr) => NormalizedResult;
+type DefaultNormalize = (raw : Array<any>, field : string) => NormalizedResult;
 
 type Resolve = (data : any) => void;
 type Reject = (arg : { error : string }) => void;
@@ -26,7 +27,7 @@ const timeout = 500;
 
 const defaultNormalizr : Normalizr = (item) => Immutable.Map(item);
 
-export const normalizeArrayByField : Normalize = (raw : Array<any>, field : string, normalizr? : Normalizr = defaultNormalizr) => (
+export const customNormalizeArrayByField : Normalize = (raw : Array<any>, field : string, normalizr : Normalizr) => (
   raw.reduce((previous, current) => {
     const stringID = String(current[field]);
 
@@ -39,6 +40,10 @@ export const normalizeArrayByField : Normalize = (raw : Array<any>, field : stri
     entities : Immutable.Map(),
     result   : Immutable.List(),
   })
+);
+
+export const normalizeArrayByField : DefaultNormalize = (raw : Array<any>, field : string) => (
+  customNormalizeArrayByField(raw, field, defaultNormalizr)
 );
 
 export const withPromiseCallback = (resolve : Resolve, reject : Reject) => (error : Error, response : Response) => {
@@ -91,7 +96,7 @@ export const withHandlePDFCallback = (
  */
 
 export const normalizeArray : NormalizeArray = (raw : Array<any>, normalizr?: Normalizr) => (
-  normalizeArrayByField(raw, "ID", typeof normalizr === "undefined" ? defaultNormalizr : normalizr)
+  customNormalizeArrayByField(raw, "ID", typeof normalizr === "undefined" ? defaultNormalizr : normalizr)
 );
 
 export const normalizeBoolean : NormalizeBoolean = (value : boolean | "") => value || false;

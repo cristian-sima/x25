@@ -16,7 +16,7 @@ import { Modal, ModalBody, ModalHeader } from "reactstrap";
 
 import { hideModal as hideModalAction } from "./actions";
 
-import { delay } from "utility";
+import { delay } from "../../utility";
 
 const
   mapDispatchToProps = (dispatch : Dispatch, { cbHideModal }) => ({

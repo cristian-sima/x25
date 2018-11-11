@@ -3,7 +3,7 @@
 import type { State } from "src/types";
 
 import { connect } from "react-redux";
-import { selectors } from "main";
+import { selectors } from "../";
 
 import CustomSelect from "./Custom";
 

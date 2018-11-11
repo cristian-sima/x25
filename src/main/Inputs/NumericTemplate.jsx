@@ -37,7 +37,7 @@ type NumericStateTypes = {
 import React from "react";
 import classnames from "classnames";
 
-import { formatZeroValue, handleBlur, normalizeFloat, cwrp } from "utility";
+import { formatZeroValue, handleBlur, normalizeFloat, cwrp } from "../../utility";
 
 export class NumericTemplate extends React.Component<NumericPropTypes, NumericStateTypes> {
 

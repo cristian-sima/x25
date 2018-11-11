@@ -4,14 +4,13 @@ import type { State } from "src/types";
 
 type ModalRootPropTypes = {
   list: any;
+  getComponent: (name: string) => any;
 };
 
 import { connect } from "react-redux";
 import React, { Fragment } from "react";
 
-import getComponent from "./components";
-
-import { selectors } from "main";
+import { selectors } from "src/main";
 
 const mapStateToProps = (state : State) => ({
   list: selectors.getModals(state),
@@ -36,7 +35,7 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
       <Fragment>
         {
           list.map((current, index) => {
-            const Component = getComponent(current.get("type"));
+            const Component = this.props.getComponent(current.get("type"));
 
             return (
               <Component key={index} {...current.get("props").toJS()} />

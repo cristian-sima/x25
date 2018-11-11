@@ -5,7 +5,7 @@ import type { Action, State } from "src/types";
 import { createSelector } from "reselect";
 import * as Immutable from "immutable";
 
-import { isAdministratorAccount, noError } from "utility";
+import { isAdministratorAccount, noError } from "../../utility";
 
 const initialState = Immutable.Map({
   error    : noError,

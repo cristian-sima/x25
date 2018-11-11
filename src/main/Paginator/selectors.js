@@ -1,22 +1,5 @@
 // @flow
 
-import { combineReducers } from "redux-immutable";
-
-import { paginatorReducers as admin } from "Admin";
-import { paginatorReducers as company } from "Company";
-
-const entitiesReducers = combineReducers({
-  ...admin.entities,
-  ...company.entities,
-});
-
-const paginationsReducers = combineReducers({
-  ...admin.paginations,
-  ...company.paginations,
-});
-
-// @flow
-
 import type { State } from "src/types";
 
 import { createSelector } from "reselect";
@@ -43,9 +26,4 @@ export const selectors = {
   getPaginatorPaginations,
   getPaginatorEntities,
   getPaginators,
-};
-
-export default {
-  entities    : entitiesReducers,
-  paginations : paginationsReducers,
 };

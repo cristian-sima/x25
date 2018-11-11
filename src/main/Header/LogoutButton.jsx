@@ -7,7 +7,7 @@ type LogoutButtonPropTypes = {
 
 import React from "react";
 
-import { LoadingMessage } from "main/Messages";
+import { LoadingMessage } from "../Messages";
 
 const LogoutButton = ({ readyToLogout, logoutAccount } : LogoutButtonPropTypes) => (
   <button

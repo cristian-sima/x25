@@ -8,7 +8,7 @@ const initialState = Immutable.Map({
   locationBeforeTransitions: null,
 });
 
-export default (state = initialState, action : any) => {
+export default (state : any = initialState, action : any) => {
   if (action.type === LOCATION_CHANGE) {
     return state.set("locationBeforeTransitions", Immutable.Map(action.payload));
   }

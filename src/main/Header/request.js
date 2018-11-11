@@ -2,7 +2,7 @@
 
 import agent from "superagent";
 
-import { withPromiseCallback } from "utility";
+import { withPromiseCallback } from "../../utility";
 
 export const logOut = () => (
   new Promise((resolve, reject) => (

@@ -32,7 +32,7 @@ import {
   formatDate,
   isValidDate,
   normalizeDate,
-} from "utility";
+} from "../../utility";
 
 const normalizeRawDate = (raw : string) : string => {
 

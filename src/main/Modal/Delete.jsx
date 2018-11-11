@@ -37,11 +37,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
-import { language } from "utility";
+import { language } from "../../utility";
 
 const { message : languageMessage, label } = language;
 
-import { actions } from "main";
+import { actions } from "../";
 
 const
   mapDispatchToProps = (dispatch : Dispatch) => ({

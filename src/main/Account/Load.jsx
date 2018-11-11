@@ -22,9 +22,9 @@ import { selectors } from "./reducer";
 
 import { fetchInitialInformation as fetchInitialInformationAction } from "./actions";
 
-import { LargeErrorMessage, LoadingMessage } from "main/Messages";
+import { LargeErrorMessage, LoadingMessage } from "../Messages";
 
-import { delay } from "utility";
+import { delay } from "../../utility";
 
 const
   mapStateToProps = (state : State) => ({

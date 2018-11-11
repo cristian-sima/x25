@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 
 import Header from "./Header";
 
-import { selectors } from "main";
+import { selectors } from "../";
 
 const
   mapStateToProps = (state : State) => ({

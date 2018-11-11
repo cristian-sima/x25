@@ -12,7 +12,6 @@ type BankNamePropTypes = {
 import React from "react";
 import classnames from "classnames";
 
-
 const BankAccount = ({
   input,
   meta: {

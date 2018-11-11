@@ -11,7 +11,7 @@ import React from "react";
 
 import {
   numberToLocaleForm,
-} from "utility";
+} from "../../utility";
 
 const getNumberForm = (value : number, one : string, all : string) : string => {
   if (value === 1) {
