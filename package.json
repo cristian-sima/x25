@@ -1,9 +1,11 @@
 {
-  "version": "1.1.4",
+  "version": "1.1.8",
   "name": "x25",
   "description": "x25",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build-scss": "node-sass --output-style compressed src/style -o lib/style",
+    "build-babel": "babel src --out-dir lib",
+    "build": "npm run build-scss && npm run build-babel",
     "clean": "rimraf dist lib",
     "check": "npm-check-updates -a && npm update",
     "flow": "flow check --color=always",
@@ -145,6 +147,7 @@
     "redux-ui": "0.1.1",
     "reselect": "^4.0.0",
     "sass-loader": "^7.1.0",
+    "scss-compile": "^0.1.7",
     "style-loader": "^0.23.0",
     "superagent": "^4.0.0-beta.5",
     "superagent-promise": "^1.1.0",

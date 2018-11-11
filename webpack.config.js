@@ -6,7 +6,38 @@ var env = process.env.NODE_ENV
 var config = {
   module: {
     loaders: [
-      { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ }
+      {
+        test    : /\.jsx?$/u,
+        use     : ["babel-loader"],
+        exclude: /node_modules/
+      },
+      {
+        test : /\.scss$/u,
+        use  : [
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
+      },
+      {
+        test : /\.css$/u,
+        use  : [
+          "style-loader",
+          "css-loader",
+        ],
+      },
+      {
+        test : /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/u,
+        use  : "url-loader?limit=10000&minetype=application/font-woff",
+      },
+      {
+        test : /\.jpe?g$|\.gif$|\.png$/u,
+        use  : "url-loader",
+      },
+      {
+        test : /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/u,
+        use  : "file-loader",
+      }
     ]
   },
   resolve: {
