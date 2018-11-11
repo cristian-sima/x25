@@ -30,7 +30,7 @@ const reducer = (state : any = initialState, action : Action) => {
   }
 };
 
-const getModals = (state : State) => state.get("modal");
+const getModals = (state : State) => state.get("modal") || Immutable.List();
 
 export const selectors = {
   getModals,

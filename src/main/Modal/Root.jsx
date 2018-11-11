@@ -10,7 +10,7 @@ type ModalRootPropTypes = {
 import { connect } from "react-redux";
 import React, { Fragment } from "react";
 
-import { selectors } from "src/main";
+import { selectors } from "../";
 
 const mapStateToProps = (state : State) => ({
   list: selectors.getModals(state),
