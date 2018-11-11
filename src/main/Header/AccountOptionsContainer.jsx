@@ -56,7 +56,7 @@ class OptionsContainer extends Component<OptionsContainerPropTypes, OptionsConta
             const delay = 800;
 
             setTimeout(() => {
-              document.location.href = "/login";
+              document.location.href = "/";
             }, delay);
           }).
           catch(() => {
