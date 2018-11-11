@@ -12,7 +12,7 @@ type OwnPropsContent = {
   updateUI: (newState : any) => void;
 }
 
-import type { Dispatch, State } from "types";
+import type { Dispatch, State } from "src/types";
 
 import { selectors } from "Company";
 

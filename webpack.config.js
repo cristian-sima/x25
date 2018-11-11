@@ -9,6 +9,16 @@ var config = {
       { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ }
     ]
   },
+  resolve: {
+    extensions: [
+      ".js",
+      ".jsx",
+    ],
+    modules: [
+      "client",
+      "node_modules",
+    ],
+  },
   output: {
     library: 'ReactPaginator',
     libraryTarget: 'umd'

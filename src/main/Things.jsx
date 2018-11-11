@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 
 import ModalRoot from "./Modal/Root";
 
-import type { Dispatch, State } from "types";
+import type { Dispatch, State } from "src/types";
 
 import { connect } from "react-redux";
 import Notifications from "react-notification-system-redux";

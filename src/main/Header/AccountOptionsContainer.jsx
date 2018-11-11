@@ -1,6 +1,6 @@
 // @flow
 
-import type { Dispatch } from "types";
+import type { Dispatch } from "src/types";
 
 type OptionsContainerPropTypes = {
   showLogoutProblem: () => void;

@@ -1,6 +1,6 @@
 // @flow
 
-import type { ModalActionType } from "types";
+import type { ModalActionType } from "src/types";
 
 import React from "react";
 

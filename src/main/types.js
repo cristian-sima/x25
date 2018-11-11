@@ -1,6 +1,6 @@
 // @flow
 
-import type { ErrorType, NormalizedResult } from "types";
+import type { ErrorType, NormalizedResult } from "src/types";
 import type { Map as ImmutableMap } from "immutable";
 
 export type Actions =

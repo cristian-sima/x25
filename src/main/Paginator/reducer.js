@@ -17,7 +17,7 @@ const paginationsReducers = combineReducers({
 
 // @flow
 
-import type { State } from "types";
+import type { State } from "src/types";
 
 import { createSelector } from "reselect";
 

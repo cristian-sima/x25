@@ -1,7 +1,7 @@
 // @flow
 
 import * as Immutable from "immutable";
-import type { State } from "types";
+import type { State } from "src/types";
 
 const initialState = Immutable.Map({
   captchas   : Immutable.Map(),
