@@ -14,7 +14,7 @@ type TypeInputStateTypes = {
   isWaiting: bool;
 };
 
-const delay = 1000;
+const delay = 700;
 
 import { LoadingMessage } from "../Messages";
 
