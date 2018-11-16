@@ -1,5 +1,5 @@
 // @flow
-/* eslint-disable handle-callback-err, react/forbid-component-props */
+/* eslint-disable handle-callback-err, react/forbid-component-props, no-console */
 
 import type { Dispatch } from "src/types";
 
@@ -155,9 +155,11 @@ class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
               showError(error);
             }
           }).
-          catch(() => {
+          catch((exception) => {
             endPerforming();
             showError(errMessage);
+            // eslint-disable
+            console.log("exception", exception);
           });
       });
     };
