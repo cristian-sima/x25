@@ -7,7 +7,7 @@
     "build-babel": "babel src --out-dir lib",
     "build": "npm run build-scss && npm run build-babel",
     "clean": "rimraf dist lib",
-    "check": "npm-check-updates -a && npm update",
+    "check": "npm-check-updates -a -x babel-loader && npm update",
     "flow": "flow check --color=always",
     "eslint": "eslint src --fix",
     "prepublishOnly": "npm run test && npm run eslint && npm run flow && npm run clean && npm run build",
