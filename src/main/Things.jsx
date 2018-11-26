@@ -29,7 +29,9 @@ const NotificationsContainer = connect(mapStateToProps, mapDispatchToProps)(Noti
 
 const Things = ({ getComponent } : ThingsProps) => (
   <Fragment>
-    <NotificationsContainer />
+    <div className="d-print-none">
+      <NotificationsContainer />
+    </div>
     <ModalRoot getComponent={getComponent} />
   </Fragment>
 );
