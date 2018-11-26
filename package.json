@@ -10,7 +10,7 @@
     "check": "npm-check-updates -a -x babel-loader && npm update",
     "flow": "flow check --color=always",
     "eslint": "eslint src --fix",
-    "prepublishOnly": "npm run test && npm run eslint && npm run flow && npm run clean && npm run build",
+    "prepublishOnly": "npm run test && npm run eslint  && npm run clean && npm run build",
     "test": "jest"
   },
   "repository": {
