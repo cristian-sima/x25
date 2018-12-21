@@ -35,7 +35,17 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
       <Fragment>
         {
           list.map((current, index) => {
-            const Component = this.props.getComponent(current.get("type"));
+            const
+              modalType = current.get("type"),
+              Component = this.props.getComponent(modalType);
+
+            if (typeof Component === "undefined") {
+              return (
+                <div>
+                  {`No MODAL component for the type [${modalType}] in Modal/components.jsx`}
+                </div>
+              );
+            }
 
             return (
               <Component key={index} {...current.get("props").toJS()} />
