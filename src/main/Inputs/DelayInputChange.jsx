@@ -87,6 +87,22 @@ export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeIn
     };
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (this.props.value !== nextProps.value) {
+      this.setState({
+        value: nextProps.value,
+      });
+    }
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    return (
+      this.props.value !== nextProps.value ||
+      this.state.value !== nextState.value ||
+      this.state.isWaiting !== nextState.isWaiting
+    );
+  }
+
   render () {
     const { value, isWaiting } = this.state;
 

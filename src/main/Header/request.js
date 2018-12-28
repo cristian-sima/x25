@@ -7,7 +7,7 @@ import { withPromiseCallback } from "../../utility";
 export const logOut = () => (
   new Promise((resolve, reject) => (
     agent.
-      post("/api/extern/logout").
+      post("/api/account/logout").
       type("form").
       end(withPromiseCallback(resolve, reject))
   )) : Promise<any>
