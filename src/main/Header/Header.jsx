@@ -14,7 +14,6 @@ type HeaderPropTypes = {
 };
 
 import React from "react";
-import { Link } from "react-router-dom";
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from "reactstrap";
 
 import AccountOptionsContainer from "./AccountOptionsContainer";
@@ -41,9 +40,9 @@ const Header = ({
     </NavbarToggler>
     <Collapse isOpen={showNavbar} navbar>
       <Nav className="ml-auto" navbar>
-        <Link className="nav-link" to="/admin/companies">
+        <a className="nav-link" href="/settings/companies">
           {"Setări"}
-        </Link>
+        </a>
         <div className="form-inline">
           <AccountOptionsContainer accountName={accountName} />
         </div>
