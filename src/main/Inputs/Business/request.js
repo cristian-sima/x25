@@ -29,7 +29,7 @@ const normalizeCompanyDetails = (resolve, reject) => (
 export const getCompanyDetails = (cif: string) => (
   new Promise((resolve, reject) => (
     agent.
-      post(`/api/account/get-company-information/${cif}`).
+      post(`/api/extern/get-company-information/${cif}`).
       type("json").
       end(normalizeCompanyDetails(resolve, reject))
   )) : Promise<any>
