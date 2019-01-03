@@ -7,6 +7,19 @@ import { isValidDate } from "./validation/validate";
 
 const ten = 10;
 
+export const getLastMonthAndYear = () : MonthAndYear => {
+  const
+    currentDate = new Date(),
+    currentYear = String(currentDate.getFullYear()),
+    currentMonth = String(currentDate.getMonth()),
+    { previousMonth, previousYear } = getPreviousMonth(currentYear, currentMonth);
+
+    return {
+      month: previousMonth,
+      year: previousYear,
+    };
+};
+
 // new Date("2016-08-25T00:00:00Z") ---> 25.08.2016
 export const formatDateObject = (date : Date) : string => {
 
