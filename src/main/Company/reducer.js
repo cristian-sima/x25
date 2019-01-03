@@ -125,23 +125,6 @@ const
     getError,
     checkForNoErrors,
   ),
-  getCurrentCompanyID = (state : any, link : string) => {
-    const getState = () => {
-      if (typeof state === "undefined" || state === null) {
-        const store = require(link).default;
-
-        return store.getState();
-      }
-
-      return state;
-    };
-
-    return getState().getIn([
-      "companyInfo",
-      "company",
-      "ID",
-    ]);
-  },
   getCurrentCompanyShouldFetch = createSelector(
     getCurrentAccountFetched,
     getCurrentCompanyIsFetched,
@@ -177,7 +160,6 @@ export const selectors = {
   getCurrentCompanyIsFetched,
   getCurrentCompanyIsFetching,
   getCurrentCompanyHasError,
-  getCurrentCompanyID,
   getCurrentCompanyShouldFetch,
   getCompanyModules,
 };
