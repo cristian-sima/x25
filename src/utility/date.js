@@ -7,6 +7,20 @@ import { isValidDate } from "./validation/validate";
 
 const ten = 10;
 
+export const getPreviousMonth = (year : string, month: string) => {
+  if (month === "0") {
+    return {
+      previousMonth : "11",
+      previousYear  : String(Number(year) - 1),
+    };
+  }
+
+  return {
+    previousMonth : String(Number(month) - 1),
+    previousYear  : String(year),
+  };
+};
+
 export const getLastMonthAndYear = () : MonthAndYear => {
   const
     currentDate = new Date(),
