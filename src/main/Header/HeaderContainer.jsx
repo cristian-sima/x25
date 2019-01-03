@@ -15,13 +15,13 @@ import { connect } from "react-redux";
 
 import Header from "./Header";
 
-import { getInitialInformation } from "../Account/reducers";
+import { selectors } from "../Account/reducer";
 
 import { isAdministratorAccount } from "../../utility";
 
 const
   mapStateToProps = (state : State) => {
-    const data = getInitialInformation(state);
+    const data = selectors.getInitialInformation(state);
 
     return {
       accountName : data.get("Name"),
