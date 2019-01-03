@@ -7,7 +7,8 @@ import { withRouter } from "react-router-dom";
 import AsyncSelect from "react-select/lib/Async";
 
 import { withPromiseCallback } from "../../utility";
-import { getDefaultCompanyRoute, noOptionsMessage, Option, wrapperClassname, isSmall } from "./util";
+import { loadingMessage,
+  getDefaultCompanyRoute, noOptionsMessage, Option, wrapperClassname, isSmall } from "./util";
 
 type AdminSelectCompanyPropTypes = {
   companies: any;
@@ -74,6 +75,7 @@ class AdminSelectCompany extends Component<AdminSelectCompanyPropTypes, AdminSel
           cacheOptions
           components={{ Option }}
           loadOptions={loadOptions}
+          loadingMessage={loadingMessage}
           noOptionsMessage={noOptionsMessage}
           onChange={this.handleChange}
           onInputChange={this.handleInputChange}

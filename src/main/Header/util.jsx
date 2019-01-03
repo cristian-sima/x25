@@ -4,6 +4,7 @@ import React from "react";
 import { components } from "react-select";
 
 export const noOptionsMessage = () => "Nu există opțiuni";
+export const loadingMessage = () => "Se încarcă...";
 
 export const Option = (props) => (
   <div className="text-truncate small" title={props.label}>
