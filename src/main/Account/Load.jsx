@@ -25,8 +25,6 @@ import { fetchInitialInformation as fetchInitialInformationAction } from "./acti
 
 import { LargeErrorMessage, LoadingMessage } from "../Messages";
 
-import { delay } from "../../utility";
-
 const
   mapStateToProps = (state : State) => ({
     data        : selectors.getInitialInformation(state),
@@ -37,10 +35,9 @@ const
   }),
   mapDispatchToProps = (dispatch : Dispatch, { appName }) => ({
     fetchInitialInformation () {
-      delay().
-        then(() => {
-          dispatch(fetchInitialInformationAction(appName));
-        });
+      setTimeout(() => {
+        dispatch(fetchInitialInformationAction(appName));
+      });
     },
   });
 
