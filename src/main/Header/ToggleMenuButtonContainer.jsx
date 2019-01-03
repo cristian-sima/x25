@@ -15,8 +15,10 @@ import { connect } from "react-redux";
 
 import ToggleMenuButton from "./ToggleMenuButton";
 
+const mql = window.matchMedia("(min-width: 800px)");
+
 const
-  mapDispatchToProps = (dispatch : Dispatch, { ui : { mql }, updateUI } : OwnProps) => ({
+  mapDispatchToProps = (dispatch : Dispatch, { updateUI } : OwnProps) => ({
     showSidebar () {
       const theMetch = mql.matches;
 
