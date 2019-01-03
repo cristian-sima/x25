@@ -1,6 +1,6 @@
 // @flow
 
-import type { Action } from "Auto/types";
+import type { Action } from "src/types";
 
 import { fetchCurrentCompany as fetchCurrentCompanyRequest } from "./request";
 

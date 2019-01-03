@@ -7,7 +7,7 @@ import type { Action, State } from "Auto/types";
 
 import { createSelector } from "reselect";
 
-import { noError } from "x25/lib/utility";
+import { noError } from "../../utility";
 
 type CurrentState = any;
 
@@ -125,10 +125,10 @@ const
     getError,
     checkForNoErrors,
   ),
-  getCurrentCompanyID = (state : any) => {
+  getCurrentCompanyID = (state : any, link : string) => {
     const getState = () => {
-      if (typeof state === "undefined") {
-        const store = require("Auto/store/store").default;
+      if (typeof state === "undefined" || state === null) {
+        const store = require(link).default;
 
         return store.getState();
       }

@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable react/require-optimization */
 
-import type { Dispatch, State } from "Auto/types";
+import type { Dispatch, State } from "src/types";
 
 type PrivateRoutePropTypes = {
   isFetching: bool;
@@ -22,9 +22,7 @@ import { selectors } from "./reducer";
 
 import { fetchCurrentCompany as fetchCurrentCompanyAction } from "./actions";
 
-import { delay } from "x25/lib/utility";
-
-import { LargeErrorMessage, LoadingMessage } from "x25/lib/main/Messages";
+import { LargeErrorMessage, LoadingMessage } from "../Messages";
 
 const
   mapStateToProps = (state : State) => ({
@@ -36,10 +34,7 @@ const
   }),
   mapDispatchToProps = (dispatch : Dispatch, { match : { params : { company } } }) => ({
     fetchCurrentCompany () {
-      delay().
-        then(() => {
-          dispatch(fetchCurrentCompanyAction(company));
-        });
+      dispatch(fetchCurrentCompanyAction(company));
     },
   });
 

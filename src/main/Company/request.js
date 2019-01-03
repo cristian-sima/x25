@@ -3,8 +3,8 @@
 import agent from "superagent";
 import * as Immutable from "immutable";
 
-import { withPromiseCallback } from "x25/lib/utility";
-import { selectors } from "Auto/Company";
+import { withPromiseCallback } from "../../utility";
+import { selectors } from "./reducers";
 
 export const fetchCurrentCompany = (id : string) => (
   new Promise((resolve, reject) => (
