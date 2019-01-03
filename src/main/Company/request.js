@@ -4,7 +4,7 @@ import agent from "superagent";
 import * as Immutable from "immutable";
 
 import { withPromiseCallback } from "../../utility";
-import { selectors } from "./reducers";
+import { selectors } from "./reducer";
 
 export const fetchCurrentCompany = (id : string) => (
   new Promise((resolve, reject) => (
