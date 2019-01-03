@@ -3,8 +3,8 @@
 import type { Dispatch } from "src/types";
 
 type OptionsContainerPropTypes = {
-  showLogoutProblem: () => void;
   accountName: string;
+  showLogoutProblem: () => void;
 };
 
 type OptionsContainerStateTypes = {
@@ -13,7 +13,7 @@ type OptionsContainerStateTypes = {
 };
 
 import React, { Component } from "react";
-import { ButtonDropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import { ButtonDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { connect } from "react-redux";
 
 import LogoutButton from "./LogoutButton";
@@ -79,31 +79,34 @@ class OptionsContainer extends Component<OptionsContainerPropTypes, OptionsConta
     nextState: OptionsContainerStateTypes
   ) {
     return (
-      this.state.readyToLogout !== nextState.readyToLogout ||
       this.props.accountName !== nextProps.accountName ||
+
+      this.state.readyToLogout !== nextState.readyToLogout ||
       this.state.open !== nextState.open
     );
   }
 
   render () {
-    const { open, readyToLogout } = this.state;
-
     const { accountName } = this.props;
 
+    const { open, readyToLogout } = this.state;
+
     return (
-      <ButtonDropdown isOpen={open} toggle={this.toggle}>
-        <DropdownToggle caret>
-          {"Opțiuni"}
-        </DropdownToggle>
-        <DropdownMenu className="dropdown-menu-left">
-          <h6 className="dropdown-header">{accountName}</h6>
-          <div className="dropdown-divider" />
-          <LogoutButton
-            logoutAccount={this.logoutAccount}
-            readyToLogout={readyToLogout}
-          />
-        </DropdownMenu>
-      </ButtonDropdown>
+      <div className="btn-group">
+        <ButtonDropdown isOpen={open} toggle={this.toggle}>
+          <DropdownToggle caret>
+            {"Opțiuni"}
+          </DropdownToggle>
+          <DropdownMenu className="dropdown-menu-left">
+            <h6 className="dropdown-header">{accountName}</h6>
+            <div className="dropdown-divider" />
+            <LogoutButton
+              logoutAccount={this.logoutAccount}
+              readyToLogout={readyToLogout}
+            />
+          </DropdownMenu>
+        </ButtonDropdown>
+      </div>
     );
   }
 }

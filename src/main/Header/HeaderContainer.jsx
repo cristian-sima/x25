@@ -1,6 +1,6 @@
 // @flow
 
-import type { Dispatch, State } from "src/types";
+import type { State, Dispatch } from "src/types";
 
 type OwnProps = {
   ui: {
@@ -15,12 +15,19 @@ import { connect } from "react-redux";
 
 import Header from "./Header";
 
-import { selectors } from "../";
+import { getInitialInformation } from "../Account/reducers";
+
+import { isAdministratorAccount } from "../../utility";
 
 const
-  mapStateToProps = (state : State) => ({
-    accountName: selectors.getInitialInformation(state).get("Name"),
-  }),
+  mapStateToProps = (state : State) => {
+    const data = getInitialInformation(state);
+
+    return {
+      accountName : data.get("Name"),
+      isAdmin     : isAdministratorAccount(data.get("Type")),
+    };
+  },
   mapDispatchToProps = (dispatch : Dispatch, { ui : { showNavbar }, updateUI } : OwnProps) => ({
     toggleNavbar () {
       updateUI({

@@ -12,7 +12,8 @@ const initialState = Immutable.Map({
   fetched  : false,
   fetching : false,
 
-  info: Immutable.Map(),
+  info      : Immutable.Map(),
+  companies : Immutable.Map(),
 });
 
 const
@@ -33,7 +34,8 @@ const
       fetched  : true,
       fetching : false,
 
-      info: payload.Account,
+      info      : payload.Account,
+      companies : payload.Companies,
     })
   ),
   accountChangePassword = (state : any) => (
@@ -78,6 +80,10 @@ const
     "account",
     "info",
   ]),
+  getAccountCompanies = (state : State) => state.getIn([
+    "account",
+    "companies",
+  ]),
   getInitialInformationIsFetching = (state : State) => state.getIn([
     "account",
     "fetching",
@@ -110,6 +116,7 @@ const
   );
 
 export const selectors = {
+  getAccountCompanies,
   getInitialInformation,
   getInitialInformationIsFetching,
   getInitialInformationShouldFetch,

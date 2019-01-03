@@ -3,6 +3,7 @@
 type HeaderPropTypes = {
   brand : string;
   accountName : string;
+  isAdmin: bool;
   sidebarDocked: boolean;
   ui: {
     showNavbar: boolean;
@@ -14,41 +15,61 @@ type HeaderPropTypes = {
 };
 
 import React from "react";
-import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from "reactstrap";
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav } from "reactstrap";
 
 import AccountOptionsContainer from "./AccountOptionsContainer";
+import AdminSelectCompany from "./AdminSelectCompany";
+import ClientSelectCompany from "./ClientSelectCompany";
 import ToggleMenuButtonContainer from "./ToggleMenuButtonContainer";
 
+import { isSmall } from "./util";
+
 const Header = ({
-  brand, accountName, sidebarDocked, toggleNavbar, ui : { showNavbar },
+  brand,
+  accountName,
+  isAdmin,
+  sidebarDocked,
+  toggleNavbar,
+  ui : { showNavbar },
 } : HeaderPropTypes) => (
-  <Navbar className="d-print-none" color="dark" dark expand="md">
-    <NavbarBrand>
+  <div>
+    <Navbar className="d-print-none" color="dark" dark expand="md">
       { sidebarDocked ? null : <ToggleMenuButtonContainer /> }
-      <span className="text-white">
-        {brand}
-      </span>
-    </NavbarBrand>
-    <NavbarToggler className="nav-toggler mt-3" onClick={toggleNavbar} >
-      {
-        showNavbar ? (
-          <i className="fa fa-arrow-up" />
-        ) : (
-          <i className="fa fa-caret-square-o-down" />
-        )
-      }
-    </NavbarToggler>
-    <Collapse isOpen={showNavbar} navbar>
-      <Nav className="ml-auto" navbar>
-        <a className="nav-link" href="/settings/companies">
-          {"Setări"}
-        </a>
-        <div className="form-inline">
-          <AccountOptionsContainer accountName={accountName} />
-        </div>
-      </Nav>
-    </Collapse>
-  </Navbar>
+      <div
+        className="brand-wrapper truncate text-left d-inline-block text-light"
+        onClick={isSmall() ? toggleNavbar : null}>
+        <NavbarBrand>
+          {brand}
+        </NavbarBrand>
+      </div>
+      <NavbarToggler className="mt-3 text-dark" onClick={toggleNavbar}>
+        {
+          showNavbar ? (
+            <i className="fa fa-arrow-up text-light" />
+          ) : (
+            <i className="fa fa-arrow-down text-light" />
+          )
+        }
+      </NavbarToggler>
+      <Collapse isOpen={showNavbar} navbar>
+        <Nav className="ml-auto" navbar>
+          <a className="nav-link" href="/settings/companies">
+            {"Setări"}
+          </a>
+          {
+            isAdmin ? (
+              <AdminSelectCompany toggleNavbar={toggleNavbar} />
+            ) : (
+              <ClientSelectCompany toggleNavbar={toggleNavbar} />
+            )
+          }
+          <div className="d-inline-block">
+            <AccountOptionsContainer accountName={accountName} />
+          </div>
+        </Nav>
+      </Collapse>
+    </Navbar>
+  </div>
 );
 
 export default Header;

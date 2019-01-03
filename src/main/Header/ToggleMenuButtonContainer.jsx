@@ -15,10 +15,8 @@ import { connect } from "react-redux";
 
 import ToggleMenuButton from "./ToggleMenuButton";
 
-import { mql } from "../../utility";
-
 const
-  mapDispatchToProps = (dispatch : Dispatch, { updateUI } : OwnProps) => ({
+  mapDispatchToProps = (dispatch : Dispatch, { ui : { mql }, updateUI } : OwnProps) => ({
     showSidebar () {
       const theMetch = mql.matches;
 
