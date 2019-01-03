@@ -4,11 +4,12 @@ import type { State } from "src/types";
 
 type ModalRootPropTypes = {
   list: any;
-  getComponent: (name: string) => any;
 };
 
 import { connect } from "react-redux";
 import React, { Fragment } from "react";
+
+import getComponent from "./getComponent";
 
 import { selectors } from "../";
 
@@ -37,7 +38,7 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
           list.map((current, index) => {
             const
               modalType = current.get("type"),
-              Component = this.props.getComponent(modalType);
+              Component = getComponent(modalType);
 
             if (typeof Component === "undefined") {
               return (

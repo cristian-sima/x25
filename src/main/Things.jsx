@@ -1,9 +1,5 @@
 // @flow
 
-type ThingsProps = {
-  getComponent: (name: string) => void;
-}
-
 import React, { Fragment } from "react";
 
 import ModalRoot from "./Modal/Root";
@@ -27,12 +23,12 @@ const
 
 const NotificationsContainer = connect(mapStateToProps, mapDispatchToProps)(Notifications);
 
-const Things = ({ getComponent } : ThingsProps) => (
+const Things = () => (
   <Fragment>
     <div className="d-print-none">
       <NotificationsContainer />
     </div>
-    <ModalRoot getComponent={getComponent} />
+    <ModalRoot />
   </Fragment>
 );
 
