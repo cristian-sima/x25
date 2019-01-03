@@ -33,11 +33,11 @@ export const LoadingMessage = ({ message, sm, className } : LoadingMessagePropTy
   }
 
   return (
-    <div className={`text-center mt-4 ${className || ""}`}>
-      <div className="fancy-text mb-1">
-        {getMessage()}
+    <div className={`text-center my-4 ${className || ""}`}>
+      <div className="spinner-border text-primary" role="status">
+        <span className="sr-only">{"Se încarcă..."}</span>
       </div>
-      <div className="loading"><div /><div /><div /><div /></div>
+      <div className="text-fancy mt-1">{message}</div>
     </div>
   );
 };
