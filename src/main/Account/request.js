@@ -20,11 +20,12 @@ const normalizeInitialInformation = (info : any) => {
   };
 };
 
-export const fetchInitialInformation = () => (
+export const fetchInitialInformation = (app : string) => (
   new Promise((resolve, reject) => (
     agent.
       get("/api/extern/get-initial-information").
-      set("Accept", "application/json").
+      type("form").
+      query({ app }).
       end(withPromiseCallback((reponse) => resolve(normalizeInitialInformation(reponse)), reject))
   )) : Promise<any>
 );

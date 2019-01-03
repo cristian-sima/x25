@@ -4,6 +4,7 @@
 import type { Dispatch, State } from "src/types";
 
 type PrivateRoutePropTypes = {
+  appName: string;
   isFetching: bool;
   hasError: bool;
   data: any;
@@ -34,11 +35,11 @@ const
     isFetching  : selectors.getInitialInformationIsFetching(state),
     shouldFetch : selectors.getInitialInformationShouldFetch(state),
   }),
-  mapDispatchToProps = (dispatch : Dispatch) => ({
+  mapDispatchToProps = (dispatch : Dispatch, { appName }) => ({
     fetchInitialInformation () {
       delay().
         then(() => {
-          dispatch(fetchInitialInformationAction());
+          dispatch(fetchInitialInformationAction(appName));
         });
     },
   });
