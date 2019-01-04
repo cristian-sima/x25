@@ -1,26 +1,26 @@
 {
-  "version": "1.5.0",
+  "version": "1.5.3",
   "name": "x25",
   "description": "x25",
   "scripts": {
-    "build-scss": "node-sass --output-style compressed src/style -o lib/style",
-    "build-babel": "babel src --out-dir lib",
+    "build-scss": "node-sass --output-style compressed src/style -o dist/style",
+    "build-babel": "babel src --out-dir dist",
     "build": "npm run build-scss && npm run build-babel",
-    "clean": "rimraf dist lib",
+    "clean": "rimraf dist dist",
     "check": "npm-check-updates -a -x babel-loader && npm update",
     "flow": "flow check --color=always",
     "eslint": "eslint src --fix",
-    "prepublishOnly": "npm run test && npm run eslint  && npm run clean && npm run build",
+    "copy": "copy package.json dist",
+    "prepublishOnly": "npm run test && npm run eslint  && npm run clean && npm run build && npm run copy && cd ./dist",
     "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cristian-sima/x25.git"
   },
+  "main": "dist/index.js",
   "files": [
-    "dist",
-    "lib",
-    "src"
+    "dist"
   ],
   "keywords": [],
   "author": "Cristian Sima",
@@ -62,9 +62,6 @@
     "node": ">= 6.3.1"
   },
   "jest": {
-    "setupFiles": [
-      "<rootDir>/conf/polyfills/tempPolyfills.js"
-    ],
     "testRegex": "src/.*-test.js$",
     "modulePaths": [
       "src"
@@ -97,6 +94,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "bootstrap": "^4.1.3",
     "classnames": "^2.2.6",
+    "copy": "^0.3.2",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
     "dezalgo": "^1.0.3",
