@@ -26,7 +26,13 @@ const renderWithReducer = (route, props) => {
   }
 
   if (paginators) {
-    injectPaginator(paginators);
+    if (Array.isArray(paginators)) {
+      for (const paginator of paginators) {
+        injectPaginator(paginator);
+      }
+    } else {
+      injectPaginator(paginators);
+    }
   }
 
   return <Component {...props} />;

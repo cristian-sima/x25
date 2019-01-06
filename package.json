@@ -1,5 +1,5 @@
 {
-  "version": "1.5.3",
+  "version": "1.5.8",
   "name": "x25",
   "description": "x25",
   "scripts": {
@@ -11,17 +11,14 @@
     "flow": "flow check --color=always",
     "eslint": "eslint src --fix",
     "copy": "copy package.json dist",
-    "prepublishOnly": "npm run test && npm run eslint  && npm run clean && npm run build && npm run copy && cd ./dist",
+    "pre": "npm run test && npm run eslint  && npm run clean && npm run build && npm run copy",
+    "load": "npm run pre && cd dist && npm publish",
     "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cristian-sima/x25.git"
   },
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
   "keywords": [],
   "author": "Cristian Sima",
   "license": "MIT",
