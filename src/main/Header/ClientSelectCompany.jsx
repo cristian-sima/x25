@@ -11,7 +11,7 @@ import { getDefaultCompanyRoute, noOptionsMessage, Option, wrapperClassname, isS
 
 import { connect } from "react-redux";
 
-import { selectors } from "../reducer";
+import { selectors } from "../Account/reducer";
 
 const
   mapStateToProps = (state : State) => ({
