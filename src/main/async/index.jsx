@@ -18,7 +18,15 @@ const renderWithReducer = (route, props) => {
   const { Component, reducers, modals, paginators } = route.default;
 
   if (reducers) {
-    alert("Do it before"); // eslint-disable-line
+    if (Array.isArray(reducers)) {
+      for (const { key, func } of reducers) {
+        injectReducer(key, func);
+      }
+    } else {
+      const { key, func } = reducers;
+
+      injectReducer(key, func);
+    }
   }
 
   if (modals) {
