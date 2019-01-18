@@ -1,6 +1,6 @@
 // @flow
 /* globals process */
-/* eslint-disable vars-on-top, max-len, global-require, no-process-env */
+/* eslint-disable  */
 
 export const setFavIconToDev = () => {
   const element : any = document.querySelector("link[rel*='icon");
@@ -11,6 +11,7 @@ export const setFavIconToDev = () => {
 };
 
 const perform = (configuration) => {
+  console.log("process.env.NODE_ENV =", process.env.NODE_ENV);
   if (process.env.NODE_ENV === "production") {
     const Sentry = require("@sentry/browser");
 
