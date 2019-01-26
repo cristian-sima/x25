@@ -9,7 +9,7 @@ type LoadingButtonPropTypes = {
   onLoadMoreClick: () => void;
 };
 
-import { ErrorMessage, LoadingMessage } from "./Messages";
+import { ErrorMessage, LoadingMessage } from "../Messages";
 
 class LoadingButton extends React.Component<LoadingButtonPropTypes> {
   props: LoadingButtonPropTypes;

@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 
 import Header from "./Header";
 
-import { selectors } from "./Account/reducer";
+import { selectors } from "../Account/reducer";
 
 import { isAdministratorAccount } from "../utility";
 

@@ -16,7 +16,7 @@ type TypeInputStateTypes = {
 
 const delay = 700;
 
-import { LoadingMessage } from "./Messages";
+import { LoadingMessage } from "../Messages";
 
 export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeInputStateTypes> {
   props: TypeInputPropTypes;

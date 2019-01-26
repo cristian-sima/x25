@@ -18,7 +18,7 @@ import { connect } from "react-redux";
 
 import LogoutButton from "./LogoutButton";
 
-import { notifyError } from "./actions";
+import { notifyError } from "../actions";
 
 import { logOut as logoutRequest } from "./request";
 

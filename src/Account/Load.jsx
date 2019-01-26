@@ -23,7 +23,7 @@ import { selectors } from "./reducer";
 
 import { fetchInitialInformation as fetchInitialInformationAction } from "./actions";
 
-import { LargeErrorMessage, LoadingMessage } from "./Messages";
+import { LargeErrorMessage, LoadingMessage } from "../Messages";
 
 const
   mapStateToProps = (state : State) => ({

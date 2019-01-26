@@ -5,8 +5,8 @@
 import Loadable from "react-loadable";
 import React from "react";
 
-import { injectModals } from "./Modal/util";
-import loading from "./RouteLoading";
+import { injectModals } from "../Modal/util";
+import loading from "../RouteLoading";
 import { injectReducer } from "redux-injector";
 
 export const injectPaginator = ({ key, entities, pagination }) => {

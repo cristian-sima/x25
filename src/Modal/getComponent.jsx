@@ -4,8 +4,8 @@ import React from "react";
 
 import { getModal } from "./util";
 
+import { ErrorMessage } from "../Messages";
 import SimpleModal from "./SimpleModal";
-import { ErrorMessage } from "./Messages";
 
 const NothingSelected = () => (
   <SimpleModal title="Not registred">

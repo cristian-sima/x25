@@ -33,7 +33,7 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
     }
 
     return (
-      <>
+      <Fragment>
         {
           list.map((current, index) => {
             const
@@ -53,7 +53,7 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
             );
           })
         }
-      </>
+      </Fragment>
     );
   }
 }

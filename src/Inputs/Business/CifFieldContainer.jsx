@@ -26,7 +26,7 @@ import { connect } from "react-redux";
 
 import { getCompanyDetails } from "./request";
 
-import actions from "./actions";
+import * as actions from "../../actions";
 
 import { delay, isValidCIF } from "../../utility";
 

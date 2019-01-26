@@ -1,10 +1,10 @@
 // @flow
 
-import { selectors as paginatorSelectors } from "./Paginator/selectors";
-import modal, { selectors as modalSelectors } from "./Modal/reducer";
-import account, { selectors as accountSelectors } from "./Account/reducer";
-import auth, { selectors as authSelectors } from "./auth";
+import { selectors as paginatorSelectors } from "../Paginator/selectors";
+import modal, { selectors as modalSelectors } from "../Modal/reducer";
+import account, { selectors as accountSelectors } from "../Account/reducer";
 
+import auth, { selectors as authSelectors } from "./auth";
 import counties, { selectors as countiesSelectors } from "./counties";
 
 export const state = {

@@ -41,7 +41,7 @@ import { language } from "../utility";
 
 const { message : languageMessage, label } = language;
 
-import actions from "./actions";
+import * as actions from "./actions";
 
 const
   mapDispatchToProps = (dispatch : Dispatch) => ({
