@@ -38,7 +38,7 @@ class LoadingButton extends React.Component<LoadingButtonPropTypes> {
             <LoadingMessage message="Preiau date..." sm />
           ) : (
             <button
-              className="btn btn-outline-info"
+              className="btn btn-outline-info d-print-none"
               disabled={isFetching}
               onClick={onLoadMoreClick}
               type="button">
