@@ -27,6 +27,7 @@ export const SimpleInput = ({
   <input
     {...input}
     aria-label={label}
+    autoComplete={input.name}
     className={classnames(`form-control ${customClass || ""}`, {
       "is-invalid": touched && error,
     })}

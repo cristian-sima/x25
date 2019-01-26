@@ -54,6 +54,7 @@ export const InputTemplate = ({
         <input
           {...input}
           aria-label={label}
+          autoComplete={input.name}
           autoFocus={autoFocus}
           className={classForInput}
           disabled={submitting}

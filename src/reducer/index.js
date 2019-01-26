@@ -5,7 +5,7 @@ import account, { selectors as accountSelectors } from "../Account/reducer";
 
 import auth, { selectors as authSelectors } from "./auth";
 
-import immutableRouter from "./immutable-router";
+import immutableRouting from "./immutable-routing";
 
 const state = {
   account,
@@ -22,5 +22,5 @@ const selectors = {
 export {
   state,
   selectors,
-  immutableRouter,
+  immutableRouting,
 };
