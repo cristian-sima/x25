@@ -1,17 +1,17 @@
 // @flow
 
 type LoadingPropTypes = {
-error?: string;
-retry: () => void;
-timedOut: bool;
-pastDelay: bool;
+  error?: string;
+  retry: () => void;
+  timedOut: bool;
+  pastDelay: bool;
 }
 
 import React from "react";
 
-import { LoadingMessage } from "./Messages/Loading";
+import { LoadingMessage } from "../Messages/Loading";
 
-const Loading = (props : LoadingPropTypes) => {
+const RouteLoading = (props : LoadingPropTypes) => {
   if (props.error) {
     return (
       <div>
@@ -37,12 +37,6 @@ const Loading = (props : LoadingPropTypes) => {
       <LoadingMessage message="Așteaptă un pic..." />
     </div>
   );
-
 };
 
-const settings = {
-  loading : Loading,
-  timeout : 10000,
-};
-
-export default settings;
+export default RouteLoading;

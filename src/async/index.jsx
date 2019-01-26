@@ -1,15 +1,22 @@
 // @flow
 /* eslint-disable new-cap, react/prefer-stateless-function, react/require-optimization */
 
+type injectPaginatorTypes = {
+  key: string,
+  entities: any;
+  pagination: any;
+};
 
 import Loadable from "react-loadable";
 import React from "react";
 
 import { injectModals } from "../Modal/util";
-import loading from "../RouteLoading";
+import RouteLoading from "./RouteLoading";
 import { injectReducer } from "redux-injector";
 
-export const injectPaginator = ({ key, entities, pagination }) => {
+const timeout = 15000;
+
+export const injectPaginator = ({ key, entities, pagination } : injectPaginatorTypes) => {
   injectReducer(`entities.${key}`, entities);
   injectReducer(`paginations.${key}`, pagination);
 };
@@ -46,8 +53,9 @@ const renderWithReducer = (route, props) => {
   return <Component {...props} />;
 };
 
-export const asyncRoute = (loader) => Loadable({
-  ...loading,
+export const createAsyncRoute = (loader) => Loadable({
   loader,
-  render: renderWithReducer,
+  loading : RouteLoading,
+  render  : renderWithReducer,
+  timeout,
 });
