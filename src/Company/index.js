@@ -1,8 +1,11 @@
+// @flow
 
-export { selectors } from "./reducer";
+import companyReducer, { selectors as companySelectors } from "./reducer";
 
-import reducer from "./reducer";
+import LoadCompany from "./Load";
 
-export Load from "./Load";
-
-export default reducer;
+export {
+  companySelectors,
+  companyReducer,
+  LoadCompany,
+};
