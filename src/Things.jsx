@@ -9,7 +9,7 @@ import type { Dispatch, State } from "src/types";
 import { connect } from "react-redux";
 import Notifications from "react-notification-system-redux";
 
-import { deleteNotification } from "./Notifications/actions";
+import { deleteNotification } from "./actions";
 
 const
   mapStateToProps = (state : State) => ({
