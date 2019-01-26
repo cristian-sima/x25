@@ -21,7 +21,7 @@ import { isAdministratorAccount } from "../utility";
 
 const
   mapStateToProps = (state : State) => {
-    const data = selectors.getInitialInformation(state);
+    const data = selectors.getCurrentAccount(state);
 
     return {
       accountName : data.get("Name"),

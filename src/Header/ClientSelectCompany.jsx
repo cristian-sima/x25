@@ -15,7 +15,7 @@ import { selectors } from "../Account/reducer";
 
 const
   mapStateToProps = (state : State) => ({
-    companies: selectors.getAccountCompanies(state),
+    companies: selectors.getCurrentAccountCompanies(state),
   });
 
 type ClientSelectCompanyPropTypes = {

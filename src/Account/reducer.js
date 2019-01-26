@@ -76,52 +76,52 @@ const
   ]);
 
 const
-  getInitialInformation = (state : State) => state.getIn([
+  getCurrentAccount = (state : State) => state.getIn([
     "account",
     "info",
   ]),
-  getAccountCompanies = (state : State) => state.getIn([
+  getCurrentAccountCompanies = (state : State) => state.getIn([
     "account",
     "companies",
   ]),
-  getInitialInformationIsFetching = (state : State) => state.getIn([
+  getCurrentAccountIsFetching = (state : State) => state.getIn([
     "account",
     "fetching",
   ]),
-  getInitialInformationShouldFetch = createSelector(
-    getInitialInformationIsFetching,
+  getCurrentAccountShouldFetch = createSelector(
+    getCurrentAccountIsFetching,
     getFetched,
     getError,
     (isFetching, isFetched, error) => (
       !isFetching && !isFetched && error === noError
     )
   ),
-  getInitialInformationIsFetched = createSelector(
-    getInitialInformationIsFetching,
+  getCurrentAccountIsFetched = createSelector(
+    getCurrentAccountIsFetching,
     getFetched,
     getError,
     (isFetching, isFetched, error) => (
       !isFetching && isFetched && error === noError
     )
   ),
-  getInitialInformationHasError = createSelector(
+  getCurrentAccountHasError = createSelector(
     getError,
     (error) => error !== noError
   ),
   getIsCurrentAccountAdministrator = createSelector(
-    getInitialInformation,
+    getCurrentAccount,
     (account) => (
       isAdministratorAccount(account.get("Type"))
     )
   );
 
 export const selectors = {
-  getAccountCompanies,
-  getInitialInformation,
-  getInitialInformationIsFetching,
-  getInitialInformationShouldFetch,
-  getInitialInformationIsFetched,
-  getInitialInformationHasError,
+  getCurrentAccountCompanies,
+  getCurrentAccount,
+  getCurrentAccountIsFetching,
+  getCurrentAccountShouldFetch,
+  getCurrentAccountIsFetched,
+  getCurrentAccountHasError,
   getIsCurrentAccountAdministrator,
 };
 

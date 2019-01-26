@@ -27,11 +27,11 @@ import { LargeErrorMessage, LoadingMessage } from "../Messages";
 
 const
   mapStateToProps = (state : State) => ({
-    data        : selectors.getInitialInformation(state),
-    hasError    : selectors.getInitialInformationHasError(state),
-    fetched     : selectors.getInitialInformationIsFetched(state),
-    isFetching  : selectors.getInitialInformationIsFetching(state),
-    shouldFetch : selectors.getInitialInformationShouldFetch(state),
+    data        : selectors.getCurrentAccount(state),
+    hasError    : selectors.getCurrentAccountHasError(state),
+    fetched     : selectors.getCurrentAccountIsFetched(state),
+    isFetching  : selectors.getCurrentAccountIsFetching(state),
+    shouldFetch : selectors.getCurrentAccountShouldFetch(state),
   }),
   mapDispatchToProps = (dispatch : Dispatch, { appName }) => ({
     fetchInitialInformation () {
