@@ -1,7 +1,7 @@
 /* eslint-disable max-len, no-duplicate-imports */
 // @flow
 
-import type { NormalizedResult } from "../types";
+import type { NormalizedResult } from "./types";
 
 type Normalizr = (item : any) => any;
 
