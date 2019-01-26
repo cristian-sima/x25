@@ -9,6 +9,10 @@ import { createSelector } from "reselect";
 
 import { noError } from "../utility";
 
+import { getIDFromURL } from "./util";
+
+const reducerKey = "companyInfo";
+
 type CurrentState = any;
 
 const initialState : CurrentState = Immutable.Map({
@@ -81,15 +85,15 @@ const reducer = (state : any = initialState, action : Action) => {
 
 const
   getFetching = (state : State) => state.getIn([
-    "companyInfo",
+    reducerKey,
     "fetching",
   ]) || false,
   getFetched = (state : State) => state.getIn([
-    "companyInfo",
+    reducerKey,
     "fetched",
   ]) || false,
   getError = (state : State) => state.getIn([
-    "companyInfo",
+    reducerKey,
     "error",
   ]) || noError,
   getCurrentAccountFetched = (state : State) => state.getIn([
@@ -102,7 +106,7 @@ const checkForNoErrors = (error) => error !== noError;
 const
   getCurrentCompany = (state : State) : any => (
     state.getIn([
-      "companyInfo",
+      reducerKey,
       "company",
     ]) || Immutable.Map()
   ),
@@ -153,7 +157,30 @@ const
   getCompanyModules = createSelector(
     getCurrentCompany,
     (company) => company.get("Modules") || ""
-  );
+  ),
+
+  /*
+    This function is special, because it is called also in the
+    requests
+    In case the state is not ready, we take the id of the current company
+    from the URL
+
+    The url must have this pathname:
+
+    something/:companyID/something...
+  */
+  getCurrentCompanyID = (state : any) => {
+    if (typeof state === "undefined" || state === null) {
+      return getIDFromURL();
+    }
+
+    return state.getIn([
+      reducerKey,
+      "company",
+      "ID",
+    ]);
+  };
+
 
 export const selectors = {
   getCurrentCompany,
@@ -162,6 +189,7 @@ export const selectors = {
   getCurrentCompanyHasError,
   getCurrentCompanyShouldFetch,
   getCompanyModules,
+  getCurrentCompanyID,
 };
 
 export default reducer;
