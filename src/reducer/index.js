@@ -7,17 +7,25 @@ import account, { selectors as accountSelectors } from "../Account/reducer";
 import auth, { selectors as authSelectors } from "./auth";
 import counties, { selectors as countiesSelectors } from "./counties";
 
-export const state = {
+import immutableRouter from "./immutable-router";
+
+const state = {
   account,
   counties,
   auth,
   modal,
 };
 
-export const selectors = {
+const selectors = {
   ...authSelectors,
   ...accountSelectors,
   ...modalSelectors,
   ...paginatorSelectors,
   ...countiesSelectors,
+};
+
+export {
+  state,
+  selectors,
+  immutableRouter,
 };

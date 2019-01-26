@@ -3,7 +3,7 @@
 
 import * as Immutable from "immutable";
 
-export const ensureImmutableState = (ignored : Array<*> = []) => {
+const ensureImmutableState = (ignored : Array<*> = []) => {
 
   const ignore = (key : string) => (
     ignored.includes(key)
@@ -104,3 +104,5 @@ export const ensureImmutableState = (ignored : Array<*> = []) => {
     return returnValue;
   };
 };
+
+export default ensureImmutableState;
