@@ -89,7 +89,7 @@ export const userHasPressedCKeyAlone = (currentEvent : KeyboardEvent) : boolean 
   );
 };
 
-export const mql = window.matchMedia("(min-width: 800px)");
+export const mql = window ? window.matchMedia("(min-width: 800px)") : null;
 
 export const years = [
   {
