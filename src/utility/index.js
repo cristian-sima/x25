@@ -8,4 +8,5 @@ export * from "./numbers";
 export * from "./numeric";
 export * from "./others";
 export * from "./strings";
+export * from "./mql";
 export * from "./validation";
