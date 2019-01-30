@@ -20,7 +20,7 @@ const
   refreshKeyCode = 82,
   timeoutDelay = 200;
 
-export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   props: ErrorBoundaryProps;
   state: ErrorBoundaryState;
@@ -94,3 +94,5 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     return this.props.children;
   }
 }
+
+export default ErrorBoundary;
