@@ -16,7 +16,9 @@ import { ErrorBoundary } from "./index";
 const RouteLoading = ({ error, retry, timedOut } : LoadingPropTypes) => {
   if (error) {
     return (
-      <ErrorBoundary error={error} />
+      <ErrorBoundary error={error}>
+        <LoadingMessage message="Așteaptă un pic..." />
+      </ErrorBoundary>
     );
   }
 

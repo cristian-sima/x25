@@ -54,6 +54,19 @@ class ErrorBoundary extends React.Component<ErrorBoundaryPropTypes, ErrorBoundar
     });
   }
 
+  componentDidMount () {
+    if (this.props.error) {
+      const message = `There was the following exception: \n\n
+        message:\n
+        ${this.props.error.message} \n\n
+        stack: \n
+        ${this.props.error.stack}
+      `;
+
+      throw message;
+    }
+  }
+
   render () {
     if (this.state.error) {
       // render fallback UI
