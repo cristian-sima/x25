@@ -3,8 +3,8 @@
 
 type injectPaginatorTypes = {
   key: string,
-  entities: any;
-  pagination: any;
+  itemsReducer: any;
+  pagesReducer: any;
 };
 
 import Loadable from "react-loadable";
@@ -22,9 +22,9 @@ export let
     <div>{"No ErrorBoundary passed to x25"}</div>
   );
 
-export const injectPaginator = ({ key, entities, pagination } : injectPaginatorTypes) => {
-  injectReducer(`entities.${key}`, entities);
-  injectReducer(`paginations.${key}`, pagination);
+export const injectPaginator = ({ key, itemsReducer, pagesReducer } : injectPaginatorTypes) => {
+  injectReducer(`entities.${key}`, itemsReducer);
+  injectReducer(`paginations.${key}`, pagesReducer);
 };
 
 const renderWithReducer = (route, props) => {
