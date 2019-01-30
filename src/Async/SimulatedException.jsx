@@ -1,10 +1,14 @@
 // @flow
 
-class SimulatedException {
+class SimulatedException extends Error {
+  name: "SimulatedException"
+
   constructor (message, stack) {
+    super(message);
+
     this.message = message;
     this.stack = stack;
-    this.name = "SimulatedException";
+    this.name = message;
   }
 }
 
