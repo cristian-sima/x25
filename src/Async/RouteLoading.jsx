@@ -1,7 +1,7 @@
 // @flow
 
 type LoadingPropTypes = {
-  error?: string;
+  error?: any;
   retry: () => void;
   timedOut: bool;
   pastDelay: bool;
@@ -11,20 +11,16 @@ import React from "react";
 
 import { LoadingMessage } from "../Messages/Loading";
 
-const FireError = (error) => {
-  throw error;
-};
-
 import { ErrorBoundary } from "./index";
 
 const RouteLoading = ({ error, retry, timedOut } : LoadingPropTypes) => {
   if (error) {
     return (
-      <ErrorBoundary>
-        <FireError error={error} />
-      </ErrorBoundary>
+      <ErrorBoundary error={error} />
     );
-  } else if (timedOut) {
+  }
+
+  if (timedOut) {
     return (
       <div>{"Se pare că se încarcă mai greu ca de obicei "}
         <button
@@ -34,6 +30,7 @@ const RouteLoading = ({ error, retry, timedOut } : LoadingPropTypes) => {
       </div>
     );
   }
+
   return (
     <div className="mt-3">
       <LoadingMessage message="Așteaptă un pic..." />

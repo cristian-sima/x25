@@ -4,6 +4,7 @@ type ErrorBoundaryProps = {
   error?: any;
   status?: string;
   children: any;
+  info?: string;
 }
 
 type ErrorBoundaryState = {
@@ -40,8 +41,8 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
     this.state = {
       status : null,
-      error  : this.error,
-      info   : this.info,
+      error  : props.error,
+      info   : props.info,
     };
 
     this.handleKey = (event : KeyboardEvent) => {
