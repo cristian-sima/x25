@@ -7,7 +7,7 @@ type ModalRootPropTypes = {
 };
 
 import { connect } from "react-redux";
-import React, { Fragment } from "react";
+import React from "react";
 
 import getComponent from "./getComponent";
 
@@ -33,7 +33,7 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
     }
 
     return (
-      <Fragment>
+      <React.Fragment>
         {
           list.map((current, index) => {
             const
@@ -53,7 +53,7 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
             );
           })
         }
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

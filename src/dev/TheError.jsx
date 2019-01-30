@@ -48,17 +48,29 @@ class TheError extends React.Component<TheErrorProps> {
                 <h5 className="text-danger">{error.message}</h5>
                 <b>{"Stack:"}</b>
                 <pre>
-                  {error.stack.split("↵").map((line, index) => (
-                    <div key={index}>{line}</div>
-                  )) }
+                  {
+                    error.stack ? (
+                      error.stack.split("↵").map((line, index) => (
+                        <div key={index}>{line}</div>
+                      ))
+                    ) : null
+                  }
                 </pre>
                 <br />
-                <b>{"React info:"}</b>
-                <pre>
-                  {info.componentStack.split("↵").map((line, index) => (
-                    <div key={index}>{line}</div>
-                  )) }
-                </pre>
+                {
+                  info && info.componentStack ? (
+                    <React.Fragment>
+                      <b>{"React info:"}</b>
+                      <pre>
+                        {
+                          info.componentStack.split("↵").map((line, index) => (
+                            <div key={index}>{line}</div>
+                          ))
+                        }
+                      </pre>
+                    </React.Fragment>
+                  ) : null
+                }
               </div>
             )
           }

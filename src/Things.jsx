@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Fragment } from "react";
+import React from "react";
 
 import ModalRoot from "./Modal/Root";
 
@@ -24,12 +24,12 @@ const
 const NotificationsContainer = connect(mapStateToProps, mapDispatchToProps)(Notifications);
 
 const Things = () => (
-  <Fragment>
+  <React.Fragment>
     <div className="d-print-none">
       <NotificationsContainer />
     </div>
     <ModalRoot />
-  </Fragment>
+  </React.Fragment>
 );
 
 export default Things;

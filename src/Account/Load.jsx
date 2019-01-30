@@ -14,7 +14,7 @@ type PrivateRoutePropTypes = {
   fetchInitialInformation: () => void;
 }
 
-import React, { Fragment } from "react";
+import React from "react";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -75,9 +75,9 @@ class PrivateRoute extends React.Component<PrivateRoutePropTypes> {
     }
 
     return (
-      <Fragment>
+      <React.Fragment>
         {children}
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
