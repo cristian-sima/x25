@@ -1,11 +1,12 @@
 // @flow
 
 type ErrorBoundaryPropTypes = {
+  error?: any;
   children: any;
 };
 
 type ErrorBoundaryStateTypes = {
-  erorr?: any;
+  error?: any;
 }
 
 import * as Sentry from "@sentry/browser";
@@ -30,9 +31,11 @@ class ErrorBoundary extends React.Component<ErrorBoundaryPropTypes, ErrorBoundar
 
   tellUs: () => void;
 
-  constructor (props) {
+  constructor (props : ErrorBoundaryPropTypes) {
     super(props);
-    this.state = { error: null };
+    this.state = {
+      error: props.error,
+    };
 
     this.tellUs = () => Sentry.showReportDialog({
       title     : "Se pare că avem probleme.",
