@@ -76,12 +76,14 @@ class ErrorBoundary extends React.Component<ErrorBoundaryPropTypes, ErrorBoundar
           </p>
           <hr />
           <p>
-            {"Sfat: Încearcă să re-împrospătezi pagina (apasă tasta "}
-            <kbd>{"F5"}</kbd>
-            {" pe sistemul windows, sau "}
-            <kbd>{"CMD"}</kbd>
-            {" și "}
-            <kbd>{"R"}</kbd>
+            {"Sfat: Încearcă să împrospătezi pagina - apasă tasta "}
+            <ul>
+              <li><kbd>{"F5"}</kbd>{" pe sistemul de operare Windows "}</li>
+              <br />
+              <li><kbd>{"CMD"}</kbd>{" și "}
+                <kbd>{"R"}</kbd>{" pe sistemul de operare IOs"}
+              </li>
+            </ul>
           </p>
         </div>
       );
