@@ -53,9 +53,10 @@ const renderWithReducer = (route, props) => {
   return <Component {...props} />;
 };
 
-export const createAsyncRoute = (loader) => Loadable({
+export const createAsyncRoute = (loader, ErrorBoundary) => Loadable({
   loader,
   loading : RouteLoading,
   render  : renderWithReducer,
   timeout,
+  ErrorBoundary,
 });
