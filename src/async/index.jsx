@@ -14,7 +14,13 @@ import { injectModals } from "../Modal/util";
 import RouteLoading from "./RouteLoading";
 import { injectReducer } from "redux-injector";
 
-const timeout = 15000;
+const
+  timeout = 15000;
+
+export let
+  ErrorBoundary = () => (
+    <div>{"No ErrorBoundary passed to x25"}</div>
+  );
 
 export const injectPaginator = ({ key, entities, pagination } : injectPaginatorTypes) => {
   injectReducer(`entities.${key}`, entities);
@@ -53,10 +59,13 @@ const renderWithReducer = (route, props) => {
   return <Component {...props} />;
 };
 
-export const createAsyncRoute = (loader, ErrorBoundary) => Loadable({
+export const setErrorBoundary = (theError) => {
+  ErrorBoundary = theError;
+};
+
+export const createAsyncRoute = (loader) => Loadable({
   loader,
   loading : RouteLoading,
   render  : renderWithReducer,
   timeout,
-  ErrorBoundary,
 });

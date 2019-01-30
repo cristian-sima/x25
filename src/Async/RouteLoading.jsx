@@ -1,16 +1,11 @@
 // @flow
-/* global process */
-/* eslint-disable no-process-env, global-require */
 
 type LoadingPropTypes = {
   error?: string;
   retry: () => void;
   timedOut: bool;
   pastDelay: bool;
-  ErrorBoundary: any;
 }
-
-const mode = process.env.NODE_ENV;
 
 import React from "react";
 
@@ -20,18 +15,10 @@ const FireError = (error) => {
   throw error;
 };
 
-const RouteLoading = ({ error, retry, timedOut, ErrorBoundary } : LoadingPropTypes) => {
+import { ErrorBoundary } from "./index";
+
+const RouteLoading = ({ error, retry, timedOut } : LoadingPropTypes) => {
   if (error) {
-    if (mode === "development") {
-      const DevErrorBoundery = require("../ErrorBoundary/dev/ErrorBoundary");
-
-      return (
-        <DevErrorBoundery
-          error={error}
-        />
-      );
-    }
-
     return (
       <ErrorBoundary>
         <FireError error={error} />

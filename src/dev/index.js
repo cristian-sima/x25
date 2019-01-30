@@ -3,7 +3,15 @@
 
 import * as Immutable from "immutable";
 
-export const ensureImmutableState = (ignored : Array<*> = []) => {
+const setFavIconToDev = () => {
+  const element : any = document.querySelector("link[rel*='icon");
+
+  if (element !== null && element.href) {
+    element.href = "/static/dev.ico";
+  }
+};
+
+const ensureImmutableState = (ignored : Array<*> = []) => {
 
   const ignore = (key : string) => (
     ignored.includes(key)
@@ -103,4 +111,9 @@ export const ensureImmutableState = (ignored : Array<*> = []) => {
 
     return returnValue;
   };
+};
+
+export {
+  setFavIconToDev,
+  ensureImmutableState,
 };
