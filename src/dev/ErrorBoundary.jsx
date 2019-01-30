@@ -30,6 +30,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   refresh: () => void;
 
   componentDidCatch (error, info) {
+
     this.setState({
       error,
       info,
@@ -41,8 +42,8 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
     this.state = {
       status : null,
-      error  : props.error,
-      info   : props.info,
+      error  : null,
+      info   : null,
     };
 
     this.handleKey = (event : KeyboardEvent) => {

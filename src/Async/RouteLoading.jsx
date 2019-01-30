@@ -14,25 +14,19 @@ type FireErrorPropTypes = {
 import React from "react";
 
 import { LoadingMessage } from "../Messages/Loading";
+import SimulatedException from "./SimulatedException";
 
 import { ErrorBoundary } from "./index";
 
-const IgnoreThisNodeInSentry = ({ error } : FireErrorPropTypes) => {
-  const message = `There was the following exception: \n\n
-    message:\n
-    ${error.message} \n\n
-    stack: (please ignore the first node) \n
-    ${error.stack}
-  `;
-
-  throw message;
+const IgnoreThisNode = ({ error : { message, stack } } : FireErrorPropTypes) => {
+  throw new SimulatedException(message, stack);
 };
 
 const RouteLoading = ({ error, retry, timedOut } : LoadingPropTypes) => {
   if (error) {
     return (
       <ErrorBoundary>
-        <IgnoreThisNodeInSentry error={error} />
+        <IgnoreThisNode error={error} />
       </ErrorBoundary>
     );
   }
