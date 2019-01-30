@@ -34,7 +34,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryPropTypes, ErrorBoundar
   constructor (props : ErrorBoundaryPropTypes) {
     super(props);
     this.state = {
-      error: props.error,
+      error: null,
     };
 
     this.tellUs = () => Sentry.showReportDialog({
@@ -52,19 +52,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryPropTypes, ErrorBoundar
       errorFormEntry : "Unele câmpuri au fost nevalide. Corectați erorile și încercați din nou.",
       successMessage : "Feedback-ul dvs. a fost trimis. Mulțumesc!",
     });
-  }
-
-  componentDidMount () {
-    if (this.props.error) {
-      const message = `There was the following exception: \n\n
-        message:\n
-        ${this.props.error.message} \n\n
-        stack: \n
-        ${this.props.error.stack}
-      `;
-
-      throw message;
-    }
   }
 
   render () {

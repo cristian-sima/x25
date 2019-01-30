@@ -7,17 +7,32 @@ type LoadingPropTypes = {
   pastDelay: bool;
 }
 
+type FireErrorPropTypes = {
+  error: any;
+}
+
 import React from "react";
 
 import { LoadingMessage } from "../Messages/Loading";
 
 import { ErrorBoundary } from "./index";
 
+const IgnoreThisNodeInSentry = ({ error } : FireErrorPropTypes) => {
+  const message = `There was the following exception: \n\n
+    message:\n
+    ${error.message} \n\n
+    stack: (please ignore the first node) \n
+    ${error.stack}
+  `;
+
+  throw message;
+};
+
 const RouteLoading = ({ error, retry, timedOut } : LoadingPropTypes) => {
   if (error) {
     return (
-      <ErrorBoundary error={error}>
-        <LoadingMessage message="Așteaptă un pic..." />
+      <ErrorBoundary>
+        <IgnoreThisNodeInSentry error={error} />
       </ErrorBoundary>
     );
   }
