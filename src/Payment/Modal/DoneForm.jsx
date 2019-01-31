@@ -29,11 +29,11 @@ import {
   validateString,
   delay,
   ReduxFormSubmissionError,
-} from "x25/utility";
+} from "../../utility";
 
-import { hideModal } from "x25/actions";
-import { LoadingMessage } from "x25/Messages";
-import { FocusTemplate } from "x25/Inputs";
+import { hideModal } from "../../actions";
+import { LoadingMessage } from "../../Messages";
+import { FocusTemplate } from "../../Inputs";
 
 const
   TransferNumber = validateString({

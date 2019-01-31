@@ -1,7 +1,7 @@
 // @flow
 
 import React from "react";
-import { SimpleModal } from "../Modal";
+import { SimpleModal } from "../../Modal";
 
 import { getDetails, info } from "../util";
 

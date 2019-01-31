@@ -11,7 +11,7 @@ import React from "react";
 
 const config = require("_config/general.json");
 
-import { LoadingMessage } from "x25/Messages";
+import { LoadingMessage } from "../Messages";
 
 
 class MobilpayForm extends React.Component<MobilpayFormPropTypes> {
