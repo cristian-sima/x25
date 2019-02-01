@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable react/require-optimization */
 
-import type { Dispatch, State } from "src/types";
+import type { Dispatch, State } from "src\\types";
 
 type PrivateRoutePropTypes = {
   appName: string;

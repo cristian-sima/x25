@@ -1,6 +1,7 @@
 // @flow
 
 type MobilpayFormPropTypes = {
+  url: string;
   envKey: string;
   data: string;
 }
@@ -9,10 +10,7 @@ const delay = 1200;
 
 import React from "react";
 
-const config = require("_config/general.json");
-
 import { LoadingMessage } from "../Messages";
-
 
 class MobilpayForm extends React.Component<MobilpayFormPropTypes> {
 
@@ -20,8 +18,12 @@ class MobilpayForm extends React.Component<MobilpayFormPropTypes> {
 
   form: any;
 
+  timeout: any;
+
   registerForm: (form :any) => void;
   submit: () => void;
+  startWaiting: () => void;
+  stopWaiting: () => void;
 
   constructor (props : MobilpayFormPropTypes) {
     super(props);
@@ -62,7 +64,7 @@ class MobilpayForm extends React.Component<MobilpayFormPropTypes> {
 
   render () {
     return (
-      <form action={config.MobilPayURL} method="POST" ref={this.registerForm}>
+      <form action={this.props.url} method="POST" ref={this.registerForm}>
         <input name="env_key" type="hidden" value={this.props.envKey} />
         <input name="data" type="hidden" value={this.props.data} />
         <LoadingMessage className="mt-5" message="Se inițiază conexiunea..." />

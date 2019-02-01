@@ -1,6 +1,6 @@
 // @flow
 
-import type { State } from "src/types";
+import type { State } from "src\\types";
 
 type ModalRootPropTypes = {
   list: any;

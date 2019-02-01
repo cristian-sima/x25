@@ -1,6 +1,6 @@
 // @flow
 
-import type { Action } from "src/types";
+import type { Action } from "src\\types";
 
 import { fetchInitialInformation as fetchInitialInformationRequest } from "./request";
 

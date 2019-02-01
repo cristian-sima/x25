@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable handle-callback-err, react/forbid-component-props, no-console */
 
-import type { Dispatch } from "src/types";
+import type { Dispatch } from "src\\types";
 
 type onConfirmMethodsTypes = {
   startPerforming: () => void;
@@ -42,6 +42,7 @@ import { language } from "../utility";
 const { message : languageMessage, label } = language;
 
 import * as actions from "./actions";
+import * as x25Actions from "../actions";
 
 const
   mapDispatchToProps = (dispatch : Dispatch) => ({
@@ -49,7 +50,7 @@ const
       dispatch(actions.hideModal());
     },
     showError (errMessage) {
-      dispatch(actions.notifyError(errMessage));
+      dispatch(x25Actions.notifyError(errMessage));
     },
   });
 

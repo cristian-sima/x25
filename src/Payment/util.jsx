@@ -1,6 +1,11 @@
 // @flow
 
-const getDetails = (application, data) => {
+type DataType = {
+  Credits: number;
+  companyID: number;
+};
+
+const getDetails = (application : string, data : DataType) => {
 
   const getParams = () => {
     const { Credits, companyID } = data;

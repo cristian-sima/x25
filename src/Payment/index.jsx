@@ -2,6 +2,7 @@
 /* eslint-disable no-magic-numbers */
 
 type PaymentWrapPropTypes = {
+  url: string;
   application: string;
   companyID: number;
   children: any;
@@ -9,6 +10,8 @@ type PaymentWrapPropTypes = {
 };
 
 type PaymentWrapStateTypes = {
+  envKey: string;
+  data: string;
   show3rdServiceForm: bool;
 };
 
@@ -56,7 +59,9 @@ class PaymentWrap extends React.Component<PaymentWrapPropTypes, PaymentWrapState
     super(props);
 
     this.state = {
-      show3rdServiceForm: false,
+      envKey             : "",
+      data               : "",
+      show3rdServiceForm : false,
     };
 
     this.createPayment = (formData : any) => {
@@ -95,7 +100,11 @@ class PaymentWrap extends React.Component<PaymentWrapPropTypes, PaymentWrapState
 
     if (this.state.show3rdServiceForm) {
       return (
-        <MobilpayForm data={this.state.data} envKey={this.state.envKey} />
+        <MobilpayForm
+          data={this.state.data}
+          envKey={this.state.envKey}
+          url={this.props.url}
+        />
       );
     }
 

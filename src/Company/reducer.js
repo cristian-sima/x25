@@ -3,7 +3,7 @@
 
 import * as Immutable from "immutable";
 
-import type { Action, State } from "Auto/types";
+import type { Action, State } from "src\\types";
 
 import { createSelector } from "reselect";
 

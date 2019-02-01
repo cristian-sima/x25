@@ -1,5 +1,7 @@
 // @flow
 
+import type { CompanyRoutePropTypes } from "./types";
+
 import React, { Component } from "react";
 import agent from "superagent";
 import { withRouter } from "react-router-dom";
@@ -20,9 +22,14 @@ type AdminSelectCompanyState = {
   inputValue: string,
 };
 
-
 const loadOptions = (search, callback) => {
-  const reject = () => ({});
+  const reject = ({
+    args: {
+      // eslint-disable-next-line
+      error,
+    },
+    // eslint-disable-next-line
+  }) => {};
 
   const prepare = ({ Suggestions }) => callback(
     Suggestions.reduce((accumulator, currentValue) => {
@@ -47,15 +54,19 @@ class AdminSelectCompany extends Component<AdminSelectCompanyPropTypes, AdminSel
   props: AdminSelectCompanyPropTypes;
   state : AdminSelectCompanyState;
 
+  handleChange: (options: CompanyRoutePropTypes) => void;
+  handleInputChange: (newValue : string) => string;
+
   constructor (props) {
     super(props);
 
     this.state = { inputValue: "" };
 
-    this.handleChange = (options) => {
+    this.handleChange = (options : CompanyRoutePropTypes) => {
       if (isSmall()) {
         this.props.toggleNavbar();
       }
+
       this.props.history.push(getDefaultCompanyRoute(options));
     };
 

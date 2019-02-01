@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable no-magic-numbers, max-classes-per-file */
 
-import type { Dispatch, State } from "types";
+import type { Dispatch, State } from "src\\types";
 
 type FormPropTypes = {
   error?: string;
@@ -188,7 +188,7 @@ class DoneForm extends React.Component<DoneFormPropTypes> {
       return confirmBankTransferRequest(data).
         then((response : any) => {
           if (response.Error === "") {
-            showUserResponse(response);
+            showUserResponse();
           } else {
             throw new SubmissionError({
               _error: response.Error,

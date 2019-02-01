@@ -1,12 +1,14 @@
 // @flow
 
+import type { ModalsTypes } from "./types";
+
 let all = {};
 
-export const injectModals = (newModals : any) => {
+export const injectModals = (newModals : ModalsTypes) => {
   all = {
     ...all,
     ...newModals,
   };
 };
 
-export const getModal = (type) => all[type];
+export const getModal = (type : string) => all[type];

@@ -1,6 +1,6 @@
 // @flow;
 
-import type { State } from "src/types";
+import type { State } from "src\\types";
 
 import { connect } from "react-redux";
 import { selectors } from "../../reducer";

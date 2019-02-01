@@ -1,24 +1,24 @@
 // @flow
 
-type ErrorBoundaryPropTypes = {
-  error?: any;
-  children: any;
-};
+import type { InfoType, ErrorType } from "../dev/types";
 
-type ErrorBoundaryStateTypes = {
-  error?: any;
+type Props = {
+  error?: ErrorType;
+  children: any;
+  info?: string;
+}
+
+type State = {
+  error: ?ErrorType;
 }
 
 import * as Sentry from "@sentry/browser";
 
 import React from "react";
 
-class ErrorBoundary extends React.Component<ErrorBoundaryPropTypes, ErrorBoundaryStateTypes> {
+class ErrorBoundary extends React.Component<Props, State> {
 
-  props: ErrorBoundaryPropTypes;
-  state: ErrorBoundaryStateTypes;
-
-  componentDidCatch (error, errorInfo) {
+  componentDidCatch (error : ErrorType, errorInfo : InfoType) {
     this.setState({ error });
 
     Sentry.withScope((scope : any) => {
@@ -31,8 +31,9 @@ class ErrorBoundary extends React.Component<ErrorBoundaryPropTypes, ErrorBoundar
 
   tellUs: () => void;
 
-  constructor (props : ErrorBoundaryPropTypes) {
+  constructor (props : Props) {
     super(props);
+
     this.state = {
       error: null,
     };

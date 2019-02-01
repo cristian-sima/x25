@@ -1,16 +1,18 @@
 // @flow
 
+import type { ErrorType, InfoType } from "./types";
+
 type ErrorBoundaryProps = {
-  error?: any;
-  status?: string;
+  error?: ErrorType;
+  status?: InfoType;
   children: any;
   info?: string;
 }
 
 type ErrorBoundaryState = {
-  status?: string;
-  error: any;
-  info: string;
+  status: ?string;
+  error: ?ErrorType;
+  info: ?InfoType;
 }
 
 import React from "react";
@@ -23,14 +25,10 @@ const
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
-  props: ErrorBoundaryProps;
-  state: ErrorBoundaryState;
-
   handleKey: (event : KeyboardEvent) => void;
   refresh: () => void;
 
-  componentDidCatch (error, info) {
-
+  componentDidCatch (error : ErrorType, info : InfoType) {
     this.setState({
       error,
       info,
@@ -56,13 +54,13 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
       this.setState({
         status : "Trying to recover...",
         error  : null,
-        info   : "",
+        info   : null,
       }, () => {
         setTimeout(() => {
           this.setState({
             status : null,
             error  : null,
-            info   : "",
+            info   : null,
           });
         }, timeoutDelay);
       });

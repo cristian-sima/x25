@@ -1,6 +1,8 @@
 // @flow
 
-import type { State } from "src/types";
+import type { State } from "src\\types";
+
+import type { CompanyRoutePropTypes } from "./types";
 
 import React, { Component } from "react";
 
@@ -32,6 +34,9 @@ class ClientSelectCompany extends Component<ClientSelectCompanyPropTypes, Client
   props: ClientSelectCompanyPropTypes;
   state : ClientSelectCompanyState;
 
+  handleChange: (options : CompanyRoutePropTypes) => void;
+  handleInputChange: (newValue: string) => string;
+
   constructor (props) {
     super(props);
 
@@ -41,6 +46,7 @@ class ClientSelectCompany extends Component<ClientSelectCompanyPropTypes, Client
       if (isSmall()) {
         this.props.toggleNavbar();
       }
+
       this.props.history.push(getDefaultCompanyRoute(options));
     };
 

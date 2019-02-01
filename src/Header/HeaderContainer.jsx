@@ -1,6 +1,6 @@
 // @flow
 
-import type { State, Dispatch } from "src/types";
+import type { State, Dispatch } from "src\\types";
 
 type OwnProps = {
   ui: {

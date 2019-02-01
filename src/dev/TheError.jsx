@@ -1,9 +1,11 @@
 // @flow
 
+import type { ErrorType, InfoType } from "./types";
+
 type TheErrorProps = {
-  error: any;
-  info: string;
-  status?: string;
+  error: ?ErrorType;
+  info: ?InfoType;
+  status: ?string;
   refresh: () => void;
   handleKey: (event : KeyboardEvent) => void;
 }
@@ -11,8 +13,6 @@ type TheErrorProps = {
 import React from "react";
 
 class TheError extends React.Component<TheErrorProps> {
-
-  props: TheErrorProps;
 
   componentWillMount () {
     document.addEventListener("keydown", this.props.handleKey);
@@ -45,17 +45,23 @@ class TheError extends React.Component<TheErrorProps> {
                   {" to recover the app, after you've done the changes"}
                 </div>
                 <hr />
-                <h5 className="text-danger">{error.message}</h5>
-                <b>{"Stack:"}</b>
-                <pre>
-                  {
-                    error.stack ? (
-                      error.stack.split("↵").map((line, index) => (
-                        <div key={index}>{line}</div>
-                      ))
-                    ) : null
-                  }
-                </pre>
+                {
+                  error ? (
+                    <React.Fragment>
+                      <h5 className="text-danger">{error.message}</h5>
+                      <b>{"Stack:"}</b>
+                      <pre>
+                        {
+                          error.stack ? (
+                            error.stack.split("↵").map((line, index) => (
+                              <div key={index}>{line}</div>
+                            ))
+                          ) : null
+                        }
+                      </pre>
+                    </React.Fragment>
+                  ) : null
+                }
                 <br />
                 {
                   info && info.componentStack ? (

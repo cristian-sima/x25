@@ -1,28 +1,29 @@
 // @flow
 
-import type { Dispatch, State } from "src/types";
+import type { RouteType, PaginatorType } from "./types";
 
-import React from "react";
+import type { Dispatch, State } from "src\\types";
+
+type Props = {
+  ready: bool;
+  props: any;
+  route: RouteType;
+  initModule: () => void;
+};
+
+type OwnProps = {
+  route: RouteType,
+  props: any;
+}
+
+import * as React from "react";
 
 import { LoadingMessage } from "../Messages/Loading";
 import { injectModals } from "../Modal/util";
 import { injectReducer } from "redux-injector";
 import { delay } from "../utility";
 
-type InitModulePropTypes = {
-  ready: bool;
-  props: any;
-  route: bool;
-  initModule: () => void;
-};
-
-type injectPaginatorTypes = {
-  key: string,
-  itemsReducer: any;
-  pagesReducer: any;
-};
-
-const injectPaginator = ({ key, itemsReducer, pagesReducer } : injectPaginatorTypes) => {
+const injectPaginator = ({ key, itemsReducer, pagesReducer } : PaginatorType) => {
   injectReducer(`entities.${key}`, itemsReducer);
   injectReducer(`paginations.${key}`, pagesReducer);
 };
@@ -32,10 +33,10 @@ import { connect } from "react-redux";
 import { getIsModuleReady, moduleIsReadyAction } from "../reducer/module";
 
 const
-  mapStateToProps = (state : State, { route : { default : { module } } }) => ({
+  mapStateToProps = (state : State, { route : { default : { module } } } : OwnProps) => ({
     ready: getIsModuleReady(state, module),
   }),
-  mapDispatchToProps = (dispatch : Dispatch, { route }) => ({
+  mapDispatchToProps = (dispatch : Dispatch, { route } : OwnProps) => ({
     initModule () {
       const { reducers, modals, paginators, module } = route.default;
 
@@ -75,9 +76,7 @@ const
     },
   });
 
-class InitModule extends React.Component<InitModulePropTypes> {
-  props: InitModulePropTypes;
-
+class InitModule extends React.Component<Props> {
   componentDidMount () {
     if (!this.props.ready) {
       this.props.initModule();
@@ -108,7 +107,7 @@ class InitModule extends React.Component<InitModulePropTypes> {
 
 const WrapInitModule = connect(mapStateToProps, mapDispatchToProps)(InitModule);
 
-const createWrap = (route, props) => (
+const createWrap = (route : RouteType, props: any) => (
   <WrapInitModule props={props} route={route} />
 );
 

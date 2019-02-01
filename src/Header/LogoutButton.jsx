@@ -7,7 +7,7 @@ type LogoutButtonPropTypes = {
 
 import React from "react";
 
-import { LoadingMessageSm } from "_old/components/Messages";
+import { LoadingMessage } from "../Messages";
 
 const LogoutButton = ({ readyToLogout, logoutAccount } : LogoutButtonPropTypes) => (
   <button
@@ -24,7 +24,7 @@ const LogoutButton = ({ readyToLogout, logoutAccount } : LogoutButtonPropTypes) 
         </span>
       ) : (
         <span>
-          <LoadingMessageSm message="Așteaptă..." />
+          <LoadingMessage message="Așteaptă..." sm />
         </span>
       )
     }

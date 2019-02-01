@@ -7,8 +7,10 @@ type injectPaginatorTypes = {
   pagesReducer: any;
 };
 
+type LoaderType = (path : string) => void;
+
 import Loadable from "react-loadable";
-import React from "react";
+import * as React from "react";
 
 import RouteLoading from "./RouteLoading";
 import { injectReducer } from "redux-injector";
@@ -60,11 +62,11 @@ const renderWithReducer = (route, props) => {
   return <Component {...props} />;
 };
 
-export const setErrorBoundary = (theError) => {
+export const setErrorBoundary = (theError : React.Node) => {
   ErrorBoundary = theError;
 };
 
-export const createAsyncRoute = (loader) => Loadable({
+export const createAsyncRoute = (loader : LoaderType) => Loadable({
   loader,
   loading : RouteLoading,
   render  : renderWithReducer,

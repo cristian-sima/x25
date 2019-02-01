@@ -1,6 +1,6 @@
 // @flow
 
-import type { Action, State } from "src/types";
+import type { Action, State } from "src\\types";
 
 import * as Immutable from "immutable";
 import { createSelector } from "reselect";

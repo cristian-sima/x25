@@ -1,11 +1,12 @@
 // @flow
 /* eslint-disable react/require-optimization */
 
-import type { Dispatch, State } from "src/types";
+import type { Dispatch, State } from "src\\types";
 
 type PrivateRoutePropTypes = {
   isFetching: bool;
   hasError: bool;
+
   data: any;
   shouldFetch: any;
   children: any;

@@ -87,7 +87,8 @@ export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeIn
     };
   }
 
-  componentWillReceiveProps (nextProps) {
+
+  componentWillReceiveProps (nextProps : TypeInputPropTypes) {
     if (this.props.value !== nextProps.value) {
       this.setState({
         value: nextProps.value,
@@ -95,7 +96,7 @@ export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeIn
     }
   }
 
-  shouldComponentUpdate (nextProps, nextState) {
+  shouldComponentUpdate (nextProps : TypeInputPropTypes, nextState :TypeInputStateTypes) {
     return (
       this.props.value !== nextProps.value ||
       this.state.value !== nextState.value ||

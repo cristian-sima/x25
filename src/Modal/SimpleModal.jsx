@@ -1,6 +1,6 @@
 // @flow
 
-import type { Dispatch } from "src/types";
+import type { Dispatch } from "src\\types";
 
 type SimpleModalPropTypes = {
   size?: string;

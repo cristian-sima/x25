@@ -28,7 +28,7 @@ const ensureImmutableState = (ignored : Array<*> = []) => {
   );
 
   let
-    problems = Immutable.Map(),
+    problems : any = Immutable.Map(),
     allKeys = Immutable.List(),
     currentKey = Immutable.List();
 

@@ -14,8 +14,15 @@ type BankTransferPropTypes = {
   options: any;
 };
 
-class BankTransfer extends React.Component<BankTransferPropTypes> {
+type BankTransferStateTypes = {
+  done: bool;
+};
+
+class BankTransfer extends React.Component<BankTransferPropTypes, BankTransferStateTypes> {
   props: BankTransferPropTypes;
+  state: BankTransferStateTypes;
+
+  transferIsDone: () => void;
 
   constructor (props: BankTransferPropTypes) {
     super(props);
@@ -113,22 +120,10 @@ class BankTransfer extends React.Component<BankTransferPropTypes> {
   }
 }
 
-
-const ModalBankTransfer = (props) => (
+const ModalBankTransfer = (props : BankTransferPropTypes) => (
   <SimpleModal size="lg" title="Transfer bancar">
     <BankTransfer {...props} />
   </SimpleModal>
 );
-
-
-// <div className="mt-3">
-//   <h5>{"Cât timp va dura?"}</h5>
-//   <div>
-//     {`Durează între 1 și 3 zile lucrătoare pentru operațiunea bancară să
-//   se . În momentul în care am primit banii în cont, te rugăm să acorzi
-//   1-2 zile lucrătoare să operăm modificările pe platforma Sidework și să
-//   te bucuri de beneficii.`}
-//   </div>
-// </div>
 
 export default ModalBankTransfer;
