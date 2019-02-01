@@ -2,9 +2,9 @@
 
 type LoadingPropTypes = {
   error?: any;
-  retry: () => void;
   timedOut: bool;
   pastDelay: bool;
+  retry: () => void;
 }
 
 type FireErrorPropTypes = {
