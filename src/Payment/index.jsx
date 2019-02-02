@@ -1,12 +1,14 @@
 // @flow
 /* eslint-disable no-magic-numbers */
 
+import type { BankTransferArgsTypes, PayUsingBankTransferType } from "./types";
+
 type PaymentWrapPropTypes = {
   url: string;
   application: string;
   companyID: number;
   children: any;
-  payUsingBankTransfer: () => void;
+  payUsingBankTransfer: PayUsingBankTransferType;
 };
 
 type PaymentWrapStateTypes = {
@@ -38,7 +40,7 @@ const
     companyID: companySelectors.getCurrentCompanyID(state),
   }),
   mapDispatchToProps = (dispatch : any) => ({
-    payUsingBankTransfer: (application, options) => () => {
+    payUsingBankTransfer: (application : string, options : BankTransferArgsTypes) => () => {
       dispatch(payUsingBankTransferModal(application, options));
     },
   });
