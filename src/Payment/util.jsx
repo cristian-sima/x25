@@ -8,7 +8,7 @@ type DataType = {
 const getDetails = (application : string, data : DataType) => {
 
   const getParams = () => {
-    const { Credits, companyID } = data;
+    const { Credits, Months, companyID } = data;
 
     switch (application) {
       case "smsalert":
@@ -17,6 +17,13 @@ const getDetails = (application : string, data : DataType) => {
           Credits,
           companyID,
         ];
+
+      case "facturare":
+        return [
+          Months,
+          companyID,
+        ];
+
       default:
         return [];
     }
