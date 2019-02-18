@@ -2,6 +2,7 @@
 
 type DataType = {
   Credits: number;
+  Months: number;
   companyID: number;
 };
 

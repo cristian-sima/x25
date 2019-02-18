@@ -29,16 +29,11 @@ import MobilpayForm from "./MobilpayForm";
 
 import { connect } from "react-redux";
 
-import { companySelectors } from "../Company";
-
 import { payUsingBankTransferModal } from "./actions";
 
 import { getDetails } from "./util";
 
 const
-  mapStateToProps = (state : any) => ({
-    companyID: companySelectors.getCurrentCompanyID(state),
-  }),
   mapDispatchToProps = (dispatch : any) => ({
     payUsingBankTransfer: (application : string, options : BankTransferArgsTypes) => () => {
       dispatch(payUsingBankTransferModal(application, options));
@@ -69,9 +64,9 @@ class PaymentWrap extends React.Component<PaymentWrapPropTypes, PaymentWrapState
     this.createPayment = (formData : any) => {
       const
         { companyID } = this.props,
-        data = formData.toJS(),
+        data : any = formData.toJS(),
         Details = getDetails(this.props.application, {
-          Credits: data.Credits,
+          ...data,
           companyID,
         }),
         toSend = {
@@ -124,4 +119,4 @@ class PaymentWrap extends React.Component<PaymentWrapPropTypes, PaymentWrapState
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentWrap);
+export default connect(null, mapDispatchToProps)(PaymentWrap);
