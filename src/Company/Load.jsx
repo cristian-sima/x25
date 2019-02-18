@@ -4,6 +4,7 @@
 import type { Dispatch, State } from "src\\types";
 
 type PrivateRoutePropTypes = {
+  isAdministrator: bool;
   isFetching: bool;
   hasError: bool;
 
@@ -17,21 +18,26 @@ type PrivateRoutePropTypes = {
 import React from "react";
 
 import { withRouter } from "react-router-dom";
+// import moment from "moment";
 import { connect } from "react-redux";
 
 import { selectors } from "./reducer";
+import { accountSelectors } from "../Account";
 
 import { fetchCurrentCompany as fetchCurrentCompanyAction } from "./actions";
 
 import { LargeErrorMessage, LoadingMessage } from "../Messages";
 
+// import EstimatePrice from "../Payment/EstimatePrice";
+
 const
   mapStateToProps = (state : State) => ({
-    data        : selectors.getCurrentCompany(state),
-    hasError    : selectors.getCurrentCompanyHasError(state),
-    fetched     : selectors.getCurrentCompanyIsFetched(state),
-    isFetching  : selectors.getCurrentCompanyIsFetching(state),
-    shouldFetch : selectors.getCurrentCompanyShouldFetch(state),
+    isAdministrator : accountSelectors.getIsCurrentAccountAdministrator(state),
+    data            : selectors.getCurrentCompany(state),
+    hasError        : selectors.getCurrentCompanyHasError(state),
+    fetched         : selectors.getCurrentCompanyIsFetched(state),
+    isFetching      : selectors.getCurrentCompanyIsFetching(state),
+    shouldFetch     : selectors.getCurrentCompanyShouldFetch(state),
   }),
   mapDispatchToProps = (dispatch : Dispatch, { match : { params : { company } } }) => ({
     fetchCurrentCompany () {
@@ -71,6 +77,17 @@ class PrivateRoute extends React.Component<PrivateRoutePropTypes> {
     if (data.size === 0) {
       return null;
     }
+    //
+    // const isValabilityOk = (
+    //   this.props.isAdministrator ||
+    //   moment(new Date(data.get("ValabilityDate"))).isAfter(moment().startOf("day"))
+    // );
+    //
+    // if (!isValabilityOk) {
+    //   return (
+    //     <EstimatePrice id={data.get("ID")} />
+    //   );
+    // }
 
     return (
       <React.Fragment>
