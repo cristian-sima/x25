@@ -19,6 +19,8 @@ import { selectors } from "../Account/reducer";
 
 import { isAdministratorAccount } from "../utility";
 
+import { estimateCompanyPriceModal } from "../Payment/actions";
+
 const
   mapStateToProps = (state : State) => {
     const data = selectors.getCurrentAccount(state);
@@ -33,6 +35,9 @@ const
       updateUI({
         showNavbar: !showNavbar,
       });
+    },
+    showPayModal: (id) => () => {
+      dispatch(estimateCompanyPriceModal(id));
     },
   });
 
