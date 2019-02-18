@@ -12,6 +12,11 @@ export const payUsingBankTransferModal = (
     })
   )
 );
+
 export const showTransferWasDone = () : any => (
   createModal("PAYMENT_WAS_DONE")
+);
+
+export const estimateCompanyPriceModal = (id : number) : any => (
+  createModal("ESTIMATE_COMPANY_PRICE", { id })
 );
