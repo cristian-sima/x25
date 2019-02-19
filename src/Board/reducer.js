@@ -1,9 +1,11 @@
 // @flow
 
+import * as Immutable from "immutable";
+
 const
-  InitBoard = "INIT_BOARD",
-  UpdateBoard = "UPDATE_BOARD",
-  ClearFromBoard = "CLEAR_FROM_BOARD";
+  InitBoard = "@@BOARD_INIT",
+  UpdateBoard = "@@BOARD_UPDATE",
+  ClearFromBoard = "@@BOARD_CLEAR_KEY";
 
 export const initBoard = (key : string, value : any) => ({
   type    : InitBoard,
@@ -28,7 +30,7 @@ export const clearFromBoard = (key : string) => ({
   },
 });
 
-const reducer = (state : any, action : any) => {
+const reducer = (state : any = Immutable.Map(), action : any) => {
   const { payload } = action;
 
   switch (action.type) {
