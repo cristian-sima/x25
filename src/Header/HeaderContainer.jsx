@@ -1,16 +1,16 @@
 // @flow
 
 import type { State, Dispatch } from "src\\types";
+import React from "react";
+
+import Board from "../Board";
 
 type OwnProps = {
-  ui: {
-    showNavbar: boolean;
-  };
+  ui: any;
   showNavbar: () => void;
-  updateUI : (nextState : any) => void;
+  updateBoard : (nextState : any) => void;
 };
 
-import ui from "redux-ui";
 import { connect } from "react-redux";
 
 import Header from "./Header";
@@ -30,10 +30,10 @@ const
       isAdmin     : isAdministratorAccount(data.get("Type")),
     };
   },
-  mapDispatchToProps = (dispatch : Dispatch, { ui : { showNavbar }, updateUI } : OwnProps) => ({
+  mapDispatchToProps = (dispatch : Dispatch, { ui, updateBoard } : OwnProps) => ({
     toggleNavbar () {
-      updateUI({
-        showNavbar: !showNavbar,
+      updateBoard({
+        showNavbar: !ui.get("showNavbar"),
       });
     },
     showPayModal: (id) => () => {
@@ -41,6 +41,8 @@ const
     },
   });
 
-export default ui({
-  key: "general-ui",
-})(connect(mapStateToProps, mapDispatchToProps)(Header));
+export default (
+  <Board key="general-ui">
+    {connect(mapStateToProps, mapDispatchToProps)(Header)}
+  </Board>
+);

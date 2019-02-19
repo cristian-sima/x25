@@ -51,7 +51,7 @@ const Header = ({
   return (
     <div>
       <Navbar className="d-print-none" color="dark" dark expand="md">
-        { sidebarDocked ? null : <ToggleMenuButtonContainer /> }
+        { sidebarDocked ? null : ToggleMenuButtonContainer }
         <div
           className="brand-wrapper truncate text-left d-inline-block text-light"
           onClick={isSmall() ? toggleNavbar : null}>
