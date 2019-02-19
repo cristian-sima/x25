@@ -87,7 +87,7 @@ const Header = ({
         </Collapse>
       </Navbar>
       {
-        typeof company === "undefined" ? null : (
+        typeof company === "undefined" || company.size === 0 ? null : (
           showNoticeToPay ? (
             <div className="alert alert-warning m-2">
               {`Abonamentul la serviciile online Sidework va expira ${(
