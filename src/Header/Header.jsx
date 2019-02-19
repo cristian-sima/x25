@@ -6,9 +6,7 @@ type HeaderPropTypes = {
   accountName : string;
   isAdmin: bool;
   sidebarDocked: boolean;
-  ui: {
-    showNavbar: boolean;
-  };
+  showNavbar: boolean;
 
   toggleNavbar: () => void;
 
@@ -23,7 +21,6 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav } from "reactstrap";
 import AccountOptionsContainer from "./AccountOptionsContainer";
 import AdminSelectCompany from "./AdminSelectCompany";
 import ClientSelectCompany from "./ClientSelectCompany";
-import ToggleMenuButtonContainer from "./ToggleMenuButtonContainer";
 
 import { isSmall } from "./util";
 
@@ -34,10 +31,11 @@ const Header = ({
   company,
   accountName,
   isAdmin,
+  showPayModal,
   sidebarDocked,
   toggleNavbar,
-  showPayModal,
-  ui : { showNavbar },
+  showNavbar,
+  showSidebar,
 } : HeaderPropTypes) => {
 
   let showNoticeToPay = false;
@@ -49,9 +47,19 @@ const Header = ({
   }
 
   return (
-    <div>
+    <React.Fragment>
       <Navbar className="d-print-none" color="dark" dark expand="md">
-        { sidebarDocked ? null : ToggleMenuButtonContainer }
+        {
+          sidebarDocked ? null : (
+            <button
+              aria-label="Comută meniul"
+              className="btn btn-outline-secondary btn-sm mr-2"
+              onClick={showSidebar}
+              type="button">
+              <i className="fa fa-bars" />
+            </button>
+          )
+        }
         <div
           className="brand-wrapper truncate text-left d-inline-block text-light"
           onClick={isSmall() ? toggleNavbar : null}>
@@ -105,7 +113,7 @@ const Header = ({
           ) : null
         )
       }
-    </div>
+    </React.Fragment>
   );
 };
 
