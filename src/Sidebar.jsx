@@ -4,7 +4,7 @@ import * as React from "react";
 
 export type SidebarPropTypes = {
   brand: string;
-  Menu: React.Node;
+  Menu: any;
   children: React.Node;
   data: any;
 
@@ -19,7 +19,7 @@ export type SidebarPropTypes = {
 };
 
 export type SidebarPropTypesContent = {
-  Menu: React.Node;
+  Menu: any;
   id?: string;
   ui: {
     sidebarDocked: boolean;
@@ -30,10 +30,8 @@ export type SidebarPropTypesContent = {
 };
 
 export type SidebarStateTypes = {
-  ui: {
-    sidebarDocked: boolean;
-  };
-  mql: any;
+  showNavbar: boolean;
+  sidebarDocked: boolean;
   sidebarOpen: boolean;
   sidebarDocked: boolean;
 };
@@ -91,7 +89,7 @@ class Sidebar extends React.PureComponent<SidebarPropTypes, SidebarStateTypes> {
   showSidebar: () => void;
   closeSidebar: () => void;
 
-  constructor (props) {
+  constructor (props : SidebarPropTypes) {
     super(props);
 
     this.state = {
@@ -120,7 +118,7 @@ class Sidebar extends React.PureComponent<SidebarPropTypes, SidebarStateTypes> {
     };
 
     this.showSidebar = () => {
-      const theMetch = mql ? mql.matches : false;
+      const theMetch = mql.matches;
 
       this.setState({
         sidebarOpen   : !theMetch,
