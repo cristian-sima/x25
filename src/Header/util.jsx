@@ -54,10 +54,6 @@ export const getDefaultCompanyRoute = ({ Modules, ID } : CompanyRoutePropTypes) 
 
     const [first] = parts;
 
-    if (first === "employees") {
-      return first;
-    }
-
     return `${first}/list`;
   };
 

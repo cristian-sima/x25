@@ -3,7 +3,7 @@
 
 import type { Dispatch, State } from "src\\types";
 
-type PrivateRoutePropTypes = {
+type PropType = {
   isAdministrator: bool;
   isFetching: bool;
   hasError: bool;
@@ -45,8 +45,8 @@ const
     },
   });
 
-class PrivateRoute extends React.Component<PrivateRoutePropTypes> {
-  props: PrivateRoutePropTypes;
+class LoadCompany extends React.Component<PropType> {
+  props: PropType;
 
   componentWillMount () {
     const { shouldFetch, fetchCurrentCompany } = this.props;
@@ -98,4 +98,4 @@ class PrivateRoute extends React.Component<PrivateRoutePropTypes> {
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PrivateRoute));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoadCompany));
