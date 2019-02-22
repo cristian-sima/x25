@@ -1,5 +1,5 @@
 {
-  "version": "2.5.26",
+  "version": "2.5.27",
   "name": "x25",
   "description": "x25",
   "scripts": {
@@ -7,7 +7,7 @@
     "build-babel": "babel src --out-dir dist",
     "build": "npm run build-scss && npm run build-babel",
     "clean": "rimraf dist dist",
-    "check": "npm-check -u -i babel-jest -i jest",
+    "check": "npm-check -u -i babel-jest -i jest --specials=bin,eslint,babel,webpack",
     "flow": "flow check --color=always",
     "eslint": "eslint src --fix",
     "copy": "copy package.json dist",
@@ -126,6 +126,7 @@
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "copy": "^0.3.2",
+    "depcheck": "^0.7.1",
     "dezalgo": "^1.0.3",
     "font-awesome": "^4.7.0",
     "fs": "0.0.2",
