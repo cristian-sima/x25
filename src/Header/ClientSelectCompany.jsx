@@ -34,7 +34,7 @@ class ClientSelectCompany extends Component<ClientSelectCompanyPropTypes, Client
   props: ClientSelectCompanyPropTypes;
   state : ClientSelectCompanyState;
 
-  handleChange: (options : CompanyRoutePropTypes) => void;
+  handleChange: (options : any) => any;
   handleInputChange: (newValue: string) => string;
 
   constructor (props) {
@@ -42,7 +42,7 @@ class ClientSelectCompany extends Component<ClientSelectCompanyPropTypes, Client
 
     this.state = { inputValue: "" };
 
-    this.handleChange = (options) => {
+    this.handleChange = (options : any) => {
       if (isSmall()) {
         this.props.toggleNavbar();
       }
