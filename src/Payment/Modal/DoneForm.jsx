@@ -132,11 +132,11 @@ class TheForm extends React.Component<FormPropTypes> {
                 <Field
                   autoFocus
                   component={FocusTemplate}
+                  forwardRef
                   label="Număr tranzacție"
                   name="TransferNumber"
                   onRegisterRef={this.handleRegisterRef}
                   placeholder="ex. 238747324"
-                  withRef
                 />
               </div>
             </div>
