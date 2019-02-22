@@ -7,7 +7,7 @@
     "build-babel": "babel src --out-dir dist",
     "build": "npm run build-scss && npm run build-babel",
     "clean": "rimraf dist dist",
-    "check": "npm-check -u",
+    "check": "npm-check -u -i babel-jest -i jest",
     "flow": "flow check --color=always",
     "eslint": "eslint src --fix",
     "copy": "copy package.json dist",
