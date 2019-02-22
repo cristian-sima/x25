@@ -1,5 +1,5 @@
 {
-  "version": "2.5.28",
+  "version": "2.5.29",
   "name": "x25",
   "description": "x25",
   "scripts": {
@@ -11,7 +11,7 @@
     "flow": "flow check --color=always",
     "eslint": "eslint src --fix",
     "copy": "copy package.json dist",
-    "pre": "npm run test && npm run eslint && npm run flow && npm run clean && npm run build && npm run copy",
+    "pre": "npm run test && npm run eslint && npm run flow && npm run clean && npm run build && npm run copy && npm version patch",
     "load": "npm run pre && cd dist && npm publish",
     "test": "jest"
   },
