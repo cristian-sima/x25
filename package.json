@@ -7,7 +7,7 @@
     "build-babel": "babel src --out-dir dist",
     "build": "npm run build-scss && npm run build-babel",
     "clean": "rimraf dist dist",
-    "check": "npm-check-updates -a -x babel-loader && npm update",
+    "check": "npm-check -u",
     "flow": "flow check --color=always",
     "eslint": "eslint src --fix",
     "copy": "copy package.json dist",
@@ -59,6 +59,9 @@
     "node": ">= 6.3.1"
   },
   "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
     "testRegex": "src/.*-test.js$",
     "modulePaths": [
       "src"
@@ -68,7 +71,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.1.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-flow-react-proptypes": "^25.0.0",
@@ -95,7 +98,6 @@
     "file-loader": "^3.0.1",
     "flow-bin": "^0.93.0",
     "flow-status-webpack-plugin": "^0.1.7",
-    "jest": "^24.1.0",
     "jest-immutable-matchers": "^2.0.1",
     "json-loader": "^0.5.7",
     "npm-check-updates": "^2.15.0",
@@ -106,10 +108,15 @@
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.5",
+    "jest": "^23.6.0",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.0",
     "webpack-git-hash": "^1.0.2",
+    "npm": "^6.8.0",
+    "npm-check": "^5.9.0",
     "webpack-preset": "^0.2.0",
+    "node-sass": "^4.10.0",
+    "npm-check-unused": "^6.0.0",
     "webpack-preset-babel": "^0.2.0",
     "webpack-preset-babel-stage-2": "^0.2.0"
   },
@@ -127,9 +134,6 @@
     "immutable": "^4.0.0-rc.12",
     "lodash.memoize": "^4.1.2",
     "moment": "^2.22.2",
-    "node-sass": "^4.10.0",
-    "npm": "^6.8.0",
-    "npm-check": "^5.9.0",
     "react": "^16.8.3",
     "react-autosuggest": "^9.4.2",
     "react-dom": "^16.8.3",
