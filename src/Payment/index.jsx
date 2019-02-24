@@ -119,4 +119,6 @@ class PaymentWrap extends React.Component<PaymentWrapPropTypes, PaymentWrapState
   }
 }
 
+export * from "./codes";
+
 export default connect(null, mapDispatchToProps)(PaymentWrap);
