@@ -15,6 +15,7 @@ import * as Immutable from "immutable";
 import Description from "./Description";
 import PayBox from "./PayBox";
 import Payment from "../";
+import { ApplicationCodeInvoiceService } from "../codes";
 
 const formID = "PAY_FOR_COMPANY_INVOICES";
 
@@ -40,7 +41,7 @@ const EstimateBox = (props : EstimateBoxProps) => {
         </div>
         <div className="col-lg">
           <Payment
-            application="facturare"
+            application={ApplicationCodeInvoiceService}
             companyID={id}>
             <PayBoxForm
               companyID={id}

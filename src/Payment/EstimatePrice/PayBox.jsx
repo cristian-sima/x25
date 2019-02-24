@@ -13,6 +13,7 @@ import { Field } from "redux-form/immutable";
 import { LoadingMessage } from "../../Messages";
 import { CustomSelect } from "../../Inputs";
 import { plainNumberToLocale } from "../../utility";
+import { ApplicationCodeInvoiceService } from "../codes";
 
 import * as Immutable from "immutable";
 
@@ -111,7 +112,7 @@ class PayBox extends React.Component<PayBoxPropTypes> {
                     className="btn btn-text text-muted curson-pointer m-0 p-0"
                     disabled={submitting}
                     onClick={payUsingBankTransfer(
-                      "facturare",
+                      ApplicationCodeInvoiceService,
                       Immutable.Map({
                         Months,
                         companyID,
