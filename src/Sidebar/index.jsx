@@ -40,9 +40,11 @@ import ReactSidebar from "react-sidebar";
 
 import { withRouter } from "react-router-dom";
 
-import { mql } from "./utility";
+import { mql } from "../utility";
 
-import { Header, SideworkLogo } from "./Header";
+import { Header, SideworkLogo } from "../Header";
+
+import "./style.scss";
 
 export const styles = {
   sidebar: {

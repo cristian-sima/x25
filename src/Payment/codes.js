@@ -1,5 +1,6 @@
 // @flow
 
+/*
 // // ApplicationCodeSMSAlert ---
 // ApplicationCodeSMSAlert = "smsalert"
 // // DescriptionSMSAlert ---
@@ -11,8 +12,10 @@
 // <b>smsalert</b><br>
 // arg1: <b>credits</b><br>
 // arg2: <b>companyID</b><br><br>
+*/
 const ApplicationCodeSMSAlert = "smsalert";
 
+/*
 // // ApplicationCodeInvoiceService ---
 // ApplicationCodeInvoiceService = "facturare"
 // // DescriptionInvoiceService ---
@@ -23,6 +26,7 @@ const ApplicationCodeSMSAlert = "smsalert";
 // <b>facturare</b><br>
 // arg1: <b>months</b><br>
 // arg2: <b>companyID</b><br><br>
+*/
 const ApplicationCodeInvoiceService = "facturare";
 
 export {

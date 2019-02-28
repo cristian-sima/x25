@@ -6,7 +6,7 @@ type DataType = {
   companyID: number;
 };
 
-import { ApplicationCodeSMSAlert, ApplicationCodeInvoiceService } from "../codes";
+import { ApplicationCodeSMSAlert, ApplicationCodeInvoiceService } from "./codes";
 
 const getDetails = (application : string, data : DataType) => {
 

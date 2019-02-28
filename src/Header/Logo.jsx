@@ -8,9 +8,8 @@ const SideworkLogo = () => (
       {"S"}
     </span>
     <span className="color">
-      {"ide"}
+      {"idework"}
     </span>
-    {"work"}
   </div>
 );
 
