@@ -44,7 +44,7 @@ import { mql } from "../utility";
 
 import { Header, SideworkLogo } from "../Header";
 
-import "./style.scss";
+import "../style/sidebar.scss";
 
 export const styles = {
   sidebar: {

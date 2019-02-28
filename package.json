@@ -1,9 +1,9 @@
 {
-  "version": "2.5.32",
+  "version": "2.5.33",
   "name": "x25",
   "description": "x25",
   "scripts": {
-    "build-scss": "node-sass --output-style compressed src/style -o dist/style",
+    "build-scss": "node-sass --output-style compressed src -o dist",
     "build-babel": "babel src --out-dir dist",
     "build": "npm run build-scss && npm run build-babel",
     "clean": "rimraf dist dist",
