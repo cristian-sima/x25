@@ -38,13 +38,9 @@ export type SidebarStateTypes = {
 
 import ReactSidebar from "react-sidebar";
 
-import { withRouter } from "react-router-dom";
-
 import { mql } from "../utility";
 
-import { Header, SideworkLogo } from "../Header";
-
-import "../style/sidebar.scss";
+import { Header } from "../Header";
 
 export const styles = {
   sidebar: {
@@ -54,31 +50,6 @@ export const styles = {
     zIndex: 3,
   },
 };
-
-const Content = ({ closeSidebar, Menu } : SidebarPropTypesContent) => (
-    <div
-      className="sidebar d-print-none">
-      <div className="hidden-sm-down clearfix">
-        <div className="ml-2 mr-2">
-          <div className="float-left">
-            <SideworkLogo />
-          </div>
-          <div className="float-right">
-            <button
-              className="btn btn-outline-secondary btn-sm float-right"
-              onClick={closeSidebar}
-              style={{ marginRight: 1 }}
-              type="button">
-              <i aria-hidden="true" className="fa fa-bars" />
-            </button>
-          </div>
-        </div>
-      </div>
-      <hr className="devider" />
-      <Menu />
-    </div>
-  ),
-  SidebarContent = withRouter(Content);
 
 class Sidebar extends React.PureComponent<SidebarPropTypes, SidebarStateTypes> {
 
@@ -147,17 +118,19 @@ class Sidebar extends React.PureComponent<SidebarPropTypes, SidebarStateTypes> {
   render () {
     const { data, children, toggleSidebarOpen } = this.props;
 
+    const sidebarprops = {
+      closeSidebar: this.closeSidebar,
+    };
+
     return (
       <ReactSidebar
         {...this.props}
-        contentClassName="sidebar-content"
+        contentClassName="wrapper"
         docked={this.state.sidebarDocked}
         onSetOpen={toggleSidebarOpen}
         open={this.state.sidebarOpen}
-        rootClassName="sidebar-wrapper"
-        sidebar={(
-          <SidebarContent Menu={this.props.Menu} closeSidebar={this.closeSidebar} />
-        )}
+        rootClassName="page-wrapper dark-theme toggled"
+        sidebar={React.cloneElement(this.props.Menu, sidebarprops)}
         styles={styles}
         touch={false}
         transitions={false}>
