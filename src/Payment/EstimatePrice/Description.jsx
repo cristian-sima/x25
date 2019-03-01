@@ -13,7 +13,7 @@ const Description = () => (
           data-prefix="fas" focusable="false" role="img" style={{
             width: "2em",
           }}
-          viewBox="0 0 384 512"
+          viewBox="0 0 600 600"
           xmlns="http://www.w3.org/2000/svg">
           <g>
             <g>

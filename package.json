@@ -1,5 +1,5 @@
 {
-  "version": "2.5.35",
+  "version": "2.5.37",
   "name": "x25",
   "description": "x25",
   "scripts": {
@@ -96,7 +96,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.11.1",
     "file-loader": "^3.0.1",
-    "flow-bin": "^0.93.0",
+    "flow-bin": "^0.94.0",
     "flow-status-webpack-plugin": "^0.1.7",
     "jest": "^23.6.0",
     "jest-immutable-matchers": "^2.0.1",

@@ -14,8 +14,6 @@ export type SidebarPropTypes = {
   toggleSidebar: () => void;
   closeSidebar: () => void;
   fixSidebar: () => void;
-  updateSidebar: () => void;
-  toggleSidebarOpen: () => void;
 };
 
 export type SidebarPropTypesContent = {
@@ -42,12 +40,20 @@ import { mql } from "./utility";
 
 import { Header } from "./Header";
 
-export const styles = {
+const styles = {
   sidebar: {
-    zIndex: 4,
+    zIndex           : 2,
+    position         : "absolute",
+    top              : 0,
+    bottom           : 0,
+    transition       : "transform .3s ease-out",
+    WebkitTransition : "-webkit-transform .3s ease-out",
+    willChange       : "transform",
+    overflowY        : "auto",
   },
   overlay: {
-    zIndex: 3,
+    zIndex : 3,
+    left   : 240,
   },
 };
 
@@ -116,7 +122,7 @@ class Sidebar extends React.PureComponent<SidebarPropTypes, SidebarStateTypes> {
   }
 
   render () {
-    const { data, children, toggleSidebarOpen } = this.props;
+    const { data, children } = this.props;
 
     const sidebarprops = {
       closeSidebar: this.closeSidebar,
@@ -127,7 +133,7 @@ class Sidebar extends React.PureComponent<SidebarPropTypes, SidebarStateTypes> {
         {...this.props}
         contentClassName="wrapper"
         docked={this.state.sidebarDocked}
-        onSetOpen={toggleSidebarOpen}
+        onSetOpen={this.toggleSidebarOpen}
         open={this.state.sidebarOpen}
         rootClassName="page-wrapper dark-theme toggled"
         sidebar={React.cloneElement(this.props.Menu, sidebarprops)}
