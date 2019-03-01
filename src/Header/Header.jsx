@@ -3,7 +3,7 @@
 type HeaderPropTypes = {
   brand : string;
   company: any;
-  accountName : string;
+  account : any;
   isAdmin: bool;
   sidebarDocked: boolean;
   showNavbar: boolean;
@@ -29,7 +29,7 @@ const monthsUntilShowNotice = 30;
 const Header = ({
   brand,
   company,
-  accountName,
+  account,
   isAdmin,
   showPayModal,
   sidebarDocked,
@@ -38,9 +38,13 @@ const Header = ({
   showSidebar,
 } : HeaderPropTypes) => {
 
-  let showNoticeToPay = false;
+  let
+    showNoticeToPay = false;
 
-  if (typeof company !== "undefined") {
+  const
+    countDays = typeof company !== "undefined" && account.get("ID") === company.get("OwnerID");
+
+  if (countDays) {
     const daysLeft = moment(company.get("ValabilityDate")).diff(moment().endOf("day"), "days") + 1;
 
     showNoticeToPay = daysLeft <= monthsUntilShowNotice;
@@ -89,7 +93,7 @@ const Header = ({
               )
             }
             <div className="d-inline-block">
-              <AccountOptionsContainer accountName={accountName} />
+              <AccountOptionsContainer accountName={account.get("Name")} />
             </div>
           </Nav>
         </Collapse>

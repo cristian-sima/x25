@@ -17,8 +17,8 @@ const
     const data = selectors.getCurrentAccount(state);
 
     return {
-      accountName : data.get("Name"),
-      isAdmin     : isAdministratorAccount(data.get("Type")),
+      account : data,
+      isAdmin : isAdministratorAccount(data.get("Type")),
     };
   },
   mapDispatchToProps = (dispatch : Dispatch) => ({

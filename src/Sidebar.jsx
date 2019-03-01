@@ -38,9 +38,9 @@ export type SidebarStateTypes = {
 
 import ReactSidebar from "react-sidebar";
 
-import { mql } from "../utility";
+import { mql } from "./utility";
 
-import { Header } from "../Header";
+import { Header } from "./Header";
 
 export const styles = {
   sidebar: {
@@ -131,6 +131,7 @@ class Sidebar extends React.PureComponent<SidebarPropTypes, SidebarStateTypes> {
         open={this.state.sidebarOpen}
         rootClassName="page-wrapper dark-theme toggled"
         sidebar={React.cloneElement(this.props.Menu, sidebarprops)}
+        sidebarClassName="sidebar-wrapper"
         styles={styles}
         touch={false}
         transitions={false}>
