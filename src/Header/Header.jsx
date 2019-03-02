@@ -16,7 +16,7 @@ type HeaderPropTypes = {
 
 import React from "react";
 import moment from "moment";
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav } from "reactstrap";
+import { Collapse } from "reactstrap";
 
 import AccountOptionsContainer from "./AccountOptionsContainer";
 import AdminSelectCompany from "./AdminSelectCompany";
@@ -27,15 +27,8 @@ import { isSmall } from "./util";
 const monthsUntilShowNotice = 30;
 
 const Header = ({
-  brand,
-  company,
-  account,
-  isAdmin,
-  showPayModal,
-  sidebarDocked,
-  toggleNavbar,
-  showNavbar,
-  showSidebar,
+  brand, company, account, isAdmin, showPayModal, sidebarDocked,
+  toggleNavbar, showNavbar, showSidebar,
 } : HeaderPropTypes) => {
 
   let
@@ -52,7 +45,7 @@ const Header = ({
 
   return (
     <React.Fragment>
-      <Navbar className="d-print-none" color="dark" dark expand="md">
+      <nav className="d-print-none navbar navbar-expand-md navbar-dark bg-dark">
         {
           sidebarDocked ? null : (
             <button
@@ -67,11 +60,14 @@ const Header = ({
         <div
           className="brand-wrapper truncate text-left d-inline-block text-light"
           onClick={isSmall() ? toggleNavbar : null}>
-          <NavbarBrand>
+          <a className="navbar-brand">
             {brand}
-          </NavbarBrand>
+          </a>
         </div>
-        <NavbarToggler className="mt-3 text-dark" onClick={toggleNavbar}>
+        <button
+          className="mt-3 text-dark navbar-toggler"
+          onClick={toggleNavbar}
+          type="button">
           {
             showNavbar ? (
               <i className="fa fa-arrow-up text-light" />
@@ -79,9 +75,9 @@ const Header = ({
               <i className="fa fa-arrow-down text-light" />
             )
           }
-        </NavbarToggler>
+        </button>
         <Collapse isOpen={showNavbar} navbar>
-          <Nav className="ml-auto" navbar>
+          <ul className="ml-auto navbar-nav">
             <a className="nav-link" href="/settings/companies">
               {"Setări"}
             </a>
@@ -95,9 +91,9 @@ const Header = ({
             <div className="d-inline-block">
               <AccountOptionsContainer accountName={account.get("Name")} />
             </div>
-          </Nav>
+          </ul>
         </Collapse>
-      </Navbar>
+      </nav>
       {
         typeof company === "undefined" || company.size === 0 ? null : (
           showNoticeToPay ? (
