@@ -7,6 +7,8 @@ type LabelTemplatePropTypes = {
   offset?: string;
   meta: {
     submitting : boolean;
+    touched: boolean;
+    error?: any;
   };
 };
 
