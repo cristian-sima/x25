@@ -13,7 +13,7 @@ type LabelTemplatePropTypes = {
 import React from "react";
 
 export const LabelTemplate = (
-  { input, tabIndex, label, offset, meta: { submitting } }: LabelTemplatePropTypes
+  { input, tabIndex, label, offset, meta: { submitting, touched, error } }: LabelTemplatePropTypes
 ) => (
   <div className="container">
     <div className="form-group row mb-1">
@@ -30,6 +30,15 @@ export const LabelTemplate = (
         <label className="custom-control-label" htmlFor={input.name}>
           {label}
         </label>
+        <div className="invalid-feedback">
+          {
+            touched && error && (
+              <span>
+                {error}
+              </span>
+            )
+          }
+        </div>
       </div>
     </div>
   </div>
