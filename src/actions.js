@@ -22,5 +22,15 @@ export const deleteNotification = (position : number) : Action => ({
   payload : position,
 });
 
+export const showCaptcha = (payload : { id: string ; name : string }) : Action => ({
+  type: "SHOW_CAPTCHA",
+  payload,
+});
+
+export const hideCaptcha = (payload : string) : Action => ({
+  type: "HIDE_CAPTCHA",
+  payload,
+});
+
 export * from "./Modal/actions";
 export * from "./Account/actions";
