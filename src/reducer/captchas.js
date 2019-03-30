@@ -1,6 +1,7 @@
-/* --- disabled flow */
+// @flow
 
 import * as Immutable from "immutable";
+import type { State } from "src\\types";
 
 const initialState = Immutable.Map();
 
@@ -12,7 +13,7 @@ const
     state.delete(payload)
   );
 
-const authReducer = (state : any = initialState, action : any) => {
+const captchasReducer = (state : any = initialState, action : any) => {
   switch (action.type) {
     case "SHOW_CAPTCHA":
       return showCaptcha(state, action);
@@ -25,4 +26,16 @@ const authReducer = (state : any = initialState, action : any) => {
   }
 };
 
-export default authReducer;
+const
+  getCaptcha = (state : State, name : string) => (
+    state.getIn([
+      "captchas",
+      name,
+    ]) || ""
+  );
+
+export const selectors = {
+  getCaptcha,
+};
+
+export default captchasReducer;

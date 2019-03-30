@@ -3,6 +3,8 @@
 .*/node_modules/config-chain/test/broken.json
 .*/node_modules/npmconf/test/.*
 .*/node_modules/npm/test/.*
+[untyped]
+.*/node_modules/react-select/.*
 [include]
 [libs]
 src/types
