@@ -27,19 +27,23 @@ const timeout = 500;
 
 const defaultNormalizr : Normalizr = (item) => Immutable.Map(item);
 
+const defaultValue = () => ({
+  entities : Immutable.Map(),
+  result   : Immutable.List(),
+});
+
 export const customNormalizeArrayByField : Normalize = (raw : Array<any>, field : string, normalizr : Normalizr) => (
-  raw.reduce((previous, current) => {
-    const stringID = String(current[field]);
+  raw === null ? defaultValue() : (
+    raw.reduce((previous, current) => {
+      const stringID = String(current[field]);
 
-    previous.entities = previous.entities.set(stringID, normalizr(current));
+      previous.entities = previous.entities.set(stringID, normalizr(current));
 
-    previous.result = previous.result.push(stringID);
+      previous.result = previous.result.push(stringID);
 
-    return previous;
-  }, {
-    entities : Immutable.Map(),
-    result   : Immutable.List(),
-  })
+      return previous;
+    }, defaultValue())
+  )
 );
 
 export const normalizeArrayByField : DefaultNormalize = (raw : Array<any>, field : string) => (
