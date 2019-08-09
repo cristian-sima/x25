@@ -124,7 +124,7 @@ export class DateInput extends React.Component<DateInputPropTypes, DateInputStat
     };
   }
 
-  componentWillReceiveProps (nextProps : DateInputPropTypes) {
+  UNSAFE_componentWillReceiveProps (nextProps : DateInputPropTypes) {
     const {
       input: {
         value: newValue,

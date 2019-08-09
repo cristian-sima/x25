@@ -48,7 +48,7 @@ const
 class LoadCompany extends React.Component<PropType> {
   props: PropType;
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     const { shouldFetch, fetchCurrentCompany } = this.props;
 
     if (shouldFetch) {

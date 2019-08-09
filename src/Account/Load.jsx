@@ -44,7 +44,7 @@ const
 class LoadAccount extends React.Component<PropTypes> {
   props: PropTypes;
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     const { shouldFetch, fetchInitialInformation } = this.props;
 
     if (shouldFetch) {

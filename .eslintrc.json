@@ -33,6 +33,7 @@
      "max-lines-per-function": ["error", { "max": 300 }],
 
       "react/jsx-fragments": 0,
+      "react/state-in-constructor": 0,
       "react/jsx-handler-names":0,
       "no-confusing-arrow":0,
       "max-statements":0,

@@ -76,7 +76,7 @@ export class NumericInput extends React.Component<NumericPropTypes, NumericState
     };
   }
 
-  componentWillReceiveProps (nextProps : NumericPropTypes) {
+  UNSAFE_componentWillReceiveProps (nextProps : NumericPropTypes) {
     cwrp(this, nextProps);
   }
 

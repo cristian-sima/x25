@@ -127,7 +127,7 @@ export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTem
     };
   }
 
-  componentWillReceiveProps (nextProps : DateTemplatePropTypes) {
+  UNSAFE_componentWillReceiveProps (nextProps : DateTemplatePropTypes) {
     const {
       input: {
         value: newValue,

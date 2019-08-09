@@ -11,7 +11,7 @@ type Normalize = (raw : Array<any>, field : string, normalizr : Normalizr) => No
 type DefaultNormalize = (raw : Array<any>, field : string) => NormalizedResult;
 
 type Resolve = (data : any) => void;
-type Reject = (arg : { error : string }) => void;
+type Reject = (arg : any) => void;
 
 type Response = {
   body: any;

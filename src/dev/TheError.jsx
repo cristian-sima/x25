@@ -14,7 +14,7 @@ import React from "react";
 
 class TheError extends React.Component<TheErrorProps> {
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     document.addEventListener("keydown", this.props.handleKey);
   }
 

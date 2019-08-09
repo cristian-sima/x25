@@ -87,7 +87,7 @@ export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeIn
     };
   }
 
-  componentWillReceiveProps (nextProps : TypeInputPropTypes) {
+  UNSAFE_componentWillReceiveProps (nextProps : TypeInputPropTypes) {
     if (this.props.value !== nextProps.value) {
       this.setState({
         value: nextProps.value,

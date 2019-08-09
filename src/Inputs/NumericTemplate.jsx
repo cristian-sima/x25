@@ -82,7 +82,7 @@ export class NumericTemplate extends React.Component<NumericPropTypes, NumericSt
     };
   }
 
-  componentWillReceiveProps (nextProps : NumericPropTypes) {
+  UNSAFE_componentWillReceiveProps (nextProps : NumericPropTypes) {
     cwrp(this, nextProps);
   }
 

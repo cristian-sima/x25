@@ -6,16 +6,16 @@ import React, { Component } from "react";
 import agent from "superagent";
 import { withRouter } from "react-router-dom";
 
-import AsyncSelect from "react-select/lib/Async";
+import AsyncSelect from "react-select/async";
 
 import { withPromiseCallback } from "../utility";
 import { loadingMessage,
   getDefaultCompanyRoute, noOptionsMessage, Option, wrapperClassname, isSmall } from "./util";
 
 type AdminSelectCompanyPropTypes = {
-  companies: any;
-  history: any;
-  toggleNavbar: () => void;
+  +companies: any;
+  +history: any;
+  +toggleNavbar: () => void;
 }
 
 type AdminSelectCompanyState = {
@@ -47,6 +47,7 @@ const loadOptions = (search, callback) => {
     type("form").
     set("Accept", "application/json").
     query({ search }).
+    // eslint-disable-next-line
     end(withPromiseCallback(prepare, reject));
 };
 
