@@ -1,11 +1,11 @@
 // @flow
 
 type ErrorMessageProps = {
-  message: string;
-  details?: string;
-  itemNotFound?: boolean;
+  +message: string;
+  +details?: string;
+  +itemNotFound?: boolean;
 
-  onRetry?: () => void;
+  +onRetry?: () => void;
 };
 
 

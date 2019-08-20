@@ -6,7 +6,7 @@ type DataType = {
   companyID: number;
 };
 
-import { ApplicationCodeSMSAlert, ApplicationCodeInvoiceService } from "./codes";
+import * as codes from "./codes";
 
 const getDetails = (application : string, data : DataType) => {
 
@@ -14,14 +14,15 @@ const getDetails = (application : string, data : DataType) => {
     const { Credits, Months, companyID } = data;
 
     switch (application) {
-      case ApplicationCodeSMSAlert:
+      case codes.ApplicationCodeSMSAlert:
 
         return [
           Credits,
           companyID,
         ];
 
-      case ApplicationCodeInvoiceService:
+      case codes.ApplicationCodeAutoService:
+      case codes.ApplicationCodeInvoiceService:
         return [
           Months,
           companyID,
