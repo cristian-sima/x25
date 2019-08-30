@@ -31,11 +31,13 @@ const wrong = [
 ];
 
 wrong.map((cif) => (
-  describe(`given the wrong CIF ${cif}`, () => {
-    it("should not be valid", () => {
-      expect(isValidCIF(cif)).toBe(notValid);
-    });
-  })
+  describe(`given the wrong CIF ${cif}`,
+    () => {
+      it("should not be valid",
+        () => {
+          expect(isValidCIF(cif)).toBe(notValid);
+        });
+    })
 ));
 
 const good = [
@@ -93,9 +95,11 @@ const good = [
 ];
 
 good.map((cif) => (
-  describe(`given the good CIF ${cif}`, () => {
-    it("should be valid", () => {
-      expect(isValidCIF(cif)).toBe(valid);
-    });
-  })
+  describe(`given the good CIF ${cif}`,
+    () => {
+      it("should be valid",
+        () => {
+          expect(isValidCIF(cif)).toBe(valid);
+        });
+    })
 ));

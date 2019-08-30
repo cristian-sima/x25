@@ -146,7 +146,9 @@ export const validateDate = (value : string) => {
 
 const isInt = (value) => (
   !isNaN(value) &&
-   parseInt(Number(value), 10) === value && !isNaN(parseInt(value, 10))
+   parseInt(Number(value),
+     10) === value && !isNaN(parseInt(value,
+    10))
 );
 
 const validateNumberRange = ({ min, max, value, integer }) => {

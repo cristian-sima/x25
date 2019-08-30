@@ -56,7 +56,8 @@ export const isValidCNP = (rawValue : string) : boolean => {
       const reduceHash = (rawHash : number) : number => {
         const
           nrOfDigits = 11,
-          reduced = parseInt(rawHash % nrOfDigits, decimalSystem);
+          reduced = parseInt(rawHash % nrOfDigits,
+            decimalSystem);
 
         if (reduced === 10) {
           return 1;
@@ -86,7 +87,8 @@ export const isValidCNP = (rawValue : string) : boolean => {
       for (let index = 0; index < 12; index += 1) {
 
         const rawChar = raw.charAt(index),
-          parsedValue = parseInt(rawChar, decimalSystem),
+          parsedValue = parseInt(rawChar,
+            decimalSystem),
           correspondingHashNumber = hashTable[index];
 
         if (isNaN(parsedValue)) {
@@ -141,7 +143,8 @@ export const isValidCNP = (rawValue : string) : boolean => {
                     year += 2000;
 
                     const today : any = new Date(),
-                      tempYear = parseInt(today.getYear(), 10) - 14;
+                      tempYear = parseInt(today.getYear(),
+                        10) - 14;
 
                     if (year > tempYear) {
                       year -= 100;
@@ -182,7 +185,13 @@ export const isValidCNP = (rawValue : string) : boolean => {
             ),
             // js months are starting from 0 -> 11
             jsMonth = month - 1,
-            date = new Date(year, jsMonth, day, 0, 0, 0, 0);
+            date = new Date(year,
+              jsMonth,
+              day,
+              0,
+              0,
+              0,
+              0);
 
           if (
             (date.getFullYear() !== year) ||

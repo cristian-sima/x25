@@ -20,17 +20,19 @@ export const extractErrorsFromCheckers = (checkers : any) => (values : any) => {
   const errors = {};
 
   for (const field in checkers) {
-    if (Object.prototype.hasOwnProperty.call(checkers, field)) {
+    if (Object.prototype.hasOwnProperty.call(checkers,
+      field)) {
       const
         checker = checkers[field],
         result = checker(values.get(field)),
         { notValid } = result;
 
       if (notValid) {
-        processErrors(result, {
-          field,
-          errors,
-        });
+        processErrors(result,
+          {
+            field,
+            errors,
+          });
       }
     }
   }

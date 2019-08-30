@@ -15,7 +15,8 @@ const normalizeInitialInformation = (info : any) => {
     IsConnected,
     Error    : IsConnected ? noError : "Not connected",
     Counties : (typeof Counties === "undefined") ? [] : (
-      normalizeArrayByField(Counties, "Short").entities
+      normalizeArrayByField(Counties,
+        "Short").entities
     ),
     Companies: (typeof Companies === "undefined") ? [] : (
       normalizeArray(Companies).entities
@@ -29,6 +30,7 @@ export const fetchInitialInformation = (app : string) => (
       get("/api/extern/get-initial-information").
       type("form").
       query({ app }).
-      end(withPromiseCallback((reponse) => resolve(normalizeInitialInformation(reponse)), reject))
+      end(withPromiseCallback((reponse) => resolve(normalizeInitialInformation(reponse)),
+        reject))
   )) : Promise<any>
 );

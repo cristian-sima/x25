@@ -77,11 +77,13 @@ const wrongCNPs = [
 ];
 
 wrongCNPs.map((cnp) => (
-  describe(`given the wrong CNP ${cnp}`, () => {
-    it("should not be valid", () => {
-      expect(isValidCNP(cnp)).toBe(notValid);
-    });
-  })
+  describe(`given the wrong CNP ${cnp}`,
+    () => {
+      it("should not be valid",
+        () => {
+          expect(isValidCNP(cnp)).toBe(notValid);
+        });
+    })
 ));
 
 const goodCNPs = [
@@ -204,9 +206,11 @@ const goodCNPs = [
 ];
 
 goodCNPs.map((cnp) => (
-  describe(`given the good CNP ${cnp}`, () => {
-    it("should be valid", () => {
-      expect(isValidCNP(cnp)).toBe(valid);
-    });
-  })
+  describe(`given the good CNP ${cnp}`,
+    () => {
+      it("should be valid",
+        () => {
+          expect(isValidCNP(cnp)).toBe(valid);
+        });
+    })
 ));

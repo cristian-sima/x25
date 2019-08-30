@@ -37,7 +37,8 @@ export const customNormalizeArrayByField : Normalize = (raw : Array<any>, field 
     raw.reduce((previous, current) => {
       const stringID = String(current[field]);
 
-      previous.entities = previous.entities.set(stringID, normalizr(current));
+      previous.entities = previous.entities.set(stringID,
+        normalizr(current));
 
       previous.result = previous.result.push(stringID);
 
@@ -47,7 +48,9 @@ export const customNormalizeArrayByField : Normalize = (raw : Array<any>, field 
 );
 
 export const normalizeArrayByField : DefaultNormalize = (raw : Array<any>, field : string) => (
-  customNormalizeArrayByField(raw, field, defaultNormalizr)
+  customNormalizeArrayByField(raw,
+    field,
+    defaultNormalizr)
 );
 
 export const withPromiseCallback = (resolve : Resolve, reject : Reject) => (error : Error, response : Response) => {
@@ -70,7 +73,8 @@ export const withHandlePDFCallback = (
 ) => (error : Error, response : Response) => {
   // It is necessary to create a new blob object with mime-type explicitly set
   // otherwise only Chrome works like it should
-  const newBlob = new Blob([response.body], { type: "application/pdf" });
+  const newBlob = new Blob([response.body],
+    { type: "application/pdf" });
 
   // IE doesn't allow using a blob object directly as link href
   // instead it is necessary to use msSaveOrOpenBlob
@@ -90,7 +94,9 @@ export const withHandlePDFCallback = (
   setTimeout(() => {
     // For Firefox it is necessary to delay revoking the ObjectURL
     window.URL.revokeObjectURL(data);
-    withPromiseCallback(resolve, reject)(error, response);
+    withPromiseCallback(resolve,
+      reject)(error,
+      response);
   }, timeout);
 };
 
@@ -100,11 +106,14 @@ export const withHandlePDFCallback = (
  */
 
 export const normalizeArray : NormalizeArray = (raw : Array<any>, normalizr?: Normalizr) => (
-  customNormalizeArrayByField(raw, "ID", typeof normalizr === "undefined" ? defaultNormalizr : normalizr)
+  customNormalizeArrayByField(raw,
+    "ID",
+    typeof normalizr === "undefined" ? defaultNormalizr : normalizr)
 );
 
 export const normalizeBoolean : NormalizeBoolean = (value : boolean | "") => value || false;
 
 export const normalizeSelectNumeric = (raw : string) => (
-  (typeof raw === "string" && raw !== "") ? parseInt(raw, 10) : raw
+  (typeof raw === "string" && raw !== "") ? parseInt(raw,
+    10) : raw
 );

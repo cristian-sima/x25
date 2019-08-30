@@ -25,7 +25,8 @@ const initialState : CurrentState = Immutable.Map({
 
 const
   fetchCompanyPending = () => (
-    initialState.set("fetching", true)
+    initialState.set("fetching",
+      true)
   ),
   fetchCompanyRejected = (state : any, { payload : { error } }) => (
     state.merge({
@@ -41,7 +42,8 @@ const
     })
   ),
   modifyCompany = (state : any, { payload }) => (
-    state.set("company", payload)
+    state.set("company",
+      payload)
   ),
   clearInfoIfCurrentCompany = (state : any, { payload }) => {
     const
@@ -66,17 +68,21 @@ const reducer = (state : any = initialState, action : Action) => {
       return fetchCompanyPending();
 
     case "FETCH_CURRENT_COMPANY_INFO_REJECTED":
-      return fetchCompanyRejected(state, action);
+      return fetchCompanyRejected(state,
+        action);
 
     case "FETCH_CURRENT_COMPANY_INFO_FULFILLED":
-      return fetchCompanyFulfilled(state, action);
+      return fetchCompanyFulfilled(state,
+        action);
 
     case "MODIFY_CURRENT_COMPANY_INFO":
-      return modifyCompany(state, action);
+      return modifyCompany(state,
+        action);
 
     case "TOGGLE_COMPANY_STATE":
     case "DELETE_COMPANY":
-      return clearInfoIfCurrentCompany(state, action);
+      return clearInfoIfCurrentCompany(state,
+        action);
 
     default:
       return state;

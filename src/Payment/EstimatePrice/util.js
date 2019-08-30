@@ -10,5 +10,6 @@ export const
   getPrice = (months : number) => parseFloat(
     new Big(months).
       times(new Big(pricePerMonth)).
-      round(0, up)
+      round(0,
+        up)
   );

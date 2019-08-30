@@ -20,7 +20,8 @@ const
 const reducer = (state : any = initialState, action : Action) => {
   switch (action.type) {
     case "SHOW_MODAL":
-      return showModal(state, action);
+      return showModal(state,
+        action);
 
     case "HIDE_MODAL":
       return hideModal(state);

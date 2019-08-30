@@ -40,7 +40,8 @@ export const handleBlur = (that : This) => {
       return null;
     }
 
-    return performBlur(null, true);
+    return performBlur(null,
+      true);
   }
 
   const
@@ -50,7 +51,8 @@ export const handleBlur = (that : This) => {
       (currentValue !== normalizedValue)
     );
 
-  return performBlur(normalizedValue, shouldRenderAgain);
+  return performBlur(normalizedValue,
+    shouldRenderAgain);
 };
 
 export const normalizeFloat = (raw : string) : number => {
@@ -75,7 +77,8 @@ export const normalizeFloat = (raw : string) : number => {
       // ex. 12
         return unRouned;
       }
-      const newDecimals = parts[1].slice(0, nrOfDecimals),
+      const newDecimals = parts[1].slice(0,
+          nrOfDecimals),
         newString = `${parts[0]}.${newDecimals}`;
 
       return Number(newString);

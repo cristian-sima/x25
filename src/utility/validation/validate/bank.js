@@ -4,14 +4,16 @@ export const isValidBankAccount = (rawValue : string) : boolean => {
 
   // Remove spaces and to upper case
   const checkPosition = 4,
-    iban = rawValue.replace(/ /gu, "").toUpperCase(),
+    iban = rawValue.replace(/ /gu,
+      "").toUpperCase(),
     hasGoodCountryCode = () : boolean => {
 
       if (iban.length <= 2) {
         return false;
       }
 
-      const countrycode = iban.substring(0, 2),
+      const countrycode = iban.substring(0,
+          2),
         bbancountrypatterns = {
           "AD" : "\\d{8}[\\dA-Z]{12}",
           "AE" : "\\d{3}\\d{16}",
@@ -93,7 +95,8 @@ export const isValidBankAccount = (rawValue : string) : boolean => {
         return false;
       }
 
-      const ibanregexp = new RegExp(`^[A-Z]{2}\\d{2}${bbanpattern}$`, "u");
+      const ibanregexp = new RegExp(`^[A-Z]{2}\\d{2}${bbanpattern}$`,
+        "u");
 
       // Invalid country specific format
       return ibanregexp.test(iban);
@@ -102,8 +105,10 @@ export const isValidBankAccount = (rawValue : string) : boolean => {
       const getCheckDigits = () => {
 
           const getCheck = () : string => {
-              const first = String(iban.substring(checkPosition, iban.length)),
-                second = String(iban.substring(0, checkPosition));
+              const first = String(iban.substring(checkPosition,
+                  iban.length)),
+                second = String(iban.substring(0,
+                  checkPosition));
 
               return first + second;
             },

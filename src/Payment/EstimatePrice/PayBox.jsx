@@ -26,21 +26,27 @@ const createOption = (text, months) => ({
 });
 
 const selectOptions = () => ([
-  createOption("1 lună", 1),
-  createOption("3 luni", 3),
-  createOption("6 luni", 6),
-  createOption("1 an", 12),
-  createOption("2 ani", 24),
+  createOption("1 lună",
+    1),
+  createOption("3 luni",
+    3),
+  createOption("6 luni",
+    6),
+  createOption("1 an",
+    12),
+  createOption("2 ani",
+    24),
 ]);
 
 type PayBoxPropTypes = {
-  companyID: number;
-  current: any;
-  error?: any;
-  submitting: bool;
-  payUsingBankTransfer: PayUsingBankTransferType;
-  handleSubmit: (() => Promise<*>) => Promise<*>;
-  createPayment: (data : any) => Promise<*>
+  +companyID: number;
+  +current: any;
+  +error?: any;
+  +pristine: bool;
+  +submitting: bool;
+  +payUsingBankTransfer: PayUsingBankTransferType;
+  +handleSubmit: (() => Promise<*>) => Promise<*>;
+  +createPayment: (data : any) => Promise<*>
 };
 
 class PayBox extends React.Component<PayBoxPropTypes> {
@@ -91,9 +97,18 @@ class PayBox extends React.Component<PayBoxPropTypes> {
                     {`${plainNumberToLocale(amount)} lei`}
                   </h1>
                   <ul className="list-unstyled mt-3 mb-4">
-                    <li>{"Emite facturi simple sau multiple online"}</li>
-                    <li>{"Trimite facturi pe e-mail"}</li>
-                    <li>{"Scapă de stresul facturilor tipizate"}</li>
+                    <li>
+                      <i className="fa fa-check mr-1 text-success" />
+                      {"Emite facturi simple sau multiple online"}
+                    </li>
+                    <li>
+                      <i className="fa fa-check mr-1 text-success" />
+                      {"Trimite facturi pe e-mail"}
+                    </li>
+                    <li>
+                      <i className="fa fa-check mr-1 text-success" />
+                      {"Scapă de stresul facturilor tipizate"}
+                    </li>
                   </ul>
                   <div className="container mb-3 small">
                     <div className="row">
@@ -103,7 +118,7 @@ class PayBox extends React.Component<PayBoxPropTypes> {
                           label={(
                             <span>
                               {"Sunt de acord cu "}
-                              <a href="/settings/termeni-si-conditii" target="_blank">
+                              <a href="/settings/termeni-si-conditii/gestiune" target="_blank">
                                 {"termenii și condițiile"}
                               </a>
                             </span>

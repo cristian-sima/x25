@@ -52,10 +52,12 @@ const reducer = (state : any = initialState, action : Action) => {
       return fetchCurrentAccountPending(state);
 
     case "FETCH_INITIAL_INFORMATION_REJECTED":
-      return fetchCurrentAccountRejected(state, action);
+      return fetchCurrentAccountRejected(state,
+        action);
 
     case "FETCH_INITIAL_INFORMATION_FULFILLED":
-      return fetchCurrentAccountFulfilled(state, action);
+      return fetchCurrentAccountFulfilled(state,
+        action);
 
     case "ACCOUNT_CHANGE_PASSWORD":
       return accountChangePassword(state);

@@ -11,7 +11,8 @@ export const isValidCIF = (rawValue : string) : boolean => {
     getControlDigit2 = () : number => {
       let controlNumber = 753217532,
         controlDigit2 = 0,
-        current = parseInt(value / ten, ten),
+        current = parseInt(value / ten,
+          ten),
         accumulator = 0;
 
       while (current > 0) {
@@ -19,8 +20,10 @@ export const isValidCIF = (rawValue : string) : boolean => {
 
         accumulator += (current % ten) * controlDigit;
 
-        current = parseInt(current / ten, ten);
-        controlNumber = parseInt(controlNumber / ten, ten);
+        current = parseInt(current / ten,
+          ten);
+        controlNumber = parseInt(controlNumber / ten,
+          ten);
       }
 
       controlDigit2 = accumulator * ten % eleven;

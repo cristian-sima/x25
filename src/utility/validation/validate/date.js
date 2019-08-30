@@ -51,9 +51,12 @@ export const isValidDate = (dateString : string) : boolean => {
 
   // Parse the date parts to integers
   const parts = dateString.split("."),
-    day = parseInt(parts[0], 10),
-    month = parseInt(parts[1], 10),
-    year = parseInt(parts[2], 10);
+    day = parseInt(parts[0],
+      10),
+    month = parseInt(parts[1],
+      10),
+    year = parseInt(parts[2],
+      10);
 
   // Check the ranges of month and year
   if (year < 1000 || year > 3000 || month === 0 || month > 12) {

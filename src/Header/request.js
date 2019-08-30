@@ -9,9 +9,11 @@ export const fetchSuggestions = (search : string) => (
     agent.
       get("/api/account/get-companies").
       type("form").
-      set("Accept", "application/json").
+      set("Accept",
+        "application/json").
       query({ search }).
-      end(withPromiseCallback(resolve, reject))
+      end(withPromiseCallback(resolve,
+        reject))
   )) : Promise<any>
 );
 
@@ -20,6 +22,7 @@ export const logOut = () => (
     agent.
       post("/api/account/logout").
       type("form").
-      end(withPromiseCallback(resolve, reject))
+      end(withPromiseCallback(resolve,
+        reject))
   )) : Promise<any>
 );

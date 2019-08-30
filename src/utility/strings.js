@@ -10,7 +10,8 @@ export const toTitle = (str : string) : string => {
     return `${firstPart}${secondPart}`;
   };
 
-  return str.replace(/\S+/gu, transform);
+  return str.replace(/\S+/gu,
+    transform);
 };
 
 // this is an example ---> This is an example
@@ -36,7 +37,8 @@ export const normalizeDiacritics = (str: string) : string => {
     "Ș" : "S",
   };
 
-  return str.replace(/ă|â|î|ț|ș|Ă|Â|Î|Ț|Ș/gui, (matched) => chars[matched]);
+  return str.replace(/ă|â|î|ț|ș|Ă|Â|Î|Ț|Ș/gui,
+    (matched) => chars[matched]);
 };
 
 // This is ---> THIS IS
@@ -54,7 +56,8 @@ export const formatBankAccount = (raw: string) : string => {
   let output = "";
 
   const nrOfCharsPerGroup = 4,
-    withoutSpaces = raw.replace(/ /gu, "");
+    withoutSpaces = raw.replace(/ /gu,
+      "");
 
   for (let index = 0; index < withoutSpaces.length; index += 1) {
     const currentChar = withoutSpaces.charAt(index);
@@ -70,6 +73,8 @@ export const formatBankAccount = (raw: string) : string => {
 };
 
 export const normalizeCompanyName = (raw : string) : string => (
-  toTitle(raw).replace(/\ssrl/gui, " S.R.L.").
-    replace(/\ss\.r\.l/gui, " S.R.L")
+  toTitle(raw).replace(/\ssrl/gui,
+    " S.R.L.").
+    replace(/\ss\.r\.l/gui,
+      " S.R.L")
 );

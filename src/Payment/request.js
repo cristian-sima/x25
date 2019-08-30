@@ -29,9 +29,11 @@ export const addPayment = (data : any) => (
   new Promise((resolve, reject) => (
     agent.
       put("/api/settings/payments").
-      set("Accept", "application/json").
+      set("Accept",
+        "application/json").
       send(data).
-      end(normalizePayment(resolve, reject))
+      end(normalizePayment(resolve,
+        reject))
   )) : Promise<any>
 );
 
@@ -39,8 +41,10 @@ export const confirmBankTransfer = (data : any) => (
   new Promise((resolve, reject) => (
     agent.
       put("/api/settings/payments/confirm-bank-transfer").
-      set("Accept", "application/json").
+      set("Accept",
+        "application/json").
       send(data).
-      end(normalizePayment(resolve, reject))
+      end(normalizePayment(resolve,
+        reject))
   )) : Promise<any>
 );

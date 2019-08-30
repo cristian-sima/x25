@@ -3,9 +3,10 @@
 
 declare var Intl:any
 
-const numberFormat : any = new Intl.NumberFormat("ro", {
-  minimumFractionDigits: 2,
-});
+const numberFormat : any = new Intl.NumberFormat("ro",
+  {
+    minimumFractionDigits: 2,
+  });
 
 const plainNumberFormat : any = new Intl.NumberFormat("ro");
 
@@ -15,9 +16,11 @@ const replaceCharInString = ({ word, oldChar, newChar } : {
   newChar: string
 }) : string => {
 
-  const regex = new RegExp(oldChar, "gu");
+  const regex = new RegExp(oldChar,
+    "gu");
 
-  return word.replace(regex, newChar);
+  return word.replace(regex,
+    newChar);
 };
 
 // 127.99 ----> 127,99

@@ -31,6 +31,7 @@ export const getCompanyDetails = (cif: string) => (
     agent.
       post(`/api/extern/get-company-information/${cif}`).
       type("json").
-      end(normalizeCompanyDetails(resolve, reject))
+      end(normalizeCompanyDetails(resolve,
+        reject))
   )) : Promise<any>
 );

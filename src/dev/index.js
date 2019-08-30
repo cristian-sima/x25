@@ -43,10 +43,14 @@ const ensureImmutableState = (ignored : Array<*> = []) => {
 
         if (itExists) {
           console.group("redux-ensure-state-is-immutable");
-          console.log("data:", data);
-          console.log("parent:", state.toJS());
-          console.log("typeof data:", typeof data);
-          console.log("key:", key);
+          console.log("data:",
+            data);
+          console.log("parent:",
+            state.toJS());
+          console.log("typeof data:",
+            typeof data);
+          console.log("key:",
+            key);
           console.groupEnd();
         }
       };
@@ -59,11 +63,12 @@ const ensureImmutableState = (ignored : Array<*> = []) => {
   };
 
   const addProblem = ({ data, state, key }) => {
-    problems = problems.set(key, {
-      key,
-      state,
-      data,
-    });
+    problems = problems.set(key,
+      {
+        key,
+        state,
+        data,
+      });
 
     if (!allKeys.includes(key)) {
       allKeys = allKeys.push(key);
@@ -78,8 +83,10 @@ const ensureImmutableState = (ignored : Array<*> = []) => {
 
   const checkStateContainsOnlyImmutable = (state) => {
     const parse = (data, key) => {
-      const goodData = isGood(data, key);
-      const canParse = shouldParse(data, key);
+      const goodData = isGood(data,
+        key);
+      const canParse = shouldParse(data,
+        key);
 
       if (!goodData) {
         addProblem({
@@ -97,7 +104,8 @@ const ensureImmutableState = (ignored : Array<*> = []) => {
     };
 
     state.forEach((current, key) => {
-      parse(current, key);
+      parse(current,
+        key);
     });
   };
 

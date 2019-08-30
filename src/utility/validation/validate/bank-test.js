@@ -23,11 +23,13 @@ const wrong = [
 ];
 
 wrong.map((iban) => (
-  describe(`given the wrong IBAN ${iban}`, () => {
-    it("should not be valid", () => {
-      expect(isValidBankAccount(iban)).toBe(notValid);
-    });
-  })
+  describe(`given the wrong IBAN ${iban}`,
+    () => {
+      it("should not be valid",
+        () => {
+          expect(isValidBankAccount(iban)).toBe(notValid);
+        });
+    })
 ));
 
 const good = [
@@ -117,9 +119,11 @@ const good = [
 ];
 
 good.map((iban) => (
-  describe(`given good IBAN ${iban}`, () => {
-    it("should be valid", () => {
-      expect(isValidBankAccount(iban)).toBe(valid);
-    });
-  })
+  describe(`given good IBAN ${iban}`,
+    () => {
+      it("should be valid",
+        () => {
+          expect(isValidBankAccount(iban)).toBe(valid);
+        });
+    })
 ));

@@ -15,7 +15,8 @@ const
 const reducer = (state : any = initialState, action : Action) => {
   switch (action.type) {
     case "FETCH_INITIAL_INFORMATION_FULFILLED":
-      return fetchCurrentAccountFulfilled(state, action);
+      return fetchCurrentAccountFulfilled(state,
+        action);
 
     default:
       return state;
