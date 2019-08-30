@@ -13,7 +13,7 @@ type OptionsContainerStateTypes = {
 };
 
 import React, { Component } from "react";
-import { ButtonDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
+import { ButtonDropdown, DropdownItem, DropdownToggle, DropdownMenu } from "reactstrap";
 import { connect } from "react-redux";
 
 import LogoutButton from "./LogoutButton";
@@ -99,9 +99,12 @@ class OptionsContainer extends Component<OptionsContainerPropTypes, OptionsConta
           </DropdownToggle>
           <DropdownMenu className="dropdown-menu-left">
             <h6 className="dropdown-header">{accountName}</h6>
-            <a className="/settings/termenii-si-conditii/all" href="#">
-              {"Termeni & condiții"}
-            </a>
+            <DropdownItem>
+              <a href="/settings/termenii-si-conditii/all" target="_blank">
+                {"Termeni & condiții"}
+              </a>
+            </DropdownItem>
+
             <div className="dropdown-divider" />
             <LogoutButton
               logoutAccount={this.logoutAccount}
