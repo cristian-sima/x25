@@ -2,8 +2,8 @@
 /* eslint-disable no-magic-numbers */
 
 type EstimateBoxProps = {
-  id: string;
-  formValues: any;
+  +id: string;
+  +formValues: any;
 };
 
 import { connect } from "react-redux";
@@ -19,8 +19,11 @@ import { ApplicationCodeInvoiceService } from "../codes";
 
 const formID = "PAY_FOR_COMPANY_INVOICES";
 
+import { validate } from "../validate";
+
 const PayBoxForm = reduxForm({
   form: formID,
+  validate,
 })(PayBox);
 
 const formValuesSelector = getFormValues(formID);

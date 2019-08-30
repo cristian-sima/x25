@@ -11,8 +11,9 @@ import React from "react";
 import { Field } from "redux-form/immutable";
 
 import { LoadingMessage } from "../../Messages";
-import { CustomSelect } from "../../Inputs";
-import { plainNumberToLocale } from "../../utility";
+import { CustomSelect, LabelTemplate } from "../../Inputs";
+import { normalizeBoolean, plainNumberToLocale } from "../../utility";
+
 import { ApplicationCodeInvoiceService } from "../codes";
 
 import * as Immutable from "immutable";
@@ -50,7 +51,8 @@ class PayBox extends React.Component<PayBoxPropTypes> {
   }
 
   render () {
-    const { current, companyID, error, submitting, payUsingBankTransfer } = this.props;
+    const { current, companyID, error, submitting,
+      pristine, payUsingBankTransfer } = this.props;
 
     if (typeof current === "undefined") {
       return null;
@@ -93,6 +95,27 @@ class PayBox extends React.Component<PayBoxPropTypes> {
                     <li>{"Trimite facturi pe e-mail"}</li>
                     <li>{"Scapă de stresul facturilor tipizate"}</li>
                   </ul>
+                  <div className="container mb-3 small">
+                    <div className="row">
+                      <div className="form-control-label">
+                        <Field
+                          component={LabelTemplate}
+                          label={(
+                            <span>
+                              {"Sunt de acord cu "}
+                              <a href="/settings/termeni-si-conditii" target="_blank">
+                                {"termenii și condițiile"}
+                              </a>
+                            </span>
+                          )}
+                          left=""
+                          name="AcceptPolicy"
+                          normalize={normalizeBoolean}
+                          type="checkbox"
+                        />
+                      </div>
+                    </div>
+                  </div>
                   {
                     submitting ? (
                       <LoadingMessage sm />
@@ -100,7 +123,7 @@ class PayBox extends React.Component<PayBoxPropTypes> {
                       <button
                         aria-label="Trimite"
                         className="btn btn-lg btn-block btn-primary"
-                        disabled={submitting}
+                        disabled={submitting || pristine}
                         type="submit">
                         <i className="fa fa-credit-card mr-1" />
                         {"Achiziționez online"}
