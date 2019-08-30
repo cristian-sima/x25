@@ -99,7 +99,7 @@ class PayBox extends React.Component<PayBoxPropTypes> {
                   <ul className="list-unstyled mt-3 mb-4">
                     <li>
                       <i className="fa fa-check mr-1 text-success" />
-                      {"Emite facturi simple sau multiple online"}
+                      {"Emite facturi simplu online"}
                     </li>
                     <li>
                       <i className="fa fa-check mr-1 text-success" />

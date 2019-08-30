@@ -3,8 +3,8 @@
 import type { Dispatch } from "src\\types";
 
 type OptionsContainerPropTypes = {
-  accountName: string;
-  showLogoutProblem: () => void;
+  +accountName: string;
+  +showLogoutProblem: () => void;
 };
 
 type OptionsContainerStateTypes = {
@@ -99,6 +99,9 @@ class OptionsContainer extends Component<OptionsContainerPropTypes, OptionsConta
           </DropdownToggle>
           <DropdownMenu className="dropdown-menu-left">
             <h6 className="dropdown-header">{accountName}</h6>
+            <a className="/settings/termenii-si-conditii/all" href="#">
+              {"Termeni & condiții"}
+            </a>
             <div className="dropdown-divider" />
             <LogoutButton
               logoutAccount={this.logoutAccount}
@@ -111,4 +114,5 @@ class OptionsContainer extends Component<OptionsContainerPropTypes, OptionsConta
   }
 }
 
-export default connect(null, mapDispatchToProps)(OptionsContainer);
+export default connect(null,
+  mapDispatchToProps)(OptionsContainer);
