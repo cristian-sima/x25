@@ -102,6 +102,11 @@ class OptionsContainer extends Component<OptionsContainerPropTypes, OptionsConta
             <a className="dropdown-item" href="/settings/termeni-si-conditii/all" target="_blank">
               {"Termeni & condiții"}
             </a>
+            <a
+              className="dropdown-item"
+              href="/settings/politica-de-confidentialitate/all" target="_blank">
+              {"Politica de confidențialitate"}
+            </a>
 
             <div className="dropdown-divider" />
             <LogoutButton
