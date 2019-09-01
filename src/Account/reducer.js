@@ -43,6 +43,12 @@ const
       "info",
       "RequireChange",
     ], false)
+  ),
+  accountGaveConsent = (state : any) => (
+    state.setIn([
+      "info",
+      "HasToGiveConsent",
+    ], false)
   );
 
 const reducer = (state : any = initialState, action : Action) => {
@@ -61,6 +67,9 @@ const reducer = (state : any = initialState, action : Action) => {
 
     case "ACCOUNT_CHANGE_PASSWORD":
       return accountChangePassword(state);
+
+    case "ACCOUNT_GAVE_CONSENT":
+      return accountGaveConsent(state);
 
     default:
       return state;
