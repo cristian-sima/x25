@@ -1,5 +1,5 @@
 // @flow
-/* eslint-disable no-ternary */
+/* eslint-disable */
 
 type DateInputPropTypes = {
   +customClass?: any;

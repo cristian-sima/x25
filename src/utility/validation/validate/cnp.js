@@ -77,7 +77,7 @@ export const isValidCNP = (rawValue : string) : boolean => {
 
       const controlDigit = parseInt(
         raw.charAt(position.controlDigit),
-        decimalSystem
+        decimalSystem,
       );
 
       if (isNaN(controlDigit)) {

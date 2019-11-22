@@ -2,8 +2,6 @@
 
 import type { State } from "src\\types";
 
-import type { CompanyRoutePropTypes } from "./types";
-
 import React, { Component } from "react";
 
 import Select from "react-select";

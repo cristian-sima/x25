@@ -3,7 +3,7 @@
 
 import type { Dispatch, State } from "src\\types";
 
-type PropType = {
+type PropTypes = {
   +isAdministrator: bool;
   +isFetching: bool;
   +hasError: bool;
@@ -45,57 +45,40 @@ const
     },
   });
 
-class LoadCompany extends React.Component<PropType> {
-  props: PropType;
 
-  UNSAFE_componentWillMount () {
-    const { shouldFetch, fetchCurrentCompany } = this.props;
+const LoadCompany = (props : PropTypes) => {
+  const { children, data, isFetching, shouldFetch, hasError, fetchCurrentCompany } = props;
 
+  React.useEffect(() => {
     if (shouldFetch) {
       fetchCurrentCompany();
     }
-  }
+  }, [
+    shouldFetch,
+    isFetching,
+    hasError,
+  ]);
 
-  render () {
-    const { isFetching, hasError, fetchCurrentCompany, data, children } = this.props;
-
-    if (isFetching) {
-      return (
-        <LoadingMessage message="Așteaptă..." />
-      );
-    }
-
-    if (hasError) {
-      return (
-        <LargeErrorMessage
-          message="Nu am putut stabili conexiunea cu server-ul"
-          onRetry={fetchCurrentCompany}
-        />
-      );
-    }
-
-    if (data.size === 0) {
-      return null;
-    }
-    //
-    // const isValabilityOk = (
-    //   this.props.isAdministrator ||
-    //   moment(new Date(data.get("ValabilityDate"))).isAfter(moment().startOf("day"))
-    // );
-    //
-    // if (!isValabilityOk) {
-    //   return (
-    //     <EstimatePrice id={data.get("ID")} />
-    //   );
-    // }
-
+  if (isFetching) {
     return (
-      <React.Fragment>
-        {children}
-      </React.Fragment>
+      <LoadingMessage message="Așteaptă..." />
     );
   }
-}
 
+  if (hasError) {
+    return (
+      <LargeErrorMessage
+        message="Nu am putut stabili conexiunea cu server-ul"
+        onRetry={fetchCurrentCompany}
+      />
+    );
+  }
+
+  if (data.size === 0) {
+    return null;
+  }
+
+  return children;
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoadCompany));

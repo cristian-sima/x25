@@ -1,15 +1,15 @@
 // @flow
 
 type NidFieldPropTypes = {
-  input: any;
-  meta: {
+  +input: any;
+  +meta: {
     submitting: boolean;
     touched: boolean;
     error?: string;
   };
-  formID: string;
-  findDetailsByNid: (Nid: ?string) => () => void;
-  onRegisterRef: ?(callback : (node : any) => void) => void;
+  +formID: string;
+  +findDetailsByNid: (Nid: ?string) => () => void;
+  +onRegisterRef: ?(callback : (node : any) => void) => void;
 };
 
 import React from "react";

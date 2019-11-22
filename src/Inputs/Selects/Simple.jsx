@@ -1,18 +1,18 @@
 // @flow
 
 type SelectMonthPropTypes = {
-  disabled: boolean;
-  input: any;
-  autoFocus?: bool;
-  valueKey?: string;
-  nameKey?: string;
-  isImmutable?: bool;
-  showEmptyOption?: bool;
-  tabIndex?: string;
-  inputClass?: string;
-  id?: string;
-  data: any;
-  meta: {
+  +disabled: boolean;
+  +input: any;
+  +autoFocus?: bool;
+  +valueKey?: string;
+  +nameKey?: string;
+  +isImmutable?: bool;
+  +showEmptyOption?: bool;
+  +tabIndex?: string;
+  +inputClass?: string;
+  +id?: string;
+  +data: any;
+  +meta: {
     touched: boolean;
     error?: any;
     submitting: boolean;

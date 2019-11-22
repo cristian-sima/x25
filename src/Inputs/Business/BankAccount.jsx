@@ -1,8 +1,8 @@
 // @flow
 
 type BankNamePropTypes = {
-  input: any;
-  meta: {
+  +input: any;
+  +meta: {
     submitting: boolean;
     touched: boolean;
     error: ?string;

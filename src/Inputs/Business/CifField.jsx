@@ -1,16 +1,16 @@
 // @flow
 
 type CifFieldPropTypes = {
-  input: any;
-  meta: {
+  +input: any;
+  +meta: {
     submitting: boolean;
     touched: boolean;
     error?: string;
   };
-  formID: string;
-  findDetailsByCif: (cif: ?string) => () => void;
-  handleKeyPressed: (event : any) => void;
-  onRegisterRef?: (callback : (node : any) => void) => void;
+  +formID: string;
+  +findDetailsByCif: (cif: ?string) => () => void;
+  +handleKeyPressed: (event : any) => void;
+  +onRegisterRef?: (callback : (node : any) => void) => void;
 };
 
 

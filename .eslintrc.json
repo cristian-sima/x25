@@ -28,6 +28,10 @@
       "react"
    ],
    "rules":{
+     "react/require-optimization": 0,
+     "default-param-last": 0,
+     "react/jsx-props-no-spreading": 0,
+     "function-call-argument-newline": ["error", "consistent"],
 
      "react/no-deprecated": 0,
      "max-lines-per-function": ["error", { "max": 300 }],
@@ -47,7 +51,6 @@
       "react/jsx-one-expression-per-line":0,
       "react/jsx-no-literals":0,
       "react/default-props-match-prop-types":0,
-      "function-call-argument-newline": ["error", "consistent"],
       "padding-line-between-statements":[
          "error",
          {

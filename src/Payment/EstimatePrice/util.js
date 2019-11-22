@@ -11,5 +11,5 @@ export const
     new Big(months).
       times(new Big(pricePerMonth)).
       round(0,
-        up)
+        up),
   );

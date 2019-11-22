@@ -41,47 +41,40 @@ const
     },
   });
 
-class LoadAccount extends React.Component<PropTypes> {
-  props: PropTypes;
+const LoadAccount = (props : PropTypes) => {
+  const { children, data, isFetching, shouldFetch, hasError, fetchInitialInformation } = props;
 
-  UNSAFE_componentWillMount () {
-    const { shouldFetch, fetchInitialInformation } = this.props;
-
+  React.useEffect(() => {
     if (shouldFetch) {
       fetchInitialInformation();
     }
-  }
+  }, [
+    shouldFetch,
+    isFetching,
+    hasError,
+  ]);
 
-  render () {
-    const { children, data, isFetching, hasError, fetchInitialInformation } = this.props;
-
-    if (isFetching) {
-      return (
-        <LoadingMessage message="Așteaptă..." />
-      );
-    }
-
-    if (hasError) {
-      return (
-        <LargeErrorMessage
-          message="Nu am putut stabili conexiunea cu server-ul"
-          onRetry={fetchInitialInformation}
-        />
-      );
-    }
-
-    if (data.size === 0) {
-      return null;
-    }
-
+  if (isFetching) {
     return (
-      <React.Fragment>
-        {children}
-      </React.Fragment>
+      <LoadingMessage message="Așteaptă..." />
     );
   }
-}
 
+  if (hasError) {
+    return (
+      <LargeErrorMessage
+        message="Nu am putut stabili conexiunea cu server-ul"
+        onRetry={fetchInitialInformation}
+      />
+    );
+  }
+
+  if (data.size === 0) {
+    return null;
+  }
+
+  return children;
+};
 
 export default withRouter(connect(mapStateToProps,
   mapDispatchToProps)(LoadAccount));

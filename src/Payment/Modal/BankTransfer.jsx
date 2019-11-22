@@ -10,8 +10,8 @@ import { numberToLocale } from "../../utility";
 import DoneForm from "./DoneForm";
 
 type BankTransferPropTypes = {
-  application: string;
-  options: any;
+  +application: string;
+  +options: any;
 };
 
 type BankTransferStateTypes = {

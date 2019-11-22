@@ -3,15 +3,15 @@
 import type { Dispatch } from "src\\types";
 
 type CifFieldContainerPropTypes = {
-  input: any;
-  meta: {
+  +input: any;
+  +meta: {
     submitting: boolean;
     touched: boolean;
     error?: string;
   };
-  formID: string;
-  findDetailsByCif: (cif: ?string) => () => void;
-  onRegisterRef?: (callback : (node : any) => void) => void;
+  +formID: string;
+  +findDetailsByCif: (cif: ?string) => () => void;
+  +onRegisterRef?: (callback : (node : any) => void) => void;
 };
 
 type OwnProps = {

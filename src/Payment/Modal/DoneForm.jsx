@@ -4,15 +4,15 @@
 import type { Dispatch, State } from "src\\types";
 
 type FormPropTypes = {
-  error?: string;
-  pristine: boolean;
-  submitting: boolean;
-  handleSubmit: (formData : any) => Promise<*>;
+  +error?: string;
+  +pristine: boolean;
+  +submitting: boolean;
+  +handleSubmit: (formData : any) => Promise<*>;
 };
 
 type DoneFormPropTypes = {
-  details: string;
-  showUserResponse: () => void;
+  +details: string;
+  +showUserResponse: () => void;
 };
 
 import { connect } from "react-redux";

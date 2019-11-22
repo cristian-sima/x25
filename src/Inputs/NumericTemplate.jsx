@@ -1,5 +1,5 @@
+/* eslint-disable */
 // @flow
-/* eslint-disable no-ternary */
 
 type NumericPropTypes = {
   +optional?: boolean;
