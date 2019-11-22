@@ -7,6 +7,7 @@ let all = {};
 export const injectModals = (newModals : ModalsTypes) => {
   all = {
     ...all,
+    // $FlowFixMe
     ...newModals,
   };
 };

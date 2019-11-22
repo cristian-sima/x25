@@ -19,7 +19,9 @@ const normalizeCompanyDetails = (resolve, reject) => (
       const { body } = response;
 
       resolve(fields.reduce((accumulator, currentValue) => ({
+        // $FlowFixMe
         ...accumulator,
+        // $FlowFixMe
         [currentValue]: body[currentValue],
       }), {}));
     }

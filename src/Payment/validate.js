@@ -2,7 +2,7 @@
 
 import {
   extractErrorsFromCheckers,
-} from "x25/utility";
+} from "../utility";
 
 const validateTrue = (value : string) => {
   const
