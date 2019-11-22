@@ -16,7 +16,6 @@ type PropTypes = {
 
 import React from "react";
 
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { selectors } from "./reducer";
@@ -76,5 +75,5 @@ const LoadAccount = (props : PropTypes) => {
   return children;
 };
 
-export default withRouter(connect(mapStateToProps,
-  mapDispatchToProps)(LoadAccount));
+export default connect(mapStateToProps,
+  mapDispatchToProps)(LoadAccount);
