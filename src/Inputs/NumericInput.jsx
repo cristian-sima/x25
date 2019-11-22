@@ -1,27 +1,27 @@
 // @flow
 
 type NumericPropTypes = {
-  currency?: boolean;
-  optional?: boolean;
-  size?: number;
-  customClass?: any;
+  +currency?: boolean;
+  +optional?: boolean;
+  +size?: number;
+  +customClass?: any;
 
-  input: any;
-  label?: string;
-  meta: {
+  +input: any;
+  +label?: string;
+  +meta: {
     error?: string;
     submitting: boolean;
     touched: boolean;
   };
-  tabIndex?: string;
-  placeholder?: string;
-  value?: string;
+  +tabIndex?: string;
+  +placeholder?: string;
+  +value?: string;
 
-  formatValue: (raw: any, optional?: bool) => string;
-  normalizeValue: (raw: any) => any;
-  onBlur?: () => void;
-  onChange?: (event : any) => void;
-  onRegisterRef?: any;
+  +formatValue: (raw: any, optional?: bool) => string;
+  +normalizeValue: (raw: any) => any;
+  +onBlur?: () => void;
+  +onChange?: (event : any) => void;
+  +onRegisterRef?: any;
 };
 
 type NumericStateTypes = {

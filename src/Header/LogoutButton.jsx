@@ -1,8 +1,8 @@
 // @flow
 
 type LogoutButtonPropTypes = {
-  readyToLogout: boolean;
-  logoutAccount: () => void;
+  +readyToLogout: boolean;
+  +logoutAccount: () => void;
 }
 
 import React from "react";

@@ -1,9 +1,9 @@
 // @flow
 
 type LoadingMessagePropTypes = {
-  className? : string;
-  message? : string;
-  sm?: bool;
+  +className? : string;
+  +message? : string;
+  +sm?: bool;
 };
 
 

@@ -3,17 +3,17 @@
 import * as React from "react";
 
 export type SidebarPropTypes = {
-  brand: string;
-  Menu: any;
-  children: React.Node;
-  data: any;
+  +brand: string;
+  +Menu: any;
+  +children: React.Node;
+  +data: any;
 
-  hasError: boolean;
-  board: any;
+  +hasError: boolean;
+  +board: any;
 
-  toggleSidebar: () => void;
-  closeSidebar: () => void;
-  fixSidebar: () => void;
+  +toggleSidebar: () => void;
+  +closeSidebar: () => void;
+  +fixSidebar: () => void;
 };
 
 export type SidebarPropTypesContent = {

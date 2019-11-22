@@ -4,15 +4,15 @@
 import type { Dispatch, State } from "src\\types";
 
 type PropType = {
-  isAdministrator: bool;
-  isFetching: bool;
-  hasError: bool;
+  +isAdministrator: bool;
+  +isFetching: bool;
+  +hasError: bool;
 
-  data: any;
-  shouldFetch: any;
-  children: any;
+  +data: any;
+  +shouldFetch: any;
+  +children: any;
 
-  fetchCurrentCompany: () => void;
+  +fetchCurrentCompany: () => void;
 }
 
 import React from "react";

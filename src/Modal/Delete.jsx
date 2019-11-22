@@ -10,20 +10,20 @@ type onConfirmMethodsTypes = {
 };
 
 type ConfirmPropTypes = {
-  cancelButtonLabel: ?string;
-  confirmButtonLabel: ?string;
-  message: any;
-  errMessage?: string;
-  focusButton: boolean;
-  title?: string;
-  confirmButtonColor?: "primary" | "secondary" | "danger" | "success" | "link" | "info" | "warning";
+  +cancelButtonLabel: ?string;
+  +confirmButtonLabel: ?string;
+  +message: any;
+  +errMessage?: string;
+  +focusButton: boolean;
+  +title?: string;
+  +confirmButtonColor?: "primary" | "secondary" | "danger" | "success" | "link" | "info" | "warning";
 
-  onConfirm: (methods : onConfirmMethodsTypes) => () => void;
-  closeModal: () => void;
-  showError: (message? : string) => void;
-  request: () => Promise<*>;
-  onSuccess: (response : any) => void;
-  isResponseValid: (response : any) => {
+  +onConfirm: (methods : onConfirmMethodsTypes) => () => void;
+  +closeModal: () => void;
+  +showError: (message? : string) => void;
+  +request: () => Promise<*>;
+  +onSuccess: (response : any) => void;
+  +isResponseValid: (response : any) => {
     valid: boolean;
     error: string;
   };

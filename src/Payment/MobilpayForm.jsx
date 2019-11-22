@@ -1,8 +1,8 @@
 // @flow
 
 type MobilpayFormPropTypes = {
-  envKey: string;
-  data: string;
+  +envKey: string;
+  +data: string;
 }
 
 const delay = 1200;

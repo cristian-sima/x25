@@ -1,11 +1,11 @@
 // @flow
 
 type LabelTemplatePropTypes = {
-  input: any;
-  label: string;
-  tabIndex?: string;
-  offset?: string;
-  meta: {
+  +input: any;
+  +label: string;
+  +tabIndex?: string;
+  +offset?: string;
+  +meta: {
     submitting : boolean;
     touched: boolean;
     error?: any;
@@ -15,7 +15,7 @@ type LabelTemplatePropTypes = {
 import React from "react";
 
 export const LabelTemplate = (
-  { input, tabIndex, label, offset, meta: { submitting, touched, error } }: LabelTemplatePropTypes
+  { input, tabIndex, label, offset, meta: { submitting, touched, error } }: LabelTemplatePropTypes,
 ) => (
   <div className="container">
     <div className="form-group row mb-1">

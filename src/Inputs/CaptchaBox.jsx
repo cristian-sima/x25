@@ -1,15 +1,15 @@
 // @flow
 
 type CaptchaPropTypes = {
-  type: string;
-  id: string;
-  tabIndex?: string;
-  input: any;
-  label: string;
-  autoFocus?: boolean;
-  left?: string;
-  right?: string;
-  meta: {
+  +type: string;
+  +id: string;
+  +tabIndex?: string;
+  +input: any;
+  +label: string;
+  +autoFocus?: boolean;
+  +left?: string;
+  +right?: string;
+  +meta: {
     touched: boolean;
     error?: any;
     submitting: boolean;

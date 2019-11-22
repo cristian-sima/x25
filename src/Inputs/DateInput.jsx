@@ -2,23 +2,23 @@
 /* eslint-disable no-ternary */
 
 type DateInputPropTypes = {
-  customClass?: any;
-  input: any;
-  meta: {
+  +customClass?: any;
+  +input: any;
+  +meta: {
     error?: string;
     submitting: boolean;
     touched: boolean;
   };
-  placeholder?: string;
-  value?: string;
-  tabIndex?: string;
-  currency?: boolean;
+  +placeholder?: string;
+  +value?: string;
+  +tabIndex?: string;
+  +currency?: boolean;
 
-  formatValue: (raw: string) => string;
-  normalizeValue: (raw: string) => any;
-  onBlur?: () => void;
-  onChange?: (event : any) => void;
-  onRegisterRef?: (callback : (node : any) => void) => void;
+  +formatValue: (raw: string) => string;
+  +normalizeValue: (raw: string) => any;
+  +onBlur?: () => void;
+  +onChange?: (event : any) => void;
+  +onRegisterRef?: (callback : (node : any) => void) => void;
 };
 
 type DateInputStateTypes = {

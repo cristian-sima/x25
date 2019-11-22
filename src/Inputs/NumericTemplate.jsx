@@ -2,32 +2,32 @@
 /* eslint-disable no-ternary */
 
 type NumericPropTypes = {
-  optional?: boolean;
-  size?: number;
-  customClass?: any;
-  divClass?: any;
+  +optional?: boolean;
+  +size?: number;
+  +customClass?: any;
+  +divClass?: any;
 
-  input: any;
-  label?: string;
-  meta: {
+  +input: any;
+  +label?: string;
+  +meta: {
     error?: string;
     submitting: boolean;
     touched: boolean;
   };
-  placeholder?: string;
-  value?: string;
-  autoFocus?: boolean;
-  type: string;
-  inputClass?:string;
-  left?: string;
-  tabIndex? : string;
-  right?: string;
+  +placeholder?: string;
+  +value?: string;
+  +autoFocus?: boolean;
+  +type: string;
+  +inputClass?:string;
+  +left?: string;
+  +tabIndex? : string;
+  +right?: string;
 
-  formatValue: (raw: any, optional?: bool) => string;
-  normalizeValue: (raw: string | null) => any;
-  onBlur?: () => void;
-  onChange?: (event : any) => void;
-  onRegisterRef?: any;
+  +formatValue: (raw: any, optional?: bool) => string;
+  +normalizeValue: (raw: string | null) => any;
+  +onBlur?: () => void;
+  +onChange?: (event : any) => void;
+  +onRegisterRef?: any;
 };
 
 type NumericStateTypes = {

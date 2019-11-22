@@ -4,11 +4,11 @@
 import type { BankTransferArgsTypes, PayUsingBankTransferType } from "./types";
 
 type PaymentWrapPropTypes = {
-  url: string;
-  application: string;
-  companyID: number;
-  children: any;
-  payUsingBankTransfer: PayUsingBankTransferType;
+  +url: string;
+  +application: string;
+  +companyID: number;
+  +children: any;
+  +payUsingBankTransfer: PayUsingBankTransferType;
 };
 
 type PaymentWrapStateTypes = {

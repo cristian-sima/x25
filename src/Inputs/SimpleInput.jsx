@@ -1,16 +1,16 @@
 // @flow
 
 export type SimpleInputPropTypes = {
-  customClass?: any;
-  input: any;
-  tabIndex?: string;
-  label?: string;
-  meta: {
+  +customClass?: any;
+  +input: any;
+  +tabIndex?: string;
+  +label?: string;
+  +meta: {
     submitting: boolean;
     touched: boolean;
     error?: string;
   };
-  placeholder?: string;
+  +placeholder?: string;
 };
 
 import React from "react";

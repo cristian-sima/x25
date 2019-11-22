@@ -21,9 +21,9 @@ const
   });
 
 type ClientSelectCompanyPropTypes = {
-  companies: any;
-  history: any;
-  toggleNavbar: () => void;
+  +companies: any;
+  +history: any;
+  +toggleNavbar: () => void;
 }
 
 type ClientSelectCompanyState = {

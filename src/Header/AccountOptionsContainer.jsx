@@ -76,7 +76,7 @@ class OptionsContainer extends Component<OptionsContainerPropTypes, OptionsConta
 
   shouldComponentUpdate (
     nextProps : OptionsContainerPropTypes,
-    nextState: OptionsContainerStateTypes
+    nextState: OptionsContainerStateTypes,
   ) {
     return (
       this.props.accountName !== nextProps.accountName ||

@@ -3,9 +3,9 @@
 import type { InfoType, ErrorType } from "../dev/types";
 
 type Props = {
-  error?: ErrorType;
-  children: any;
-  info?: string;
+  +error?: ErrorType;
+  +children: any;
+  +info?: string;
 }
 
 type State = {

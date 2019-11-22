@@ -3,11 +3,11 @@
 import type { Dispatch } from "src\\types";
 
 type SimpleModalPropTypes = {
-  size?: string;
-  title: string;
-  children: any;
+  +size?: string;
+  +title: string;
+  +children: any;
 
-  hideModal: () => void;
+  +hideModal: () => void;
 };
 
 import { connect } from "react-redux";

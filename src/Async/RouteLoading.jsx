@@ -1,10 +1,10 @@
 // @flow
 
 type LoadingPropTypes = {
-  error?: any;
-  timedOut: bool;
-  pastDelay: bool;
-  retry: () => void;
+  +error?: any;
+  +timedOut: bool;
+  +pastDelay: bool;
+  +retry: () => void;
 }
 
 type FireErrorPropTypes = {

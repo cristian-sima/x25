@@ -105,7 +105,7 @@ const
     getError,
     (isFetching, isFetched, error) => (
       !isFetching && !isFetched && error === noError
-    )
+    ),
   ),
   getCurrentAccountIsFetched = createSelector(
     getCurrentAccountIsFetching,
@@ -113,17 +113,17 @@ const
     getError,
     (isFetching, isFetched, error) => (
       !isFetching && isFetched && error === noError
-    )
+    ),
   ),
   getCurrentAccountHasError = createSelector(
     getError,
-    (error) => error !== noError
+    (error) => error !== noError,
   ),
   getIsCurrentAccountAdministrator = createSelector(
     getCurrentAccount,
     (account) => (
       isAdministratorAccount(account.get("Type"))
-    )
+    ),
   );
 
 export const selectors = {

@@ -3,11 +3,11 @@
 import type { ErrorType, InfoType } from "./types";
 
 type TheErrorProps = {
-  error: ?ErrorType;
-  info: ?InfoType;
-  status: ?string;
-  refresh: () => void;
-  handleKey: (event : KeyboardEvent) => void;
+  +error: ?ErrorType;
+  +info: ?InfoType;
+  +status: ?string;
+  +refresh: () => void;
+  +handleKey: (event : KeyboardEvent) => void;
 }
 
 import React from "react";

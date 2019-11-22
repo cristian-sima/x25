@@ -1,10 +1,10 @@
 // @flow
 
 type TooltipPropTypes = {
-  long: any;
-  short: any;
-  target: string;
-  placement?: string;
+  +long: any;
+  +short: any;
+  +target: string;
+  +placement?: string;
 };
 
 type TooltipStateTypes = {

@@ -122,14 +122,14 @@ const
     getError,
     (isFetching, isFetched, error) => (
       !isFetching && isFetched && error === noError
-    )
+    ),
   ),
   getCurrentCompanyIsFetching = createSelector(
     getFetching,
     getError,
     (isFetching, error) => (
       isFetching && error === noError
-    )
+    ),
   ),
   getCurrentCompanyHasError = createSelector(
     getError,
@@ -158,11 +158,11 @@ const
       return (
         accountFetched && !hasError && !isFetching && hasIDChanged()
       );
-    }
+    },
   ),
   getCompanyModules = createSelector(
     getCurrentCompany,
-    (company) => company.get("Modules") || ""
+    (company) => company.get("Modules") || "",
   ),
 
   /*

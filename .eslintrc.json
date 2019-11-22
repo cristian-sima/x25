@@ -47,6 +47,7 @@
       "react/jsx-one-expression-per-line":0,
       "react/jsx-no-literals":0,
       "react/default-props-match-prop-types":0,
+      "function-call-argument-newline": ["error", "consistent"],
       "padding-line-between-statements":[
          "error",
          {

@@ -39,7 +39,7 @@ const loadOptions = (search, callback) => {
         label : currentValue.Name,
       });
       return accumulator;
-    }, [])
+    }, []),
   );
 
   agent.
@@ -86,8 +86,8 @@ class AdminSelectCompany extends Component<AdminSelectCompanyPropTypes, AdminSel
         <AsyncSelect
           cacheOptions
           components={{ Option }}
-          loadOptions={loadOptions}
           loadingMessage={loadingMessage}
+          loadOptions={loadOptions}
           noOptionsMessage={noOptionsMessage}
           onChange={this.handleChange}
           onInputChange={this.handleInputChange}

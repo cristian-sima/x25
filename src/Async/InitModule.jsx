@@ -5,10 +5,10 @@ import type { RouteType, PaginatorType } from "./types";
 import type { Dispatch, State } from "src\\types";
 
 type Props = {
-  ready: bool;
-  props: any;
-  route: RouteType;
-  initModule: () => void;
+  +ready: bool;
+  +props: any;
+  +route: RouteType;
+  +initModule: () => void;
 };
 
 type OwnProps = {

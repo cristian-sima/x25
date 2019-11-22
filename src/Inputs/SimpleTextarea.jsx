@@ -1,21 +1,21 @@
 // @flow
 
 type InputTemplatePropTypes = {
-  autoFocus?: boolean;
-  input: any;
-  label: string;
-  placeholder: string;
-  type: string;
-  inputClass?:string;
-  tabIndex?: string;
-  rows?: string;
-  meta: {
+  +autoFocus?: boolean;
+  +input: any;
+  +label: string;
+  +placeholder: string;
+  +type: string;
+  +inputClass?:string;
+  +tabIndex?: string;
+  +rows?: string;
+  +meta: {
     touched: boolean;
     error?: any;
     submitting: boolean;
   };
 
-  onRegisterRef?: (callback : (node : any) => void) => void;
+  +onRegisterRef?: (callback : (node : any) => void) => void;
 };
 
 import React from "react";

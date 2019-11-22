@@ -4,14 +4,14 @@
 import type { Dispatch, State } from "src\\types";
 
 type PropTypes = {
-  appName: string;
-  isFetching: bool;
-  hasError: bool;
-  data: any;
-  children: any;
-  shouldFetch: any;
+  +appName: string;
+  +isFetching: bool;
+  +hasError: bool;
+  +data: any;
+  +children: any;
+  +shouldFetch: any;
 
-  fetchInitialInformation: () => void;
+  +fetchInitialInformation: () => void;
 }
 
 import React from "react";
@@ -83,4 +83,5 @@ class LoadAccount extends React.Component<PropTypes> {
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoadAccount));
+export default withRouter(connect(mapStateToProps,
+  mapDispatchToProps)(LoadAccount));

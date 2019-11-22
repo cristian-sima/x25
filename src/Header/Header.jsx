@@ -1,17 +1,17 @@
 // @flow
 
 type HeaderPropTypes = {
-  brand : string;
-  company: any;
-  account : any;
-  isAdmin: bool;
-  sidebarDocked: boolean;
-  showNavbar: boolean;
+  +brand : string;
+  +company: any;
+  +account : any;
+  +isAdmin: bool;
+  +sidebarDocked: boolean;
+  +showNavbar: boolean;
 
-  toggleNavbar: () => void;
+  +toggleNavbar: () => void;
 
-  showSidebar: () => void;
-  showPayModal: (id : number) => () => void;
+  +showSidebar: () => void;
+  +showPayModal: (id : number) => () => void;
 };
 
 import React from "react";

@@ -2,18 +2,18 @@
 /* eslint-disable react/prefer-stateless-function, react/require-optimization */
 
 type FocusTemplatePropTypes = {
-  autoFocus?: boolean;
-  input: any;
-  label: string;
-  placeholder: string;
-  type: string;
-  meta: {
+  +autoFocus?: boolean;
+  +input: any;
+  +label: string;
+  +placeholder: string;
+  +type: string;
+  +meta: {
     submitting: boolean;
     touched: boolean;
     error?: any;
   };
 
-  onRegisterRef: (callback : (node : any) => void) => void;
+  +onRegisterRef: (callback : (node : any) => void) => void;
 };
 
 import React from "react";

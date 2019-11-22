@@ -3,10 +3,10 @@
 import type { ErrorType, InfoType } from "./types";
 
 type ErrorBoundaryProps = {
-  error?: ErrorType;
-  status?: InfoType;
-  children: any;
-  info?: string;
+  +error?: ErrorType;
+  +status?: InfoType;
+  +children: any;
+  +info?: string;
 }
 
 type ErrorBoundaryState = {

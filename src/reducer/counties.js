@@ -27,14 +27,14 @@ const
   getCounties = (state : State) => state.get("counties"),
   getCountiesList = createSelector(
     getCounties,
-    (ids) => ids.toList()
+    (ids) => ids.toList(),
   ),
   getCounty = (state : State, id : string) => (
     getCounties(state).get(id)
   ),
   getCountiesSorted = createSelector(
     getCountiesList,
-    (list) => list.sortBy((county) => county.get("Name"))
+    (list) => list.sortBy((county) => county.get("Name")),
   );
 
 export const selectors = {

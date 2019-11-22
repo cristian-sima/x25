@@ -2,26 +2,26 @@
 /* eslint-disable no-ternary */
 
 type DateTemplatePropTypes = {
-  customClass?: any;
-  input: any;
-  label?: string;
-  meta: {
+  +customClass?: any;
+  +input: any;
+  +label?: string;
+  +meta: {
     error?: string;
     submitting: boolean;
     touched: boolean;
   };
-  left?: string;
-  right?: string;
-  placeholder?: string;
-  value?: string;
-  tabIndex?: string;
-  currency?: boolean;
+  +left?: string;
+  +right?: string;
+  +placeholder?: string;
+  +value?: string;
+  +tabIndex?: string;
+  +currency?: boolean;
 
-  formatValue: (raw: string) => string;
-  normalizeValue: (raw: string) => any;
-  onBlur?: () => void;
-  onChange?: (event : any) => void;
-  onRegisterRef?: (callback : (node : any) => void) => void;
+  +formatValue: (raw: string) => string;
+  +normalizeValue: (raw: string) => any;
+  +onBlur?: () => void;
+  +onChange?: (event : any) => void;
+  +onRegisterRef?: (callback : (node : any) => void) => void;
 };
 
 type DateTemplateStateTypes = {

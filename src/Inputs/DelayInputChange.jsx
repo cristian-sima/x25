@@ -3,10 +3,10 @@
 import React from "react";
 
 type TypeInputPropTypes = {
-  change : (event : any) => void;
-  value: any;
-  tabIndex?: string;
-  delay?: number;
+  +change : (event : any) => void;
+  +value: any;
+  +tabIndex?: string;
+  +delay?: number;
 };
 
 type TypeInputStateTypes = {

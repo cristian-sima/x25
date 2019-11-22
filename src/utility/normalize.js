@@ -69,7 +69,7 @@ export const withPromiseCallback = (resolve : Resolve, reject : Reject) => (erro
 };
 
 export const withHandlePDFCallback = (
-  { resolve, reject, title } : { resolve : Resolve, reject : Reject, title : string }
+  { resolve, reject, title } : { resolve : Resolve, reject : Reject, title : string },
 ) => (error : Error, response : Response) => {
   // It is necessary to create a new blob object with mime-type explicitly set
   // otherwise only Chrome works like it should

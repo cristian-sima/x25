@@ -3,7 +3,7 @@
 import type { State } from "src\\types";
 
 type ModalRootPropTypes = {
-  list: any;
+  +list: any;
 };
 
 import { connect } from "react-redux";

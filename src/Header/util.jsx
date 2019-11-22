@@ -3,27 +3,27 @@
 import type { CompanyRoutePropTypes } from "./types";
 
 type OptionsPropTypes = {
-  label: string;
+  +label: string;
 
-  options: any;
-  clearValue: any;
-  innerProps: any;
-  hasValue: any;
-  isDisabled: any;
-  selectOption: any;
-  cx: any;
-  isFocused: any;
-  isMulti: any;
-  isSelected: any;
-  selectProps: any;
-  getValue: any;
-  innerRef: any;
-  data: any;
-  children: any;
-  getStyles: any;
-  theme: any;
-  type: any;
-  setValue: any;
+  +options: any;
+  +clearValue: any;
+  +innerProps: any;
+  +hasValue: any;
+  +isDisabled: any;
+  +selectOption: any;
+  +cx: any;
+  +isFocused: any;
+  +isMulti: any;
+  +isSelected: any;
+  +selectProps: any;
+  +getValue: any;
+  +innerRef: any;
+  +data: any;
+  +children: any;
+  +getStyles: any;
+  +theme: any;
+  +type: any;
+  +setValue: any;
 };
 
 import React from "react";
