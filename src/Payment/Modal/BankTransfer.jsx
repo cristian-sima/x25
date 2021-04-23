@@ -102,17 +102,17 @@ class BankTransfer extends React.Component<BankTransferPropTypes, BankTransferSt
           </div>
         </div>
         <div className="alert alert-warning mt-3">
-          <i className="fa fa-exclamation-circle mr-1" />
+          <i className="fa fa-exclamation-circle me-1" />
           {"Este foarte important să scrii cu atenție câmpul \"Referință\""}
         </div>
         <div className="mt-4">
           {"După ce ai efectuat transferul bancar, apasă următorul buton:"}
         </div>
         <button
-          className="btn btn-block btn-primary mt-4 mr-1 ml-1 mb-3"
+          className="btn btn-block btn-primary mt-4 me-1 ms-1 mb-3"
           onClick={this.transferIsDone}
           type="button">
-          <i className="fa fa-check mr-1" />
+          <i className="fa fa-check me-1" />
           {"Am efectuat transferul bancar"}
         </button>
       </React.Fragment>

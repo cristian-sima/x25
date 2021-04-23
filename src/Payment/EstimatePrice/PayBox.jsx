@@ -98,15 +98,15 @@ class PayBox extends React.Component<PayBoxPropTypes> {
                   </h1>
                   <ul className="list-unstyled mt-3 mb-4">
                     <li>
-                      <i className="fa fa-check mr-1 text-success" />
+                      <i className="fa fa-check me-1 text-success" />
                       {"Emite facturi simplu online"}
                     </li>
                     <li>
-                      <i className="fa fa-check mr-1 text-success" />
+                      <i className="fa fa-check me-1 text-success" />
                       {"Trimite facturi pe e-mail"}
                     </li>
                     <li>
-                      <i className="fa fa-check mr-1 text-success" />
+                      <i className="fa fa-check me-1 text-success" />
                       {"Scapă de stresul facturilor tipizate"}
                     </li>
                   </ul>
@@ -140,7 +140,7 @@ class PayBox extends React.Component<PayBoxPropTypes> {
                         className="btn btn-lg btn-block btn-primary"
                         disabled={submitting || pristine}
                         type="submit">
-                        <i className="fa fa-credit-card mr-1" />
+                        <i className="fa fa-credit-card me-1" />
                         {"Achiziționez online"}
                       </button>
                     )

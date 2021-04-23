@@ -1,5 +1,5 @@
 {
-  "version": "2.9.2",
+  "version": "5.0.1",
   "name": "x25",
   "description": "x25",
   "scripts": {
@@ -13,6 +13,7 @@
     "copy": "copy package.json dist",
     "pre": "npm run test && npm run eslint && npm run flow && npm run clean && npm run build && npm run copy",
     "load": "npm run pre && cd dist && npm publish",
+    "load-beta": "npm run pre && cd dist && npm publish --tag beta",
     "test": "jest"
   },
   "repository": {
@@ -56,7 +57,7 @@
     }
   },
   "engines": {
-    "node": ">= 6.3.1"
+    "node": ">= 15.0.0"
   },
   "jest": {
     "transform": {
@@ -127,7 +128,7 @@
     "copy": "^0.3.2",
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.22.2",
-    "react": "~16.12.0",
+    "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-loadable": "~5.5.0",
     "react-notification-system-redux": "~2.0.0",
@@ -135,7 +136,7 @@
     "react-router-dom": "^5.1.2",
     "react-select": "^3.0.8",
     "react-sidebar": "^3.0.2",
-    "reactstrap": "^8.1.1",
+    "reactstrap": "^9.0.0-0",
     "redux": "^4.0.4",
     "redux-form": "^8.2.5",
     "redux-injector": "^0.1.0",

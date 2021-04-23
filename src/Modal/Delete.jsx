@@ -217,7 +217,7 @@ class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
           {message}
         </ModalBody>
         <ModalFooter>
-          <Button className="mr-1" color="secondary" onClick={closeModal}>
+          <Button className="me-1" color="secondary" onClick={closeModal}>
             {cancelButtonLabel}
           </Button>
           <button
