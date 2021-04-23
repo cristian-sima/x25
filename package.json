@@ -1,5 +1,5 @@
 {
-  "version": "2.9.1",
+  "version": "2.9.2",
   "name": "x25",
   "description": "x25",
   "scripts": {
@@ -7,7 +7,7 @@
     "build-babel": "babel src --out-dir dist",
     "build": "npm run build-scss && npm run build-babel",
     "clean": "rimraf dist dist",
-    "check": "npm-check -u -i babel-jest -i jest --specials=bin,eslint,babel,webpack",
+    "check": "npm-check -u -i babel-jest -i jest -i history --specials=bin,eslint,babel,webpack",
     "flow": "flow check --color=always",
     "eslint": "eslint --ext .jsx,.js src --fix",
     "copy": "copy package.json dist",
