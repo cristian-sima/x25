@@ -50,7 +50,7 @@ const Header = ({
           sidebarDocked ? null : (
             <button
               aria-label="Comută meniul"
-              className="btn btn-outline-secondary btn-sm mr-2"
+              className="btn btn-outline-secondary btn-sm me-2"
               onClick={showSidebar}
               type="button">
               <i className="fa fa-bars" />
@@ -77,7 +77,7 @@ const Header = ({
           }
         </button>
         <Collapse isOpen={showNavbar} navbar>
-          <ul className="ml-auto navbar-nav">
+          <ul className="ms-auto navbar-nav">
             <a className="nav-link" href="/settings/companies">
               {"Setări"}
             </a>

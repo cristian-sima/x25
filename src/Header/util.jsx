@@ -40,7 +40,7 @@ export const Option = (props : OptionsPropTypes) => (
 
 export const isSmall = () => window.matchMedia("(max-width: 780px)").matches;
 
-export const wrapperClassname = "search-bar mr-md-1 mb-2 md-mb-0 d-block d-md-inline-block";
+export const wrapperClassname = "search-bar me-md-1 mb-2 md-mb-0 d-block d-md-inline-block";
 
 export const getDefaultCompanyRoute = ({ Modules, ID } : CompanyRoutePropTypes) => {
   const getModule = () => {

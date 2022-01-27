@@ -14,11 +14,11 @@ const normalizeInitialInformation = (info : any) => {
     Account  : Immutable.Map(Account || {}),
     IsConnected,
     Error    : IsConnected ? noError : "Not connected",
-    Counties : (typeof Counties === "undefined") ? [] : (
+    Counties : (typeof Counties === "undefined") ? Immutable.List() : (
       normalizeArrayByField(Counties,
         "Short").entities
     ),
-    Companies: (typeof Companies === "undefined") ? [] : (
+    Companies: (typeof Companies === "undefined") ? Immutable.List() : (
       normalizeArray(Companies).entities
     ),
   };
