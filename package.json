@@ -7,10 +7,13 @@
     "load-beta": "npm run intern-pre && cd dist && npm publish --tag beta",
     "check": "npm-check -u -i babel-jest -i jest -i history --specials=bin,eslint,babel,webpack",
     "eslint": "eslint --ext .jsx,.js src --fix",
-    "copy": "copy package.json dist",
-    "pre": "npm run test && npm run eslint && npm run clean && npm run build && npm run copy",
-    "load": "npm run pre && cd dist && npm publish",
-    "test": "jest"
+    "intern-pre": "npm run intern-test && npm run eslint && npm run intern-clean && npm run intern-build && npm run intern-copy",
+    "intern-build-scss": "node-sass --output-style compressed src -o dist",
+    "intern-build-babel": "babel src --out-dir dist",
+    "intern-copy": "copy package.json dist",
+    "intern-build": "npm run intern-build-scss && npm run intern-build-babel",
+    "intern-clean": "rimraf dist dist",
+    "intern-test": "jest"
   },
   "repository": {
     "type": "git",
