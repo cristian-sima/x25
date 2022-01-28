@@ -29,6 +29,14 @@
       "react"
    ],
    "rules":{
+      "react/jsx-closing-tag-location": 0,
+      "react/prefer-exact-props": 0,
+      "func-style": 0,
+      "react/no-unused-class-component-methods": 0,
+      "react/function-component-definition": 0,
+      "react/jsx-newline": 0,
+      "react/jsx-sort-props": 0,
+      
      "react/require-optimization": 0,
      "default-param-last": 0,
      "react/jsx-props-no-spreading": 0,

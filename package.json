@@ -1,5 +1,5 @@
 {
-  "version": "17.0.3",
+  "version": "17.0.4",
   "name": "x25",
   "description": "x25",
   "scripts": {
@@ -102,7 +102,7 @@
     "jest": "^23.6.0",
     "jest-immutable-matchers": "^2.0.1",
     "json-loader": "^0.5.7",
-    "node-sass": "^7.0.1",
+    "node-sass": "^4.13.0",
     "npm-check": "^5.9.2",
     "npm-check-unused": "^6.0.0",
     "npm-check-updates": "^3.2.1",
@@ -129,7 +129,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-loadable": "~5.5.0",
-    "react-notification-system-redux2": "^2.0.1",
+    "react-notification-system-redux2": "^3.0.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.1.2",
     "react-select": "^5.2.2",
