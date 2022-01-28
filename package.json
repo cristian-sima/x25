@@ -11,7 +11,7 @@
     "flow": "flow check --color=always",
     "eslint": "eslint --ext .jsx,.js src --fix",
     "copy": "copy package.json dist",
-    "pre": "npm run test && npm run eslint && npm run flow && npm run clean && npm run build && npm run copy",
+    "pre": "npm run test && npm run eslint && npm run clean && npm run build && npm run copy",
     "load": "npm run pre && cd dist && npm publish",
     "test": "jest"
   },
