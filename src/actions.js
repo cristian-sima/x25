@@ -2,7 +2,7 @@
 
 import type { Action } from "src\\types";
 
-import Notifications from "react-notification-system-redux";
+import Notifications from "react-notification-system-redux2";
 
 const createNotification = (level : string) => (title : any, options : any) : Action => (
   Notifications.show({
