@@ -1,11 +1,11 @@
 {
-  "version": "17.0.0",
+  "version": "17.0.3",
   "name": "x25",
   "description": "x25",
   "scripts": {
     "load": "npm run intern-pre && cd dist && npm publish",
     "load-beta": "npm run intern-pre && cd dist && npm publish --tag beta",
-    "check": "npm-check -u -i babel-jest -i jest -i history --specials=bin,eslint,babel,webpack",
+    "check": "npm-check -u -i babel-jest -i jest --specials=bin,eslint,babel,webpack",
     "eslint": "eslint --ext .jsx,.js src --fix",
     "intern-pre": "npm run intern-test && npm run eslint && npm run intern-clean && npm run intern-build && npm run intern-copy",
     "intern-build-scss": "node-sass --output-style compressed src -o dist",
@@ -56,7 +56,7 @@
     }
   },
   "engines": {
-    "node": ">= 15.0.0"
+    "node": ">= 16.0.0"
   },
   "jest": {
     "transform": {
@@ -120,13 +120,12 @@
     "webpack-preset-babel-stage-2": "^0.2.0"
   },
   "dependencies": {
-    "@sentry/browser": "^5.9.1",
-    "big.js": "^5.2.2",
-    "classnames": "^2.2.6",
+    "@sentry/browser": "^6.17.2",
+    "big.js": "^6.1.1",
+    "classnames": "^2.3.1",
     "copy": "^0.3.2",
     "immutable": "^4.0.0-rc.12",
-    "moment": "^2.22.2",
-    "npm": "^6.13.1",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-loadable": "~5.5.0",
@@ -136,10 +135,10 @@
     "react-select": "^5.2.2",
     "react-sidebar": "^3.0.2",
     "reactstrap": "^9.0.1",
-    "redux": "^4.0.4",
+    "redux": "^4.1.2",
     "redux-form": "^8.3.8",
     "redux-injector": "^0.1.0",
     "reselect": "^4.1.5",
-    "superagent": "^5.1.1"
+    "superagent": "^7.1.1"
   }
 }
