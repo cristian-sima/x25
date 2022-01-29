@@ -36,6 +36,7 @@ import {
   isValidDate,
   normalizeDate,
 } from "../utility";
+import words from "../words";
 
 const normalizeRawDate = (raw : string) : string => {
 
@@ -191,7 +192,7 @@ export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTem
             onBlur={this.handleBlur}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
-            placeholder={placeholder || "ZZ.LL.ANUL"}
+            placeholder={placeholder || words.DateFormat}
             ref={onRegisterRef}
             tabIndex={tabIndex}
             type="text"

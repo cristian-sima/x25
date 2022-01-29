@@ -13,6 +13,8 @@ type FireErrorPropTypes = {
 
 import React from "react";
 
+import words from "./words";
+
 import { LoadingMessage } from "../Messages/Loading";
 import SimulatedException from "./SimulatedException";
 
@@ -33,10 +35,10 @@ const RouteLoading = ({ error, retry, timedOut } : LoadingPropTypes) => {
 
   if (timedOut) {
     return (
-      <div>{"Se pare că se încarcă mai greu ca de obicei "}
+      <div>{words.ItLoadsSlower}
         <button
           className="btn btn-primary btn-block"
-          onClick={retry} type="button">{"Încearcă din nou"}
+          onClick={retry} type="button">{words.TryAgain}
         </button>
       </div>
     );
@@ -44,7 +46,7 @@ const RouteLoading = ({ error, retry, timedOut } : LoadingPropTypes) => {
 
   return (
     <div className="mt-3">
-      <LoadingMessage message="Așteaptă un pic..." />
+      <LoadingMessage message={words.PleaseWait} />
     </div>
   );
 };

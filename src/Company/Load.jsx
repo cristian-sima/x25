@@ -27,6 +27,7 @@ import { accountSelectors } from "../Account";
 import { fetchCurrentCompany as fetchCurrentCompanyAction } from "./actions";
 
 import { LargeErrorMessage, LoadingMessage } from "../Messages";
+import words from "../words";
 
 // import EstimatePrice from "../Payment/EstimatePrice";
 
@@ -61,14 +62,14 @@ const LoadCompany = (props : PropTypes) => {
 
   if (isFetching) {
     return (
-      <LoadingMessage message="Așteaptă..." />
+      <LoadingMessage message={words.PleaseWait} />
     );
   }
 
   if (hasError) {
     return (
       <LargeErrorMessage
-        message="Nu am putut stabili conexiunea cu server-ul"
+        message={words.ThereWasAProblem}
         onRetry={fetchCurrentCompany}
       />
     );

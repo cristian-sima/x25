@@ -16,6 +16,8 @@ import React, { Component } from "react";
 import { ButtonDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { connect } from "react-redux";
 
+import words from "../";
+
 import LogoutButton from "./LogoutButton";
 
 import { notifyError } from "../actions";
@@ -25,7 +27,7 @@ import { logOut as logoutRequest } from "./request";
 const
   mapDispatchToProps = (dispatch : Dispatch) => ({
     showLogoutProblem () {
-      dispatch(notifyError("Am pierdut conexiunea cu server-ul"));
+      dispatch(notifyError(words.ConnectionLost));
     },
   });
 
@@ -95,17 +97,17 @@ class OptionsContainer extends Component<OptionsContainerPropTypes, OptionsConta
       <div className="btn-group">
         <ButtonDropdown isOpen={open} toggle={this.toggle}>
           <DropdownToggle caret>
-            {"Opțiuni"}
+            {words.Options}
           </DropdownToggle>
           <DropdownMenu className="dropdown-menu-left">
             <h6 className="dropdown-header">{accountName}</h6>
             <a className="dropdown-item" href="/settings/termeni-si-conditii/all" target="_blank">
-              {"Termeni & condiții"}
+              {words.TermsAndConditions}
             </a>
             <a
               className="dropdown-item"
               href="/settings/politica-de-confidentialitate/all" target="_blank">
-              {"Politica de confidențialitate"}
+              {words.PrivacyPolicy}
             </a>
 
             <div className="dropdown-divider" />

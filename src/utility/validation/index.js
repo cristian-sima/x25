@@ -4,6 +4,8 @@ export * from "./common";
 export * from "./specific";
 export * from "./validate";
 
+import words from "../../words";
+
 const processErrors = ({ error, isArray, _error, arrayErrors }, { field, errors }) => {
   if (isArray) {
     if (arrayErrors) {
@@ -50,7 +52,7 @@ export const performValidateRows = (items : any, checkers : any) => {
   if (notValid) {
     return {
       notValid,
-      _error  : "Adaugă cel puțin un rând",
+      _error  : words.AddARow,
       isArray : true,
     };
   }

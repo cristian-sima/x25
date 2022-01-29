@@ -52,7 +52,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
     this.refresh = () => {
       this.setState({
-        status : "Trying to recover...",
+        status : {words.TryingToRecover},
         error  : null,
         info   : null,
       }, () => {

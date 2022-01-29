@@ -12,6 +12,7 @@ import { getDefaultCompanyRoute, noOptionsMessage, Option, wrapperClassname, isS
 import { connect } from "react-redux";
 
 import { selectors } from "../Account/reducer";
+import words from "../words";
 
 const
   mapStateToProps = (state : State) => ({
@@ -77,7 +78,7 @@ class ClientSelectCompany extends Component<ClientSelectCompanyPropTypes, Client
             noOptionsMessage={noOptionsMessage}
             onChange={this.handleChange}
             options={options}
-            placeholder="Selectează firmă"
+            placeholder={words.SelectCompany}
           />
         </div>
       );

@@ -4,6 +4,8 @@
 
 type LoaderType = (path : string) => void;
 
+import words from "./words";
+
 import Loadable from "react-loadable";
 import * as React from "react";
 
@@ -23,7 +25,7 @@ const
 
 export let
   ErrorBoundary = () => (
-    <div>{"No ErrorBoundary passed to x25"}</div>
+    <div>{words.NoErrorPassed}</div>
   );
 
 // const injectPaginator = ({ key, itemsReducer, pagesReducer } : injectPaginatorTypes) => {

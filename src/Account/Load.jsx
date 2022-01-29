@@ -3,6 +3,8 @@
 
 import type { Dispatch, State } from "src\\types";
 
+import words from "./words";
+
 type PropTypes = {
   +appName: string;
   +isFetching: bool;
@@ -55,14 +57,14 @@ const LoadAccount = (props : PropTypes) => {
 
   if (isFetching) {
     return (
-      <LoadingMessage message="Așteaptă..." />
+      <LoadingMessage message={words.PleaseWait} />
     );
   }
 
   if (hasError) {
     return (
       <LargeErrorMessage
-        message="Nu am putut stabili conexiunea cu server-ul"
+        message={words.ThereWasAProblem}
         onRetry={fetchInitialInformation}
       />
     );

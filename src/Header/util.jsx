@@ -28,9 +28,10 @@ type OptionsPropTypes = {
 
 import React from "react";
 import { components } from "react-select";
+import words from "../words";
 
-export const noOptionsMessage = () => "Nu există opțiuni";
-export const loadingMessage = () => "Se încarcă...";
+export const noOptionsMessage = () => words.NoOptions;
+export const loadingMessage = () => words.PleaseWait;
 
 export const Option = (props : OptionsPropTypes) => (
   <div className="text-truncate small" title={props.label}>

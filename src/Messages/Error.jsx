@@ -11,6 +11,8 @@ type ErrorMessageProps = {
 
 import React from "react";
 
+import words from "../words";
+
 export const ErrorMessage = ({ message, onRetry } : ErrorMessageProps) => (
   <div className="container alert alert-warning">
     <div className="row">
@@ -30,7 +32,7 @@ export const ErrorMessage = ({ message, onRetry } : ErrorMessageProps) => (
               onClick={onRetry}
               type="button">
               <span className="hidden-sm-down">
-                {"Reîncearcă"}
+                {words.TryAgain}
               </span>
               <span className="visible-up d-md-none">
                 <i className="fa fa-refresh" />
@@ -55,13 +57,8 @@ export const LargeErrorMessage = ({ message, onRetry, details, itemNotFound } : 
         </h3>
         <div className="mt-3 text-muted">
           {
-            itemNotFound ? (
-              "Este posibil să fi fost șters(ă) sau să nu fi existat vreodată"
-            ) : (
-              details || (
-                `Se pare că a apărut o problemă cu serverul sau
-                conexiunea ta de Internet a fost întreruptă`
-              )
+            itemNotFound ? words.ErrorNeverExisted : (
+              details || words.ErrorConnection
             )
           }
         </div>
@@ -72,7 +69,7 @@ export const LargeErrorMessage = ({ message, onRetry, details, itemNotFound } : 
                 className="btn btn-primary"
                 onClick={onRetry}
                 type="button">
-                {"Reîncearcă"}
+                {words.TryAgain}
               </button>
             )
           }

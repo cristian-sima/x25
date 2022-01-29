@@ -16,6 +16,8 @@ import * as Sentry from "@sentry/browser";
 
 import React from "react";
 
+import words from "../words";
+
 class ErrorBoundary extends React.Component<Props, State> {
 
   componentDidCatch (error : ErrorType, errorInfo : InfoType) {
@@ -38,21 +40,7 @@ class ErrorBoundary extends React.Component<Props, State> {
       error: null,
     };
 
-    this.tellUs = () => Sentry.showReportDialog({
-      title     : "Se pare că avem probleme.",
-      subtitle  : "Echipa noastră a fost anunțată.",
-      subtitle2 : `Dacă doriți să ne ajutați, spuneți-ne ce sa întâmplat mai jos.
-      Ne va ajuta foarte mult`,
-      labelName     : "Numele dvs.",
-      labelEmail    : "Adresa de e-mail",
-      labelComments : "Ce s-a întâmplat?",
-      labelClose    : "Închide",
-      labelSubmit   : "Trimite",
-      errorGeneric  : `A apărut o eroare necunoscută la trimiterea raportului
-       dvs. Vă rugăm să încercați din nou.`,
-      errorFormEntry : "Unele câmpuri au fost nevalide. Corectați erorile și încercați din nou.",
-      successMessage : "Feedback-ul dvs. a fost trimis. Mulțumesc!",
-    });
+    this.tellUs = () => Sentry.showReportDialog(words.Sentry.TellUs);
   }
 
   render () {
@@ -60,29 +48,27 @@ class ErrorBoundary extends React.Component<Props, State> {
       // render fallback UI
       return (
         <div className="jumbotron">
-          <h1 className="display-4">{"Hrmm... Ceva nu a mers cum trebuia"}</h1>
+          <h1 className="display-4">{words.Sentry.TellUs.title}</h1>
           <p className="lead">
-            {`Acest mesaj apare când programul a avut o eroare și nu a mai reușit
-          să îți revină. Administratorul a fost informat automat despre
-          această problemă. Nu avem decât să ne cerem scuze.`}
+            {words.Sentry.Message}
           </p>
           <hr className="my-4" />
           <p>
-            {"Ne-ar fi de mare folos pentru remedierea erori, decă ne-ai "}
+            {words.Sentry.TellUs.subtitle2}
             <button
               className="btn btn-primary text-link"
               onClick={this.tellUs} type="button">
-              {"spune ce s-a întâmplat"}
+              {words.Sentry.Button}
             </button>
           </p>
           <hr />
           <p>
-            {"Sfat: Încearcă să împrospătezi pagina - apasă tasta "}
+            {words.Sentry.Hint}
             <ul>
-              <li><kbd>{"F5"}</kbd>{" pe sistemul de operare Windows "}</li>
+              <li><kbd>{"F5"}</kbd>{" Windows"}</li>
               <br />
-              <li><kbd>{"CMD"}</kbd>{" și "}
-                <kbd>{"R"}</kbd>{" pe sistemul de operare IOs"}
+              <li><kbd>{"CMD"}</kbd>{"  "}
+                <kbd>{"R"}</kbd>{" MAC"}
               </li>
             </ul>
           </p>

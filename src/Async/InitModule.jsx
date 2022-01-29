@@ -22,6 +22,7 @@ import { LoadingMessage } from "../Messages/Loading";
 import { injectModals } from "../Modal/util";
 import { injectReducer } from "redux-injector";
 import { delay } from "../utility";
+import words from "./words";
 
 const injectPaginator = ({ key, itemsReducer, pagesReducer } : PaginatorType) => {
   injectReducer(`entities.${key}`, itemsReducer);
@@ -99,7 +100,7 @@ class InitModule extends React.Component<Props> {
 
     return (
       <div className="mt-3">
-        <LoadingMessage message="Așteaptă un pic..." />
+        <LoadingMessage message={words.PleaseWait} />
       </div>
     );
   }

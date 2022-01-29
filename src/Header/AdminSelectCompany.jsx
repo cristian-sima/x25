@@ -12,6 +12,8 @@ import { withPromiseCallback } from "../utility";
 import { loadingMessage,
   getDefaultCompanyRoute, noOptionsMessage, Option, wrapperClassname, isSmall } from "./util";
 
+import words from "../words";
+
 type AdminSelectCompanyPropTypes = {
   +companies: any;
   +history: any;
@@ -91,7 +93,7 @@ class AdminSelectCompany extends Component<AdminSelectCompanyPropTypes, AdminSel
           noOptionsMessage={noOptionsMessage}
           onChange={this.handleChange}
           onInputChange={this.handleInputChange}
-          placeholder="Selectează firmă"
+          placeholder={words.SelectCompany}
         />
       </div>
     );

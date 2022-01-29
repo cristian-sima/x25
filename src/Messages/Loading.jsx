@@ -8,6 +8,7 @@ type LoadingMessagePropTypes = {
 
 
 import React from "react";
+import words from "../words";
 
 export const LoadingMessage = ({ message, sm, className } : LoadingMessagePropTypes) => {
 
@@ -35,7 +36,7 @@ export const LoadingMessage = ({ message, sm, className } : LoadingMessagePropTy
   return (
     <div className={`text-center my-4 ${className || ""}`}>
       <div className="spinner-border text-primary" role="status">
-        <span className="sr-only">{"Se încarcă..."}</span>
+        <span className="sr-only">{words.LoadingMessage}</span>
       </div>
       <div className="text-fancy mt-1">{message}</div>
     </div>

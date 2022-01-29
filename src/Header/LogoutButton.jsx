@@ -9,6 +9,8 @@ import React from "react";
 
 import { LoadingMessage } from "../Messages";
 
+import words from "../words";
+
 const LogoutButton = ({ readyToLogout, logoutAccount } : LogoutButtonPropTypes) => (
   <button
     className="dropdown-item"
@@ -20,11 +22,11 @@ const LogoutButton = ({ readyToLogout, logoutAccount } : LogoutButtonPropTypes) 
       readyToLogout ? (
         <span>
           <i className="fa fa-sign-out" />
-          {" Deconectează-mă"}
+          {` ${words.SignOut}`}
         </span>
       ) : (
         <span>
-          <LoadingMessage message="Așteaptă..." sm />
+          <LoadingMessage message={words.PleaseWait} sm />
         </span>
       )
     }

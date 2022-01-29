@@ -24,6 +24,8 @@ import ClientSelectCompany from "./ClientSelectCompany";
 
 import { isSmall } from "./util";
 
+import words from "../words";
+
 const monthsUntilShowNotice = 30;
 
 const Header = ({
@@ -49,7 +51,7 @@ const Header = ({
         {
           sidebarDocked ? null : (
             <button
-              aria-label="Comută meniul"
+              aria-label={words.Toggle}
               className="btn btn-outline-secondary btn-sm me-2"
               onClick={showSidebar}
               type="button">
@@ -79,7 +81,7 @@ const Header = ({
         <Collapse isOpen={showNavbar} navbar>
           <ul className="ms-auto navbar-nav">
             <a className="nav-link" href="/settings/companies">
-              {"Setări"}
+              {words.Settings}
             </a>
             {
               isAdmin ? (
@@ -98,7 +100,7 @@ const Header = ({
         typeof company === "undefined" || company.size === 0 ? null : (
           showNoticeToPay ? (
             <div className="alert alert-warning m-2">
-              {`Abonamentul la serviciile online Sidework va expira ${(
+              {`${words.TheSubscriptionWillExpireIn} ${(
                 moment(company.get("ValabilityDate")).
                   endOf("day").
                   fromNow()
@@ -107,7 +109,7 @@ const Header = ({
                 className="btn btn-primary"
                 onClick={showPayModal(company.get("ID"))}
                 type="button">
-                {"Reînnoiește abonamentul"}
+                {words.RenewSubscription}
               </button>
             </div>
           ) : null

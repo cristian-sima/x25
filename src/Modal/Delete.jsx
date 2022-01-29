@@ -37,9 +37,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
-import { language } from "../utility";
+import words from "../words";
 
-const { message : languageMessage, label } = language;
+const { message : languageMessage, label } = words;
 
 import * as actions from "./actions";
 import * as x25Actions from "../actions";

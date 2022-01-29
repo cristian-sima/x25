@@ -12,6 +12,8 @@ type BankNamePropTypes = {
 import React from "react";
 import classnames from "classnames";
 
+import words from "../../words";
+
 const BankAccount = ({
   input,
   meta: {
@@ -26,7 +28,7 @@ const BankAccount = ({
     </div>
     <input
       {...input}
-      aria-label="Contul bancar"
+      aria-label={words.BankAccount}
       className={classnames("form-control", { "is-invalid": touched && error })}
       disabled={submitting}
       id={input.name}

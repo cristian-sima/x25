@@ -32,6 +32,8 @@ import { delay, isValidCIF } from "../../utility";
 
 import CifField from "./CifField";
 
+import words from "../../words";
+
 const createPromise = (after) => (
   new Promise((resolve) => {
     after();
@@ -60,7 +62,7 @@ const tryToGetInfo = ({ dispatch, cif, focusInput, formID }) => (
     catch(() => {
       delay().
         then(() => {
-          dispatch(actions.notifyError("Nu am putut prelua informațiile firmei"));
+          dispatch(actions.notifyError(words.ThereWasAProblem));
         }).
         then(() => {
           dispatch(stopSubmit(formID));
@@ -86,7 +88,7 @@ const
       } else {
         delay().
           then(() => {
-            dispatch(actions.notifyError("Trebuie furnizat un CIF valid"));
+            dispatch(actions.notifyError(words.EnterAValidFiscalID));
           }).
           then(() => {
             dispatch(stopSubmit(formID));

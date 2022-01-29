@@ -12,6 +12,9 @@ type BankNamePropTypes = {
 import React from "react";
 import classnames from "classnames";
 
+import words from "../../words";
+
+
 const BankNameField = ({
   input,
   meta: {
@@ -22,11 +25,11 @@ const BankNameField = ({
 } : BankNamePropTypes) => (
   <div className={classnames("input-group", { "is-invalid": touched && error })}>
     <div className="input-group-prepend">
-      <span className="input-group-text">{"Denumire sau BIC"}</span>
+      <span className="input-group-text">{words.BankName}</span>
     </div>
     <input
       {...input}
-      aria-label="Denumire bancă"
+      aria-label={words.BankName}
       className={classnames("form-control", { "is-invalid": touched && error })}
       disabled={submitting}
       id={input.name}

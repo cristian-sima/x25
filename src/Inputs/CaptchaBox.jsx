@@ -25,6 +25,8 @@ import React from "react";
 import { Tooltip } from "reactstrap";
 import classnames from "classnames";
 
+import words from "../words";
+
 class InfoIcon extends React.Component<{}, InfoIconStateTypes> {
 
   state: InfoIconStateTypes;
@@ -57,9 +59,7 @@ class InfoIcon extends React.Component<{}, InfoIconStateTypes> {
           placement="right"
           target="TooltipExample"
           toggle={this.toggle}>
-          {`Scopul acestei verificări este de a deosebi o personă de un robot.
-          De obicei, acest cod apare atunci cand se fololește excesiv
-          o functionalitate din aplicație`}
+          {words.CaptchaDescription}
         </Tooltip>
       </div>
     );
@@ -88,13 +88,13 @@ export const CaptchaBox = (props : CaptchaPropTypes) => {
       <label
         className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
         htmlFor={input.name}>
-        {"Verificare "}
+        {`${words.CaptchaVerify} `}
         <InfoIcon />
       </label>
       <div className={right ? right : "col-md-8"}>
         <div className="custom-class">
           <span className="custom-control-description text-muted">
-            {"Tastează numere din imaginea de mai jos"}
+            {words.CaptchaTypeNumbers}
           </span>
           <div className="text-center my-1">
             <img
@@ -112,7 +112,7 @@ export const CaptchaBox = (props : CaptchaPropTypes) => {
           })}
           disabled={submitting}
           id={input.name}
-          placeholder="Tastează numerele"
+          placeholder={words.CaptchaTypeNumbers}
           tabIndex={tabIndex}
           type={type}
         />

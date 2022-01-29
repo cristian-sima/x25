@@ -3,6 +3,8 @@
 
 import * as Immutable from "immutable";
 
+import words from "words";
+
 const setFavIconToDev = () => {
   const element : any = document.querySelector("link[rel*='icon");
 
@@ -55,7 +57,7 @@ const ensureImmutableState = (ignored : Array<*> = []) => {
         }
       };
 
-      alert("something is not immutable. check console");
+      alert(words.SomethingIsNotImmutable);
 
       currentKey.map((current) => log(problems.get(current)));
       currentKey = currentKey.clear();

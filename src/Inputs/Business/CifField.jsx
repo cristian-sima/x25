@@ -17,6 +17,8 @@ type CifFieldPropTypes = {
 import React from "react";
 import classnames from "classnames";
 
+import words from "../../words";
+
 class CifField extends React.Component<CifFieldPropTypes> {
   props: CifFieldPropTypes;
 
@@ -52,13 +54,13 @@ class CifField extends React.Component<CifFieldPropTypes> {
           text-md-right
           form-control-label
           form-control-lg" htmlFor={name}>
-          {"C.I.F "}
+          {words.FiscalID}
         </label>
         <div className="col-md-9 col-lg-6">
           <div className="input-group">
             <input
               {...input}
-              aria-label="Cod de identificare fiscală"
+              aria-label={words.FiscalID}
               className={classnames("form-control form-control-lg", {
                 "is-invalid": touched && error,
               })}
@@ -75,7 +77,7 @@ class CifField extends React.Component<CifFieldPropTypes> {
                 className="btn btn-secondary btn-lg btn-info"
                 disabled={submitting}
                 onClick={findDetailsByCif(input.value)}
-                title="Preia datele de pe Internet"
+                title={words.GetDataFromInternet}
                 type="button">
                 <i className="fa fa-search" />
               </button>

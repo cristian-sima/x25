@@ -2,7 +2,6 @@
 
 export * from "./calendar";
 export * from "./date";
-export * from "./language";
 export * from "./normalize";
 export * from "./numbers";
 export * from "./numeric";

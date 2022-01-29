@@ -14,6 +14,7 @@ type NidFieldPropTypes = {
 
 import React from "react";
 import classnames from "classnames";
+import words from "../../words";
 
 class NidField extends React.Component<NidFieldPropTypes> {
   props: NidFieldPropTypes;
@@ -49,12 +50,12 @@ class NidField extends React.Component<NidFieldPropTypes> {
           text-md-right
           form-control-label
           form-control-lg" htmlFor={name}>
-          {"C.N.P "}
+          {words.PersonalID}
         </label>
         <div className="col-md-9 col-lg-6">
           <input
             {...input}
-            aria-label="Cod numeric personal"
+            aria-label={words.PersonalID}
             className={classnames("form-control form-control-lg", {
               "is-invalid": touched && error,
             })}

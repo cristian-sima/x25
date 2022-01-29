@@ -9,6 +9,8 @@ type ReduxError = {
 import React from "react";
 import { SubmissionError } from "redux-form/immutable";
 
+import words from "../words";
+
 export const getDateSortNumber = (item : string) => (
   Number(new Date(item).getTime())
 );
@@ -45,7 +47,7 @@ export const ReduxFormSubmissionError = (error? : ReduxError) => {
       throw error;
     }
 
-    const _error = typeof error.error === "string" ? error.error : "Am pierdut conexiunea cu server-ul";
+    const _error = typeof error.error === "string" ? error.error : words.ThereWasAProblem;
 
     throw new SubmissionError({
       _error,

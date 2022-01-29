@@ -22,6 +22,8 @@ type SelectMonthPropTypes = {
 import React from "react";
 import classnames from "classnames";
 
+import words from "../../words";
+
 const SimpleCustomSelect = ({
   autoFocus,
   isImmutable, showEmptyOption,
@@ -42,7 +44,7 @@ const SimpleCustomSelect = ({
       tabIndex={tabIndex}>
       {
         showEmptyOption ? (
-          <option value="">{"Selectează"}</option>
+          <option value="">{words.Select}</option>
         ) : null
       }
       {

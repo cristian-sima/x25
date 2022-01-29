@@ -7,10 +7,12 @@ import { selectors } from "../../reducer";
 
 import CustomSelect from "./Custom";
 
+import words from "../../words";
+
 const
   mapStateToProps = (state : State) => ({
     data        : selectors.getCountiesSorted(state),
-    label       : "Județ",
+    label       : {words.County},
     isImmutable : true,
     nameKey     : "Name",
     valueKey    : "Short",

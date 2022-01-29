@@ -15,7 +15,7 @@ const EmailInput = (props : SimpleInputPropTypes) => (
     </div>
     <SimpleInput
       {...props}
-      placeholder="ex. design@gmail.ro"
+      placeholder="ex. name @gmail.ro"
     />
   </div>
 );

@@ -34,6 +34,8 @@ import {
   normalizeDate,
 } from "../utility";
 
+import words from "../words";
+
 const normalizeRawDate = (raw : string) : string => {
 
   /* eslint-disable no-magic-numbers */
@@ -177,7 +179,7 @@ export class DateInput extends React.Component<DateInputPropTypes, DateInputStat
         onBlur={this.handleBlur}
         onChange={this.handleChange}
         onKeyDown={this.handleKeyDown}
-        placeholder={placeholder || "ZZ.LL.ANUL"}
+        placeholder={placeholder || words.DateFormat}
         ref={onRegisterRef}
         tabIndex={tabIndex}
         type="text"

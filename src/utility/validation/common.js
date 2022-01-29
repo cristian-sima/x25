@@ -39,7 +39,8 @@ import {
   isValidEmail,
 } from "./validate";
 
-const errMessageSelectField = "Selectează câmpul";
+import words from "../../words";
+
 
 const
   limitTense = 19,
@@ -59,7 +60,7 @@ export const validateHumanNid = (optional : ?bool = false) => (value : string) =
           !isValidCNP(value)
       )
     ),
-    error = notValid ? "Trebuie un CNP valid" : null;
+    error = notValid ? words.EnterValidPersonalID : null;
 
   return {
     notValid,
@@ -70,7 +71,7 @@ export const validateHumanNid = (optional : ?bool = false) => (value : string) =
 export const validateCif = (value : string) => {
   const
     notValid = typeof value === "undefined" || !isValidCIF(value),
-    error = notValid ? "Trebuie un cod valid de identificare fiscală" : null;
+    error = notValid ? words.EnterAValidFiscalID : null;
 
   return {
     notValid,
@@ -85,7 +86,7 @@ export const validateBankAccount = (value : string) => {
       value !== "" &&
       !isValidBankAccount(value)
     ),
-    error = notValid ? "Trebuie furnizat un IBAN valid" : null;
+    error = notValid ? words.EnterValidBankAccount : null;
 
   return {
     notValid,
@@ -107,7 +108,7 @@ export const validateEmail = ({ optional } : { optional : boolean }) => (value :
         !isValidEmail(value)
       )
     ),
-    error = notValid ? "Trebuie o adresă validă de e-mail" : null;
+    error = notValid ? words.EnterValidEmail : null;
 
   return {
     notValid,
@@ -123,7 +124,7 @@ export const validateOptionalDate = (value : string) => {
         isValidDateStamp(value)
       )
     ),
-    error = notValid ? "Trebuie o dată validă (ZZ.LL.ANUL)" : null;
+    error = notValid ? words.EnterValidDate : null;
 
   return {
     notValid,
@@ -136,7 +137,7 @@ export const validateDate = (value : string) => {
     notValid = !(
       (typeof value !== "undefined") && isValidDateStamp(value)
     ),
-    error = notValid ? "Trebuie o dată validă (ZZ.LL.ANUL)" : null;
+    error = notValid ? words.EnterValidDate : null;
 
   return {
     notValid,
@@ -177,14 +178,16 @@ const getNumberRangeError = ({ min, max, integer }) => {
     minTense = typeof min === "number" ? getNumberTense(min) : "",
     maxTense = typeof max === "number" ? getNumberTense(max) : "",
     range = (
-      (typeof min === "number" && typeof max === "number") ? ` între ${minTense} și ${maxTense}` : (
-        typeof max === "number" ? ` până în ${maxTense}` : (
-          typeof min === "number" ? ` mai mare ca ${minTense}` : ""
+      (typeof min === "number" && typeof max === "number") ? (
+        ` ${words.NumberBetween} ${minTense} ${words.NumberAnd} ${maxTense}`
+      ) : (
+        typeof max === "number" ? ` ${words.NumberUpTo} ${maxTense}` : (
+          typeof min === "number" ? ` ${words.NumberGreaterThan} ${minTense}` : ""
         )
       )
     );
 
-  return `Trebuie un număr ${integer ? "întreg" : "cu virgulă"} ${range}`;
+  return words.NumberMustBe` ${integer ? words.NumberInteger : words.NumberFloat} ${range}`;
 };
 
 export const validateFloat : Checker = (props) => (value) => {
@@ -227,13 +230,13 @@ const getStringTense = ({ min, max, what }) => {
     maxTense = max ? getNumberTense(max) : "",
     minTense = min ? getNumberTense(min) : "",
     isBetween = (typeof max === "number" && typeof min === "number"),
-    rangeError = isBetween ? `între ${minTense} și ${maxTense}` : (
-      typeof max === "number" ? `până în ${maxTense}` : (
-        typeof min === "number" ? `cel puțin ${minTense}` : ""
+    rangeError = isBetween ? `${words.NumberBetween} ${minTense} ${words.NumberAnd} ${maxTense}` : (
+      typeof max === "number" ? `${words.NumberUpTo} ${maxTense}` : (
+        typeof min === "number" ? `${words.NumberGreaterThan} ${minTense}` : ""
       )
     );
 
-  return `${what} are ${rangeError} caractere`;
+  return `${what} ${words.Has} ${rangeError} ${words.Chars}`;
 };
 
 const validateStringRange = ({ min, max, value }) => {
@@ -254,7 +257,7 @@ const validateStringRange = ({ min, max, value }) => {
 
 
 export const validateString : Checker = (props) => (value) => {
-  const { what = "Câmpul", min, max, optional } = props;
+  const { what = words.TheField, min, max, optional } = props;
   const
     whenOptional = optional && !(
       typeof value === "undefined" || value === null || (
@@ -290,7 +293,7 @@ export const validateSelect = (message? : string) => (value : string) => {
     notValid = (
       (typeof value === "undefined") || value === null || value === ""
     ),
-    error = notValid ? (typeof message === "undefined" ? errMessageSelectField : message) : null;
+    error = notValid ? (typeof message === "undefined" ? words.PleaseSelect : message) : null;
 
   return {
     notValid,
@@ -303,7 +306,7 @@ export const validateID = (message? : string) => (value : string) => {
     notValid = !(
       typeof value === "number" && !isNaN(value)
     ),
-    error = notValid ? (typeof message === "undefined" ? errMessageSelectField : message) : null;
+    error = notValid ? (typeof message === "undefined" ? words.PleaseSelect : message) : null;
 
   return {
     notValid,
@@ -318,7 +321,7 @@ export const validateCaptchaSolution = (value : string) => {
       typeof value !== "undefined" &&
       !pattern.test(value)
     ),
-    error = notValid ? "Codul are exact șase cifre" : null;
+    error = notValid ? words.Has6Digits : null;
 
   return {
     notValid,
@@ -333,7 +336,7 @@ export const validateResetToken = (value : string) => {
       typeof value === "undefined" ||
       String(value).length !== tokenSize
     ),
-    error = notValid ? "Codul nu este valid" : null;
+    error = notValid ? words.CodeNotValid : null;
 
   return {
     notValid,

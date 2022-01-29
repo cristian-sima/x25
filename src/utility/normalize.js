@@ -23,6 +23,8 @@ type Error = {
 
 import * as Immutable from "immutable";
 
+import words from "../words";
+
 const timeout = 500;
 
 const defaultNormalizr : Normalizr = (item) => Immutable.Map(item);
@@ -61,7 +63,7 @@ export const withPromiseCallback = (resolve : Resolve, reject : Reject) => (erro
       document.location.href = "/";
     } else {
       // error.message
-      reject({ error: "Ceva nu a funcționat cum trebuia" });
+      reject({ error: words.ThereWasAProblem });
     }
   } else {
     resolve(response.body);
