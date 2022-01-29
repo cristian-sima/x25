@@ -39,7 +39,7 @@ import {
   isValidEmail,
 } from "./validate";
 
-import { words, getNumberTense } from "../words";
+import { words } from "../words";
 
 
 export const validateHumanNid = (optional : ?bool = false) => (value : string) => {
@@ -171,8 +171,8 @@ const validateNumberRange = ({ min, max, value, integer }) => {
 const getNumberRangeError = ({ min, max, integer }) => {
 
   const
-    minTense = typeof min === "number" ? getNumberTense(min) : "",
-    maxTense = typeof max === "number" ? getNumberTense(max) : "",
+    minTense = typeof min === "number" ? words.getNumberTense(min) : "",
+    maxTense = typeof max === "number" ? words.getNumberTense(max) : "",
     range = (
       (typeof min === "number" && typeof max === "number") ? (
         ` ${words.NumberBetween} ${minTense} ${words.NumberAnd} ${maxTense}`
@@ -223,8 +223,8 @@ export const validateFloat : Checker = (props) => (value) => {
 
 const getStringTense = ({ min, max, what }) => {
   const
-    maxTense = max ? getNumberTense(max) : "",
-    minTense = min ? getNumberTense(min) : "",
+    maxTense = max ? words.getNumberTense(max) : "",
+    minTense = min ? words.getNumberTense(min) : "",
     isBetween = (typeof max === "number" && typeof min === "number"),
     rangeError = isBetween ? `${words.NumberBetween} ${minTense} ${words.NumberAnd} ${maxTense}` : (
       typeof max === "number" ? `${words.NumberUpTo} ${maxTense}` : (
