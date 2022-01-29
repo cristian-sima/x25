@@ -39,12 +39,8 @@ import {
   isValidEmail,
 } from "./validate";
 
-import { words } from "../../utility";
+import { words, getNumberTense } from "../words";
 
-
-const
-  limitTense = 19,
-  getNumberTense = (value : number) => value > limitTense ? `${value} de` : String(value);
 
 export const validateHumanNid = (optional : ?bool = false) => (value : string) => {
   const

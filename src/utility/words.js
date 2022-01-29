@@ -121,7 +121,10 @@ export const
       10 : "November",
       11 : "December",
     },
+
+    getNumberTense: (value : number) => String(value),
   };
+
 
 export const years = [
   {

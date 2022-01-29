@@ -52,17 +52,6 @@ export const plainNumberToLocale = (value : number) : string => (
   plainNumberFormat.format(value)
 );
 
-export const numberToLocaleForm = (value : number) : string => {
-  const upperLimit = 20,
-    formatted = plainNumberFormat.format(value);
-
-  if (value < upperLimit) {
-    return formatted;
-  }
-
-  return `${formatted} de`;
-};
-
 export const numericBehavior = {
   normalize : normalizeNumber,
   format    : formatNumber,

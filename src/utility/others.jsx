@@ -9,7 +9,7 @@ type ReduxError = {
 import React from "react";
 import { SubmissionError } from "redux-form/immutable";
 
-import { words } from "../words";
+import { words } from "./words";
 
 export const getDateSortNumber = (item : string) => (
   Number(new Date(item).getTime())
