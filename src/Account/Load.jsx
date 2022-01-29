@@ -3,8 +3,6 @@
 
 import type { Dispatch, State } from "src\\types";
 
-import words from "./words";
-
 type PropTypes = {
   +appName: string;
   +isFetching: bool;
@@ -21,6 +19,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { selectors } from "./reducer";
+
+import words from "../words";
 
 import { fetchInitialInformation as fetchInitialInformationAction } from "./actions";
 

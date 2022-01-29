@@ -19,6 +19,8 @@ import React from "react";
 
 import TheError from "./TheError";
 
+import words from "../words";
+
 const
   refreshKeyCode = 82,
   timeoutDelay = 200;
@@ -52,7 +54,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
     this.refresh = () => {
       this.setState({
-        status : {words.TryingToRecover},
+        status : words.TryingToRecover,
         error  : null,
         info   : null,
       }, () => {

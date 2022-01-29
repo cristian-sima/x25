@@ -13,12 +13,12 @@ type FireErrorPropTypes = {
 
 import React from "react";
 
-import words from "./words";
 
 import { LoadingMessage } from "../Messages/Loading";
 import SimulatedException from "./SimulatedException";
 
 import { ErrorBoundary } from "./index";
+import words from "../words";
 
 const IgnoreThisNode = ({ error : { message, stack } } : FireErrorPropTypes) => {
   throw new SimulatedException(message, stack);

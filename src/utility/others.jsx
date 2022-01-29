@@ -91,6 +91,7 @@ export const userHasPressedCKeyAlone = (currentEvent : KeyboardEvent) : boolean 
   );
 };
 
+
 export const years = [
   {
     value : 2018,
@@ -113,50 +114,50 @@ export const years = [
 export const months = [
   {
     value : 0,
-    name  : "Ianuarie",
+    name  : words.Month[0],
   },
   {
     value : 1,
-    name  : "Februarie",
+    name  : words.Month[1],
   },
   {
     value : 2,
-    name  : "Martie",
+    name  : words.Month[2],
   },
   {
     value : 3,
-    name  : "Aprilie",
+    name  : words.Month[3],
   },
   {
     value : 4,
-    name  : "Mai",
+    name  : words.Month[4],
   },
   {
     value : 5,
-    name  : "Iunie",
+    name  : words.Month[5],
   },
   {
     value : 6,
-    name  : "Iulie",
+    name  : words.Month[6],
   },
   {
     value : 7,
-    name  : "August",
+    name  : words.Month[7],
   },
   {
     value : 8,
-    name  : "Septembrie",
+    name  : words.Month[8],
   },
   {
     value : 9,
-    name  : "Octombrie",
+    name  : words.Month[9],
   },
   {
     value : 10,
-    name  : "Noiembrie",
+    name  : words.Month[10],
   },
   {
     value : 11,
-    name  : "Decembrie",
+    name  : words.Month[11],
   },
 ];

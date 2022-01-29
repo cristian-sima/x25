@@ -12,7 +12,7 @@ import words from "../../words";
 const
   mapStateToProps = (state : State) => ({
     data        : selectors.getCountiesSorted(state),
-    label       : {words.County},
+    label       : words.County,
     isImmutable : true,
     nameKey     : "Name",
     valueKey    : "Short",

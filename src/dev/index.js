@@ -3,7 +3,7 @@
 
 import * as Immutable from "immutable";
 
-import words from "words";
+import words from "../words";
 
 const setFavIconToDev = () => {
   const element : any = document.querySelector("link[rel*='icon");

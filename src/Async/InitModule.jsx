@@ -22,7 +22,7 @@ import { LoadingMessage } from "../Messages/Loading";
 import { injectModals } from "../Modal/util";
 import { injectReducer } from "redux-injector";
 import { delay } from "../utility";
-import words from "./words";
+import words from "../words";
 
 const injectPaginator = ({ key, itemsReducer, pagesReducer } : PaginatorType) => {
   injectReducer(`entities.${key}`, itemsReducer);

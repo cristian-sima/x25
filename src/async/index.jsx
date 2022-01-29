@@ -4,13 +4,14 @@
 
 type LoaderType = (path : string) => void;
 
-import words from "./words";
 
 import Loadable from "react-loadable";
 import * as React from "react";
 
 import RouteLoading from "./RouteLoading";
 import InitModule from "./InitModule";
+
+import words from "../words";
 
 // type injectPaginatorTypes = {
 //   key: string,
