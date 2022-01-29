@@ -17,7 +17,7 @@ type CifFieldPropTypes = {
 import React from "react";
 import classnames from "classnames";
 
-import words from "../../words";
+import { words } from "../../utility";
 
 class CifField extends React.Component<CifFieldPropTypes> {
   props: CifFieldPropTypes;

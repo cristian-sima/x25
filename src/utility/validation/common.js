@@ -39,7 +39,7 @@ import {
   isValidEmail,
 } from "./validate";
 
-import words from "../../words";
+import { words } from "../../utility";
 
 
 const

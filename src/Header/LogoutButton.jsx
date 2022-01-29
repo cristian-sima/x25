@@ -9,7 +9,7 @@ import React from "react";
 
 import { LoadingMessage } from "../Messages";
 
-import words from "../words";
+import { words } from "../utility";
 
 const LogoutButton = ({ readyToLogout, logoutAccount } : LogoutButtonPropTypes) => (
   <button

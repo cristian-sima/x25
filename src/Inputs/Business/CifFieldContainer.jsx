@@ -28,11 +28,9 @@ import { getCompanyDetails } from "./request";
 
 import * as actions from "../../actions";
 
-import { delay, isValidCIF } from "../../utility";
+import { delay, isValidCIF, words } from "../../utility";
 
 import CifField from "./CifField";
-
-import words from "../../words";
 
 const createPromise = (after) => (
   new Promise((resolve) => {

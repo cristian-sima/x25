@@ -21,8 +21,7 @@ import * as React from "react";
 import { LoadingMessage } from "../Messages/Loading";
 import { injectModals } from "../Modal/util";
 import { injectReducer } from "redux-injector";
-import { delay } from "../utility";
-import words from "../words";
+import { delay, words } from "../utility";
 
 const injectPaginator = ({ key, itemsReducer, pagesReducer } : PaginatorType) => {
   injectReducer(`entities.${key}`, itemsReducer);

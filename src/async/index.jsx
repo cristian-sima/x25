@@ -11,7 +11,7 @@ import * as React from "react";
 import RouteLoading from "./RouteLoading";
 import InitModule from "./InitModule";
 
-import words from "../words";
+import { words } from "../utility";
 
 // type injectPaginatorTypes = {
 //   key: string,

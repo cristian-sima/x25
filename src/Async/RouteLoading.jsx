@@ -18,7 +18,7 @@ import { LoadingMessage } from "../Messages/Loading";
 import SimulatedException from "./SimulatedException";
 
 import { ErrorBoundary } from "./index";
-import words from "../words";
+import { words } from "../utility";
 
 const IgnoreThisNode = ({ error : { message, stack } } : FireErrorPropTypes) => {
   throw new SimulatedException(message, stack);

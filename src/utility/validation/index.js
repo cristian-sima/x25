@@ -4,7 +4,7 @@ export * from "./common";
 export * from "./specific";
 export * from "./validate";
 
-import words from "../../words";
+import { words } from "../../utility";
 
 const processErrors = ({ error, isArray, _error, arrayErrors }, { field, errors }) => {
   if (isArray) {

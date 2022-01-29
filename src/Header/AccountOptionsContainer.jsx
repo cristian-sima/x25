@@ -16,7 +16,7 @@ import React, { Component } from "react";
 import { ButtonDropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { connect } from "react-redux";
 
-import words from "../";
+import { words } from "../";
 
 import LogoutButton from "./LogoutButton";
 

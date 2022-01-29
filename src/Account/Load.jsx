@@ -20,7 +20,7 @@ import { connect } from "react-redux";
 
 import { selectors } from "./reducer";
 
-import words from "../words";
+import { words } from "../utility";
 
 import { fetchInitialInformation as fetchInitialInformationAction } from "./actions";
 

@@ -7,7 +7,7 @@ import { selectors } from "../../reducer";
 
 import CustomSelect from "./Custom";
 
-import words from "../../words";
+import { words } from "../../utility";
 
 const
   mapStateToProps = (state : State) => ({

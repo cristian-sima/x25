@@ -14,7 +14,7 @@ type NidFieldPropTypes = {
 
 import React from "react";
 import classnames from "classnames";
-import words from "../../words";
+import { words } from "../../utility";
 
 class NidField extends React.Component<NidFieldPropTypes> {
   props: NidFieldPropTypes;

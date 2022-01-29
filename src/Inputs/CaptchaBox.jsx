@@ -25,7 +25,7 @@ import React from "react";
 import { Tooltip } from "reactstrap";
 import classnames from "classnames";
 
-import words from "../words";
+import { words } from "../utility";
 
 class InfoIcon extends React.Component<{}, InfoIconStateTypes> {
 

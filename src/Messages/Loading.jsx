@@ -8,7 +8,7 @@ type LoadingMessagePropTypes = {
 
 
 import React from "react";
-import words from "../words";
+import { words } from "../utility";
 
 export const LoadingMessage = ({ message, sm, className } : LoadingMessagePropTypes) => {
 

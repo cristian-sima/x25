@@ -19,7 +19,7 @@ import React from "react";
 
 import TheError from "./TheError";
 
-import words from "../words";
+import { words } from "../utility";
 
 const
   refreshKeyCode = 82,

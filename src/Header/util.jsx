@@ -28,7 +28,7 @@ type OptionsPropTypes = {
 
 import React from "react";
 import { components } from "react-select";
-import words from "../words";
+import { words } from "../utility";
 
 export const noOptionsMessage = () => words.NoOptions;
 export const loadingMessage = () => words.PleaseWait;

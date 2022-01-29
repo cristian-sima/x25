@@ -12,7 +12,7 @@ type BankNamePropTypes = {
 import React from "react";
 import classnames from "classnames";
 
-import words from "../../words";
+import { words } from "../../utility";
 
 const BankAccount = ({
   input,

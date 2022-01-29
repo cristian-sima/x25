@@ -8,11 +8,9 @@ import { withRouter } from "react-router-dom";
 
 import AsyncSelect from "react-select/async";
 
-import { withPromiseCallback } from "../utility";
+import { withPromiseCallback, words } from "../utility";
 import { loadingMessage,
   getDefaultCompanyRoute, noOptionsMessage, Option, wrapperClassname, isSmall } from "./util";
-
-import words from "../words";
 
 type AdminSelectCompanyPropTypes = {
   +companies: any;

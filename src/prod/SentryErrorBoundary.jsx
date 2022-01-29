@@ -16,7 +16,7 @@ import * as Sentry from "@sentry/browser";
 
 import React from "react";
 
-import words from "../words";
+import { words } from "../utility";
 
 class ErrorBoundary extends React.Component<Props, State> {
 

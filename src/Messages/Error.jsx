@@ -11,7 +11,7 @@ type ErrorMessageProps = {
 
 import React from "react";
 
-import words from "../words";
+import { words } from "../utility";
 
 export const ErrorMessage = ({ message, onRetry } : ErrorMessageProps) => (
   <div className="container alert alert-warning">

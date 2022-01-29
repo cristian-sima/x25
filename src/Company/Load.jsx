@@ -27,7 +27,7 @@ import { accountSelectors } from "../Account";
 import { fetchCurrentCompany as fetchCurrentCompanyAction } from "./actions";
 
 import { LargeErrorMessage, LoadingMessage } from "../Messages";
-import words from "../words";
+import { words } from "../utility";
 
 // import EstimatePrice from "../Payment/EstimatePrice";
 

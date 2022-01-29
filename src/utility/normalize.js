@@ -23,7 +23,7 @@ type Error = {
 
 import * as Immutable from "immutable";
 
-import words from "../words";
+import { words } from "./words";
 
 const timeout = 500;
 

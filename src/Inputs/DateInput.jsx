@@ -34,7 +34,7 @@ import {
   normalizeDate,
 } from "../utility";
 
-import words from "../words";
+import { words } from "../utility";
 
 const normalizeRawDate = (raw : string) : string => {
 

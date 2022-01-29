@@ -24,7 +24,7 @@ import ClientSelectCompany from "./ClientSelectCompany";
 
 import { isSmall } from "./util";
 
-import words from "../words";
+import { words } from "../utility";
 
 const monthsUntilShowNotice = 30;
 

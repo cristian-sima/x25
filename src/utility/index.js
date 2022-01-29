@@ -9,3 +9,4 @@ export * from "./others";
 export * from "./strings";
 export * from "./mql";
 export * from "./validation";
+export * from "./words";
