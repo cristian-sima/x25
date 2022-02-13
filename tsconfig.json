@@ -1,6 +1,6 @@
 {
   "exclude": ["./lib/*", "./node_modules/*", "./wiki/*", ".vscode/*"],
-  "include": ["./src/*", "./index.d.ts", "./types.d.ts"],
+  "include": ["./src/*", "./index.d.ts", "./types.d.ts", "custom"],
   "compilerOptions": {
     "allowJs": true,
     "noEmit": false,
@@ -19,7 +19,7 @@
     // Ensure that Babel can safely transpile files in the TypeScript project
     "baseUrl": "./",
     "paths": {
-        "@types": [ "./src/types" ],
+        "custom": [ "custom" ],
       },
     /* Additional Checks */
     /* Advanced Options */

@@ -30,6 +30,7 @@ var config = {
   resolve: {
     extensions: [".js", ".json", ".ts", ".tsx"],
     modules: [
+      "src",
       "node_modules",
     ],
   },

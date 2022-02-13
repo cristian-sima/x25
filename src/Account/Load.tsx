@@ -1,4 +1,4 @@
-import type { Dispatch, State } from "@types";
+import type { Dispatch, State } from "custom";
 
 type PropTypes = {
   readonly appName: string;

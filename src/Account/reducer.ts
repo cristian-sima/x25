@@ -1,4 +1,4 @@
-import type { Action, State } from "@types";
+import type { Action, State } from "custom";
 import { createSelector } from "reselect";
 import * as Immutable from "immutable";
 import { isAdministratorAccount, noError } from "../utility";
@@ -19,13 +19,13 @@ const initialState = Immutable.Map({
     payload: {
       error,
     },
-  }) => state.merge({
+  } : any) => state.merge({
     error,
     fetching: false,
   }),
   fetchCurrentAccountFulfilled = (state: any, {
     payload,
-  }) => state.mergeDeep({
+  } : { payload : { Account : any, Companies : any } }) => state.mergeDeep({
     fetched   : true,
     fetching  : false,
     info      : payload.Account,
@@ -62,10 +62,25 @@ const initialState = Immutable.Map({
   getCurrentAccount = (state: State) => state.getIn(["account", "info"]),
   getCurrentAccountCompanies = (state: State) => state.getIn(["account", "companies"]),
   getCurrentAccountIsFetching = (state: State) => state.getIn(["account", "fetching"]),
-  getCurrentAccountShouldFetch = createSelector(getCurrentAccountIsFetching, getFetched, getError, (isFetching, isFetched, error) => !isFetching && !isFetched && error === noError),
-  getCurrentAccountIsFetched = createSelector(getCurrentAccountIsFetching, getFetched, getError, (isFetching, isFetched, error) => !isFetching && isFetched && error === noError),
-  getCurrentAccountHasError = createSelector(getError, (error) => error !== noError),
-  getIsCurrentAccountAdministrator = createSelector(getCurrentAccount, (account) => isAdministratorAccount(account.get("Type")));
+  getCurrentAccountShouldFetch = createSelector(
+    getCurrentAccountIsFetching,
+    getFetched,
+    getError,
+    (isFetching, isFetched, error) => !isFetching && !isFetched && error === noError,
+  ),
+  getCurrentAccountIsFetched = createSelector(
+    getCurrentAccountIsFetching,
+    getFetched,
+    getError,
+    (isFetching, isFetched, error) => !isFetching && isFetched && error === noError,
+  ),
+  getCurrentAccountHasError = createSelector(
+    getError, (error) => error !== noError,
+  ),
+  getIsCurrentAccountAdministrator = createSelector(
+    getCurrentAccount,
+    (account) => isAdministratorAccount(account.get("Type")),
+  );
 
 export const selectors = {
   getCurrentAccountCompanies,
