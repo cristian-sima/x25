@@ -20,6 +20,9 @@
     // "paths": {
     //   "src/*": [ "./client/_config/*" ],
     // },
+    "paths": {
+      "types": ["./src/types"]
+  },
     /* Additional Checks */
     /* Advanced Options */
     /* Basic Options */

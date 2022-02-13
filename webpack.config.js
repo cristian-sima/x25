@@ -49,9 +49,6 @@ var config = {
       "client",
       "node_modules",
     ],
-    alias: {
-      "react-loadable": "@docusaurus/react-loadable"
-    }
   },
   output: {
     library: 'ReactPaginator',
