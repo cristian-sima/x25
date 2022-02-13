@@ -1,5 +1,5 @@
 /* eslint-disable no-magic-numbers */
-declare let Intl: any;
+
 const numberFormat: any = new Intl.NumberFormat("ro", {
   minimumFractionDigits: 2,
 }),
@@ -21,36 +21,42 @@ const numberFormat: any = new Intl.NumberFormat("ro", {
 
 // 127.99 ----> 127,99
 // 0 ----> ""
-export const formatZeroValue = (word: any, optional?: boolean): string => optional && word === "" ? "" : replaceCharInString({
-  word    : String(word),
-  oldChar : "\\.",
-  newChar : ",",
-});
-export const formatNumber = (word: any): string => replaceCharInString({
-  word    : String(word),
-  oldChar : "\\.",
-  newChar : ",",
-});
-// 78,45 ---> 78.45
-export const normalizeNumber = (word: any): string => replaceCharInString({
-  word    : String(word),
-  oldChar : ",",
-  newChar : ".",
-});
-export const numberToLocale = (value: number): string => numberFormat.format(value);
-export const plainNumberToLocale = (value: number): string => plainNumberFormat.format(value);
-export const numericBehavior = {
-  normalize : normalizeNumber,
-  format    : formatNumber,
-};
-export const tryToParseNumber = (raw: string) => {
-  const result = Number(raw);
+export const
+  formatZeroValue = (word: any, optional?: boolean): string => (
+    optional && word === "" ? "" : replaceCharInString({
+      word    : String(word),
+      oldChar : "\\.",
+      newChar : ",",
+    })
+  ),
+  formatNumber = (word: any): string => replaceCharInString({
+    word    : String(word),
+    oldChar : "\\.",
+    newChar : ",",
+  }),
+  normalizeNumber = (word: any): string => replaceCharInString({
+    word    : String(word),
+    oldChar : ",",
+    newChar : ".",
+  }),
+  numberToLocale = (value: number): string => numberFormat.format(value),
+  plainNumberToLocale = (value: number): string => plainNumberFormat.format(value),
+  numericBehavior = {
+    normalize : normalizeNumber,
+    format    : formatNumber,
+  },
+  tryToParseNumber = (raw: string) => {
+    const result = Number(raw);
 
-  if (!isNaN(result) && raw !== "") {
-    return result;
-  }
+    if (!isNaN(result) && raw !== "") {
+      return result;
+    }
 
-  return raw;
-};
-export const numberToLocaleHideBlank = (raw: any) => typeof raw === "number" && raw !== 0 ? numberToLocale(raw) : "";
-export const plainNumberToLocaleHideZero = (raw: any) => typeof raw === "number" && raw !== 0 ? plainNumberToLocale(raw) : "";
+    return raw;
+  },
+  numberToLocaleHideBlank = (raw: any) => (
+    typeof raw === "number" && raw !== 0 ? numberToLocale(raw) : ""
+  ),
+  plainNumberToLocaleHideZero = (raw: any) => (
+    typeof raw === "number" && raw !== 0 ? plainNumberToLocale(raw) : ""
+  );

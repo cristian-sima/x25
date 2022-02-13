@@ -1,6 +1,6 @@
 import type { ModalsTypes } from "./types";
 
-let all = {};
+let all : { [key: string]: any } = {};
 
 export const injectModals = (newModals: ModalsTypes) => {
   all = { ...all,

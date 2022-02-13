@@ -1,10 +1,11 @@
+
 import * as Immutable from "immutable";
 import * as matchers from "jest-immutable-matchers";
 import { normalizeArray } from "./normalize";
 
 describe("test util/normalize", () => {
   beforeEach(() => {
-    jest.addMatchers(matchers);
+    expect.extend(matchers);
   });
   const input = [
     {

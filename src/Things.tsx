@@ -9,18 +9,20 @@ const mapStateToProps = (state: State) => ({
     notifications: state.get("notifications", []),
   }),
   mapDispatchToProps = (dispatch: Dispatch) => ({
-    handleDismiss: (notification) => {
+    handleDismiss: (notification : { key : number }) => {
       dispatch(deleteNotification(notification.key));
     },
   }),
 
   NotificationsContainer = connect(mapStateToProps, mapDispatchToProps)(Notifications),
 
-  Things = () => (<React.Fragment>
-    <div className="d-print-none">
-      <NotificationsContainer />
-    </div>
-    <ModalRoot />
-  </React.Fragment>);
+  Things = () => (
+    <>
+      <div className="d-print-none">
+        <NotificationsContainer />
+      </div>
+      <ModalRoot />
+    </>
+  );
 
 export default Things;

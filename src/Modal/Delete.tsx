@@ -6,54 +6,23 @@ type onConfirmMethodsTypes = {
   endPerforming: (cb: any) => void;
   closeModal: () => void;
 };
-type ConfirmPropTypes = {
-  readonly cancelButtonLabel: string | null | undefined;
-  readonly confirmButtonLabel: string | null | undefined;
-  readonly message: any;
-  readonly errMessage?: string;
-  readonly focusButton: boolean;
-  readonly title?: string;
-  readonly confirmButtonColor?: "primary" | "secondary" | "danger" | "success" | "link" | "info" | "warning";
-  readonly onConfirm: (methods: onConfirmMethodsTypes) => () => void;
-  readonly closeModal: () => void;
-  readonly showError: (message?: string) => void;
-  readonly request: () => Promise<any>;
-  readonly onSuccess: (response: any) => void;
-  readonly isResponseValid: (response: any) => {
-    valid: boolean;
-    error: string;
-  };
-};
+
+
 type ConfirmStateTypes = {
   isPerforming: boolean;
 };
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { connect } from "react-redux";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { words } from "../utility";
 
-const {
-  message: languageMessage,
-  label,
-} = words;
+const { message: languageMessage, label } = words;
 
 import * as x25Actions from "../actions";
 import * as actions from "./actions";
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  closeModal () {
-    dispatch(actions.hideModal());
-  },
-
-  showError (errMessage) {
-    dispatch(x25Actions.notifyError(errMessage));
-  },
-
-});
-
-class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
-  /* eslint-disable max-statements */
-  static defaultProps = {
+const
+  mapProps = () => ({
     errMessage         : languageMessage.failPerform,
     title              : label.confirmation,
     cancelButtonLabel  : label.cancel,
@@ -64,15 +33,44 @@ class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
       valid : response === "",
       error : response,
     }),
+  }),
+  mapDispatchToProps = (dispatch: Dispatch) => ({
+    closeModal () {
+      dispatch(actions.hideModal());
+    },
+
+    showError (errMessage : any) {
+      dispatch(x25Actions.notifyError(errMessage));
+    },
+  });
+
+  type ConfirmPropTypes = {
+    readonly errMessage?: string;
+    readonly title?: string;
+    readonly confirmButtonColor?:string;
+    readonly cancelButtonLabel: string | null | undefined;
+    readonly confirmButtonLabel: string | null | undefined;
+    readonly message: any;
+    readonly focusButton: boolean;
+    readonly onConfirm: (methods: onConfirmMethodsTypes) => () => void;
+    readonly closeModal: () => void;
+    readonly showError: (message?: string) => void;
+    readonly request: () => Promise<any>;
+    readonly onSuccess: (response: any) => void;
+    readonly isResponseValid: (response: any) => {
+      valid: boolean;
+      error: string;
+    };
   };
 
-  props: ConfirmPropTypes;
+class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
+
   state: ConfirmStateTypes;
   field: any;
-  endPerforming: () => void;
-  handleConfirmation: (startPerforming: any, endPerforming: any) => void;
+  endPerforming: (cb? : any) => void;
+  handleConfirmation: MouseEventHandler<HTMLButtonElement>;
   handleConfirmButton: (node: any) => void;
-  startPerforming: () => void;
+  startPerforming: (cb? : any) => void;
   focusConfirmButton: () => any;
 
   constructor (props: ConfirmPropTypes) {
@@ -105,13 +103,13 @@ class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
       }
     });
 
-    this.startPerforming = (cb: any) => {
+    this.startPerforming = (cb?: any) => {
       this.setState({
         isPerforming: true,
       }, cb);
     };
 
-    this.endPerforming = (cb: any) => this.setState({
+    this.endPerforming = (cb?: any) => this.setState({
       isPerforming: false,
     }, () => {
       /* eslint-disable callback-return */
@@ -152,7 +150,7 @@ class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
             showError(error);
           }
         }).
-          catch((exception) => {
+          catch((exception : any) => {
             endPerforming();
             showError(errMessage);
             // eslint-disable
@@ -167,13 +165,19 @@ class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
   }
 
   shouldComponentUpdate (nextProps: ConfirmPropTypes, nextState: ConfirmStateTypes) {
-    return this.props.cancelButtonLabel !== nextProps.cancelButtonLabel || this.props.confirmButtonLabel !== nextProps.confirmButtonLabel || this.props.focusButton !== nextProps.focusButton || this.props.title !== nextProps.title || this.props.confirmButtonColor !== nextProps.confirmButtonColor || this.state.isPerforming !== nextState.isPerforming;
+    return (
+      this.props.cancelButtonLabel !== nextProps.cancelButtonLabel ||
+      this.props.confirmButtonLabel !== nextProps.confirmButtonLabel ||
+      this.props.focusButton !== nextProps.focusButton ||
+      this.props.title !== nextProps.title ||
+      this.props.confirmButtonColor !== nextProps.confirmButtonColor ||
+      this.state.isPerforming !== nextState.isPerforming
+    );
   }
 
   render () {
-    const {
-        isPerforming,
-      } = this.state,
+    const
+      { isPerforming } = this.state,
       {
         cancelButtonLabel,
         confirmButtonLabel,
@@ -185,33 +189,42 @@ class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
 
       getConfirmButtonText = () => {
         if (isPerforming) {
-          return (<span>
-            <i className="fa fa-refresh fa-spin fa-fw" />
-            {" Așteaptă"}
-          </span>);
+          return (
+            <span>
+              <i className="fa fa-refresh fa-spin fa-fw" />
+              {` ${words.PleaseWait}`}
+            </span>
+          );
         }
 
         return confirmButtonLabel;
       };
 
-    return (<Modal autoFocus={!this.props.focusButton} isOpen toggle={closeModal} zIndex="1061">
-      <ModalHeader toggle={closeModal}>
-        {title}
-      </ModalHeader>
-      <ModalBody>
-        {message}
-      </ModalBody>
-      <ModalFooter>
-        <Button className="me-1" color="secondary" onClick={closeModal}>
-          {cancelButtonLabel}
-        </Button>
-        <button className={`btn ${confirmButtonColor ? `btn-${confirmButtonColor}` : ""}`} disabled={isPerforming} onClick={this.handleConfirmation} ref={this.handleConfirmButton} type="button">
-          {getConfirmButtonText()}
-        </button>
-      </ModalFooter>
-            </Modal>);
+    return (
+      <Modal autoFocus={!this.props.focusButton} isOpen toggle={closeModal} zIndex="1061">
+        <ModalHeader toggle={closeModal}>
+          {title}
+        </ModalHeader>
+        <ModalBody>
+          {message}
+        </ModalBody>
+        <ModalFooter>
+          <Button className="me-1" color="secondary" onClick={closeModal}>
+            {cancelButtonLabel}
+          </Button>
+          <button
+            className={`btn ${confirmButtonColor ? `btn-${confirmButtonColor}` : ""}`}
+            disabled={isPerforming}
+            onClick={this.handleConfirmation}
+            ref={this.handleConfirmButton}
+            type="button">
+            {getConfirmButtonText()}
+          </button>
+        </ModalFooter>
+      </Modal>
+    );
   }
 
 }
 
-export default connect(null, mapDispatchToProps)(Confirm);
+export default connect(null, mapDispatchToProps, mapProps)(Confirm);

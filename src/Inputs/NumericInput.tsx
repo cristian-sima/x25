@@ -26,6 +26,7 @@ import React from "react";
 import classnames from "classnames";
 import { formatZeroValue, normalizeFloat, handleBlur, cwrp } from "../utility";
 
+/* eslint-disable */
 export class NumericInput extends React.Component<NumericPropTypes, NumericStateTypes> {
   static defaultProps = {
     formatValue    : formatZeroValue,
@@ -113,9 +114,11 @@ export class NumericInput extends React.Component<NumericPropTypes, NumericState
       );
 
     if (typeof currency === "undefined" || currency === false) {
-      return (<div className="form-group-inline">
+      return (
+      <div className="form-group-inline">
         {inputComponent}
-      </div>);
+      </div>
+      );
     }
 
     return (

@@ -8,10 +8,10 @@ const initialState = Immutable.Map(),
       name,
       id,
     },
-  }) => state.set(name, id),
+  } : { payload : { name : string, id : string }}) => state.set(name, id),
   hideCaptcha = (state: any, {
     payload,
-  }) => state.delete(payload),
+  } : { payload : any }) => state.delete(payload),
 
   captchasReducer = (state: any = initialState, action: any) => {
     switch (action.type) {

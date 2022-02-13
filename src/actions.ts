@@ -1,7 +1,7 @@
 import type { Action } from "types";
 import Notifications from "react-notification-system-redux2";
 
-const createNotification = (level: string) => (title: any, options: any): Action => Notifications.show({
+const createNotification = (level: string) => (title: any, options?: any): Action => Notifications.show({
   title,
   position    : "tc",
   autoDismiss : 3,

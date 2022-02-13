@@ -3,7 +3,7 @@ import React from "react";
 type TypeInputPropTypes = {
   readonly change: (event: any) => void;
   readonly value: any;
-  readonly tabIndex?: string;
+  readonly tabIndex?: number;
   readonly delay?: number;
 };
 type TypeInputStateTypes = {
@@ -13,7 +13,6 @@ type TypeInputStateTypes = {
 const delay = 700;
 import { LoadingMessage } from "../Messages";
 export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeInputStateTypes> {
-  props: TypeInputPropTypes;
   state: TypeInputStateTypes;
   timeout: any;
   delayChange: (event: any) => void;
@@ -98,10 +97,17 @@ export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeIn
     const {
       tabIndex
     } = this.props;
-    return <div className="delay-input">
-        <input {...this.props} change="" onChange={this.delayChange} onKeyPress={this.handleKeyPressed} tabIndex={tabIndex} value={value} />
+    return (
+    <div className="delay-input">
+        <input {...this.props} 
+        onChange={this.delayChange} 
+        onKeyPress={this.handleKeyPressed} 
+        tabIndex={tabIndex} 
+        value={value}
+         />
         {isWaiting ? <LoadingMessage className="loading-spinner d-inline-block" sm /> : null}
-      </div>;
+      </div>
+    );
   }
 
 }

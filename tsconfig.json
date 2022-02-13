@@ -18,7 +18,11 @@
     "baseUrl": "./",
       "paths": {
         "react-loadable":["node_modules/@docusaurus/react-loadable"]
-      }
+      },
+      "types": [
+      "jest",
+      "jest-immutable-matchers"
+      ]
     // Ensure that Babel can safely transpile files in the TypeScript project
  
     /* Additional Checks */

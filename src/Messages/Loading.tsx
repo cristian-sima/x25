@@ -22,18 +22,22 @@ export const LoadingMessage = ({
     };
 
   if (isSmall) {
-    return (<div className={`text-center ${className || ""} mb-1`}>
-      <div className="font-weight-bold d-inline">
-        {getMessage()}
+    return (
+      <div className={`text-center ${className || ""} mb-1`}>
+        <div className="font-weight-bold d-inline">
+          {getMessage()}
+        </div>
+        <div className="loading-sm d-inline-block"><div /><div /><div /><div /></div>
       </div>
-      <div className="loading-sm d-inline-block"><div /><div /><div /><div /></div>
-    </div>);
+    );
   }
 
-  return (<div className={`text-center my-4 ${className || ""}`}>
-    <div className="spinner-border text-primary" role="status">
-      <span className="sr-only">{words.LoadingMessage}</span>
+  return (
+    <div className={`text-center my-4 ${className || ""}`}>
+      <div className="spinner-border text-primary" role="status">
+        <span className="sr-only">{words.LoadingData}</span>
+      </div>
+      <div className="text-fancy mt-1">{message}</div>
     </div>
-    <div className="text-fancy mt-1">{message}</div>
-  </div>);
+  );
 };

@@ -3,15 +3,12 @@ export * from "./specific";
 export * from "./validate";
 import { words } from "../words";
 
-const processErrors = ({
-  error,
-  isArray,
-  _error,
-  arrayErrors,
-}, {
-  field,
-  errors,
-}) => {
+type ProcessError = (
+  data1 : { error : any, isArray : any, _error : any, arrayErrors : any },
+  data2 : { field : any, errors : any }
+) => void
+
+const processErrors : ProcessError = ({ error, isArray, _error, arrayErrors }, { field, errors }) => {
   if (isArray) {
     if (arrayErrors) {
       errors[field] = arrayErrors;
@@ -29,6 +26,7 @@ export const extractErrorsFromCheckers = (checkers: any) => (values: any) => {
   const errors = {};
 
   for (const field in checkers) {
+    // @ts-expect-error It works
     if (Object.hasOwn(checkers, field)) {
       const checker = checkers[field],
         result = checker(values.get(field)),
@@ -58,7 +56,7 @@ export const performValidateRows = (items: any, checkers: any) => {
     };
   }
 
-  const arrayErrors = items.reduce((previous, item, key) => {
+  const arrayErrors = items.reduce((previous: any, item: any, key: string | number) => {
     previous[key] = extractErrorsFromCheckers(checkers)(item);
     return previous;
   }, []);

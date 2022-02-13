@@ -8,7 +8,7 @@ const initialState = Immutable.List(),
       modalType,
       modalProps,
     },
-  }) => state.push(Immutable.Map({
+  } : { payload : { modalType : any, modalProps : any }}) => state.push(Immutable.Map({
     type  : modalType,
     props : Immutable.Map(modalProps),
   })),

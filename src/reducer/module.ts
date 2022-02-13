@@ -4,7 +4,7 @@ const initialState = Immutable.Map(),
 
   initModule = (state: any, {
     payload,
-  }) => state.set(payload, true),
+  } : { payload : any }) => state.set(payload, true),
 
   reducer = (state: any = initialState, action: any) => {
     switch (action.type) {

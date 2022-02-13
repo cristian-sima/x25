@@ -16,7 +16,8 @@
     "check": "npm run depcheck & npm run check:npm-check",
     "check:npm-check": "npm-check -u -i babel-jest -i jest --specials=bin,eslint,babel,webpack",
     "depcheck": "depcheck --ignores=webpack-cli,@hot-loader/react-dom --ignore-patterns=server,node_modules,tmp,fonts",
-    "check:global": "npm-check -gu"
+    "check:global": "npm-check -gu",
+    "ts:check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -31,39 +32,42 @@
   "homepage": "https://github.com/cristian-sima/x25#readme",
   "babel": {
     "presets": [
-      "env",
-      "stage-0",
-      "react"
+      "@babel/env",
+      "@babel/preset-typescript",
+      "@babel/preset-react"
     ],
     "env": {
       "production": {
         "plugins": [
-          "transform-decorators-legacy",
-          "react-html-attrs",
-          "transform-class-properties",
-          "transform-react-constant-elements",
-          "transform-react-inline-elements",
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-export-default-from",
+          "@babel/plugin-transform-modules-commonjs",
+          "@babel/plugin-transform-react-constant-elements",
+          "@babel/plugin-transform-react-inline-elements",
+          "@babel/plugin-transform-typescript",
           "transform-react-remove-prop-types"
         ]
       },
-      "developmentTime": {
+      "development": {
         "plugins": [
-          "transform-decorators-legacy",
-          "react-hot-loader/babel",
-          "react-html-attrs",
-          "transform-class-properties"
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-export-default-from",
+          "@babel/plugin-transform-modules-commonjs"
         ]
       }
     }
-  },
+  }
+  ,
   "engines": {
     "node": ">= 16.0.0"
   },
   "jest": {
     "transform": {
-      "^.+\\.jsx?$": "babel-jest"
+      "^.+\\.tsx?$": "babel-jest"
     },
-    "testRegex": "src/.*-test.js$",
+    "testRegex": "src/.*-test.ts$",
     "modulePaths": [
       "src"
     ]
@@ -79,9 +83,11 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.0",
     "@types/superagent": "^4.1.15",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
+    "add-matchers": "^0.6.2",
     "babel-loader": "^8.2.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "copy": "^0.3.2",
@@ -91,6 +97,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-react": "^7.28.0",
     "jest-cli": "^27.5.1",
+    "jest-immutable-matchers": "^3.0.0",
     "npm-check": "^5.9.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
@@ -102,6 +109,7 @@
     "big.js": "^6.1.1",
     "classnames": "^2.3.1",
     "immutable": "^4.0.0-rc.12",
+    "jest": "^27.5.1",
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

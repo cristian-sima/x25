@@ -3,9 +3,11 @@ import { ErrorMessage } from "../Messages";
 import { getModal } from "./util";
 import SimpleModal from "./SimpleModal";
 
-const NothingSelected = () => (<SimpleModal title="Not registred">
-    <ErrorMessage message="Please define a modal component in Modal/components.jsx" />
-  </SimpleModal>),
+const NothingSelected = () => (
+    <SimpleModal title="Not registered">
+      <ErrorMessage message="Please define a modal component in Modal/components.jsx" />
+    </SimpleModal>
+  ),
 
   /* eslint-disable complexity */
   getComponent = (type: any): any => {

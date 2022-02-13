@@ -15,22 +15,7 @@ export const firstToUppercase = (str: string): string => {
 
   return `${firstPart}${secondPart}`;
 };
-export const normalizeDiacritics = (str: string): string => {
-  const chars = {
-    "ă" : "a",
-    "â" : "a",
-    "î" : "i",
-    "ț" : "t",
-    "ș" : "s",
-    "Ă" : "A",
-    "Â" : "A",
-    "Î" : "I",
-    "Ț" : "T",
-    "Ș" : "S",
-  };
 
-  return str.replace(/ă|â|î|ț|ș|Ă|Â|Î|Ț|Ș/gui, (matched) => chars[matched]);
-};
 // This is ---> THIS IS
 export const toUpper = (str: string): string => str.toUpperCase();
 // This is ---> this is
@@ -56,5 +41,4 @@ export const formatBankAccount = (raw: string): string => {
 
   return output;
 };
-export const normalizeCompanyName = (raw: string): string => toTitle(raw).replace(/\ssrl/gui, " S.R.L.").
-  replace(/\ss\.r\.l/gui, " S.R.L");
+

@@ -13,7 +13,6 @@ const mapStateToProps = (state: State) => ({
 });
 
 class ModalRoot extends React.Component<ModalRootPropTypes> {
-  props: ModalRootPropTypes;
 
   shouldComponentUpdate (nextProps: ModalRootPropTypes) {
     return this.props.list !== nextProps.list;
@@ -28,14 +27,16 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
       return null;
     }
 
-    return list.map((current, index) => {
+    return list.map((current : any, index : number) => {
       const modalType = current.get("type"),
         Component = getComponent(modalType);
 
       if (typeof Component === "undefined") {
-        return (<div>
-          {`No MODAL component for the type [${modalType}] in Modal/components.jsx`}
-                </div>);
+        return (
+          <div>
+            {`No MODAL component for the type [${modalType}] in Modal/components.jsx`}
+          </div>
+        );
       }
 
       return <Component key={index} {...current.get("props").toJS()} />;
