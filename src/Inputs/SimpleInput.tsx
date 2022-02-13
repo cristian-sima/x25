@@ -24,7 +24,16 @@ export const SimpleInput = ({
     error,
   },
   placeholder,
-}: SimpleInputPropTypes) => (<input
-  {...input} aria-label={label} autoComplete={input.name} className={classnames(`form-control ${customClass || ""}`, {
-    "is-invalid": touched && error,
-  })} disabled={submitting} id={input.name} placeholder={placeholder || label} tabIndex={tabIndex} type="text" />);
+}: SimpleInputPropTypes) => (
+  <input
+    {...input}
+    aria-label={label}
+    autoComplete={input.name}
+    className={classnames(`form-control ${customClass || ""}`, {
+      "is-invalid": touched && error,
+    })} disabled={submitting}
+    id={input.name}
+    placeholder={placeholder || label}
+    tabIndex={tabIndex}
+    type="text" />
+);

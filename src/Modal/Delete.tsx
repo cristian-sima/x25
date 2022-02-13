@@ -1,5 +1,5 @@
 /* eslint-disable handle-callback-err, react/forbid-component-props, no-console */
-import type { Dispatch } from "@types";
+import type { Dispatch } from "types";
 
 type onConfirmMethodsTypes = {
   startPerforming: () => void;
@@ -188,7 +188,7 @@ class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
           return (<span>
             <i className="fa fa-refresh fa-spin fa-fw" />
             {" Așteaptă"}
-                  </span>);
+          </span>);
         }
 
         return confirmButtonLabel;
@@ -209,7 +209,7 @@ class Confirm extends React.Component<ConfirmPropTypes, ConfirmStateTypes> {
           {getConfirmButtonText()}
         </button>
       </ModalFooter>
-    </Modal>);
+            </Modal>);
   }
 
 }

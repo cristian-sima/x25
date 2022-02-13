@@ -1,4 +1,4 @@
-import type { Action, State } from "custom";
+import type { Action, State } from "types";
 import { createSelector } from "reselect";
 import * as Immutable from "immutable";
 import { isAdministratorAccount, noError } from "../utility";

@@ -42,19 +42,35 @@ export const InputTemplate = ({
     classForInput = `form-control ${warningClass}${customClass}`,
     classForDiv = `form-group row mt-md-2 ${divClass ? divClass : ""}`;
 
-  return (<div className={classnames(classForDiv, {
-    "is-invalid": touched && error,
-  })}>
-    <label className={`${left ? left : "col-md-4 text-md-right"} form-control-label`} htmlFor={input.name}>
-      {label}
-    </label>
-    <div className={right ? right : "col-md-8"}>
-      <input {...input} aria-label={label} autoComplete={input.name} autoFocus={autoFocus} className={classForInput} disabled={submitting} id={input.name} placeholder={placeholder} ref={onRegisterRef ? onRegisterRef : null} tabIndex={tabIndex} type={type} />
-      <div className="invalid-feedback">
-        {touched && error && (<span>
-          {error}
-                              </span>)}
+  return (
+    <div className={classnames(classForDiv, {
+      "is-invalid": touched && error,
+    })}>
+      <label
+        className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
+        htmlFor={input.name}>
+        {label}
+      </label>
+      <div className={right ? right : "col-md-8"}>
+        <input
+          {...input}
+          aria-label={label}
+          autoComplete={input.name}
+          autoFocus={autoFocus}
+          className={classForInput}
+          disabled={submitting}
+          id={input.name} placeholder={placeholder}
+          ref={onRegisterRef ? onRegisterRef : null}
+          tabIndex={tabIndex}
+          type={type} />
+        <div className="invalid-feedback">
+          {touched && error && (
+            <span>
+              {error}
+            </span>
+          )}
+        </div>
       </div>
     </div>
-  </div>);
+  );
 };

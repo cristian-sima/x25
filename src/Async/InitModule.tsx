@@ -1,10 +1,12 @@
 
 
+import type { Dispatch, State } from "types";
+
+import { injectReducer } from "redux-injector";
+import { connect } from "react-redux";
 import * as React from "react";
 import { injectModals } from "../Modal/util";
-import { injectReducer } from "redux-injector";
 import { delay, words } from "../utility";
-import type { Dispatch, State } from "@types";
 
 type Props = {
   readonly ready: boolean;
@@ -26,12 +28,12 @@ const injectPaginator = ({
   injectReducer(`paginations.${key}`, pagesReducer);
 };
 
-import { connect } from "react-redux";
 import { LoadingMessage } from "../Messages/Loading";
 import { getIsModuleReady, moduleIsReadyAction } from "../reducer/module";
 import type { RouteType, PaginatorType } from "./types";
 
-const mapStateToProps = (state: State, {
+const
+  mapStateToProps = (state: State, {
     route: {
       default: {
         module,
@@ -118,9 +120,11 @@ class InitModule extends React.Component<Props> {
       return <Component {...props} />;
     }
 
-    return (<div className="mt-3">
-      <LoadingMessage message={words.PleaseWait} />
-    </div>);
+    return (
+      <div className="mt-3">
+        <LoadingMessage message={words.PleaseWait} />
+      </div>
+    );
   }
 
 }

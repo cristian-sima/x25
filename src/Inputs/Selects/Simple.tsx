@@ -39,25 +39,36 @@ const SimpleCustomSelect = ({
 }: SelectMonthPropTypes) => {
   const customID = `custom-select-${input.name}${id || ""}`;
 
-  return (<select
-    {...input} autoFocus={autoFocus} className={classnames(`custom-select ${inputClass || ""}`, {
-      "is-invalid": touched && error,
-    })} disabled={submitting} id={customID} tabIndex={tabIndex}>
-    {showEmptyOption ? <option value="">{words.Select}</option> : null}
-    {isImmutable ? data.map((current) => {
-      const value = current.get(valueKey),
-        name = current.get(nameKey);
+  return (
+    <select
+      {...input}
+      autoFocus={autoFocus}
+      className={classnames(`custom-select ${inputClass || ""}`, {
+        "is-invalid": touched && error,
+      })}
+      disabled={submitting}
+      id={customID}
+      tabIndex={tabIndex}>
+      {showEmptyOption ? <option value="">{words.Select}</option> : null}
+      {isImmutable ? data.map((current : any) => {
+        const value = current.get(valueKey),
+          name = current.get(nameKey);
 
-      return (<option key={value} value={value}>
-        {name}
-              </option>);
-    }) : data.map(({
-      [valueKey]: value,
-      [nameKey]: name,
-    }) => (<option key={value} value={value}>
-      {name}
-           </option>))}
-  </select>);
+        return (
+          <option key={value} value={value}>
+            {name}
+          </option>
+        );
+      }) : data.map(({
+        [valueKey]: value,
+        [nameKey]: name,
+      } : any) => (
+        <option key={value} value={value}>
+          {name}
+        </option>
+      ))}
+    </select>
+  );
 };
 
 export default SimpleCustomSelect;

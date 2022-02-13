@@ -17,16 +17,23 @@ const BankNameField = ({
     submitting,
     touched,
   },
-}: BankNamePropTypes) => (<div className={classnames("input-group", {
-  "is-invalid": touched && error,
-})}>
-  <div className="input-group-prepend">
-    <span className="input-group-text">{words.BankName}</span>
+}: BankNamePropTypes) => (
+  <div className={classnames("input-group", {
+    "is-invalid": touched && error,
+  })}>
+    <div className="input-group-prepend">
+      <span className="input-group-text">{words.BankName}</span>
+    </div>
+    <input
+      {...input} aria-label={words.BankName} className={classnames("form-control", {
+        "is-invalid": touched && error,
+      })}
+      disabled={submitting}
+      id={input.name}
+      name={input.name}
+      placeholder={words.BankName} type="text"
+    />
   </div>
-  <input
-    {...input} aria-label={words.BankName} className={classnames("form-control", {
-      "is-invalid": touched && error,
-    })} disabled={submitting} id={input.name} name={input.name} placeholder="ex. Banca Transilvania" type="text" />
-</div>);
+);
 
 export default BankNameField;

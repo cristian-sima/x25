@@ -1,4 +1,4 @@
-import type { ErrorType, InfoType } from "./types";
+
 
 type ErrorBoundaryProps = {
   readonly error?: ErrorType;
@@ -12,8 +12,9 @@ type ErrorBoundaryState = {
   info: InfoType | null | undefined;
 };
 import React from "react";
-import TheError from "./TheError";
 import { words } from "../utility";
+import type { ErrorType, InfoType } from "./types";
+import TheError from "./TheError";
 
 const refreshKeyCode = 82,
   timeoutDelay = 200;
@@ -73,7 +74,15 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
     // render fallback UI
     if (error) {
-      return <TheError error={error} handleKey={this.handleKey} info={info} refresh={this.refresh} status={status} />;
+      return (
+        <TheError
+          error={error}
+          handleKey={this.handleKey}
+          info={info}
+          refresh={this.refresh}
+          status={status}
+        />
+      );
     }
 
     // when there's not an error, render children untouched

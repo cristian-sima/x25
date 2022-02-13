@@ -31,19 +31,25 @@ export const TextareaTemplate = (props: InputTemplatePropTypes) => {
     },
   } = props;
 
-  return (<div className={classnames("form-group row", {
-    "is-invalid": touched && error,
-  })}>
-    <label className={`${left ? left : "col-md-4"} text-md-right form-control-label`} htmlFor={input.name}>
-      {label}
-    </label>
-    <div className={right ? right : "col-md-8"}>
-      <SimpleTextarea {...props} />
-      <div className="invalid-feedback">
-        {touched && error && (<span>
-          {error}
-                              </span>)}
+  return (
+    <div className={classnames("form-group row", {
+      "is-invalid": touched && error,
+    })}>
+      <label
+        className={`${left ? left : "col-md-4"} text-md-right form-control-label`}
+        htmlFor={input.name}>
+        {label}
+      </label>
+      <div className={right ? right : "col-md-8"}>
+        <SimpleTextarea {...props} />
+        <div className="invalid-feedback">
+          {touched && error && (
+            <span>
+              {error}
+            </span>
+          )}
+        </div>
       </div>
     </div>
-  </div>);
+  );
 };

@@ -1,4 +1,4 @@
-import type { Dispatch } from "@types";
+import type { Dispatch } from "types";
 
 type SimpleModalPropTypes = {
   readonly size?: string;
@@ -40,6 +40,6 @@ const mapDispatchToProps = (dispatch: Dispatch, {
     <ModalBody>
       {children}
     </ModalBody>
-                               </Modal>);
+  </Modal>);
 
 export default connect(null, mapDispatchToProps)(SimpleModal);

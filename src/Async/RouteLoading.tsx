@@ -4,23 +4,31 @@ type LoadingPropTypes = {
   readonly pastDelay: boolean;
   readonly retry: () => void;
 };
-type FireErrorPropTypes = {
-  error: any;
-};
 import React from "react";
 import { LoadingMessage } from "../Messages/Loading";
 import { words } from "../utility";
-import SimulatedException from "./SimulatedException";
 import { ErrorBoundary } from "./index";
 
-const IgnoreThisNode = ({
-    error: {
-      message,
-      stack,
-    },
-  }: FireErrorPropTypes) => {
-    throw new SimulatedException(message, stack);
-  },
+const
+
+  // type FireErrorPropTypes = {
+  //   error: any;
+  // };
+  // import SimulatedException from "./SimulatedException";
+  // IgnoreThisNode = ({
+  //     error: {
+  //       message,
+  //       stack,
+  //     },
+  //   }: FireErrorPropTypes) => {
+  //     throw new SimulatedException(message, stack);
+  //   },
+
+
+  // <ErrorBoundary>
+  // <IgnoreThisNode error={error} />
+  // </ErrorBoundary>
+
 
   RouteLoading = ({
     error,
@@ -28,21 +36,26 @@ const IgnoreThisNode = ({
     timedOut,
   }: LoadingPropTypes) => {
     if (error) {
-      return (<ErrorBoundary>
-        <IgnoreThisNode error={error} />
-              </ErrorBoundary>);
+      return (
+        <ErrorBoundary />
+      );
     }
 
     if (timedOut) {
-      return (<div>{words.ItLoadsSlower}
-        <button className="btn btn-primary btn-block" onClick={retry} type="button">{words.TryAgain}
-        </button>
-              </div>);
+      return (
+        <div>{words.ItLoadsSlower}
+          <button className="btn btn-primary btn-block" onClick={retry} type="button">
+            {words.TryAgain}
+          </button>
+        </div>
+      );
     }
 
-    return (<div className="mt-3">
-      <LoadingMessage message={words.PleaseWait} />
-            </div>);
+    return (
+      <div className="mt-3">
+        <LoadingMessage message={words.PleaseWait} />
+      </div
+      >);
   };
 
 export default RouteLoading;

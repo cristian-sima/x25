@@ -1,4 +1,4 @@
-import type { State } from "@types";
+import type { State } from "types";
 
 type ModalRootPropTypes = {
   readonly list: any;
@@ -35,7 +35,7 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
       if (typeof Component === "undefined") {
         return (<div>
           {`No MODAL component for the type [${modalType}] in Modal/components.jsx`}
-        </div>);
+                </div>);
       }
 
       return <Component key={index} {...current.get("props").toJS()} />;

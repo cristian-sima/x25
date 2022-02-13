@@ -1,5 +1,5 @@
 import React from "react";
-import type { Dispatch, State } from "@types";
+import type { Dispatch, State } from "types";
 import { connect } from "react-redux";
 import Notifications from "react-notification-system-redux2";
 import ModalRoot from "./Modal/Root";
@@ -21,6 +21,6 @@ const mapStateToProps = (state: State) => ({
       <NotificationsContainer />
     </div>
     <ModalRoot />
-                  </React.Fragment>);
+  </React.Fragment>);
 
 export default Things;

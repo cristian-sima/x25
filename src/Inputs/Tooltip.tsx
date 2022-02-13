@@ -2,7 +2,7 @@ type TooltipPropTypes = {
   readonly long: any;
   readonly short: any;
   readonly target: string;
-  readonly placement?: string;
+  readonly placement: any;
 };
 type TooltipStateTypes = {
   tooltipOpen: boolean;
@@ -11,7 +11,6 @@ import React from "react";
 import { Tooltip as ReactstrapTooltip } from "reactstrap";
 
 export class Tooltip extends React.Component<TooltipPropTypes, TooltipStateTypes> {
-  props: TooltipPropTypes;
   state: TooltipStateTypes;
   toggle: () => void;
 
@@ -27,7 +26,13 @@ export class Tooltip extends React.Component<TooltipPropTypes, TooltipStateTypes
   }
 
   shouldComponentUpdate (nextProps: TooltipPropTypes, nextState: TooltipStateTypes) {
-    return this.props.long !== nextProps.long || this.props.short !== nextProps.short || this.props.placement !== nextProps.placement || this.props.target !== nextProps.target || this.state.tooltipOpen !== nextState.tooltipOpen;
+    return (
+      this.props.long !== nextProps.long ||
+      this.props.short !== nextProps.short ||
+      this.props.placement !== nextProps.placement ||
+      this.props.target !== nextProps.target ||
+       this.state.tooltipOpen !== nextState.tooltipOpen
+    );
   }
 
   render () {
@@ -37,12 +42,18 @@ export class Tooltip extends React.Component<TooltipPropTypes, TooltipStateTypes
       placement,
     } = this.props;
 
-    return (<span>
-      <span id={`${target}-tooltip`}>{short}</span>
-      <ReactstrapTooltip isOpen={this.state.tooltipOpen} placement={placement} target={`${target}-tooltip`} toggle={this.toggle}>
-        {this.props.long}
-      </ReactstrapTooltip>
-    </span>);
+    return (
+      <span>
+        <span id={`${target}-tooltip`}>{short}</span>
+        <ReactstrapTooltip
+          isOpen={this.state.tooltipOpen}
+          placement={placement}
+          target={`${target}-tooltip`}
+          toggle={this.toggle}>
+          {this.props.long}
+        </ReactstrapTooltip>
+      </span>
+    );
   }
 
 }

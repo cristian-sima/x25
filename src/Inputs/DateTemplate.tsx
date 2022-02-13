@@ -1,4 +1,3 @@
-/* eslint-disable */
 type DateTemplatePropTypes = {
   readonly customClass?: any;
   readonly input: any;
@@ -25,42 +24,43 @@ type DateTemplateStateTypes = {
 };
 import React from "react";
 import classnames from "classnames";
-import { formatDate, isValidDate, normalizeDate } from "../utility";
-import { words } from "../utility";
+import { formatDate, isValidDate, normalizeDate, words } from "../utility";
+
 
 const normalizeRawDate = (raw: string): string => {
   /* eslint-disable no-magic-numbers */
-  if (isValidDate(raw)) {
-    return normalizeDate(raw);
-  }
+    if (isValidDate(raw)) {
+      return normalizeDate(raw);
+    }
 
-  return raw;
-};
+    return raw;
+  },
 
-const formatRawDate = (raw: string): string => {
+  formatRawDate = (raw: string): string => {
   /* eslint-disable no-magic-numbers */
-  if (typeof raw !== "undefined") {
-    return formatDate(raw);
-  }
+    if (typeof raw !== "undefined") {
+      return formatDate(raw);
+    }
 
-  return "";
-};
+    return "";
+  };
 
+/* eslint-disable */
 export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTemplateStateTypes> {
   static defaultProps = {
-    formatValue: formatRawDate,
-    normalizeValue: normalizeRawDate
+    formatValue    : formatRawDate,
+    normalizeValue : normalizeRawDate,
   };
-  props: DateTemplatePropTypes;
+
   state: DateTemplateStateTypes;
   handleBlur: () => void;
   handleKeyDown: (event: any) => void;
-  handleChange: () => void;
+  handleChange: ({ target: { value } }: any) => void;
 
-  constructor(props: DateTemplatePropTypes) {
-    super();
+  constructor (props: DateTemplatePropTypes) {
+    super(props);
     this.state = {
-      value: formatRawDate(props.input.value)
+      value: formatRawDate(props.input.value),
     };
 
     this.handleKeyDown = (event: any) => {
@@ -71,17 +71,18 @@ export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTem
 
     this.handleBlur = () => {
       const {
-        onBlur
-      } = this.props.input;
-      const {
-        input,
-        normalizeValue
-      } = this.props;
-      const {
-        value: currentValue
-      } = this.state;
-      const normalizedValue = normalizeValue(currentValue),
-            shouldRenderAgain = normalizedValue !== "" && currentValue !== normalizedValue;
+          onBlur,
+        } = this.props.input,
+        {
+          input,
+          normalizeValue,
+        } = this.props,
+        {
+          value: currentValue,
+        } = this.state,
+        normalizedValue = normalizeValue(currentValue),
+        shouldRenderAgain = normalizedValue !== "" && currentValue !== normalizedValue;
+
       input.onChange(normalizedValue);
 
       /*
@@ -92,15 +93,15 @@ export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTem
 
       if (shouldRenderAgain) {
         this.setState({
-          value: formatDate(normalizedValue)
+          value: formatDate(normalizedValue),
         });
       }
     };
 
     this.handleChange = ({
       target: {
-        value
-      }
+        value,
+      },
     }: any) => {
       this.props.input.onChange();
 
@@ -109,36 +110,36 @@ export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTem
        * using the formatted value
        */
       this.setState({
-        value
+        value,
       });
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: DateTemplatePropTypes) {
+  UNSAFE_componentWillReceiveProps (nextProps: DateTemplatePropTypes) {
     const {
-      input: {
-        value: newValue
-      }
-    } = nextProps;
-    const {
-      value: currentValue
-    } = this.state;
-    const shouldRenderAgain = isValidDate(newValue) && currentValue !== newValue;
+        input: {
+          value: newValue,
+        },
+      } = nextProps,
+      {
+        value: currentValue,
+      } = this.state,
+      shouldRenderAgain = isValidDate(newValue) && currentValue !== newValue;
 
     if (newValue === "") {
       this.setState({
-        value: ""
+        value: "",
       });
     }
 
     if (shouldRenderAgain) {
       this.setState({
-        value: formatDate(newValue)
+        value: formatDate(newValue),
       });
     }
   }
 
-  render() {
+  render () {
     const {
       customClass,
       input,
@@ -147,31 +148,52 @@ export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTem
       meta: {
         submitting,
         touched,
-        error
+        error,
       },
       left,
       right,
       tabIndex,
       formatValue,
-      placeholder
+      placeholder,
     } = this.props;
-    return <div className={classnames("form-group row", {
-      "is-invalid": touched && error
-    })}>
-        <label className={`${left ? left : "col-md-4 text-md-right"} form-control-label`} htmlFor={input.name}>
+
+    return (
+      <div
+        className={classnames("form-group row", {
+          "is-invalid": touched && error,
+        })}>
+        <label
+          className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
+          htmlFor={input.name}>
           {label}
         </label>
         <div className={right ? right : "col-md-8"}>
-          <input {...input} aria-label={label} className={classnames(`form-control ${customClass || ""}`, {
-          "is-invalid": touched && error
-        })} disabled={submitting} id={input.name} onBlur={this.handleBlur} onChange={this.handleChange} onKeyDown={this.handleKeyDown} placeholder={placeholder || words.DateFormat} ref={onRegisterRef} tabIndex={tabIndex} type="text" value={formatValue(this.state.value)} />
-          <div className="invalid-feedback">
-            {touched && error && <span>
-                  {error}
-                </span>}
+          <input
+            {...input}
+            aria-label={label}
+            className={classnames(`form-control ${customClass || ""}`, {
+              "is-invalid": touched && error,
+            })}
+            disabled={submitting}
+            id={input.name}
+            onBlur={this.handleBlur}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            placeholder={placeholder || words.DateFormat}
+            ref={onRegisterRef}
+            tabIndex={tabIndex}
+            type="text"
+            value={formatValue(this.state.value)}
+          />
+          <div
+            className="invalid-feedback">
+            {touched && error && (<span>
+              {error}
+            </span>)}
           </div>
         </div>
-      </div>;
+      </div>
+    );
   }
 
 }

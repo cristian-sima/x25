@@ -1,4 +1,4 @@
-import type { Action } from "@types";
+import type { Action } from "types";
 import { fetchInitialInformation as fetchInitialInformationRequest } from "./request";
 
 export const fetchInitialInformation = (appName: string): Action => ({

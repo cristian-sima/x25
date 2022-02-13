@@ -1,10 +1,10 @@
 /* eslint-disable new-cap, react/prefer-stateless-function, react/require-optimization */
-type LoaderType = (path: string) => void;
-import Loadable from "@docusaurus/react-loadable";
+import Loadable from "react-loadable";
 import * as React from "react";
 import { words } from "../utility";
 import RouteLoading from "./RouteLoading";
 import InitModule from "./InitModule";
+
 // type injectPaginatorTypes = {
 //   key: string,
 //   itemsReducer: any;
@@ -50,12 +50,13 @@ export let ErrorBoundary = () => <div>{words.NoErrorPassed}</div>;
 //
 //   return <Component {...props} />;
 // };
-export const setErrorBoundary = (theError: React.ReactNode) => {
-  ErrorBoundary = theError;
-};
-export const createAsyncRoute = (loader: LoaderType) => Loadable({
-  loader,
-  loading : RouteLoading,
-  render  : InitModule,
-  timeout,
-});
+export const
+  setErrorBoundary = (theError: any) => {
+    ErrorBoundary = theError;
+  },
+  createAsyncRoute = (loader : any) => Loadable({
+    loader,
+    loading : RouteLoading,
+    render  : InitModule,
+    timeout,
+  });

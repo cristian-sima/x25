@@ -36,5 +36,19 @@ export const SimpleTextarea = ({
     customClass = `${inputClass ? ` ${inputClass}` : ""}`,
     classForInput = `form-control ${warningClass}${customClass}`;
 
-  return <textarea {...input} aria-label={label} autoFocus={autoFocus} className={classForInput} disabled={submitting} id={input.name} placeholder={placeholder} ref={onRegisterRef ? onRegisterRef : null} rows={rows} tabIndex={tabIndex} type={type} />;
+  return (
+    <textarea
+      {...input}
+      aria-label={label}
+      autoFocus={autoFocus}
+      className={classForInput}
+      disabled={submitting}
+      id={input.name}
+      placeholder={placeholder}
+      ref={onRegisterRef ? onRegisterRef : null}
+      rows={rows}
+      tabIndex={tabIndex}
+      type={type}
+    />
+  );
 };

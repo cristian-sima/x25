@@ -8,7 +8,7 @@ var config = {
         test    : /\.(j|t)s(x)?$/u,
         exclude : /node_modules/u,
         use     : {
-          loader: "babel-loader",
+          loader: "ts-loader",
         },
       },
 
@@ -28,9 +28,11 @@ var config = {
     ],
   },
   resolve: {
+    alias: {
+      "react-loadable":"@docusaurus/react-loadable",
+    },
     extensions: [".js", ".json", ".ts", ".tsx"],
     modules: [
-      "src",
       "node_modules",
     ],
   },

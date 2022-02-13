@@ -23,7 +23,8 @@ const initialState = Immutable.Map(),
     payload,
   });
 
-export { // selectors
-  getIsModuleReady // actions
-  , moduleIsReadyAction };
+export {
+  getIsModuleReady,
+  moduleIsReadyAction,
+};
 export default reducer;

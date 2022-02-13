@@ -35,19 +35,25 @@ const CustomSelect = (props: SelectMonthPropTypes) => {
     } = props,
     customID = `custom-select-${input.name}${id || ""}`;
 
-  return (<div className="form-group row">
-    <label className={`${left ? left : "col-md-4 text-md-right"} form-control-label`} htmlFor={customID}>
-      {label}
-    </label>
-    <div className={right ? right : "col-md-8"}>
-      <Simple {...props} />
-      <div className="invalid-feedback">
-        {touched && error && (<span>
-          {error}
-                              </span>)}
+  return (
+    <div className="form-group row">
+      <label
+        className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
+        htmlFor={customID}>
+        {label}
+      </label>
+      <div className={right ? right : "col-md-8"}>
+        <Simple {...props} />
+        <div className="invalid-feedback">
+          {touched && error && (
+            <span>
+              {error}
+            </span>
+          )}
+        </div>
       </div>
     </div>
-  </div>);
+  );
 };
 
 export default CustomSelect;

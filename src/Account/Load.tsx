@@ -1,4 +1,4 @@
-import type { Dispatch, State } from "custom";
+import type { Dispatch, State } from "types";
 
 type PropTypes = {
   readonly appName: string;
@@ -25,7 +25,7 @@ const mapStateToProps = (state: State) => ({
   }),
   mapDispatchToProps = (dispatch: Dispatch, {
     appName,
-  }) => ({
+  } : { appName : string }) => ({
     fetchInitialInformation () {
       setTimeout(() => {
         dispatch(fetchInitialInformationAction(appName));

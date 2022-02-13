@@ -21,11 +21,11 @@ import { Tooltip } from "reactstrap";
 import classnames from "classnames";
 import { words } from "../utility";
 
-class InfoIcon extends React.Component<{}, InfoIconStateTypes> {
+class InfoIcon extends React.Component<any, InfoIconStateTypes> {
   state: InfoIconStateTypes;
   toggle: () => void;
 
-  constructor (props) {
+  constructor (props : any) {
     super(props);
     this.state = {
       showTooltip: false,
@@ -39,12 +39,18 @@ class InfoIcon extends React.Component<{}, InfoIconStateTypes> {
   }
 
   render () {
-    return (<div className="d-inline float-right">
-      <i className="fa fa-info-circle fa-2x text-info pull-right" id="TooltipExample" />
-      <Tooltip isOpen={this.state.showTooltip} placement="right" target="TooltipExample" toggle={this.toggle}>
-        {words.CaptchaDescription}
-      </Tooltip>
-    </div>);
+    return (
+      <div className="d-inline float-right">
+        <i className="fa fa-info-circle fa-2x text-info pull-right" id="TooltipExample" />
+        <Tooltip
+          isOpen={this.state.showTooltip}
+          placement="right"
+          target="TooltipExample"
+          toggle={this.toggle}>
+          {words.CaptchaDescription}
+        </Tooltip>
+      </div>
+    );
   }
 
 }
@@ -70,29 +76,40 @@ export const CaptchaBox = (props: CaptchaPropTypes) => {
     return null;
   }
 
-  return (<div className="form-group row">
-    <label className={`${left ? left : "col-md-4 text-md-right"} form-control-label`} htmlFor={input.name}>
-      {`${words.CaptchaVerify} `}
-      <InfoIcon />
-    </label>
-    <div className={right ? right : "col-md-8"}>
-      <div className="custom-class">
-        <span className="custom-control-description text-muted">
-          {words.CaptchaTypeNumbers}
-        </span>
-        <div className="text-center my-1">
-          <img alt="CaptchaBox" src={`/captcha/${id}.png`} />
+  return (
+    <div className="form-group row">
+      <label
+        className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
+        htmlFor={input.name}>
+        {`${words.CaptchaVerify} `}
+        <InfoIcon />
+      </label>
+      <div className={right ? right : "col-md-8"}>
+        <div className="custom-class">
+          <span className="custom-control-description text-muted">
+            {words.CaptchaTypeNumbers}
+          </span>
+          <div className="text-center my-1">
+            <img alt="CaptchaBox" src={`/captcha/${id}.png`} />
+          </div>
+        </div>
+        <input
+          {...input} aria-label={label} autoFocus={autoFocus} className={classnames("form-control", {
+            "is-invalid": touched && error,
+          })}
+          disabled={submitting}
+          id={input.name}
+          placeholder={words.CaptchaTypeNumbers}
+          tabIndex={tabIndex}
+          type={type} />
+        <div className="invalid-feedback">
+          {touched && error ? (
+            <span>
+              {error}
+            </span>
+          ) : null}
         </div>
       </div>
-      <input
-        {...input} aria-label={label} autoFocus={autoFocus} className={classnames("form-control", {
-          "is-invalid": touched && error,
-        })} disabled={submitting} id={input.name} placeholder={words.CaptchaTypeNumbers} tabIndex={tabIndex} type={type} />
-      <div className="invalid-feedback">
-        {touched && error ? (<span>
-          {error}
-                             </span>) : null}
-      </div>
     </div>
-  </div>);
+  );
 };
