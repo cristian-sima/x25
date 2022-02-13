@@ -1,4 +1,4 @@
-import type { State, Dispatch } from "src/types";
+import type { State, Dispatch } from "@types";
 import { connect } from "react-redux";
 import { selectors } from "../Account/reducer";
 import { isAdministratorAccount } from "../utility";

@@ -1,0 +1,29 @@
+{
+  "presets": [
+    "@babel/env",
+    "@babel/preset-typescript",
+    "@babel/preset-react"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-export-default-from",
+        "@babel/plugin-transform-modules-commonjs",
+        "@babel/plugin-transform-react-constant-elements",
+        "@babel/plugin-transform-react-inline-elements",
+        "@babel/plugin-transform-typescript",
+        "transform-react-remove-prop-types"
+      ]
+    },
+    "development": {
+      "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-export-default-from",
+        "@babel/plugin-transform-modules-commonjs"
+      ]
+    }
+  }
+}

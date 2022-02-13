@@ -1,5 +1,5 @@
 /* eslint-disable react/require-optimization */
-import type { Dispatch, State } from "src/types";
+import type { Dispatch, State } from "@types";
 
 type PropTypes = {
   readonly isAdministrator: boolean;

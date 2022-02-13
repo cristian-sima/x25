@@ -7,7 +7,7 @@
 .*/node_modules/react-select/.*
 [include]
 [libs]
-src/types
+types
 [options]
 emoji=true
 esproposal.class_static_fields=enable

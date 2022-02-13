@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 import * as Immutable from "immutable";
-import type { Action, State } from "src/types";
+import type { Action, State } from "@types";
 import { createSelector } from "reselect";
 import { noError } from "../utility";
 import { getIDFromURL } from "./util";

@@ -1,5 +1,5 @@
 /* eslint-disable no-magic-numbers, max-classes-per-file */
-import type { Dispatch, State } from "src/types";
+import type { Dispatch, State } from "@types";
 
 type FormPropTypes = {
   readonly error?: string;

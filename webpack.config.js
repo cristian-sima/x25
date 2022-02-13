@@ -1,52 +1,35 @@
-'use strict'
-
 var webpack = require('webpack')
 var env = process.env.NODE_ENV
 
 var config = {
   module: {
-    loaders: [
+    rules: [
       {
-        test    : /\.jsx?$/u,
-        use     : ["babel-loader"],
-        exclude: /node_modules/
+        test    : /\.(j|t)s(x)?$/u,
+        exclude : /node_modules/u,
+        use     : {
+          loader: "babel-loader",
+        },
       },
+
       {
         test : /\.scss$/u,
-        use  : [
-          "style-loader",
-          "css-loader",
-          "sass-loader",
-        ],
+        use  : ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test : /\.css$/u,
-        use  : [
-          "style-loader",
-          "css-loader",
-        ],
+        use  : ["style-loader", "css-loader"],
       },
       {
-        test : /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/u,
-        use  : "url-loader?limit=10000&minetype=application/font-woff",
+
+        test : /\.(jpe?g|svg|png|gif|ico|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/ui,
+        type : "asset/resource",
       },
-      {
-        test : /\.jpe?g$|\.gif$|\.png$/u,
-        use  : "url-loader",
-      },
-      {
-        test : /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/u,
-        use  : "file-loader",
-      }
-    ]
+    ],
   },
   resolve: {
-    extensions: [
-      ".js",
-      ".jsx",
-    ],
+    extensions: [".js", ".json", ".ts", ".tsx"],
     modules: [
-      "client",
       "node_modules",
     ],
   },
@@ -60,12 +43,7 @@ var config = {
         "NODE_ENV": JSON.stringify("development"),
       },
     }),
-    new webpack.DefinePlugin({
-      "process.env": {
-        "BABEL_ENV": JSON.stringify("developmentTime"),
-      },
-    })
-  ]
+  ],
 }
 
 if (env === 'production') {
@@ -79,10 +57,6 @@ if (env === 'production') {
       "process.env": {
         "BABEL_ENV": JSON.stringify("production"),
       },
-    }),
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ro/),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: false,
     }),
   )
 }

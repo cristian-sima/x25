@@ -1,5 +1,5 @@
 import * as Immutable from "immutable";
-import type { State } from "src/types";
+import type { State } from "@types";
 
 const initialState = Immutable.Map(),
 

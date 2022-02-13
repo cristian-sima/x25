@@ -1,11 +1,10 @@
-import type { State } from "src/types";
+import type { State } from "@types";
 import React, { Component } from "react";
 import Select from "react-select";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectors } from "../Account/reducer";
 import { words } from "../utility";
-import { getDefaultCompanyRoute, noOptionsMessage, Option, wrapperClassname, isSmall } from "./util";
+import { getDefaultCompanyRoute, noOptionsMessage, Option, wrapperClassname as wrapperClassnames, isSmall } from "./util";
 
 const mapStateToProps = (state: State) => ({
   companies: selectors.getCurrentAccountCompanies(state),
@@ -63,12 +62,19 @@ class ClientSelectCompany extends Component<ClientSelectCompanyPropTypes, Client
       }, []);
 
     if (companies.size > 1) {
-      return (<div className={wrapperClassname}>
-        <Select
-          components={{
-            Option,
-          }} noOptionsMessage={noOptionsMessage} onChange={this.handleChange} options={options} placeholder={words.SelectCompany} />
-      </div>);
+      return (
+        <div className={wrapperClassnames}>
+          <Select
+            components={{
+              Option,
+            }}
+            noOptionsMessage={noOptionsMessage}
+            onChange={this.handleChange}
+            options={options}
+            placeholder={words.SelectCompany}
+          />
+        </div>
+      );
     }
 
     return null;
@@ -76,4 +82,4 @@ class ClientSelectCompany extends Component<ClientSelectCompanyPropTypes, Client
 
 }
 
-export default withRouter(connect(mapStateToProps)(ClientSelectCompany));
+export default connect(mapStateToProps)(ClientSelectCompany);

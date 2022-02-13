@@ -1,4 +1,4 @@
-import type { Action } from "src/types";
+import type { Action } from "@types";
 import { fetchCurrentCompany as fetchCurrentCompanyRequest } from "./request";
 
 export const fetchCurrentCompany = (rawID: string): Action => ({

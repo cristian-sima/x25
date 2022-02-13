@@ -1,5 +1,5 @@
 /* eslint-disable max-len, no-duplicate-imports */
-import type { NormalizedResult } from "src/types";
+import type { NormalizedResult } from "@types";
 
 type Normalizr = (item: any) => any;
 type NormalizeBoolean = (input: "" | boolean) => boolean;

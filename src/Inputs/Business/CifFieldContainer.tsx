@@ -1,4 +1,4 @@
-import type { Dispatch } from "src/types";
+import type { Dispatch } from "@types";
 
 type CifFieldContainerPropTypes = {
   readonly input: any;

@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import type { List as ListType, Map as MapType } from "immutable";
 
 export type State = any;
