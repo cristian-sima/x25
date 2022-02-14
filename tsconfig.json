@@ -1,5 +1,5 @@
 {
-  "exclude": ["./lib/*", "./node_modules/*", "./wiki/*", ".vscode/*", "conf"],
+  "exclude": ["./lib/*", "./node_modules/*", "./wiki/*", ".vscode/*", "conf", "script"],
   "include": ["./src/**/*","./index.d.ts", "./node_modules"],
   "compilerOptions": {
     "allowJs": true,
