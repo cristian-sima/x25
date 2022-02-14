@@ -1,4 +1,4 @@
-import type { State } from "types";
+import type { State } from "src/types";
 
 type ModalRootPropTypes = {
   readonly list: any;

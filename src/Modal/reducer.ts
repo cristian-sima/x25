@@ -1,4 +1,4 @@
-import type { Action, State } from "types";
+import type { Action, State } from "src/types";
 import * as Immutable from "immutable";
 
 const initialState = Immutable.List(),

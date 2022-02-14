@@ -1,4 +1,4 @@
-import type { Dispatch } from "types";
+import type { Dispatch } from "src/types";
 
 type SimpleModalPropTypes = {
   readonly size?: string;

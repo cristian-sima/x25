@@ -1,6 +1,6 @@
 
 
-import type { Dispatch, State } from "types";
+import type { Dispatch, State } from "src/types";
 
 import { injectReducer } from "redux-injector";
 import { connect } from "react-redux";

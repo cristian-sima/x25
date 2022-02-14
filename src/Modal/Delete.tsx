@@ -1,5 +1,5 @@
 /* eslint-disable handle-callback-err, react/forbid-component-props, no-console */
-import type { Dispatch } from "types";
+import type { Dispatch } from "src/types";
 
 type onConfirmMethodsTypes = {
   startPerforming: () => void;
