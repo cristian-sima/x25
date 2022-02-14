@@ -1,17 +1,22 @@
-/* eslint-disable */
+/* eslint-disable react/no-unsafe */
+
 import React from "react";
+
 type TypeInputPropTypes = {
   readonly change: (event: any) => void;
   readonly value: any;
   readonly tabIndex?: number;
   readonly delay?: number;
+  readonly className?: string;
 };
 type TypeInputStateTypes = {
   value: string;
   isWaiting: boolean;
 };
 const delay = 700;
+
 import { LoadingMessage } from "../Messages";
+
 export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeInputStateTypes> {
   state: TypeInputStateTypes;
   timeout: any;
@@ -19,12 +24,20 @@ export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeIn
   handleKeyPressed: (event: any) => void;
   stopWaiting: (value: string) => void;
 
-  constructor(props: TypeInputPropTypes) {
+  UNSAFE_componentWillReceiveProps (nextProps: TypeInputPropTypes) {
+    if (this.props.value !== nextProps.value) {
+      this.setState({
+        value: nextProps.value,
+      });
+    }
+  }
+
+  constructor (props: TypeInputPropTypes) {
     super(props);
     this.timeout = null;
     this.state = {
-      isWaiting: false,
-      value: this.props.value
+      isWaiting : false,
+      value     : this.props.value,
     };
 
     this.handleKeyPressed = (event: any) => {
@@ -37,20 +50,20 @@ export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeIn
       clearTimeout(this.timeout);
       this.setState({
         isWaiting: false,
-        value
+        value,
       }, () => {
         this.props.change({
           target: {
-            value
-          }
+            value,
+          },
         });
       });
     };
 
     this.delayChange = ({
       target: {
-        value
-      }
+        value,
+      },
     }) => {
       clearTimeout(this.timeout);
 
@@ -58,18 +71,19 @@ export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeIn
         this.stopWaiting(value);
       } else {
         const that = this;
+
         that.setState({
           isWaiting: true,
-          value
+          value,
         }, () => {
           that.timeout = setTimeout(() => {
             that.setState({
-              isWaiting: false
+              isWaiting: false,
             });
             that.props.change({
               target: {
-                value
-              }
+                value,
+              },
             });
           }, this.props.delay || delay);
         });
@@ -77,34 +91,26 @@ export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeIn
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: TypeInputPropTypes) {
-    if (this.props.value !== nextProps.value) {
-      this.setState({
-        value: nextProps.value
-      });
-    }
-  }
-
-  shouldComponentUpdate(nextProps: TypeInputPropTypes, nextState: TypeInputStateTypes) {
-    return this.props.value !== nextProps.value || this.state.value !== nextState.value || this.state.isWaiting !== nextState.isWaiting;
-  }
-
-  render() {
-    const {
-      value,
-      isWaiting
-    } = this.state;
-    const {
-      tabIndex
-    } = this.props;
+  shouldComponentUpdate (nextProps: TypeInputPropTypes, nextState: TypeInputStateTypes) {
     return (
-    <div className="delay-input">
-        <input {...this.props} 
-        onChange={this.delayChange} 
-        onKeyPress={this.handleKeyPressed} 
-        tabIndex={tabIndex} 
-        value={value}
-         />
+      this.props.value !== nextProps.value ||
+      this.state.value !== nextState.value ||
+      this.state.isWaiting !== nextState.isWaiting
+    );
+  }
+
+  render () {
+    const { value, isWaiting } = this.state;
+
+    return (
+      <div className="delay-input">
+        <input
+          className={this.props.className}
+          onChange={this.delayChange}
+          onKeyPress={this.handleKeyPressed}
+          tabIndex={this.props.tabIndex}
+          value={value}
+        />
         {isWaiting ? <LoadingMessage className="loading-spinner d-inline-block" sm /> : null}
       </div>
     );

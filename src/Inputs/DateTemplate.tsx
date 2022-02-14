@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unsafe */
+
 type DateTemplatePropTypes = {
   readonly customClass?: any;
   readonly input: any;
@@ -45,7 +47,6 @@ const normalizeRawDate = (raw: string): string => {
     return "";
   };
 
-/* eslint-disable */
 export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTemplateStateTypes> {
   static defaultProps = {
     formatValue    : formatRawDate,
@@ -56,6 +57,31 @@ export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTem
   handleBlur: () => void;
   handleKeyDown: (event: any) => void;
   handleChange: ({ target: { value } }: any) => void;
+
+
+  UNSAFE_componentWillReceiveProps (nextProps: DateTemplatePropTypes) {
+    const {
+        input: {
+          value: newValue,
+        },
+      } = nextProps,
+      {
+        value: currentValue,
+      } = this.state,
+      shouldRenderAgain = isValidDate(newValue) && currentValue !== newValue;
+
+    if (newValue === "") {
+      this.setState({
+        value: "",
+      });
+    }
+
+    if (shouldRenderAgain) {
+      this.setState({
+        value: formatDate(newValue),
+      });
+    }
+  }
 
   constructor (props: DateTemplatePropTypes) {
     super(props);
@@ -115,30 +141,6 @@ export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTem
     };
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps: DateTemplatePropTypes) {
-    const {
-        input: {
-          value: newValue,
-        },
-      } = nextProps,
-      {
-        value: currentValue,
-      } = this.state,
-      shouldRenderAgain = isValidDate(newValue) && currentValue !== newValue;
-
-    if (newValue === "") {
-      this.setState({
-        value: "",
-      });
-    }
-
-    if (shouldRenderAgain) {
-      this.setState({
-        value: formatDate(newValue),
-      });
-    }
-  }
-
   render () {
     const {
       customClass,
@@ -187,9 +189,11 @@ export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTem
           />
           <div
             className="invalid-feedback">
-            {touched && error && (<span>
-              {error}
-            </span>)}
+            {touched && error && (
+              <span>
+                {error}
+              </span>
+            )}
           </div>
         </div>
       </div>

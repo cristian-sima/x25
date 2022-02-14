@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unsafe */
+
 type NumericPropTypes = {
   readonly currency?: boolean;
   readonly optional?: boolean;
@@ -26,7 +28,6 @@ import React from "react";
 import classnames from "classnames";
 import { formatZeroValue, normalizeFloat, handleBlur, cwrp } from "../utility";
 
-/* eslint-disable */
 export class NumericInput extends React.Component<NumericPropTypes, NumericStateTypes> {
   static defaultProps = {
     formatValue    : formatZeroValue,
@@ -37,6 +38,10 @@ export class NumericInput extends React.Component<NumericPropTypes, NumericState
   handleBlur: () => any;
   handleKeyDown: (event: any) => void;
   handleChange: ({ target: { value } }: any) => void;
+
+  UNSAFE_componentWillReceiveProps (nextProps: NumericPropTypes) {
+    cwrp(this, nextProps);
+  }
 
   constructor (props: NumericPropTypes) {
     super(props);
@@ -69,10 +74,6 @@ export class NumericInput extends React.Component<NumericPropTypes, NumericState
         value,
       });
     };
-  }
-
-  UNSAFE_componentWillReceiveProps (nextProps: NumericPropTypes) {
-    cwrp(this, nextProps);
   }
 
   render () {
@@ -115,9 +116,9 @@ export class NumericInput extends React.Component<NumericPropTypes, NumericState
 
     if (typeof currency === "undefined" || currency === false) {
       return (
-      <div className="form-group-inline">
-        {inputComponent}
-      </div>
+        <div className="form-group-inline">
+          {inputComponent}
+        </div>
       );
     }
 

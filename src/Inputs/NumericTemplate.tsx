@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unsafe */
+
 type NumericPropTypes = {
   readonly optional?: boolean;
   readonly size?: number;
@@ -31,7 +33,6 @@ import React from "react";
 import classnames from "classnames";
 import { formatZeroValue, handleBlur, normalizeFloat, cwrp } from "../utility";
 
-/* eslint-disable */
 export class NumericTemplate extends React.Component<NumericPropTypes, NumericStateTypes> {
   static defaultProps = {
     formatValue    : formatZeroValue,
@@ -42,6 +43,10 @@ export class NumericTemplate extends React.Component<NumericPropTypes, NumericSt
   handleBlur: () => void;
   handleKeyDown: (event: any) => void;
   handleChange: ({ target: { value } }: any) => void;
+
+  UNSAFE_componentWillReceiveProps (nextProps: NumericPropTypes) {
+    cwrp(this, nextProps);
+  }
 
   constructor (props: NumericPropTypes) {
     super(props);
@@ -74,10 +79,6 @@ export class NumericTemplate extends React.Component<NumericPropTypes, NumericSt
         value,
       });
     };
-  }
-
-  UNSAFE_componentWillReceiveProps (nextProps: NumericPropTypes) {
-    cwrp(this, nextProps);
   }
 
   render () {

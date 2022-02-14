@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unsafe */
 
 type DateInputPropTypes = {
   readonly customClass?: any;
@@ -43,7 +44,6 @@ const normalizeRawDate = (raw: string): string => {
     return "";
   };
 
-/* eslint-disable */
 export class DateInput extends React.Component<DateInputPropTypes, DateInputStateTypes> {
   static defaultProps = {
     formatValue    : formatRawDate,
@@ -53,7 +53,31 @@ export class DateInput extends React.Component<DateInputPropTypes, DateInputStat
   state: DateInputStateTypes;
   handleBlur: () => void;
   handleKeyDown: (event: any) => void;
-  handleChange: ({ target: { value, }, }: any) => void;
+  handleChange: ({ target: { value } }: any) => void;
+
+  UNSAFE_componentWillReceiveProps (nextProps: DateInputPropTypes) {
+    const {
+        input: {
+          value: newValue,
+        },
+      } = nextProps,
+      {
+        value: currentValue,
+      } = this.state,
+      shouldRenderAgain = isValidDate(newValue) && currentValue !== newValue;
+
+    if (newValue === "") {
+      this.setState({
+        value: "",
+      });
+    }
+
+    if (shouldRenderAgain) {
+      this.setState({
+        value: formatDate(newValue),
+      });
+    }
+  }
 
   constructor (props: DateInputPropTypes) {
     super(props);
@@ -111,30 +135,6 @@ export class DateInput extends React.Component<DateInputPropTypes, DateInputStat
         value,
       });
     };
-  }
-
-  UNSAFE_componentWillReceiveProps (nextProps: DateInputPropTypes) {
-    const {
-        input: {
-          value: newValue,
-        },
-      } = nextProps,
-      {
-        value: currentValue,
-      } = this.state,
-      shouldRenderAgain = isValidDate(newValue) && currentValue !== newValue;
-
-    if (newValue === "") {
-      this.setState({
-        value: "",
-      });
-    }
-
-    if (shouldRenderAgain) {
-      this.setState({
-        value: formatDate(newValue),
-      });
-    }
   }
 
   render () {
