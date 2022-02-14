@@ -1,22 +1,24 @@
-import type { List as ImmutableList, Map as ImmutableMap } from "immutable";
 
 type ReduxError = {
   error: any;
 };
+
+import type { List as ImmutableList, Map as ImmutableMap } from "immutable";
 import React from "react";
 import { SubmissionError } from "redux-form/immutable";
 import { words } from "./words";
 
-export const getDateSortNumber = (item: string) => Number(new Date(item).getTime());
-export const isAdministratorAccount = (current: number) => current === 0;
-export const createModal = (modalType: string, modalProps?: any) => ({
-  type    : "SHOW_MODAL",
-  payload : {
-    modalType,
-    modalProps,
-  },
-});
-export const noError = "",
+export const
+  getDateSortNumber = (item: string) => Number(new Date(item).getTime()),
+  isAdministratorAccount = (current: number) => current === 0,
+  createModal = (modalType: string, modalProps?: any) => ({
+    type    : "SHOW_MODAL",
+    payload : {
+      modalType,
+      modalProps,
+    },
+  }),
+  noError = "",
   rowsPerLoad = 50,
   nothingFetched = -1,
   removeID = (payload: ImmutableMap<string, any>) => (list: ImmutableList<string>) => (

@@ -8,6 +8,8 @@ type TypeInputPropTypes = {
   readonly tabIndex?: number;
   readonly delay?: number;
   readonly className?: string;
+  readonly id?: string;
+  readonly autoComplete?: string;
 };
 type TypeInputStateTypes = {
   value: string;
@@ -105,7 +107,9 @@ export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeIn
     return (
       <div className="delay-input">
         <input
+          autoComplete={this.props.autoComplete}
           className={this.props.className}
+          id={this.props.id}
           onChange={this.delayChange}
           onKeyPress={this.handleKeyPressed}
           tabIndex={this.props.tabIndex}

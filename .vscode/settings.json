@@ -47,6 +47,8 @@
         "**/Thumbs.db": true,
         "**/node_modules": true,
         "**/script": true,
-        ".vscode": true
+        "package-lock.json": true,
+        "dist": true,
+        "conf": true
     }
 }
