@@ -1,6 +1,6 @@
 {
   "exclude": ["./lib/*", "./node_modules/*", "./wiki/*", ".vscode/*", "conf"],
-  "include": ["./src/*","./index.d.ts", "./node_modules"],
+  "include": ["./src/**/*","./index.d.ts", "./node_modules"],
   "compilerOptions": {
     "allowJs": true,
     "noEmit": false,
@@ -15,11 +15,10 @@
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "strict": true /* Enable all strict type-checking options. */,
     "target": "es5",    
-    "rootDirs": ["src", ""],
     "declaration": true,
-    "baseUrl": "src",
+    "baseUrl": "./",
     "paths": {
-        "react-loadable":["node_modules/@docusaurus/react-loadable"]
+      "react-loadable":["node_modules/@docusaurus/react-loadable"]
     },
     "types": [
       "jest",
