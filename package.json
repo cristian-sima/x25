@@ -1,9 +1,9 @@
 {
-  "version": "5.0.2",
+  "version": "5.1.2",
   "name": "x25",
   "description": "x25",
   "scripts": {
-    "load": "npm run intern-pre && cd dist && npm publish",
+    "load": "npm run intern-pre && cd dist && npm publish --tag=old",
     "load-beta": "npm run intern-pre && cd dist && npm publish --tag beta",
     "check": "npm-check -u -i babel-jest -i jest -i history --specials=bin,eslint,babel,webpack",
     "eslint": "eslint --ext .jsx,.js src --fix",

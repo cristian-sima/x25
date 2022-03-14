@@ -77,7 +77,7 @@ const Header = ({
           }
         </button>
         <Collapse isOpen={showNavbar} navbar>
-          <ul className="ms-auto navbar-nav">
+          <ul className="ml-auto navbar-nav">
             <a className="nav-link" href="/settings/companies">
               {"Setări"}
             </a>
@@ -98,16 +98,17 @@ const Header = ({
         typeof company === "undefined" || company.size === 0 ? null : (
           showNoticeToPay ? (
             <div className="alert alert-warning m-2">
-              {`Abonamentul la serviciile online Sidework va expira ${(
+              {`Conform noilor termeni și condiții, abonamentul tău va expira  ${(
                 moment(company.get("ValabilityDate")).
                   endOf("day").
                   fromNow()
-              )}. `}
+              )}.
+              Pentru a beneficia de serviciul de facturare, achitați online sau transfer bancar.  `}
               <button
                 className="btn btn-primary"
                 onClick={showPayModal(company.get("ID"))}
                 type="button">
-                {"Reînnoiește abonamentul"}
+                {"Achită abonamentul"}
               </button>
             </div>
           ) : null

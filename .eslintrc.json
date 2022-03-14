@@ -37,6 +37,9 @@
      "max-lines-per-function": ["error", { "max": 300 }],
 
       "react/jsx-fragments": 0,
+      "func-style": 0,
+      "react/prefer-exact-props": 0,
+      "react/jsx-closing-tag-location": 0,
       "react/state-in-constructor": 0,
       "react/jsx-handler-names":0,
       "no-confusing-arrow":0,
@@ -79,9 +82,13 @@
       "react/forbid-component-props":0,
       "react/no-multi-comp":0,
       "react/no-set-state":0,
+      "react/function-component-definition":0,
       "react/jsx-closing-bracket-location":0,
       "react/jsx-max-props-per-line":0,
       "no-underscore-dangle":0,
+      "react/jsx-newline":0,
+      "react/jsx-sort-props":0,
+      "react/no-unused-class-component-methods":0,
       "function-paren-newline":0,
       "no-nested-ternary":0,
       "max-params":[

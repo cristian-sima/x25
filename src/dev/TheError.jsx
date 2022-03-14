@@ -14,7 +14,7 @@ import React from "react";
 
 const TheError = (props :TheErrorProps) => {
 
-  React.(() => {
+  React.useEffect(() => {
     document.addEventListener("keydown", props.handleKey);
 
     return () => {
