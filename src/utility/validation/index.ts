@@ -29,7 +29,7 @@ export const extractErrorsFromCheckers = (checkers: any) => (values: any) => {
     // @ts-expect-error It works
     if (Object.hasOwn(checkers, field)) {
       const checker = checkers[field],
-        result = checker(values.get(field)),
+        result = checker(values.get(field), values, checkers),
         {
           notValid,
         } = result;
