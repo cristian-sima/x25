@@ -1,5 +1,5 @@
 {
-  "version": "17.0.26",
+  "version": "17.0.27",
   "name": "x25",
   "description": "x25",
   "types": "./dist/index.d.ts",
@@ -8,7 +8,7 @@
     "load": "npm run intern-pre && cd dist && npm run ts && npm run intern-copy && npm publish",
     "load-beta": "npm run intern-pre && cd dist && npm run ts && npm run intern-copy && npm publish --tag beta",
     "eslint": "eslint --ext .tsx,.ts src --fix",
-    "intern-pre": "npm run intern-test && npm run eslint && npm run intern-clean && npm run intern-build",
+    "intern-pre": "npm run eslint && npm run intern-clean && npm run intern-build",
     "intern-build-scss": "node-sass --output-style compressed src -o dist",
     "intern-copy": " copy package.json dist",
     "intern-build": "npm run intern-build-scss",
