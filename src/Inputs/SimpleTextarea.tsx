@@ -3,7 +3,6 @@ type InputTemplatePropTypes = {
   readonly input: any;
   readonly label: string;
   readonly placeholder: string;
-  readonly type: string;
   readonly inputClass?: string;
   readonly tabIndex?: string;
   readonly rows?: string;
@@ -17,22 +16,11 @@ type InputTemplatePropTypes = {
 import React from "react";
 
 export const SimpleTextarea = ({
-  input,
-  type,
-  label,
-  onRegisterRef,
-  autoFocus,
-  inputClass,
-  placeholder,
-  tabIndex,
-  rows,
-  meta: {
-    submitting,
-    touched,
-    error,
-  },
+  input, label, onRegisterRef, autoFocus, inputClass, placeholder, tabIndex, rows,
+  meta: { submitting, touched, error },
 }: InputTemplatePropTypes) => {
-  const warningClass = `${touched && error ? " is-invalid" : ""}`,
+  const
+    warningClass = `${touched && error ? " is-invalid" : ""}`,
     customClass = `${inputClass ? ` ${inputClass}` : ""}`,
     classForInput = `form-control ${warningClass}${customClass}`;
 
@@ -48,7 +36,6 @@ export const SimpleTextarea = ({
       ref={onRegisterRef ? onRegisterRef : null}
       rows={rows}
       tabIndex={tabIndex}
-      type={type}
     />
   );
 };

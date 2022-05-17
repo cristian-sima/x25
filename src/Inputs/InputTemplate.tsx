@@ -3,7 +3,7 @@ type InputTemplatePropTypes = {
   readonly input: any;
   readonly label: string;
   readonly placeholder: string;
-  readonly type: string;
+  readonly theType?: "input" | "password";
   readonly divClass?: string;
   readonly inputClass?: string;
   readonly meta: {
@@ -20,24 +20,12 @@ import React from "react";
 import classnames from "classnames";
 
 export const InputTemplate = ({
-  input,
-  type,
-  label,
-  onRegisterRef,
-  autoFocus,
-  inputClass,
-  divClass,
-  placeholder,
-  left,
-  tabIndex,
-  right,
-  meta: {
-    submitting,
-    touched,
-    error,
-  },
+  input, theType, label, onRegisterRef, autoFocus, inputClass, divClass,
+  placeholder, left, tabIndex, right,
+  meta: { submitting, touched, error },
 }: InputTemplatePropTypes) => {
-  const warningClass = `${touched && error ? " is-invalid" : ""}`,
+  const
+    warningClass = `${touched && error ? " is-invalid" : ""}`,
     customClass = `${inputClass ? ` ${inputClass}` : ""}`,
     classForInput = `form-control ${warningClass}${customClass}`,
     classForDiv = `form-group row mt-md-2 ${divClass ? divClass : ""}`;
@@ -62,7 +50,8 @@ export const InputTemplate = ({
           id={input.name} placeholder={placeholder}
           ref={onRegisterRef ? onRegisterRef : null}
           tabIndex={tabIndex}
-          type={type} />
+          type={theType}
+        />
         <div className="invalid-feedback">
           {touched && error && (
             <span>

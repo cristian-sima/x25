@@ -24,10 +24,10 @@ export const LoadingMessage = ({
   if (isSmall) {
     return (
       <div className={`text-center ${className || ""} mb-1`}>
-        <div className="font-weight-bold d-inline">
+        <div className="font-weight-bold d-inline align-middle">
           {getMessage()}
         </div>
-        <div className="loading-sm d-inline-block"><div /><div /><div /><div /></div>
+        <div className="loading-sm d-inline-block align-middle"><div /><div /><div /><div /></div>
       </div>
     );
   }

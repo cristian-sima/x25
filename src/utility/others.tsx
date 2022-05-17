@@ -1,12 +1,10 @@
 
-type ReduxError = {
-  error: any;
-};
+// type ReduxError = {
+//   error: any;
+// };
 
 import type { List as ImmutableList, Map as ImmutableMap } from "immutable";
 import React from "react";
-import { SubmissionError } from "redux-form/immutable";
-import { words } from "./words";
 
 export const
   getDateSortNumber = (item: string) => Number(new Date(item).getTime()),
@@ -27,19 +25,6 @@ export const
   addID = (payload: ImmutableMap<string, any>) => (
     (list: ImmutableList<string>) => list.push(String(payload.get("ID")))
   ),
-  ReduxFormSubmissionError = (error?: ReduxError) => {
-    if (error) {
-      if (error instanceof SubmissionError) {
-        throw error;
-      }
-
-      const _error = typeof error.error === "string" ? error.error : words.ThereWasAProblem;
-
-      throw new SubmissionError({
-        _error,
-      });
-    }
-  },
   delay = () => (new Promise((resolve) => {
     setTimeout(resolve);
   }) as Promise<any>),

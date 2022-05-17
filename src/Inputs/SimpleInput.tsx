@@ -1,6 +1,7 @@
 export type SimpleInputPropTypes = {
   readonly customClass?: any;
   readonly input: any;
+  readonly theType?: "input" | "password";
   readonly tabIndex?: string;
   readonly label?: string;
   readonly meta: {
@@ -14,16 +15,8 @@ import React from "react";
 import classnames from "classnames";
 
 export const SimpleInput = ({
-  customClass,
-  input,
-  label,
-  tabIndex,
-  meta: {
-    submitting,
-    touched,
-    error,
-  },
-  placeholder,
+  customClass, input, label, tabIndex, placeholder, theType,
+  meta: { submitting, touched, error },
 }: SimpleInputPropTypes) => (
   <input
     {...input}
@@ -35,5 +28,5 @@ export const SimpleInput = ({
     id={input.name}
     placeholder={placeholder || label}
     tabIndex={tabIndex}
-    type="text" />
+    type={theType} />
 );

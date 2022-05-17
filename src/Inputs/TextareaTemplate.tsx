@@ -3,7 +3,6 @@ type InputTemplatePropTypes = {
   readonly input: any;
   readonly label: string;
   readonly placeholder: string;
-  readonly type: string;
   readonly inputClass?: string;
   readonly tabIndex?: string;
   readonly meta: {
@@ -21,14 +20,8 @@ import { SimpleTextarea } from "./SimpleTextarea";
 
 export const TextareaTemplate = (props: InputTemplatePropTypes) => {
   const {
-    input,
-    label,
-    left,
-    right,
-    meta: {
-      touched,
-      error,
-    },
+    input, label, left, right,
+    meta: { touched, error },
   } = props;
 
   return (

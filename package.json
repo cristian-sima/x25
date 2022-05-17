@@ -1,5 +1,5 @@
 {
-  "version": "17.0.27",
+  "version": "17.1.0",
   "name": "x25",
   "description": "x25",
   "types": "./dist/index.d.ts",
@@ -111,11 +111,11 @@
     "moment": "^2.29.1",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
+    "react-final-form": "^6.5.9",
     "react-notification-system-redux2": "^3.0.4",
     "react-redux": "^7.2.6",
     "reactstrap": "^9.0.1",
     "redux": "^4.1.2",
-    "redux-form": "^8.3.8",
     "redux-injector": "^0.1.0",
     "reselect": "^4.1.5",
     "superagent": "^7.1.1"
