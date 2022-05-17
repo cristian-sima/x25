@@ -3,8 +3,9 @@ import Notifications from "react-notification-system-redux2";
 
 type NotificationOptions = {
   title: string;
-  position: "tr" | "tl" | "tc" | "br" | "bl" | "bc";
-  autoDismiss: number;
+  seconds?: number;
+  persistent?: boolean;
+  position?: "tr" | "tl" | "tc" | "br" | "bl" | "bc";
 }
 
 type CreateNotification = (
@@ -12,10 +13,11 @@ type CreateNotification = (
 );
 
 const
+  autoDismissDelay = 5,
   createNotification : CreateNotification = (level) => (title, options) => Notifications.show({
     title,
     position    : "tc",
-    autoDismiss : 5,
+    autoDismiss : options?.persistent ? 0 : (options?.seconds ? options.seconds : autoDismissDelay),
     ...options,
   }, level);
 
