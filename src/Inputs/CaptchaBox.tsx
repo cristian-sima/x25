@@ -1,13 +1,13 @@
 type CaptchaPropTypes = {
-  readonly type: string;
   readonly id: string;
+
   readonly tabIndex?: string;
-  readonly input: any;
-  readonly label: string;
+  readonly input?: any;
+  readonly label?: string;
   readonly autoFocus?: boolean;
   readonly left?: string;
   readonly right?: string;
-  readonly meta: {
+  readonly meta?: {
     touched: boolean;
     error?: any;
     submitting: boolean;
@@ -52,25 +52,10 @@ class InfoIcon extends React.Component<any, InfoIconStateTypes> {
       </div>
     );
   }
-
 }
 
 export const CaptchaBox = (props: CaptchaPropTypes) => {
-  const {
-    autoFocus,
-    id,
-    input,
-    tabIndex,
-    label,
-    left,
-    right,
-    meta: {
-      touched,
-      error,
-      submitting,
-    },
-    type,
-  } = props;
+  const { autoFocus, id, input, tabIndex, label, left, right, meta } = props;
 
   if (typeof id === "undefined" || id === "") {
     return null;
@@ -95,17 +80,17 @@ export const CaptchaBox = (props: CaptchaPropTypes) => {
         </div>
         <input
           {...input} aria-label={label} autoFocus={autoFocus} className={classnames("form-control", {
-            "is-invalid": touched && error,
+            "is-invalid": meta?.touched && meta?.error,
           })}
-          disabled={submitting}
+          disabled={meta?.submitting}
           id={input.name}
           placeholder={words.CaptchaTypeNumbers}
           tabIndex={tabIndex}
-          type={type} />
+        />
         <div className="invalid-feedback">
-          {touched && error ? (
+          {meta?.touched && meta?.error ? (
             <span>
-              {error}
+              {meta?.error}
             </span>
           ) : null}
         </div>

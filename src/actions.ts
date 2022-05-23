@@ -2,7 +2,6 @@ import type { Action } from "src/types";
 import Notifications from "react-notification-system-redux2";
 
 type NotificationOptions = {
-  title: string;
   seconds?: number;
   persistent?: boolean;
   position?: "tr" | "tl" | "tc" | "br" | "bl" | "bc";

@@ -2,25 +2,37 @@
 import type { State } from "src/types";
 import type { ModalsTypes } from "../Modal/types";
 
-type Reducer = (state: State, action: any) => void;
-type ReducerOptionsType = {
+export type Reducer = (state: State, action: any) => void;
+
+export type Reducers = {
+  [key : string] : Reducer
+}
+
+export type ReducerOptionsType = {
   key: string;
   func: Reducer;
 };
-type PaginatorType = {
+export type PaginatorType = {
   key: string;
   itemsReducer: Reducer;
   pagesReducer: Reducer;
 };
-type ReducersTypes = Array<ReducerOptionsType> | ReducerOptionsType;
-type PaginatorsTypes = Array<PaginatorType> | PaginatorType;
-type RouteType = {
-  default: {
-    module: string;
-    Component: any;
-    reducers: ReducersTypes;
-    modals: ModalsTypes;
-    paginators: PaginatorsTypes;
-  };
+export type ReducersTypes = Array<ReducerOptionsType> | ReducerOptionsType;
+export type PaginatorsTypes = Array<PaginatorType> | PaginatorType;
+
+export type ModuleParts = {
+  module: string;
+  Component: any;
+
+  reducers: ReducersTypes;
+  modals: ModalsTypes;
+  paginators: PaginatorsTypes;
 };
-export type { ReducersTypes, PaginatorsTypes, PaginatorType, RouteType };
+
+export type Loaded = {
+  default : ModuleParts;
+}
+
+
+export type InitModule = (module: ModuleParts, moduleIsLoadedCb: () => any) => any;
+

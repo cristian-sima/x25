@@ -73,9 +73,12 @@ const
 
     return (
       (!hasMin || (typeof min === "number" && length >= min)) &&
-                      (!hasMax || (typeof max === "number" && length <= max))
+       (!hasMax || (typeof max === "number" && length <= max)
+       )
     );
   };
+
+// ----------- Checkers
 
 export const
   validateEmail : CheckerWithOptions<OptionalOption> = ({ optional }) => (value : string) => {
@@ -134,14 +137,18 @@ export const
           integer,
         })
       ),
-      notValid = whenOptional || whenRequired,
-      error = notValid ? getNumberRangeError({
+      notValid = whenOptional || whenRequired;
+
+
+    if (notValid) {
+      return getNumberRangeError({
         min,
         max,
         integer,
-      }) : "";
+      });
+    }
 
-    return error;
+    return undefined;
   },
   validateString : CheckerWithOptions<StringOptions> = (props) => (value) => {
     const { what = words.TheField, min, max, optional } = props,
@@ -162,14 +169,17 @@ export const
           value,
         })
       ),
-      notValid = whenOptional || whenRequired,
-      error = notValid ? getStringTense({
+      notValid = whenOptional || whenRequired;
+
+    if (notValid) {
+      return getStringTense({
         min,
         max,
         what,
-      }) : "";
+      });
+    }
 
-    return error;
+    return undefined;
   },
   validateSelect : CheckerWithOptions<MessageOption> = ({ message }) => (value) => {
     const
@@ -193,8 +203,7 @@ export const
     const
       pattern = /^\d{6}$/u,
       notValid = (
-        typeof value !== "undefined" &&
-                                                      !pattern.test(value)
+        typeof value !== "undefined" && !pattern.test(value)
       ),
       error = notValid ? words.Has6Digits : undefined;
 

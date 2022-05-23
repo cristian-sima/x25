@@ -4,6 +4,7 @@ import * as React from "react";
 import { words } from "../utility";
 import RouteLoading from "./RouteLoading";
 import InitModule from "./InitModule";
+import { Loaded } from "./types";
 
 // type injectPaginatorTypes = {
 //   key: string,
@@ -57,6 +58,6 @@ export const
   createAsyncRoute = (loader : any) => Loadable({
     loader,
     loading : RouteLoading,
-    render  : InitModule,
+    render  : (loaded : Loaded, props : any) => <InitModule loaded={loaded} props={props} />,
     timeout,
   });
