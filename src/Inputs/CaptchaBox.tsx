@@ -13,46 +13,19 @@ type CaptchaPropTypes = {
     submitting: boolean;
   };
 };
-type InfoIconStateTypes = {
-  showTooltip: boolean;
-};
+
 import React from "react";
-import { Tooltip } from "reactstrap";
 import classnames from "classnames";
+import Tooltip from "react-simple-tooltip";
 import { words } from "../utility";
 
-class InfoIcon extends React.Component<any, InfoIconStateTypes> {
-  state: InfoIconStateTypes;
-  toggle: () => void;
-
-  constructor (props : any) {
-    super(props);
-    this.state = {
-      showTooltip: false,
-    };
-
-    this.toggle = () => {
-      this.setState((prevState: InfoIconStateTypes) => ({
-        showTooltip: !prevState.showTooltip,
-      }));
-    };
-  }
-
-  render () {
-    return (
-      <div className="d-inline float-right">
-        <i className="fa fa-info-circle fa-2x text-info pull-right" id="TooltipExample" />
-        <Tooltip
-          isOpen={this.state.showTooltip}
-          placement="right"
-          target="TooltipExample"
-          toggle={this.toggle}>
-          {words.CaptchaDescription}
-        </Tooltip>
-      </div>
-    );
-  }
-}
+const InfoIcon = () => (
+  <div className="d-inline float-right">
+    <Tooltip content={words.CaptchaDescription}>
+      <i className="fa fa-info-circle fa-2x text-info pull-right" id="TooltipExample" />
+    </Tooltip>
+  </div>
+);
 
 export const CaptchaBox = (props: CaptchaPropTypes) => {
   const { autoFocus, id, input, tabIndex, label, left, right, meta } = props;

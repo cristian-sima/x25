@@ -1,5 +1,5 @@
-import Delete from "./Delete";
-import SimpleModal from "./SimpleModal";
+import ConfirmationModal from "./ConfirmationModal";
+import ModalWindow from "./ModalWindow";
 import { injectModals } from "./util";
 
-export { injectModals, Delete, SimpleModal };
+export { injectModals, ConfirmationModal, ModalWindow };

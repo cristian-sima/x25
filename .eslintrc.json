@@ -51,6 +51,7 @@
          ]
        }
      ],
+     "react/jsx-no-bind": 0,
      "max-lines": [
        2,
        450

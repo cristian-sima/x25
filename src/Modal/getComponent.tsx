@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from "react";
 import { ErrorMessage } from "../Messages";
 import { getModal } from "./util";
-import SimpleModal from "./SimpleModal";
+import ModalWindow from "./ModalWindow";
 
 const NothingSelected = () => (
-    <SimpleModal title="Not registered">
+    <ModalWindow onClose={() => {}} title="Not registered">
       <ErrorMessage message="Please define a modal component in Modal/components.jsx" />
-    </SimpleModal>
+    </ModalWindow>
   ),
 
   /* eslint-disable complexity */

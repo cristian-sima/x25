@@ -10,6 +10,5 @@ export * from "./TextareaTemplate";
 export * from "./SimpleTextarea";
 export * from "./CaptchaBox";
 export * from "./LabelTemplate";
-export * from "./Tooltip";
 export * from "./Selects";
 export * from "./Business";

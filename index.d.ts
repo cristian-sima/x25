@@ -1,2 +1,2 @@
-declare module "redux-injector";
+declare module "react-simple-tooltip";
 declare module "react-notification-system-redux2";
