@@ -1,8 +1,8 @@
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { notifyError } from "src/actions";
-import { words } from "src/utility";
+import { notifyError } from "../actions";
+import { words } from "../utility";
 import { FooterProps, ModalWindowProps } from "./types";
 import { ModalWindow } from ".";
 
