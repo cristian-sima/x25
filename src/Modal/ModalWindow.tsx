@@ -122,9 +122,9 @@ const ModalWindow = (props : ModalWindowProps) => {
             {props.children}
           </div>
           {
-            Footer ? (
+            typeof Footer === "undefined" ? null : (
               <Footer {...props.footerProps} tryToClose={tryToClose} />
-            ) : null
+            )
           }
         </div>
       </div>

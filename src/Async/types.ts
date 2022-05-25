@@ -2,11 +2,12 @@
 import type { State } from "src/types";
 import type { ModalsTypes } from "../Modal/types";
 
-export type Reducer = (state: State, action: any) => void;
+export type Reducer = (state: State, action: any) => any;
 
-export type Reducers = {
-  [key : string] : Reducer
-}
+// export type Reducers = {
+//   [key : string] : Reducer
+// }
+export type Reducers = any;
 
 export type ReducerOptionsType = {
   key: string;

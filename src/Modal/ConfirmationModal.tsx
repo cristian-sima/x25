@@ -3,20 +3,23 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { notifyError } from "../actions";
 import { words } from "../utility";
-import { FooterProps, ModalWindowProps } from "./types";
+import { ConfirmationModalProps, FooterProps } from "./types";
 import { ModalWindow } from ".";
 
-type ConfirmationModalProps = ModalWindowProps & {
-    footerProps: FooterProps
+
+type ModalFooterProps = FooterProps & {
+  readonly tryToClose: () => any;
 }
 
-const ModalFooter = (props : FooterProps) => {
+const ModalFooter = (props : ModalFooterProps) => {
     const
       { message: languageMessage, label } = words,
+
+      dispatch = useDispatch(),
       {
         cancelButtonLabel = label.cancel,
-        errMessage = languageMessage.failPerform,
         confirmButtonLabel = label.remove,
+        errMessage = languageMessage.failPerform,
 
         isResponseValid = (response: any) => ({
           valid : response === "",
@@ -24,14 +27,13 @@ const ModalFooter = (props : FooterProps) => {
         }),
 
         confirmButtonColor = "danger",
+
+        showError = (msg : any) => {
+          dispatch(notifyError(msg));
+        },
       } = props,
 
       [isPerforming, setIsPerforming] = useState(false),
-
-      dispatch = useDispatch(),
-      showError = (msg : any) => {
-        dispatch(notifyError(msg));
-      },
 
       endPerforming = (cb?: any) => {
         setIsPerforming(false);
@@ -75,6 +77,7 @@ const ModalFooter = (props : FooterProps) => {
           {cancelButtonLabel}
         </button>
         <button
+          autoFocus={props.focusButton}
           className={`btn ${confirmButtonColor ? `btn-${confirmButtonColor}` : ""}`}
           disabled={isPerforming}
           onClick={handleConfirmation}
@@ -94,8 +97,11 @@ const ModalFooter = (props : FooterProps) => {
   ConfirmationModal = (props : ConfirmationModalProps) => (
     <ModalWindow
       {...props}
-      Footer={ModalFooter}>
-      {props.children}
+      Footer={ModalFooter}
+      title={props.title ? props.title : "Confirmation"}>
+      <div>
+        {props.footerProps.message}
+      </div>
     </ModalWindow>
   );
 
