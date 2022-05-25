@@ -49,15 +49,12 @@ const ModalFooter = (props : ModalFooterProps) => {
         setIsPerforming(true);
 
         request().
-          then((response: string) => {
-            const {
-              valid,
-              error,
-            } = isResponseValid(response);
+          then(({ response : { body } } : any) => {
+            const { valid, error } = isResponseValid(body);
 
             if (valid) {
               tryToClose();
-              onSuccess(response);
+              onSuccess(body);
             } else {
               endPerforming();
               showError(error);

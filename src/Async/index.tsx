@@ -58,6 +58,8 @@ export const
   createAsyncRoute = (loader : any) => Loadable({
     loader,
     loading : RouteLoading,
-    render  : (loaded : Loaded, props : any) => <InitModule loaded={loaded} props={props} />,
+    render  : (loaded : Loaded, props : any) => (
+      <InitModule loaded={loaded} props={props} />
+    ),
     timeout,
   });
