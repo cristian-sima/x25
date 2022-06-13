@@ -1,20 +1,22 @@
 import type { Action, State } from "src/types";
-import * as Immutable from "immutable";
 
-const initialState = Immutable.List(),
+const
 
-  showModal = (state: any, {
-    payload: {
-      modalType,
-      modalProps,
-    },
-  } : { payload : { modalType : any, modalProps : any }}) => state.push(Immutable.Map({
-    type  : modalType,
-    props : Immutable.Map(modalProps),
-  })),
-  hideModal = (state: any) => state.pop(),
+  showModal = (state: any, { payload: { modalType, modalProps } } : any) => {
+    state.push({
+      type  : modalType,
+      props : modalProps,
+    });
 
-  reducer = (state: any = initialState, action: Action) => {
+    return state;
+  },
+  hideModal = (state: any) => {
+    state.pop();
+
+    return state;
+  },
+
+  reducer = (state: any = [], action: Action) => {
     switch (action.type) {
       case "SHOW_MODAL":
         return showModal(state, action);
@@ -27,7 +29,7 @@ const initialState = Immutable.List(),
     }
   },
 
-  getModals = (state: State) => state.get("modal") || Immutable.List();
+  getModals = (state: State) => state.modal || [];
 
 export const selectors = {
   getModals,
