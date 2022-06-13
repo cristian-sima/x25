@@ -49,7 +49,7 @@ const ModalFooter = (props : ModalFooterProps) => {
         setIsPerforming(true);
 
         request().
-          then(({ response : { body } } : any) => {
+          then(({ body } : any) => {
             const { valid, error } = isResponseValid(body);
 
             if (valid) {
