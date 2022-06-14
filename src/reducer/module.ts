@@ -1,4 +1,5 @@
 import * as Immutable from "immutable";
+import { getModulesState } from "src/config";
 
 const initialState = Immutable.Map(),
 
@@ -16,7 +17,7 @@ const initialState = Immutable.Map(),
     }
   },
 
-  getIsModuleReady = (state: any, id: string) => state.module.get(id) || false,
+  getIsModuleReady = (state: any, id: string) => getModulesState(state).get(id) || false,
 
   moduleIsReadyAction = (payload: string) => ({
     type: "INIT_MODULE",

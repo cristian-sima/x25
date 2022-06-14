@@ -1,5 +1,5 @@
 {
-  "version": "17.2.6-beta",
+  "version": "17.2.9-beta",
   "name": "x25",
   "description": "x25",
   "types": "./dist/index.d.ts",
@@ -104,6 +104,7 @@
   },
   "dependencies": {
     "@docusaurus/react-loadable": "^5.5.2",
+    "@reduxjs/toolkit": "^1.8.2",
     "@sentry/browser": "^6.19.7",
     "classnames": "^2.3.1",
     "immutable": "^4.0.0-rc.12",

@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import Notifications from "react-notification-system-redux2";
 import ModalRoot from "./Modal/Root";
 import { deleteNotification } from "./actions";
+import { getNotificationState } from "./config";
 
 const
   mapStateToProps = (state: State) => ({
-    notifications: state.notifications || [],
+    notifications: getNotificationState(state) || [],
   }),
   mapDispatchToProps = (dispatch: Dispatch) => ({
     handleDismiss: (notification : { key : number }) => {

@@ -1,6 +1,7 @@
 import type { Action, State } from "src/types";
 import { createSelector } from "reselect";
 import * as Immutable from "immutable";
+import { getAccountState } from "src/config";
 import { isAdministratorAccount, noError } from "../utility";
 
 const initialState = Immutable.Map({
@@ -36,13 +37,13 @@ const initialState = Immutable.Map({
 
   reducer = (state: any = initialState, action: Action) => {
     switch (action.type) {
-      case "FETCH_INITIAL_INFORMATION_PENDING":
+      case "FETCH_INITIAL_INFORMATION/pending":
         return fetchCurrentAccountPending(state);
 
-      case "FETCH_INITIAL_INFORMATION_REJECTED":
+      case "FETCH_INITIAL_INFORMATION/rejected":
         return fetchCurrentAccountRejected(state, action);
 
-      case "FETCH_INITIAL_INFORMATION_FULFILLED":
+      case "FETCH_INITIAL_INFORMATION/fulfilled":
         return fetchCurrentAccountFulfilled(state, action);
 
       case "ACCOUNT_CHANGE_PASSWORD":
@@ -56,12 +57,12 @@ const initialState = Immutable.Map({
     }
   },
 
-  getFetched = (state: State) => state.account.get("fetched"),
-  getError = (state: State) => state.account.get("error"),
+  getFetched = (state: State) => getAccountState(state).get("fetched"),
+  getError = (state: State) => getAccountState(state).get("error"),
 
-  getCurrentAccount = (state: State) => state.account.get("info"),
-  getCurrentAccountCompanies = (state: State) => state.account.get("companies"),
-  getCurrentAccountIsFetching = (state: State) => state.account.get("fetching"),
+  getCurrentAccount = (state: State) => getAccountState(state).get("info"),
+  getCurrentAccountCompanies = (state: State) => getAccountState(state).get("companies"),
+  getCurrentAccountIsFetching = (state: State) => getAccountState(state).get("fetching"),
   getCurrentAccountShouldFetch = createSelector(
     getCurrentAccountIsFetching,
     getFetched,

@@ -1,8 +1,7 @@
-import type { Action } from "src/types";
-
 import agent from "superagent";
 import * as Immutable from "immutable";
-import { noError, normalizeArrayByField, normalizeArray, withPromiseCallback } from "../utility";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { noError, normalizeArrayByField, normalizeArray } from "../utility";
 
 const normalizeInitialInformation = (info: any) => {
   const {
@@ -29,9 +28,8 @@ const normalizeInitialInformation = (info: any) => {
   };
 };
 
-export const fetchInitialInformation = (app: string): Action => ({
-  type    : "FETCH_INITIAL_INFORMATION",
-  payload : async () => {
+export const fetchInitialInformation = createAsyncThunk("FETCH_INITIAL_INFORMATION",
+  async (app : string) => {
     const response = await agent.
       get("/api/extern/get-initial-information").
       type("form").
@@ -39,6 +37,6 @@ export const fetchInitialInformation = (app: string): Action => ({
         app,
       });
 
-    return normalizeInitialInformation(response);
+    return normalizeInitialInformation(response?.body || {});
   },
-});
+);

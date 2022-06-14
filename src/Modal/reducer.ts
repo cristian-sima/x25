@@ -1,5 +1,6 @@
 import type { Action, State } from "src/types";
 import * as Immutable from "immutable";
+import { getModalsState } from "src/config";
 
 const initialState = Immutable.List(),
 
@@ -27,7 +28,7 @@ const initialState = Immutable.List(),
     }
   },
 
-  getModals = (state: State) => state.modal || Immutable.List();
+  getModals = (state: State) => getModalsState(state) || initialState;
 
 export const selectors = {
   getModals,
