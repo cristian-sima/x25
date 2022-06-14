@@ -7,7 +7,7 @@ import { deleteNotification } from "./actions";
 
 const
   mapStateToProps = (state: State) => ({
-    notifications: state.notifications,
+    notifications: state.get("notifications", []),
   }),
   mapDispatchToProps = (dispatch: Dispatch) => ({
     handleDismiss: (notification : { key : number }) => {

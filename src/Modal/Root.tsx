@@ -19,17 +19,19 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
   }
 
   render () {
-    const { list } = this.props;
+    const {
+      list,
+    } = this.props;
 
-    if (list.length === 0) {
+    if (list.size === 0) {
       return null;
     }
 
     return list.map((current : any, index : number) => {
       const
-        modalType = current.type,
+        modalType = current.get("type"),
         Component = getComponent(modalType),
-        isTheLastOne = current === list.length - 1;
+        isTheLastOne = current === list.size - 1;
 
       if (typeof Component === "undefined") {
         return (
@@ -42,7 +44,7 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
       return (
         <Component
           key={index}
-          {...current.props}
+          {...current.get("props").toJS()}
           closeByEscape={isTheLastOne}
         />
       );
