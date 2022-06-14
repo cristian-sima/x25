@@ -56,12 +56,12 @@ const initialState = Immutable.Map({
     }
   },
 
-  getFetched = (state: State) => state.getIn(["account", "fetched"]),
-  getError = (state: State) => state.getIn(["account", "error"]),
+  getFetched = (state: State) => state.account.get("fetched"),
+  getError = (state: State) => state.account.get("error"),
 
-  getCurrentAccount = (state: State) => state.getIn(["account", "info"]),
-  getCurrentAccountCompanies = (state: State) => state.getIn(["account", "companies"]),
-  getCurrentAccountIsFetching = (state: State) => state.getIn(["account", "fetching"]),
+  getCurrentAccount = (state: State) => state.account.get("info"),
+  getCurrentAccountCompanies = (state: State) => state.account.get("companies"),
+  getCurrentAccountIsFetching = (state: State) => state.account.get("fetching"),
   getCurrentAccountShouldFetch = createSelector(
     getCurrentAccountIsFetching,
     getFetched,

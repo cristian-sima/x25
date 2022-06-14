@@ -27,7 +27,7 @@ const initialState = Immutable.List(),
     }
   },
 
-  getModals = (state: State) => state.get("modal") || Immutable.List();
+  getModals = (state: State) => state.modal || Immutable.List();
 
 export const selectors = {
   getModals,

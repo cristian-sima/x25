@@ -16,7 +16,7 @@ const initialState = Immutable.Map(),
     }
   },
 
-  getIsModuleReady = (state: any, id: string) => state.getIn(["module", id]) || false,
+  getIsModuleReady = (state: any, id: string) => state.module.get(id) || false,
 
   moduleIsReadyAction = (payload: string) => ({
     type: "INIT_MODULE",
