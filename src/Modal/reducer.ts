@@ -1,6 +1,6 @@
 import type { Action, State } from "src/types";
 import * as Immutable from "immutable";
-import { getModalsState } from "src/config";
+import { getModalsState } from "../config";
 
 const initialState = Immutable.List(),
 

@@ -28,7 +28,7 @@ const normalizeInitialInformation = (info: any) => {
   };
 };
 
-export const fetchInitialInformation = createAsyncThunk("FETCH_INITIAL_INFORMATION",
+export const fetchInitialInformation = createAsyncThunk("account/FETCH_INITIAL_INFORMATION",
   async (app : string) => {
     const response = await agent.
       get("/api/extern/get-initial-information").

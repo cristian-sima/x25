@@ -1,7 +1,7 @@
 import type { Action, State } from "src/types";
 import { createSelector } from "reselect";
 import * as Immutable from "immutable";
-import { getAccountState } from "src/config";
+import { getAccountState } from "../config";
 import { isAdministratorAccount, noError } from "../utility";
 
 const initialState = Immutable.Map({
@@ -37,19 +37,19 @@ const initialState = Immutable.Map({
 
   reducer = (state: any = initialState, action: Action) => {
     switch (action.type) {
-      case "FETCH_INITIAL_INFORMATION/pending":
+      case "account/FETCH_INITIAL_INFORMATION/pending":
         return fetchCurrentAccountPending(state);
 
-      case "FETCH_INITIAL_INFORMATION/rejected":
+      case "account/FETCH_INITIAL_INFORMATION/rejected":
         return fetchCurrentAccountRejected(state, action);
 
-      case "FETCH_INITIAL_INFORMATION/fulfilled":
+      case "account/FETCH_INITIAL_INFORMATION/fulfilled":
         return fetchCurrentAccountFulfilled(state, action);
 
-      case "ACCOUNT_CHANGE_PASSWORD":
+      case "account/ACCOUNT_CHANGE_PASSWORD":
         return accountChangePassword(state);
 
-      case "ACCOUNT_GAVE_CONSENT":
+      case "account/ACCOUNT_GAVE_CONSENT":
         return accountGaveConsent(state);
 
       default:

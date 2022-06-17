@@ -12,7 +12,7 @@ type CreateNotification = (
 );
 
 const
-  autoDismissDelay = 5,
+  autoDismissDelay = 3,
   createNotification : CreateNotification = (level) => (title, options) => Notifications.show({
     title,
     position    : "tc",
