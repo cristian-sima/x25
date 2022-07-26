@@ -1,13 +1,14 @@
 // @flow
 /* eslint-disable max-classes-per-file */
 
+// eslint-disable-next-line no-unused-vars
 class CustomError<Message: string, Stack: string> extends Error {
 
-  constructor (message: Message, stack: Stack) {
-    super(message);
-    this.message = message;
-    this.name = message;
-    this.stack = stack;
+  constructor (error : any) {
+    super(error);
+    this.message = error.message;
+    this.name = error.name;
+    this.stack = error.stack;
   }
 }
 
