@@ -77,6 +77,10 @@ export const LargeErrorMessage = ({ message, onRetry, details, itemNotFound } : 
             )
           }
         </div>
+        <div className="text-center mt-3 border-top pt-2 text-muted small">
+          {"Dacă eroarea persistă, vă rugăm să navigați la "}
+          <a href="/">{" această pagină"}</a>
+        </div>
       </div>
     </div>
   </div>
