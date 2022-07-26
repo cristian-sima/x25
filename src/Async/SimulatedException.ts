@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-class CustomError<Message extends string, Stack extends string> extends Error {
+class CustomError extends Error {
   constructor (theError : any) {
     super(theError);
     this.message = theError.message;
@@ -9,9 +9,7 @@ class CustomError<Message extends string, Stack extends string> extends Error {
 
 }
 
-type Message = string;
-type Stack = string;
 
-class SimulatedException extends CustomError<Message, Stack> {}
+class SimulatedException extends CustomError {}
 
 export default SimulatedException;

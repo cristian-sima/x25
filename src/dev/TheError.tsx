@@ -23,7 +23,7 @@ const TheError = (props: TheErrorProps) => {
     };
   }, []);
 
-  const {    error,    info,    status,    refresh,  } = props;
+  const { error, info, status, refresh } = props;
 
   // render fallback UI
   return (
