@@ -22,7 +22,10 @@ const ModalWindow = (props : ModalWindowProps) => {
     tryToClose = () => {
       const
         closeModal = () => {
-          dispatch(hideModal());
+          if (!props.preventDispatchHideModal) {
+            dispatch(hideModal());
+          }
+
           if (typeof props.onClose === "function") {
             props.onClose();
           }
