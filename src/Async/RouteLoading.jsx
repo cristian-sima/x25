@@ -23,7 +23,7 @@ const RouteLoading = ({ error : theError, retry, pastDelay, timedOut } : Loading
       return (
         <LargeErrorMessage
           onRetry={retry}
-          error="Pagina nu a putut fi încărcată. Vă rugăm să faceți refresh la pagină"
+          message="Pagina nu a putut fi încărcată. Vă rugăm să faceți refresh la pagină"
         />
       );
     }
