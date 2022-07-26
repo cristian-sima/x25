@@ -2,6 +2,8 @@
 export const DateFormat = "DD.MM.YEAR";
 
 export const english = {
+  ThisPage                    : "If this error persists, please navigate to",
+  IfThisIsErrorPersist        : "this page",
   PleaseWait                  : "Please wait...",
   TryAgain                    : "Try again",
   LoadingData                 : "Loading data...",

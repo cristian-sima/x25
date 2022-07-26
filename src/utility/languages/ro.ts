@@ -4,6 +4,8 @@ const DateFormat = "DD.MM.YEAR";
 
 export const
   romanian = {
+    IfThisIsErrorPersist        : "Dacă eroarea persistă, vă rugăm să navigați la ",
+    ThisPage                    : "această pagină",
     PleaseWait                  : "Vă rugăm asteptați...",
     TryAgain                    : "Încearcă din nou",
     LoadingData                 : "Încărcare date...",
