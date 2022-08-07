@@ -53,6 +53,7 @@
       "react/no-unused-state": 0,
       "react/jsx-one-expression-per-line":0,
       "react/jsx-no-literals":0,
+      "react/jsx-no-bind":0,
       "react/default-props-match-prop-types":0,
       "padding-line-between-statements":[
          "error",

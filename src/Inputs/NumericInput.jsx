@@ -1,126 +1,90 @@
-/* eslint-disable */
-// @flow
+/* eslint-disable require-unicode-regexp */
+/* eslint-disable no-magic-numbers */
+/* eslint-disable react/no-unsafe */
 
 type NumericPropTypes = {
-  +currency?: boolean;
-  +optional?: boolean;
-  +size?: number;
-  +customClass?: any;
-
-  +input: any;
-  +label?: string;
-  +meta: {
-    error?: string;
-    submitting: boolean;
-    touched: boolean;
+     +currency?: boolean;
+     +optional?: boolean;
+     +size?: number;
+     +customClass?: any;
+     +input: any;
+     +label?: string;
+     +meta: {
+      error?: string;
+      submitting: boolean;
+      touched: boolean;
+    };
+     +tabIndex?: number;
+     +placeholder?: string;
+     +value?: string;
+     +formatValue: (raw: any, optional?: boolean) => string;
+     +normalizeValue: (raw: any) => any;
+     +onBlur?: () => void;
+     +onChange?: (event: any) => void;
+     +onRegisterRef?: any;
   };
-  +tabIndex?: string;
-  +placeholder?: string;
-  +value?: string;
-
-  +formatValue: (raw: any, optional?: bool) => string;
-  +normalizeValue: (raw: any) => any;
-  +onBlur?: () => void;
-  +onChange?: (event : any) => void;
-  +onRegisterRef?: any;
-};
-
-type NumericStateTypes = {
-  value: any
-};
 
 import React from "react";
 import classnames from "classnames";
+import { formatZeroValue } from "../utility";
 
-import { formatZeroValue, normalizeFloat, handleBlur, cwrp } from "../utility";
+import { getFloatValueToStore, clearFloatOnBlur } from "./common";
 
-export class NumericInput extends React.Component<NumericPropTypes, NumericStateTypes> {
+const
+  NumericInput = (props : NumericPropTypes) => {
+    const
+      {
+        customClass, input, label, currency, tabIndex, onRegisterRef, formatValue = formatZeroValue,
+        size, placeholder, meta: { submitting, touched, error },
+      } = props,
 
-  static defaultProps = {
-    formatValue    : formatZeroValue,
-    normalizeValue : normalizeFloat,
-  }
+      [
+        value,
+        setValue,
+      ] = React.useState(props.input.value),
 
-  props: NumericPropTypes;
+      noCurrency = (typeof currency === "undefined" || currency === false),
+      valueToShow = formatValue(value, props.optional),
 
-  state: NumericStateTypes;
-
-  handleBlur: () => any;
-  handleKeyDown: (event : any) => void;
-  handleChange: () => void;
-
-  constructor (props : NumericPropTypes) {
-    super();
-
-    this.state = {
-      value: props.input.value,
-    };
-
-    this.handleKeyDown = (event : any) => {
-      if (event.key === "Enter") {
-        this.handleBlur();
-      }
-    };
-
-    this.handleBlur = () => {
-      handleBlur(this);
-    };
-
-    this.handleChange = ({ target : { value } } : any) => {
-      this.props.input.onChange();
-
-      /*
-       * Update the internal state to trigger a re-render
-       * using the formatted value
-       */
-      this.setState({ value });
-    };
-  }
-
-  UNSAFE_componentWillReceiveProps (nextProps : NumericPropTypes) {
-    cwrp(this, nextProps);
-  }
-
-  render () {
-    const {
-      customClass,
-      input,
-      label,
-      currency,
-      tabIndex,
-      onRegisterRef,
-      meta: {
-        submitting,
-        touched,
-        error,
+      updateValue = (targetValue) => {
+        setValue(targetValue);
+        props.input.onChange(getFloatValueToStore(targetValue));
       },
-      formatValue,
-      size,
-      placeholder,
-    } = this.props;
 
-    const inputComponent = (
-      <input
-        aria-label={label}
-        className={classnames(`form-control ${(customClass || "")}`, {
-          "is-invalid": touched && error,
-        })}
-        disabled={submitting}
-        id={input.name}
-        maxLength={size}
-        onBlur={this.handleBlur}
-        onChange={this.handleChange}
-        onFocus={input.onFocus}
-        onKeyDown={this.handleKeyDown}
-        placeholder={placeholder || label}
-        ref={onRegisterRef}
-        tabIndex={tabIndex}
-        type="text"
-        value={formatValue(this.state.value, this.props.optional)}
-      />
-    );
+      handleBlur = () => {
+        const
+          newValue = clearFloatOnBlur(value),
+          hasChanged = value !== newValue;
 
-    if (typeof currency === "undefined" || currency === false) {
+        if (hasChanged) {
+          updateValue(newValue);
+        }
+      },
+
+      handleChange = ({ target: { value : targetValue } }: any) => {
+        updateValue(targetValue);
+      },
+
+      inputComponent = (
+        <input
+          aria-label={label}
+          className={classnames(`form-control ${customClass || ""}`, {
+            "is-invalid": touched && error,
+          })}
+          disabled={submitting}
+          id={input.name}
+          maxLength={size}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          placeholder={placeholder || label}
+          ref={onRegisterRef}
+          tabIndex={tabIndex}
+          type="text"
+          value={valueToShow}
+        />
+      );
+
+    if (noCurrency) {
       return (
         <div className="form-group-inline">
           {inputComponent}
@@ -130,7 +94,7 @@ export class NumericInput extends React.Component<NumericPropTypes, NumericState
 
     return (
       <div className="input-group">
-        { inputComponent }
+        {inputComponent}
         <div className="input-group-append">
           <span className="input-group-text">
             {currency}
@@ -138,5 +102,6 @@ export class NumericInput extends React.Component<NumericPropTypes, NumericState
         </div>
       </div>
     );
-  }
-}
+  };
+
+export default NumericInput;
