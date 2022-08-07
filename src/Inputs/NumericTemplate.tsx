@@ -1,107 +1,69 @@
-/* eslint-disable react/no-unsafe */
 
 type NumericPropTypes = {
-  readonly optional?: boolean;
-  readonly size?: number;
-  readonly customClass?: any;
-  readonly divClass?: any;
-  readonly input: any;
-  readonly label?: string;
-  readonly meta: {
+   optional?: boolean;
+   size?: number;
+   customClass?: any;
+   divClass?: any;
+   input: any;
+   label?: string;
+   meta: {
     error?: string;
     submitting: boolean;
     touched: boolean;
   };
-  readonly placeholder?: string;
-  readonly value?: string;
-  readonly autoFocus?: boolean;
-  readonly type: string;
-  readonly inputClass?: string;
-  readonly left?: string;
-  readonly tabIndex?: number;
-  readonly right?: string;
-  readonly formatValue: (raw: any, optional?: boolean) => string;
-  readonly normalizeValue: (raw: string | null) => any;
-  readonly onBlur?: () => void;
-  readonly onChange?: (event: any) => void;
-  readonly onRegisterRef?: any;
+   placeholder?: string;
+   value?: string;
+   autoFocus?: boolean;
+   type: string;
+   inputClass?: string;
+   left?: string;
+   tabIndex?: number;
+   right?: string;
+   formatValue: (raw: any, optional?: boolean) => string;
+   normalizeValue: (raw: string | null) => any;
+   onBlur?: () => void;
+   onChange?: (event: any) => void;
+   onRegisterRef?: any;
 };
-type NumericStateTypes = {
-  value: any;
-};
+
 import React from "react";
 import classnames from "classnames";
-import { formatZeroValue, handleBlur, normalizeFloat, cwrp } from "../utility";
 
-export class NumericTemplate extends React.Component<NumericPropTypes, NumericStateTypes> {
-  static defaultProps = {
-    formatValue    : formatZeroValue,
-    normalizeValue : normalizeFloat,
-  };
 
-  state: NumericStateTypes;
-  handleBlur: () => void;
-  handleKeyDown: (event: any) => void;
-  handleChange: ({ target: { value } }: any) => void;
+import { getFloatValueToStore, clearFloatOnBlur } from "./common";
 
-  UNSAFE_componentWillReceiveProps (nextProps: NumericPropTypes) {
-    cwrp(this, nextProps);
-  }
-
-  constructor (props: NumericPropTypes) {
-    super(props);
-    this.state = {
-      value: props.input.value,
-    };
-
-    this.handleKeyDown = (event: any) => {
-      if (event.key === "Enter") {
-        this.handleBlur();
-      }
-    };
-
-    this.handleBlur = () => {
-      handleBlur(this);
-    };
-
-    this.handleChange = ({
-      target: {
-        value,
-      },
-    }: any) => {
-      this.props.input.onChange();
-
-      /*
-       * Update the internal state to trigger a re-render
-       * using the formatted value
-       */
-      this.setState({
-        value,
-      });
-    };
-  }
-
-  render () {
-    const {
-        input,
-        label,
+export const
+  NumericTemplate = (props : NumericPropTypes) => {
+    const
+      {
+        input, right, tabIndex, divClass, label,
         onRegisterRef,
-        meta: {
-          submitting,
-          touched,
-          error,
-        },
-        formatValue,
-        type,
-        autoFocus,
-        inputClass,
-        placeholder,
-        left,
-        size,
-        right,
-        tabIndex,
-        divClass,
-      } = this.props,
+        meta: { submitting, touched, error }, formatValue,
+        type, autoFocus, inputClass, placeholder, left, size,
+      } = props,
+
+      [value, setValue] = React.useState(props.input.value),
+
+      valueToShow = formatValue(value, props.optional),
+
+      updateValue = (targetValue : string) => {
+        setValue(targetValue);
+        props.input.onChange(getFloatValueToStore(targetValue));
+      },
+
+      handleBlur = () => {
+        const
+          newValue = clearFloatOnBlur(value),
+          hasChanged = value !== newValue;
+
+        if (hasChanged) {
+          updateValue(newValue);
+        }
+      },
+
+      handleChange = ({ target: { value : targetValue } }: any) => {
+        updateValue(targetValue);
+      },
       warningClass = `${touched && error ? " is-invalid" : ""}`,
       customClass = `${inputClass ? ` ${inputClass}` : ""}`,
       classForInput = `form-control ${warningClass}${customClass}`,
@@ -124,15 +86,13 @@ export class NumericTemplate extends React.Component<NumericPropTypes, NumericSt
             disabled={submitting}
             id={input.name}
             maxLength={size}
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onFocus={input.onFocus}
-            onKeyDown={this.handleKeyDown}
+            onBlur={handleBlur}
+            onChange={handleChange}
             placeholder={placeholder}
             ref={onRegisterRef}
             tabIndex={tabIndex}
             type={type}
-            value={formatValue(this.state.value, this.props.optional)}
+            value={formatValue(valueToShow, props.optional)}
           />
           <div className="invalid-feedback">
             {touched && error && (
@@ -144,6 +104,5 @@ export class NumericTemplate extends React.Component<NumericPropTypes, NumericSt
         </div>
       </div>
     );
-  }
+  };
 
-}
