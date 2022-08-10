@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unsafe */
-
 type DateInputPropTypes = {
     readonly customClass?: any;
     readonly input: any;
@@ -25,7 +23,6 @@ import { isValidDate } from "../utility/validation";
 
 const
   addZeroIfNeeded = (raw : string) => {
-
     const
       nrOfElements = 3,
       canAddZero = (
@@ -103,7 +100,6 @@ export const DateInput = (props : DateInputPropTypes) => {
     handleChange = ({ target: { value : targetValue } }: any) => {
       updateValue(targetValue);
     };
-
 
   return (
     <input
