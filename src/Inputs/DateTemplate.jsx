@@ -76,7 +76,7 @@ const
   };
 
 // eslint-disable-next-line no-undef
-export const DateInput = (props : DateInputPropTypes) => {
+export const DateTemplate = (props : DateInputPropTypes) => {
   const
 
     { customClass, input, onRegisterRef, tabIndex, placeholder,
