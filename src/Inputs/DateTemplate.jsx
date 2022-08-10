@@ -1,213 +1,152 @@
-// @flow
-/* eslint-disable */
-
-type DateTemplatePropTypes = {
-  +customClass?: any;
-  +input: any;
-  +label?: string;
-  +meta: {
-    error?: string;
-    submitting: boolean;
-    touched: boolean;
-  };
-  +left?: string;
-  +right?: string;
-  +placeholder?: string;
-  +value?: string;
-  +tabIndex?: string;
-  +currency?: boolean;
-
-  +formatValue: (raw: string) => string;
-  +normalizeValue: (raw: string) => any;
-  +onBlur?: () => void;
-  +onChange?: (event : any) => void;
-  +onRegisterRef?: (callback : (node : any) => void) => void;
-};
-
-type DateTemplateStateTypes = {
-  value: string,
-};
-
+// type DateInputPropTypes = {
+//   readonly customClass?: any;
+//   readonly input: any;
+//   readonly meta: {
+//     error?: string;
+//     submitting: boolean;
+//     touched: boolean;
+//   };
+//   readonly placeholder?: string;
+//   readonly value?: string;
+//   readonly tabIndex?: string;
+//   readonly currency?: boolean;
+//   readonly formatValue: (raw: string) => string;
+//   readonly normalizeValue: (raw: string) => any;
+//   readonly onBlur?: () => void;
+//   readonly onChange?: (event: any) => void;
+//   readonly onRegisterRef?: (callback: (node: any) => void) => void;
+//   right?: string;
+//   left?: string;
+//   label:string;
+// }
 import React from "react";
 import classnames from "classnames";
+import { formatDate, normalizeDate, words } from "../utility";
+import { isValidDate } from "../utility/validation";
 
-import {
-  formatDate,
-  isValidDate,
-  normalizeDate,
-} from "../utility";
+const
+  addZeroIfNeeded = (raw : string) => {
+    const
+      nrOfElements = 3,
+      canAddZero = (
+        (typeof raw === "string") &&
+      (raw.split(".").length === nrOfElements)
+      );
 
-const normalizeRawDate = (raw : string) : string => {
-
-  /* eslint-disable no-magic-numbers */
-
-  if (isValidDate(raw)) {
-    return normalizeDate(raw);
-  }
-
-  return raw;
-};
-
-const formatRawDate = (raw : string) : string => {
-
-  /* eslint-disable no-magic-numbers */
-
-
-  if (typeof raw !== "undefined") {
-    return formatDate(raw);
-  }
-
-  return "";
-};
-
-export class DateTemplate extends React.Component<DateTemplatePropTypes, DateTemplateStateTypes> {
-
-  static defaultProps = {
-    formatValue    : formatRawDate,
-    normalizeValue : normalizeRawDate,
-  }
-
-  props: DateTemplatePropTypes;
-
-  state: DateTemplateStateTypes;
-
-  handleBlur: () => void;
-  handleKeyDown: (event : any) => void;
-  handleChange: () => void;
-
-  constructor (props : DateTemplatePropTypes) {
-    super();
-
-    this.state = {
-      value: formatRawDate(props.input.value),
-    };
-
-    this.handleKeyDown = (event : any) => {
-      if (event.key === "Enter") {
-        this.handleBlur();
-      }
-    };
-
-    this.handleBlur = () => {
-      const { onBlur } = this.props.input;
-
-      const { input, normalizeValue } = this.props;
-
-      const { value: currentValue } = this.state;
-
-      const normalizedValue = normalizeValue(currentValue),
-        shouldRenderAgain = (
-          (normalizedValue !== "") &&
-        (currentValue !== normalizedValue)
-        );
-
-      input.onChange(normalizedValue);
-
-      /*
-       * Swallow the event to prevent Redux Form from
-       * extracting the form value
-       */
-      onBlur();
-
-      if (shouldRenderAgain) {
-        this.setState({
-          value: formatDate(normalizedValue),
-        });
-      }
-    };
-
-    this.handleChange = ({ target : { value } } : any) => {
-      this.props.input.onChange();
-
-      /*
-       * Update the internal state to trigger a re-render
-       * using the formatted value
-       */
-      this.setState({ value });
-    };
-  }
-
-  UNSAFE_componentWillReceiveProps (nextProps : DateTemplatePropTypes) {
-    const {
-      input: {
-        value: newValue,
-      },
-    } = nextProps;
-
-    const { value: currentValue } = this.state;
-
-    const shouldRenderAgain = (
-      isValidDate(newValue) &&
-      (currentValue !== newValue)
-    );
-
-    if (newValue === "") {
-      this.setState({
-        value: "",
-      });
+    if (!canAddZero) {
+      return raw;
     }
 
-    if (shouldRenderAgain) {
-      this.setState({
-        value: formatDate(newValue),
-      });
+    const
+      perform = (value : string) => (
+        value.length === 1 ? `0${value}` : value
+      ),
+      parts = raw.split("."),
+      part1 = perform(parts[0]),
+      part2 = perform(parts[1]),
+      [, , part3] = parts,
+
+      newValue = [
+        part1,
+        part2,
+        part3,
+      ].join(".");
+
+
+    if (isValidDate(newValue)) {
+      return newValue;
     }
-  }
 
-  render () {
-    const {
-      customClass,
-      input,
-      label,
-      onRegisterRef,
-      meta: {
-        submitting,
-        touched,
-        error,
-      },
-      left,
-      right,
-      tabIndex,
-      formatValue,
-      placeholder,
-    } = this.props;
+    return raw;
+  },
+  normalizeRawDate = (raw: string): string => {
+    if (isValidDate(raw)) {
+      return normalizeDate(raw);
+    }
 
-    return (
-      <div className={classnames("form-group row", { "is-invalid": touched && error })}>
-        <label
-          className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
-          htmlFor={input.name}>
-          {label}
-        </label>
-        <div className={right ? right : "col-md-8"}>
-          <input
-            {...input}
-            aria-label={label}
-            className={classnames(`form-control ${(customClass || "")}`, {
-              "is-invalid": touched && error,
-            })}
-            disabled={submitting}
-            id={input.name}
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
-            placeholder={placeholder || "ZZ.LL.ANUL"}
-            ref={onRegisterRef}
-            tabIndex={tabIndex}
-            type="text"
-            value={formatValue(this.state.value)}
-          />
-          <div className="invalid-feedback">
-            {
-              touched && error && (
-                <span>
-                  {error}
-                </span>
-              )
-            }
-          </div>
+    return "";
+  },
+
+  formatRawDate = (raw: string): string => {
+    if (typeof raw !== "undefined") {
+      return formatDate(raw);
+    }
+
+    return "";
+  };
+
+// eslint-disable-next-line no-undef
+export const DateInput = (props : DateInputPropTypes) => {
+  const
+
+    { customClass, input, onRegisterRef, tabIndex, placeholder,
+      meta: { submitting, touched, error }, right, left, label } = props,
+
+    [
+      value,
+      setValue,
+    ] = React.useState(input.value),
+
+    valueToShow = formatRawDate(value),
+
+    updateValue = (targetValue : string) => {
+
+      const normalizedValue = normalizeRawDate(addZeroIfNeeded(targetValue));
+
+      setValue(targetValue);
+      props.input.onChange(normalizedValue);
+
+    },
+
+    handleBlur = ({ target: { value : targetValue } }: any) => {
+      const
+        newValue = addZeroIfNeeded(targetValue),
+        hasChanged = targetValue !== newValue;
+
+      if (hasChanged) {
+        updateValue(newValue);
+      }
+    },
+
+    handleChange = ({ target: { value : targetValue } }: any) => {
+      updateValue(targetValue);
+    };
+
+  return (
+    <div
+      className={classnames("form-group row", { "is-invalid": touched && error })}>
+      <label
+        className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
+        htmlFor={input.name}>
+        {label}
+      </label>
+      <div className={right ? right : "col-md-8"}>
+        <input
+          {...input}
+          aria-label={label}
+          className={classnames(`form-control ${customClass || ""}`, {
+            "is-invalid": touched && error,
+          })}
+          disabled={submitting}
+          id={input.name}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          placeholder={placeholder || words.DateFormat}
+          ref={onRegisterRef}
+          tabIndex={tabIndex}
+          type="text"
+          value={valueToShow}
+        />
+        <div
+          className="invalid-feedback">
+          {touched && error && (
+            <span>
+              {error}
+            </span>
+          )}
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+

@@ -1,188 +1,135 @@
-// @flow
-/* eslint-disable */
+/* eslint-disable react/no-unsafe */
 
-type DateInputPropTypes = {
-  +customClass?: any;
-  +input: any;
-  +meta: {
-    error?: string;
-    submitting: boolean;
-    touched: boolean;
-  };
-  +placeholder?: string;
-  +value?: string;
-  +tabIndex?: string;
-  +currency?: boolean;
-
-  +formatValue: (raw: string) => string;
-  +normalizeValue: (raw: string) => any;
-  +onBlur?: () => void;
-  +onChange?: (event : any) => void;
-  +onRegisterRef?: (callback : (node : any) => void) => void;
-};
-
-type DateInputStateTypes = {
-  value: string,
-};
-
+// type DateInputPropTypes = {
+//     readonly customClass?: any;
+//     readonly input: any;
+//     readonly meta: {
+//       error?: string;
+//       submitting: boolean;
+//       touched: boolean;
+//     };
+//     readonly placeholder?: string;
+//     readonly value?: string;
+//     readonly tabIndex?: string;
+//     readonly currency?: boolean;
+//     readonly formatValue: (raw: string) => string;
+//     readonly normalizeValue: (raw: string) => any;
+//     readonly onBlur?: () => void;
+//     readonly onChange?: (event: any) => void;
+//     readonly onRegisterRef?: (callback: (node: any) => void) => void;
+//   }
 import React from "react";
 import classnames from "classnames";
 
-import {
-  formatDate,
-  isValidDate,
-  normalizeDate,
-} from "../utility";
+import { formatDate, normalizeDate, words } from "../utility";
+import { isValidDate } from "../utility/validation";
 
-const normalizeRawDate = (raw : string) : string => {
+const
+  addZeroIfNeeded = (raw : string) => {
 
-  /* eslint-disable no-magic-numbers */
+    const
+      nrOfElements = 3,
+      canAddZero = (
+        (typeof raw === "string") &&
+        (raw.split(".").length === nrOfElements)
+      );
 
-  if (isValidDate(raw)) {
-    return normalizeDate(raw);
-  }
-
-  return raw;
-};
-
-const formatRawDate = (raw : string) : string => {
-
-  /* eslint-disable no-magic-numbers */
-
-
-  if (typeof raw !== "undefined") {
-    return formatDate(raw);
-  }
-
-  return "";
-};
-
-export class DateInput extends React.Component<DateInputPropTypes, DateInputStateTypes> {
-
-  static defaultProps = {
-    formatValue    : formatRawDate,
-    normalizeValue : normalizeRawDate,
-  }
-
-  props: DateInputPropTypes;
-
-  state: DateInputStateTypes;
-
-  handleBlur: () => void;
-  handleKeyDown: (event : any) => void;
-  handleChange: () => void;
-
-  constructor (props : DateInputPropTypes) {
-    super();
-
-    this.state = {
-      value: formatRawDate(props.input.value),
-    };
-
-    this.handleKeyDown = (event : any) => {
-      if (event.key === "Enter") {
-        this.handleBlur();
-      }
-    };
-
-    this.handleBlur = () => {
-      const { onBlur } = this.props.input;
-
-      const { input, normalizeValue } = this.props;
-
-      const { value: currentValue } = this.state;
-
-      const normalizedValue = normalizeValue(currentValue),
-        shouldRenderAgain = (
-          (normalizedValue !== "") &&
-        (currentValue !== normalizedValue)
-        );
-
-      input.onChange(normalizedValue);
-
-      /*
-       * Swallow the event to prevent Redux Form from
-       * extracting the form value
-       */
-      onBlur();
-
-      if (shouldRenderAgain) {
-        this.setState({
-          value: formatDate(normalizedValue),
-        });
-      }
-    };
-
-    this.handleChange = ({ target : { value } } : any) => {
-      this.props.input.onChange();
-
-      /*
-       * Update the internal state to trigger a re-render
-       * using the formatted value
-       */
-      this.setState({ value });
-    };
-  }
-
-  UNSAFE_componentWillReceiveProps (nextProps : DateInputPropTypes) {
-    const {
-      input: {
-        value: newValue,
-      },
-    } = nextProps;
-
-    const { value: currentValue } = this.state;
-
-    const shouldRenderAgain = (
-      isValidDate(newValue) &&
-      (currentValue !== newValue)
-    );
-
-    if (newValue === "") {
-      this.setState({
-        value: "",
-      });
+    if (!canAddZero) {
+      return raw;
     }
 
-    if (shouldRenderAgain) {
-      this.setState({
-        value: formatDate(newValue),
-      });
+    const
+      perform = (value : string) => (
+        value.length === 1 ? `0${value}` : value
+      ),
+      parts = raw.split("."),
+      part1 = perform(parts[0]),
+      part2 = perform(parts[1]),
+      [, , part3] = parts,
+
+      newValue = [
+        part1,
+        part2,
+        part3,
+      ].join(".");
+
+
+    if (isValidDate(newValue)) {
+      return newValue;
     }
-  }
 
-  render () {
-    const {
-      customClass,
-      input,
-      onRegisterRef,
-      meta: {
-        submitting,
-        touched,
-        error,
-      },
-      tabIndex,
-      formatValue,
-      placeholder,
-    } = this.props;
+    return raw;
+  },
+  normalizeRawDate = (raw: string): string => {
+    if (isValidDate(raw)) {
+      return normalizeDate(raw);
+    }
 
-    return (
-      <input
-        {...input}
-        className={classnames(`form-control ${(customClass || "")}`, {
-          "is-invalid": touched && error,
-        })}
-        disabled={submitting}
-        id={input.name}
-        onBlur={this.handleBlur}
-        onChange={this.handleChange}
-        onKeyDown={this.handleKeyDown}
-        placeholder={placeholder || "ZZ.LL.ANUL"}
-        ref={onRegisterRef}
-        tabIndex={tabIndex}
-        type="text"
-        value={formatValue(this.state.value)}
-      />
-    );
-  }
-}
+    return "";
+  },
+
+  formatRawDate = (raw: string): string => {
+    if (typeof raw !== "undefined") {
+      return formatDate(raw);
+    }
+
+    return "";
+  };
+
+// eslint-disable-next-line no-undef
+export const DateInput = (props : DateInputPropTypes) => {
+  const
+
+    { customClass, input, onRegisterRef, tabIndex, placeholder,
+      meta: { submitting, touched, error } } = props,
+
+    [
+      value,
+      setValue,
+    ] = React.useState(input.value),
+
+    valueToShow = formatRawDate(value),
+
+    updateValue = (targetValue : string) => {
+
+      const normalizedValue = normalizeRawDate(addZeroIfNeeded(targetValue));
+
+      setValue(targetValue);
+      props.input.onChange(normalizedValue);
+
+    },
+
+    handleBlur = ({ target: { value : targetValue } }: any) => {
+      const
+        newValue = addZeroIfNeeded(targetValue),
+        hasChanged = targetValue !== newValue;
+
+      if (hasChanged) {
+        updateValue(newValue);
+      }
+    },
+
+    handleChange = ({ target: { value : targetValue } }: any) => {
+      updateValue(targetValue);
+    };
+
+
+  return (
+    <input
+      {...input}
+      className={classnames(`form-control ${customClass || ""}`, {
+        "is-invalid": touched && error,
+      })}
+      disabled={submitting}
+      id={input.name}
+      onBlur={handleBlur}
+      onChange={handleChange}
+      placeholder={placeholder || words.DateFormat}
+      ref={onRegisterRef}
+      tabIndex={tabIndex}
+      type="text"
+      value={valueToShow}
+    />
+  );
+};
+
