@@ -71,7 +71,7 @@ const
     return "";
   };
 
-export const DateInput = (props : DateInputPropTypes) => {
+export const DateTemplate = (props : DateInputPropTypes) => {
   const
 
     { customClass, input, onRegisterRef, tabIndex, placeholder,
