@@ -37,7 +37,7 @@ import classnames from "classnames";
 
 import { getFloatValueToStore, clearFloatOnBlur } from "./common";
 
-const
+export const
   NumericTemplate = (props : NumericPropTypes) => {
     const
       {
@@ -114,4 +114,3 @@ const
     );
   };
 
-export default NumericTemplate;

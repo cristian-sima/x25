@@ -30,8 +30,7 @@ import { formatZeroValue } from "../utility";
 
 import { getFloatValueToStore, clearFloatOnBlur } from "./common";
 
-const
-  NumericInput = (props : NumericPropTypes) => {
+export const  NumericInput = (props : NumericPropTypes) => {
     const
       {
         customClass, input, label, currency, tabIndex, onRegisterRef, formatValue = formatZeroValue,
@@ -103,5 +102,3 @@ const
       </div>
     );
   };
-
-export default NumericInput;
