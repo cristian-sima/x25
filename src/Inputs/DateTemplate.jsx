@@ -21,7 +21,7 @@
 // }
 import React from "react";
 import classnames from "classnames";
-import { formatDate, normalizeDate, words } from "../utility";
+import { formatDate, normalizeDate } from "../utility";
 import { isValidDate } from "../utility/validation";
 
 const
@@ -131,7 +131,7 @@ export const DateTemplate = (props : DateInputPropTypes) => {
           id={input.name}
           onBlur={handleBlur}
           onChange={handleChange}
-          placeholder={placeholder || words.DateFormat}
+          placeholder={placeholder || "ZZ.LL.ANUL"}
           ref={onRegisterRef}
           tabIndex={tabIndex}
           type="text"

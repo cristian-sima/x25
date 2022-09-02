@@ -37,13 +37,15 @@ import classnames from "classnames";
 
 import { getFloatValueToStore, clearFloatOnBlur } from "./common";
 
+import { formatZeroValue } from "../utility";
+
 export const
   NumericTemplate = (props : NumericPropTypes) => {
     const
       {
         input, right, tabIndex, divClass, label,
         onRegisterRef,
-        meta: { submitting, touched, error }, formatValue,
+        meta: { submitting, touched, error }, formatValue = formatZeroValue,
         type, autoFocus, inputClass, placeholder, left, size,
       } = props,
 
