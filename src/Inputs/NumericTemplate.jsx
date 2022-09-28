@@ -35,7 +35,7 @@ import React from "react";
 import classnames from "classnames";
 
 
-import { getFloatValueToStore, clearFloatOnBlur } from "./common";
+import { getFloatValueToStore, clearFloatOnBlur, isFloat } from "./common";
 
 import { formatZeroValue } from "../utility";
 
@@ -49,18 +49,21 @@ export const
         type, autoFocus, inputClass, placeholder, left, size,
       } = props,
 
-      [
-        value,
-        setValue,
-      ] = React.useState(props.input.value),
+      [value, setValue] = React.useState(props.input.value),
 
       valueToShow = formatValue(value, props.optional),
 
       updateValue = (targetValue) => {
         setValue(targetValue);
-        props.input.onChange(getFloatValueToStore(targetValue));
-      },
 
+        let valueToStore = targetValue;
+
+        if (isFloat(targetValue)) {
+          valueToStore = getFloatValueToStore(targetValue);
+        }
+
+        input.onChange(valueToStore);
+      },
       handleBlur = () => {
         const
           newValue = clearFloatOnBlur(value),
@@ -78,6 +81,12 @@ export const
       customClass = `${inputClass ? ` ${inputClass}` : ""}`,
       classForInput = `form-control ${warningClass}${customClass}`,
       classForDiv = `form-group row ${divClass ? divClass : ""}`;
+
+    React.useEffect(() => {
+      // if (isValidDate(input.value) || input.value === "") {
+      updateValue(input.value);
+      // }
+    }, [input.value]);
 
     return (
       <div className={classnames(classForDiv, {
@@ -102,7 +111,7 @@ export const
             ref={onRegisterRef}
             tabIndex={tabIndex}
             type={type}
-            value={formatValue(valueToShow, props.optional)}
+            value={valueToShow}
           />
           <div className="invalid-feedback">
             {touched && error && (

@@ -112,6 +112,12 @@ export const DateTemplate = (props : DateInputPropTypes) => {
       updateValue(targetValue);
     };
 
+  React.useEffect(() => {
+    if (isValidDate(input.value)) {
+      updateValue(input.value);
+    }
+  }, [input.value]);
+
   return (
     <div
       className={classnames("form-group row", { "is-invalid": touched && error })}>

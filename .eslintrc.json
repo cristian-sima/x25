@@ -96,6 +96,10 @@
          "error",
          5
       ],
+      "array-element-newline":[
+         1,
+         "consistent"
+       ],
       "multiline-comment-style":0,
       "lines-between-class-members":[
          "error",

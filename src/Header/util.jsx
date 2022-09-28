@@ -49,13 +49,17 @@ export const getDefaultCompanyRoute = ({ Modules, ID } : CompanyRoutePropTypes) 
       parts = modules.split(",");
 
     if (modules === "") {
-      return "info";
+      return `${ID}/info`;
     }
 
     const [first] = parts;
 
-    return `${first}/list`;
+    if (first === "auto") {
+      return `auto/${ID}`;
+    }
+
+    return `${ID}/${first}/list`;
   };
 
-  return `/company/${ID}/${getModule()}`;
+  return `/company/${getModule()}`;
 };

@@ -113,6 +113,11 @@ export const DateInput = (props : DateInputPropTypes) => {
       updateValue(targetValue);
     };
 
+  React.useEffect(() => {
+    if (isValidDate(input.value) || input.value === "") {
+      updateValue(input.value);
+    }
+  }, [input.value]);
 
   return (
     <input

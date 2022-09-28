@@ -5,6 +5,16 @@ import * as Immutable from "immutable";
 
 import { noError, normalizeArrayByField, withPromiseCallback, normalizeArray } from "../utility";
 
+
+const normalizeCompanies = (companies) => (
+  companies.map((company) => ({
+    ...company,
+    CountyID : company.CountyID.Int32,
+    CityID   : company.CityID.Int32,
+  }))
+);
+
+
 const normalizeInitialInformation = (info : any) => {
 
   const
@@ -19,7 +29,7 @@ const normalizeInitialInformation = (info : any) => {
         "Short").entities
     ),
     Companies: (typeof Companies === "undefined") ? Immutable.List() : (
-      normalizeArray(Companies).entities
+      normalizeArray(normalizeCompanies(Companies)).entities
     ),
   };
 };
