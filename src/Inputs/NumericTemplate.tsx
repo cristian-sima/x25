@@ -30,7 +30,7 @@ import React from "react";
 import classnames from "classnames";
 
 
-import { getFloatValueToStore, clearFloatOnBlur } from "./common";
+import { getFloatValueToStore, clearFloatOnBlur, isFloat } from "./common";
 
 export const
   NumericTemplate = (props : NumericPropTypes) => {
@@ -46,9 +46,16 @@ export const
 
       valueToShow = formatValue(value, props.optional),
 
-      updateValue = (targetValue : string) => {
+      updateValue = (targetValue: any) => {
         setValue(targetValue);
-        props.input.onChange(getFloatValueToStore(targetValue));
+
+        let valueToStore = targetValue;
+
+        if (isFloat(targetValue)) {
+          valueToStore = getFloatValueToStore(targetValue);
+        }
+
+        input.onChange(valueToStore);
       },
 
       handleBlur = () => {
@@ -92,7 +99,7 @@ export const
             ref={onRegisterRef}
             tabIndex={tabIndex}
             type={type}
-            value={formatValue(valueToShow, props.optional)}
+            value={valueToShow}
           />
           <div className="invalid-feedback">
             {touched && error && (

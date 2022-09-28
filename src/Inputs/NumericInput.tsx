@@ -25,7 +25,7 @@ import React from "react";
 import classnames from "classnames";
 import { formatZeroValue } from "../utility";
 
-import { getFloatValueToStore, clearFloatOnBlur } from "./common";
+import { getFloatValueToStore, clearFloatOnBlur, isFloat } from "./common";
 
 export const
   NumericInput = (props : NumericPropTypes) => {
@@ -40,9 +40,16 @@ export const
       noCurrency = (typeof currency === "undefined" || currency === false),
       valueToShow = formatValue(value, props.optional),
 
-      updateValue = (targetValue : string) => {
+      updateValue = (targetValue: any) => {
         setValue(targetValue);
-        props.input.onChange(getFloatValueToStore(targetValue));
+
+        let valueToStore = targetValue;
+
+        if (isFloat(targetValue)) {
+          valueToStore = getFloatValueToStore(targetValue);
+        }
+
+        input.onChange(valueToStore);
       },
 
       handleBlur = () => {

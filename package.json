@@ -1,5 +1,5 @@
 {
-  "version": "17.2.26",
+  "version": "17.2.27",
   "name": "x25",
   "description": "x25",
   "types": "./dist/index.d.ts",
@@ -15,7 +15,7 @@
     "intern-clean": "rimraf dist dist",
     "intern-test": "jest",
     "check": "node script/check & npm run depcheck & npm run check:npm-check",
-    "check:npm-check": "npm-check -u -i babel-jest -i jest --specials=bin,eslint,babel,webpack",
+    "check:npm-check": "npm-check -u -i \"{babel-jest,jest}\" --specials=bin,eslint,babel,webpack",
     "depcheck": "depcheck --ignores=@types/jest,@docusaurus/react-loadable,webpack-cli,@hot-loader/react-dom --ignore-patterns=server,node_modules,tmp,fonts",
     "check:global": "npm-check -gu",
     "ts:check": "tsc --noEmit",
@@ -97,7 +97,7 @@
     "eslint-plugin-react": "^7.29.4",
     "jest-cli": "^28.1.0",
     "jest-immutable-matchers": "^3.0.0",
-    "npm-check": "^5.9.2",
+    "npm-check": "^6.0.1",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.3.0",
     "webpack": "^5.72.1"
