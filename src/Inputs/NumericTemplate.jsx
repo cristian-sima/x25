@@ -35,7 +35,7 @@ import React from "react";
 import classnames from "classnames";
 
 
-import { getFloatValueToStore, clearFloatOnBlur, isFloat } from "./common";
+import { getFloatValueToStore, clearFloatOnBlur, isFloat, floatToEnglishComma } from "./common";
 
 import { formatZeroValue } from "../utility";
 
@@ -58,7 +58,7 @@ export const
 
         let valueToStore = targetValue;
 
-        if (isFloat(targetValue)) {
+        if (isFloat(floatToEnglishComma(targetValue))) {
           valueToStore = getFloatValueToStore(targetValue);
         }
 
