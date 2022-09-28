@@ -82,10 +82,7 @@ export const DateTemplate = (props : DateInputPropTypes) => {
     { customClass, input, onRegisterRef, tabIndex, placeholder,
       meta: { submitting, touched, error }, right, left, label } = props,
 
-    [
-      value,
-      setValue,
-    ] = React.useState(input.value),
+    [value, setValue] = React.useState(input.value),
 
     valueToShow = formatRawDate(value),
 

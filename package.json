@@ -1,5 +1,5 @@
 {
-  "version": "5.1.22",
+  "version": "5.1.23",
   "name": "x25",
   "description": "x25",
   "scripts": {
@@ -135,7 +135,7 @@
     "react-router-dom": "^5.1.2",
     "react-select": "^3.0.8",
     "react-sidebar": "^3.0.2",
-    "reactstrap": "^9.0.1",
+    "reactstrap": "^9.1.4",
     "redux": "^4.0.4",
     "redux-form": "^8.2.5",
     "redux-injector": "^0.1.0",
