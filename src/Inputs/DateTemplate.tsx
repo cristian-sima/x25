@@ -131,11 +131,11 @@ export const DateTemplate = (props : DateInputPropTypes) => {
         />
         <div
           className="invalid-feedback">
-          {touched && error && (
+          {touched && error ? (
             <span>
               {error}
             </span>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

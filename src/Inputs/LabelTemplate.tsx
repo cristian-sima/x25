@@ -40,11 +40,11 @@ export const LabelTemplate = ({
           {label}
         </label>
         <div className="invalid-feedback">
-          {touched && error && (
+          {touched && error ? (
             <span>
               {error}
             </span>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
