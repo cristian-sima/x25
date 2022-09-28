@@ -25,7 +25,7 @@ import React from "react";
 import classnames from "classnames";
 import { formatZeroValue } from "../utility";
 
-import { getFloatValueToStore, clearFloatOnBlur, isFloat } from "./common";
+import { getFloatValueToStore, clearFloatOnBlur, isFloat, floatToEnglishComma } from "./common";
 
 export const
   NumericInput = (props : NumericPropTypes) => {
@@ -45,7 +45,7 @@ export const
 
         let valueToStore = targetValue;
 
-        if (isFloat(targetValue)) {
+        if (isFloat(floatToEnglishComma(targetValue))) {
           valueToStore = getFloatValueToStore(targetValue);
         }
 
