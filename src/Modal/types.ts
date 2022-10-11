@@ -5,6 +5,7 @@ export type ModalsTypes = Record<string, React.ReactNode>;
 type CommonProps = {
   onClose?: () => any;
   closeByEscape?: boolean;
+  preventDispatchHideModal?: boolean;
   Footer?: any;
   footerProps?: FooterProps;
   size?: "lg" | "sm" | "xl" | "";

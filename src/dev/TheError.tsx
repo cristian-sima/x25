@@ -2,10 +2,10 @@
 
 type TheErrorProps = {
   readonly error: ErrorType | null | undefined;
-  readonly info: InfoType | null | undefined;
-  readonly status: string | null | undefined;
-  readonly refresh: () => void;
-  readonly handleKey: (event: KeyboardEvent) => void;
+  readonly handleKey?: (event: KeyboardEvent) => void;
+  readonly info?: InfoType | null | undefined;
+  readonly status?: string | null | undefined;
+  readonly refresh: () => any;
 };
 
 import React from "react";
@@ -13,18 +13,17 @@ import type { ErrorType, InfoType } from "./types";
 
 const TheError = (props: TheErrorProps) => {
   React.useEffect(() => {
-    document.addEventListener("keydown", props.handleKey);
+    if (props.handleKey) {
+      document.addEventListener("keydown", props.handleKey);
+    }
     return () => {
-      document.removeEventListener("keydown", props.handleKey);
+      if (props.handleKey) {
+        document.removeEventListener("keydown", props.handleKey);
+      }
     };
   }, []);
 
-  const {
-    error,
-    info,
-    status,
-    refresh,
-  } = props;
+  const { error, info, status, refresh } = props;
 
   // render fallback UI
   return (

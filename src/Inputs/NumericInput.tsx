@@ -1,98 +1,71 @@
-/* eslint-disable react/no-unsafe */
 
 type NumericPropTypes = {
-  readonly currency?: boolean;
-  readonly optional?: boolean;
-  readonly size?: number;
-  readonly customClass?: any;
-  readonly input: any;
-  readonly label?: string;
-  readonly meta: {
-    error?: string;
-    submitting: boolean;
-    touched: boolean;
+     currency?: boolean;
+     optional?: boolean;
+     size?: number;
+     customClass?: any;
+     input: any;
+     label?: string;
+     meta: {
+      error?: string;
+      submitting: boolean;
+      touched: boolean;
+    };
+     tabIndex?: number;
+     placeholder?: string;
+     value?: string;
+     formatValue: (raw: any, optional?: boolean) => string;
+     normalizeValue: (raw: any) => any;
+     onBlur?: () => void;
+     onChange?: (event: any) => void;
+     onRegisterRef?: any;
   };
-  readonly tabIndex?: number;
-  readonly placeholder?: string;
-  readonly value?: string;
-  readonly formatValue: (raw: any, optional?: boolean) => string;
-  readonly normalizeValue: (raw: any) => any;
-  readonly onBlur?: () => void;
-  readonly onChange?: (event: any) => void;
-  readonly onRegisterRef?: any;
-};
-type NumericStateTypes = {
-  value: any;
-};
+
 import React from "react";
 import classnames from "classnames";
-import { formatZeroValue, normalizeFloat, handleBlur, cwrp } from "../utility";
+import { formatZeroValue } from "../utility";
 
-export class NumericInput extends React.Component<NumericPropTypes, NumericStateTypes> {
-  static defaultProps = {
-    formatValue    : formatZeroValue,
-    normalizeValue : normalizeFloat,
-  };
+import { getFloatValueToStore, clearFloatOnBlur, isFloat, floatToEnglishComma } from "./common";
 
-  state: NumericStateTypes;
-  handleBlur: () => any;
-  handleKeyDown: (event: any) => void;
-  handleChange: ({ target: { value } }: any) => void;
+export const
+  NumericInput = (props : NumericPropTypes) => {
+    const
+      {
+        customClass, input, label, currency, tabIndex, onRegisterRef, formatValue = formatZeroValue,
+        size, placeholder, meta: { submitting, touched, error },
+      } = props,
 
-  UNSAFE_componentWillReceiveProps (nextProps: NumericPropTypes) {
-    cwrp(this, nextProps);
-  }
+      [value, setValue] = React.useState(props.input.value),
 
-  constructor (props: NumericPropTypes) {
-    super(props);
-    this.state = {
-      value: props.input.value,
-    };
+      noCurrency = (typeof currency === "undefined" || currency === false),
+      valueToShow = formatValue(value, props.optional),
 
-    this.handleKeyDown = (event: any) => {
-      if (event.key === "Enter") {
-        this.handleBlur();
-      }
-    };
+      updateValue = (targetValue: any) => {
+        setValue(targetValue);
 
-    this.handleBlur = () => {
-      handleBlur(this);
-    };
+        let valueToStore = targetValue;
 
-    this.handleChange = ({
-      target: {
-        value,
+        if (isFloat(floatToEnglishComma(targetValue))) {
+          valueToStore = getFloatValueToStore(targetValue);
+        }
+
+        input.onChange(valueToStore);
       },
-    }: any) => {
-      this.props.input.onChange();
 
-      /*
-       * Update the internal state to trigger a re-render
-       * using the formatted value
-       */
-      this.setState({
-        value,
-      });
-    };
-  }
+      handleBlur = () => {
+        const
+          newValue = clearFloatOnBlur(value),
+          hasChanged = value !== newValue;
 
-  render () {
-    const {
-        customClass,
-        input,
-        label,
-        currency,
-        tabIndex,
-        onRegisterRef,
-        meta: {
-          submitting,
-          touched,
-          error,
-        },
-        formatValue,
-        size,
-        placeholder,
-      } = this.props,
+        if (hasChanged) {
+          updateValue(newValue);
+        }
+      },
+
+      handleChange = ({ target: { value : targetValue } }: any) => {
+        updateValue(targetValue);
+      },
+
       inputComponent = (
         <input
           aria-label={label}
@@ -102,19 +75,17 @@ export class NumericInput extends React.Component<NumericPropTypes, NumericState
           disabled={submitting}
           id={input.name}
           maxLength={size}
-          onBlur={this.handleBlur}
-          onChange={this.handleChange}
-          onFocus={input.onFocus}
-          onKeyDown={this.handleKeyDown}
+          onBlur={handleBlur}
+          onChange={handleChange}
           placeholder={placeholder || label}
           ref={onRegisterRef}
           tabIndex={tabIndex}
           type="text"
-          value={formatValue(this.state.value, this.props.optional)}
+          value={valueToShow}
         />
       );
 
-    if (typeof currency === "undefined" || currency === false) {
+    if (noCurrency) {
       return (
         <div className="form-group-inline">
           {inputComponent}
@@ -132,6 +103,5 @@ export class NumericInput extends React.Component<NumericPropTypes, NumericState
         </div>
       </div>
     );
-  }
+  };
 
-}

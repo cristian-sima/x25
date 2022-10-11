@@ -61,6 +61,10 @@ export const LargeErrorMessage = ({
             </button>
           )}
         </div>
+        <div className="text-center mt-3 border-top pt-2 text-muted small">
+          {words.IfThisIsErrorPersist}
+          <a href="/"> {words.ThisPage}</a>
+        </div>
       </div>
     </div>
   </div>

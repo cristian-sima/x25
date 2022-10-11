@@ -1,6 +1,4 @@
-/* eslint-disable react/no-unsafe */
-
-import React from "react";
+import React, { useState } from "react";
 
 type TypeInputPropTypes = {
   readonly change: (event: any) => void;
@@ -13,115 +11,72 @@ type TypeInputPropTypes = {
   readonly name?: string;
   readonly placeholder?: string;
 };
-type TypeInputStateTypes = {
-  value: string;
-  isWaiting: boolean;
-};
-const delay = 700;
 
 import { LoadingMessage } from "../Messages";
 
-export class DelayInputChange extends React.Component<TypeInputPropTypes, TypeInputStateTypes> {
-  state: TypeInputStateTypes;
-  timeout: any;
-  delayChange: (event: any) => void;
-  handleKeyPressed: (event: any) => void;
-  stopWaiting: (value: string) => void;
+const delay = 700;
 
-  UNSAFE_componentWillReceiveProps (nextProps: TypeInputPropTypes) {
-    if (this.props.value !== nextProps.value) {
-      this.setState({
-        value: nextProps.value,
-      });
-    }
-  }
+export const
+  DelayInputChange = (props : TypeInputPropTypes) => {
+    const
+      [timeoutValue, setTimeoutValue] = useState(0 as any),
+      [isWaiting, setIsWaiting] = useState(false),
+      [value, setValue] = useState(props.value),
 
-  constructor (props: TypeInputPropTypes) {
-    super(props);
-    this.timeout = null;
-    this.state = {
-      isWaiting : false,
-      value     : this.props.value,
-    };
+      stopWaiting = (newValue: string) => {
+        clearTimeout(timeoutValue);
 
-    this.handleKeyPressed = (event: any) => {
-      if (event.key === "Enter") {
-        this.stopWaiting(this.state.value);
-      }
-    };
+        setIsWaiting(false);
+        setValue(newValue);
 
-    this.stopWaiting = (value: string) => {
-      clearTimeout(this.timeout);
-      this.setState({
-        isWaiting: false,
-        value,
-      }, () => {
-        this.props.change({
+        props.change({
           target: {
-            value,
+            value: newValue,
           },
         });
-      });
-    };
-
-    this.delayChange = ({
-      target: {
-        value,
       },
-    }) => {
-      clearTimeout(this.timeout);
+      handleKeyPressed = (event: any) => {
+        if (event.key === "Enter") {
+          stopWaiting(value);
+        }
+      },
+      delayChange = ({ target: { value : newValue } } : { target : { value : string }}) => {
+        clearTimeout(timeoutValue);
 
-      if (value === "") {
-        this.stopWaiting(value);
-      } else {
-        const that = this;
+        if (value === "") {
+          stopWaiting(newValue);
+        } else {
+          setIsWaiting(true);
+          setValue(newValue);
 
-        that.setState({
-          isWaiting: true,
-          value,
-        }, () => {
-          that.timeout = setTimeout(() => {
-            that.setState({
-              isWaiting: false,
-            });
-            that.props.change({
+          const newTimeout = setTimeout(() => {
+            setIsWaiting(false);
+            props.change({
               target: {
-                value,
+                value: newValue,
               },
             });
-          }, this.props.delay || delay);
-        });
-      }
-    };
-  }
+          }, props.delay || delay);
 
-  shouldComponentUpdate (nextProps: TypeInputPropTypes, nextState: TypeInputStateTypes) {
-    return (
-      this.props.value !== nextProps.value ||
-      this.state.value !== nextState.value ||
-      this.state.isWaiting !== nextState.isWaiting
-    );
-  }
-
-  render () {
-    const { value, isWaiting } = this.state;
+          setTimeoutValue(newTimeout);
+        }
+      };
 
     return (
       <div className="delay-input">
         <input
-          autoComplete={this.props.autoComplete}
-          className={this.props.className}
-          id={this.props.id}
-          name={this.props.name}
-          onChange={this.delayChange}
-          onKeyPress={this.handleKeyPressed}
-          placeholder={this.props.placeholder}
-          tabIndex={this.props.tabIndex}
+          autoComplete={props.autoComplete}
+          className={props.className}
+          id={props.id}
+          name={props.name}
+          onChange={delayChange}
+          onKeyPress={handleKeyPressed}
+          placeholder={props.placeholder}
+          tabIndex={props.tabIndex}
           value={value}
         />
         {isWaiting ? <LoadingMessage className="loading-spinner d-inline-block" sm /> : null}
       </div>
     );
-  }
+  };
 
-}

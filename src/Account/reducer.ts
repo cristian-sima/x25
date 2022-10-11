@@ -1,6 +1,7 @@
 import type { Action, State } from "src/types";
 import { createSelector } from "reselect";
 import * as Immutable from "immutable";
+import { getAccountState } from "../config";
 import { isAdministratorAccount, noError } from "../utility";
 
 const initialState = Immutable.Map({
@@ -36,19 +37,19 @@ const initialState = Immutable.Map({
 
   reducer = (state: any = initialState, action: Action) => {
     switch (action.type) {
-      case "FETCH_INITIAL_INFORMATION_PENDING":
+      case "account/FETCH_INITIAL_INFORMATION/pending":
         return fetchCurrentAccountPending(state);
 
-      case "FETCH_INITIAL_INFORMATION_REJECTED":
+      case "account/FETCH_INITIAL_INFORMATION/rejected":
         return fetchCurrentAccountRejected(state, action);
 
-      case "FETCH_INITIAL_INFORMATION_FULFILLED":
+      case "account/FETCH_INITIAL_INFORMATION/fulfilled":
         return fetchCurrentAccountFulfilled(state, action);
 
-      case "ACCOUNT_CHANGE_PASSWORD":
+      case "account/ACCOUNT_CHANGE_PASSWORD":
         return accountChangePassword(state);
 
-      case "ACCOUNT_GAVE_CONSENT":
+      case "account/ACCOUNT_GAVE_CONSENT":
         return accountGaveConsent(state);
 
       default:
@@ -56,12 +57,12 @@ const initialState = Immutable.Map({
     }
   },
 
-  getFetched = (state: State) => state.getIn(["account", "fetched"]),
-  getError = (state: State) => state.getIn(["account", "error"]),
+  getFetched = (state: State) => getAccountState(state).get("fetched"),
+  getError = (state: State) => getAccountState(state).get("error"),
 
-  getCurrentAccount = (state: State) => state.getIn(["account", "info"]),
-  getCurrentAccountCompanies = (state: State) => state.getIn(["account", "companies"]),
-  getCurrentAccountIsFetching = (state: State) => state.getIn(["account", "fetching"]),
+  getCurrentAccount = (state: State) => getAccountState(state).get("info"),
+  getCurrentAccountCompanies = (state: State) => getAccountState(state).get("companies"),
+  getCurrentAccountIsFetching = (state: State) => getAccountState(state).get("fetching"),
   getCurrentAccountShouldFetch = createSelector(
     getCurrentAccountIsFetching,
     getFetched,

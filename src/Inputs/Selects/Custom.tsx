@@ -45,11 +45,11 @@ const CustomSelect = (props: SelectMonthPropTypes) => {
       <div className={right ? right : "col-md-8"}>
         <Simple {...props} />
         <div className="invalid-feedback">
-          {touched && error && (
+          {touched && error ? (
             <span>
               {error}
             </span>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
