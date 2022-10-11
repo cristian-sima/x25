@@ -98,7 +98,7 @@ const Header = ({
         typeof company === "undefined" || company.size === 0 ? null : (
           showNoticeToPay ? (
             <div className="alert alert-warning m-2">
-              {`Conform noilor termeni și condiții, abonamentul tău va expira  ${(
+              {`Abonamentul tău va expira  ${(
                 moment(company.get("ValabilityDate")).
                   endOf("day").
                   fromNow()

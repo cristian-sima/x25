@@ -16,7 +16,7 @@ export const getPreviousMonth = (year : string, month: string) => {
   }
 
   return {
-    previousMonth : String(Number(month) - 1),
+    previousMonth    : String(Number(month) - 1),
     previousYear  : String(year),
   };
 };
