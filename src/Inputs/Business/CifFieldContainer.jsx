@@ -1,142 +1,215 @@
+/* eslint-disable no-magic-numbers */
 // @flow
 
-import type { Dispatch } from "src\\types";
-
-type CifFieldContainerPropTypes = {
-  +input: any;
-  +meta: {
-    submitting: boolean;
-    touched: boolean;
-    error?: string;
-  };
-  +formID: string;
-  +findDetailsByCif: (cif: ?string) => () => void;
-  +onRegisterRef?: (callback : (node : any) => void) => void;
-};
-
-type OwnProps = {
-  formID: string;
-  focusInput: () => void;
-};
-
 import React from "react";
-import { change, startSubmit, stopSubmit } from "redux-form/immutable";
-
-import { connect } from "react-redux";
+import { change, stopSubmit } from "redux-form/immutable";
 
 import { getCompanyDetails } from "./request";
 
-import * as actions from "../../actions";
+import { notifyWarning } from "../../actions";
+// import { notify, notifyError, notifyWarning } from "Extern/actions";
 
 import { delay, isValidCIF } from "../../utility";
 
 import CifField from "./CifField";
+import { useDispatch } from "react-redux";
 
-const createPromise = (after) => (
-  new Promise((resolve) => {
-    after();
-    setTimeout(() => {
-      resolve();
-    });
-  })
-);
-
-const tryToGetInfo = ({ dispatch, cif, focusInput, formID }) => (
-  getCompanyDetails(cif).then((response) => {
-    const
-      before = [createPromise(() => dispatch(actions.notify("Am preluat informațiile")))],
-      changes = Object.keys(response).map((key) => () : Promise<any> => (
-        createPromise(() => dispatch(change(formID, key, response[key])))
-      )),
-      after = [
-        createPromise(() => dispatch(stopSubmit(formID))),
-        createPromise(() => focusInput()),
-      ];
-
-    const promises = before.concat(changes).concat(after);
-
-    promises.reduce((prev, cur : any) => prev.then(cur), Promise.resolve());
-  }).
-    catch(() => {
-      delay().
-        then(() => {
-          dispatch(actions.notifyError("Nu am putut prelua informațiile firmei"));
-        }).
-        then(() => {
-          dispatch(stopSubmit(formID));
-        }).
-        then(() => {
-          focusInput();
-        });
-    })
-);
+import * as Immutable from "immutable";
 
 const
-  mapDispatchToProps = (dispatch : Dispatch, { formID, focusInput } : OwnProps) => ({
-    findDetailsByCif: (cif : string) => () => {
-      dispatch(startSubmit(formID));
+  CifContainer = (props : any) => {
+    const
+      dispatch = useDispatch(),
 
-      if (isValidCIF(cif)) {
-        tryToGetInfo({
-          dispatch,
-          cif,
-          focusInput,
-          formID,
-        });
-      } else {
-        delay().
-          then(() => {
-            dispatch(actions.notifyError("Trebuie furnizat un CIF valid"));
+      isGood = isValidCIF(props.input.value),
+
+      [theHistory, setTheHistory] = React.useState(Immutable.Map()),
+
+      [isWaiting, setIsWaiting] = React.useState(false),
+      [foundData, setFoundData] = React.useState(false),
+      [hasRequested, setHasRequested] = React.useState(false),
+
+      // [requestTimeout, setRequestTimeout] = React.useState(),
+      [clearTextTimeout, setClearTextTimeout] = React.useState(),
+
+      [typeDelay, setTypeDelay] = React.useState(),
+
+      clearText = () => {
+        clearTimeout(clearTextTimeout);
+
+        setIsWaiting(false);
+        setHasRequested(false);
+        setFoundData(false);
+
+      },
+      searchOnWeb = (cif : string, automatic = false) => () => {
+
+        // const temp = setTimeout(() => {
+
+        // }, 2000);
+
+        // setRequestTimeout(temp);
+
+
+        const
+          changeFields = (data : Map<string, any>) => {
+            for (const [
+              key,
+              value,
+            ] of data) {
+              if (value !== "") {
+                dispatch(change(props.formID, key, value));
+              }
+            }
+          },
+          endRequest = (isOk) => {
+            setIsWaiting(false);
+            setFoundData(isOk);
+
+            setTheHistory(
+              theHistory.set(cif, true),
+            );
+
+            const temp2 = setTimeout(clearText, 3000);
+
+            setClearTextTimeout(temp2);
+          };
+
+        // dispatch(startSubmit(props.formID));
+
+        clearTimeout(clearTextTimeout);
+        clearTimeout(typeDelay);
+
+
+        if (isValidCIF(cif)) {
+
+          setIsWaiting(true);
+          setHasRequested(true);
+          setFoundData(false);
+
+          // clearTimeout(requestTimeout);
+
+          const
+            mainReason = props.reason ? props.reason : "",
+            reason = `${mainReason} - ${automatic ? "automatic" : "click buton"}`;
+
+          getCompanyDetails(cif, reason).then((response) => {
+            const map = new Map();
+
+            Object.keys(response).forEach((key) => {
+              if (key !== "Capital") {
+                map.set(key, response[key]);
+              }
+            });
+
+            delay().
+              then(() => {
+                changeFields(map);
+              }).
+              // then(() => {
+              //   dispatch(notify("Am preluat informațiile"));
+              // }).
+              then(() => {
+                // dispatch(stopSubmit(props.formID));
+              }).
+              then(() => {
+                props.focusInput();
+              }).
+              then(() => {
+                if (typeof props.onSuccess === "function") {
+                  props.onSuccess(response);
+                }
+
+                endRequest(true);
+              });
           }).
-          then(() => {
-            dispatch(stopSubmit(formID));
-          }).
-          then(() => {
-            focusInput();
-          });
-      }
-    },
-  });
+            catch(() => {
+              if (typeof onError === "function") {
+                delay().
+                  then(() => {
+                    // dispatch(stopSubmit(props.formID));
+                  }).
+                  then(() => {
+                    props.onError();
+                  });
+              } else {
+                delay().
+                  // then(() => {
+                  //   dispatch(notifyError("Nu am putut prelua informațiile firmei"));
+                  // }).
+                  then(() => {
+                    dispatch(stopSubmit(props.formID));
+                  }).
+                  then(() => {
+                    props.focusInput();
+                  });
+              }
 
-class CifFieldContainer extends React.Component<CifFieldContainerPropTypes> {
-  props: CifFieldContainerPropTypes;
+              endRequest(false);
+            });
+        } else {
+          delay().
+            then(() => {
+              dispatch(notifyWarning("Trebuie furnizat un CIF valid"));
+            }).
+            then(() => {
+              // dispatch(stopSubmit(props.formID));
+            }).
+            then(() => {
+              props.focusInput();
+            });
+        }
+      },
+      checkIfNeedsToRequest = (current) => {
+        clearText();
+        clearTimeout(typeDelay);
 
-  handleKeyPressed: (event : any) => void;
+        const typeTimeout = setTimeout(() => {
+          const
+            isValid = isValidCIF(current),
+            hasNotRequestedThis = !theHistory.has(current);
 
-  constructor (props: CifFieldContainerPropTypes) {
-    super(props);
+          if (isValid && hasNotRequestedThis) {
+            searchOnWeb(current, true)();
+          }
+        }, 2000);
 
-    this.handleKeyPressed = (event : any) => {
-      const {
-        findDetailsByCif,
-        input: { value },
-      } = this.props;
+        setTypeDelay(typeTimeout);
 
-      if (event.key === "Enter" && event.shiftKey) {
-        event.preventDefault();
-        event.stopPropagation();
-        findDetailsByCif(value)();
-      }
-    };
-  }
+      },
+      handleKeyUp = () => {
+        setHasRequested(false);
+        const
+          current = props.input.value;
 
-  shouldComponentUpdate (nextProps : CifFieldContainerPropTypes) {
-    return (
-      this.props.input !== nextProps.input ||
-      this.props.meta.submitting !== nextProps.meta.submitting ||
-      this.props.meta.touched !== nextProps.meta.touched ||
-      this.props.meta.error !== nextProps.meta.error
-    );
-  }
+        checkIfNeedsToRequest(current);
 
-  render () {
+        // const { justEnter, input: { value } } = props;
+
+        //   const fired = (
+        //     (justEnter && event.key === "Enter") ||
+        // (!justEnter && (event.key === "Enter" && event.shiftKey))
+        //   );
+
+      // if (fired) {
+      //   event.preventDefault();
+      //   event.stopPropagation();
+      //   findDetailsByCif(value)();
+      // }
+      };
+
     return (
       <CifField
-        {...this.props}
-        handleKeyPressed={this.handleKeyPressed}
+        {...props}
+        findDetailsByCif={searchOnWeb}
+        foundData={foundData}
+        handleKeyUp={handleKeyUp}
+        hasRequested={hasRequested}
+        isGood={isGood}
+        isWaiting={isWaiting}
       />
     );
-  }
-}
+  };
 
-export default connect(null, mapDispatchToProps)(CifFieldContainer);
+export default CifContainer;
+

@@ -28,10 +28,10 @@ const normalizeCompanyDetails = (resolve, reject) => (
   }
 );
 
-export const getCompanyDetails = (cif: string) => (
+export const getCompanyDetails = (cif: string, reason : string) => (
   new Promise((resolve, reject) => (
     agent.
-      post(`/api/extern/get-company-information/${cif}`).
+      post(`/api/extern/get-company-information/${cif}/${reason}`).
       type("json").
       end(normalizeCompanyDetails(resolve,
         reject))
