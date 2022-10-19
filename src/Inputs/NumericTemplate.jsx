@@ -83,9 +83,9 @@ export const
       classForDiv = `form-group row ${divClass ? divClass : ""}`;
 
     React.useEffect(() => {
-      // if (isValidDate(input.value) || input.value === "") {
-      updateValue(input.value);
-      // }
+      if (isFloat(input.value) || input.value === "") {
+        updateValue(input.value);
+      }
     }, [input.value]);
 
     return (

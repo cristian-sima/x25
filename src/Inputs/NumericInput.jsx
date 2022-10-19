@@ -87,6 +87,12 @@ export const NumericInput = (props : NumericPropTypes) => {
       />
     );
 
+  React.useEffect(() => {
+    if (isFloat(input.value) || input.value === "") {
+      updateValue(input.value);
+    }
+  }, [input.value]);
+
   if (noCurrency) {
     return (
       <div className="form-group-inline">
