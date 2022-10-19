@@ -76,6 +76,13 @@ export const
       classForInput = `form-control ${warningClass}${customClass}`,
       classForDiv = `form-group row ${divClass ? divClass : ""}`;
 
+
+      React.useEffect(() => {
+        if (isFloat(input.value) || input.value === "") {
+          updateValue(input.value);
+        }
+      }, [input.value]);
+
     return (
       <div className={classnames(classForDiv, {
         "is-invalid": touched && error,
