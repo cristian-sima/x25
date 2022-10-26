@@ -4,11 +4,16 @@ const DateFormat = "DD.MM.YEAR";
 
 export const
   romanian = {
+    Showing     : "Se afișează",
+    All         : "tot",
+    Of          : "din",
+    LoadingData : "Se încarcă...",
+    LoadMore    : "Încarcă mai mult",
+
     IfThisIsErrorPersist        : "Dacă eroarea persistă, vă rugăm să navigați la ",
     ThisPage                    : "această pagină",
     PleaseWait                  : "Vă rugăm asteptați...",
     TryAgain                    : "Încearcă din nou",
-    LoadingData                 : "Încărcare date...",
     ThereWasAProblem            : "A apărut o problemă. Încercați din nou",
     NoErrorPassed               : "Niciun ErrorBoundary transmis la x25",
     ItLoadsSlower               : "Se pare că se încarcă mai lent ca de obicei. Vă rugăm să așteptați...",

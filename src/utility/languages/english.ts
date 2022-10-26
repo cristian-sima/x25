@@ -2,11 +2,16 @@
 export const DateFormat = "DD.MM.YEAR";
 
 export const english = {
+  Showing     : "Showing",
+  All         : "all",
+  Of          : "of",
+  LoadingData : "Loading data...",
+  LoadMore    : "Load more",
+
   ThisPage                    : "If this error persists, please navigate to",
   IfThisIsErrorPersist        : "this page",
   PleaseWait                  : "Please wait...",
   TryAgain                    : "Try again",
-  LoadingData                 : "Loading data...",
   ThereWasAProblem            : "There was a problem. Try again",
   NoErrorPassed               : "No ErrorBoundary passed to x25",
   ItLoadsSlower               : "It seems that it loads slower than usual. Please wait... ",
