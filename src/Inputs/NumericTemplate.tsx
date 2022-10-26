@@ -28,6 +28,7 @@ type NumericPropTypes = {
 
 import React from "react";
 import classnames from "classnames";
+import { formatZeroValue } from "../utility";
 
 
 import { getFloatValueToStore, clearFloatOnBlur, isFloat, floatToEnglishComma } from "./common";
@@ -38,7 +39,7 @@ export const
       {
         input, right, tabIndex, divClass, label,
         onRegisterRef,
-        meta: { submitting, touched, error }, formatValue,
+        meta: { submitting, touched, error }, formatValue = formatZeroValue,
         type, autoFocus, inputClass, placeholder, left, size,
       } = props,
 
