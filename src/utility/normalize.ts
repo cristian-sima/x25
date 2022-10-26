@@ -19,7 +19,7 @@ import { words } from "./words";
 
 const
 
-  defaultNormalizr: Normalizr = (item) => Immutable.Map(item),
+  defaultNormalizr: Normalizr = (item) => Immutable.fromJS(item),
 
   defaultValue = () => ({
     entities : Immutable.Map(),

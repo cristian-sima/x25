@@ -77,11 +77,11 @@ export const
       classForDiv = `form-group row ${divClass ? divClass : ""}`;
 
 
-      React.useEffect(() => {
-        if (isFloat(input.value) || input.value === "") {
-          updateValue(input.value);
-        }
-      }, [input.value]);
+    React.useEffect(() => {
+      if (isFloat(input.value) || input.value === "") {
+        updateValue(input.value);
+      }
+    }, [input.value]);
 
     return (
       <div className={classnames(classForDiv, {
