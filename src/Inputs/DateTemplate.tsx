@@ -90,14 +90,17 @@ export const DateTemplate = (props : DateInputPropTypes) => {
 
     },
 
-    handleBlur = ({ target: { value : targetValue } }: any) => {
+    handleBlur = (event: any) => {
       const
+        { target: { value : targetValue } } = event,
         newValue = addZeroIfNeeded(targetValue),
         hasChanged = targetValue !== newValue;
 
       if (hasChanged) {
         updateValue(newValue);
       }
+
+      input.onBlur(event);
     },
 
     handleChange = ({ target: { value : targetValue } }: any) => {

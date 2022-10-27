@@ -1,6 +1,6 @@
 /* eslint-disable no-alert, no-console, no-undefined, callback-return */
 import * as Immutable from "immutable";
-import { words } from "../utility";
+import { words } from "..";
 
 type Log = { data : any, state : any, key : string};
 

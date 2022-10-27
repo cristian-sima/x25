@@ -4,7 +4,7 @@ type LoadingMessagePropTypes = {
   readonly sm?: boolean;
 };
 import React from "react";
-import { words } from "../utility";
+import { words } from "../../utility";
 
 export const LoadingMessage = ({
   message,

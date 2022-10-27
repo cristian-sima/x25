@@ -21,37 +21,28 @@ import classnames from "classnames";
 import { words } from "../../utility";
 
 const SimpleCustomSelect = ({
-  autoFocus,
-  isImmutable,
-  showEmptyOption,
-  valueKey = "value",
-  nameKey = "name",
-  data,
-  meta: {
-    submitting,
-    touched,
-    error,
-  },
-  tabIndex,
-  input,
-  id,
-  inputClass,
+  autoFocus, isImmutable, showEmptyOption, valueKey = "value", nameKey = "name",
+  data, tabIndex, input, id, inputClass,
+  meta: { submitting, touched, error },
 }: SelectMonthPropTypes) => {
-  const customID = `custom-select-${input.name}${id || ""}`;
+  const
+    theClasses = classnames(`custom-select ${inputClass || ""}`, {
+      "is-invalid": touched && error,
+    }),
+    customID = `custom-select-${input.name}${id || ""}`;
 
   return (
     <select
       {...input}
       autoFocus={autoFocus}
-      className={classnames(`custom-select ${inputClass || ""}`, {
-        "is-invalid": touched && error,
-      })}
+      className={theClasses}
       disabled={submitting}
       id={customID}
       tabIndex={tabIndex}>
       {showEmptyOption ? <option value="">{words.Select}</option> : null}
       {isImmutable ? data.map((current : any) => {
-        const value = current.get(valueKey),
+        const
+          value = current.get(valueKey),
           name = current.get(nameKey);
 
         return (

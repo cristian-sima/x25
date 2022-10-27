@@ -1,5 +1,5 @@
 import * as Immutable from "immutable";
-import { getModulesState } from "..//config";
+import { getModulesState } from "../config";
 
 const initialState = Immutable.Map(),
 

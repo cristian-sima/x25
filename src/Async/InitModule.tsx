@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as React from "react";
 import { words } from "../utility";
 
-import { LoadingMessage } from "../Messages/Loading";
+import { LoadingMessage } from "../UI/Messages/Loading";
 import { getIsModuleReady, moduleIsReadyAction } from "../reducer/module";
 import type { Loaded } from "./types";
 import { initModule } from "./util";

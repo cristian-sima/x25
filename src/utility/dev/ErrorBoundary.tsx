@@ -12,7 +12,7 @@ type ErrorBoundaryState = {
   info: InfoType | null | undefined;
 };
 import React from "react";
-import { words } from "../utility";
+import { words } from "..";
 import type { ErrorType, InfoType } from "./types";
 import TheError from "./TheError";
 

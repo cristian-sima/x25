@@ -59,7 +59,7 @@ export const
         input.onChange(valueToStore);
       },
 
-      handleBlur = () => {
+      handleBlur = (event: any) => {
         const
           newValue = clearFloatOnBlur(value),
           hasChanged = value !== newValue;
@@ -67,6 +67,8 @@ export const
         if (hasChanged) {
           updateValue(newValue);
         }
+
+        input.onBlur(event);
       },
 
       handleChange = ({ target: { value : targetValue } }: any) => {

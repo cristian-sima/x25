@@ -22,17 +22,8 @@ import React from "react";
 import Simple from "./Simple";
 
 const CustomSelect = (props: SelectMonthPropTypes) => {
-  const {
-      input,
-      meta: {
-        touched,
-        error,
-      },
-      left,
-      right,
-      label,
-      id,
-    } = props,
+  const
+    { input, meta: { touched, error }, left, right, label, id } = props,
     customID = `custom-select-${input.name}${id || ""}`;
 
   return (

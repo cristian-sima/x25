@@ -12,7 +12,7 @@ type TypeInputPropTypes = {
   readonly placeholder?: string;
 };
 
-import { LoadingMessage } from "../Messages";
+import { LoadingMessage } from "../UI/Messages";
 
 const delay = 700;
 

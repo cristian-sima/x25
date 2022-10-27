@@ -12,15 +12,7 @@ type LabelTemplatePropTypes = {
 import React from "react";
 
 export const LabelTemplate = ({
-  input,
-  tabIndex,
-  label,
-  offset,
-  meta: {
-    submitting,
-    touched,
-    error,
-  },
+  input, tabIndex, label, offset, meta: { submitting, touched, error },
 }: LabelTemplatePropTypes) => (
   <div className="container">
     <div className="form-group row mb-1">

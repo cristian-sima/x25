@@ -2,9 +2,9 @@ import React from "react";
 import type { Dispatch, State } from "src/types";
 import { connect } from "react-redux";
 import Notifications from "react-notification-system-redux2";
-import ModalRoot from "./Modal/Root";
-import { deleteNotification } from "./actions";
-import { getNotificationState } from "./config";
+import ModalRoot from "../Modal/Root";
+import { getNotificationState } from "../config";
+import { deleteNotification } from "../actions";
 
 const
   mapStateToProps = (state: State) => ({

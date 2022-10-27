@@ -5,9 +5,9 @@ type LoadingPropTypes = {
   readonly retry: () => any;
 };
 import React from "react";
-import TheError from "../dev/TheError";
-import { LargeErrorMessage } from "../Messages/Error";
-import { LoadingMessage } from "../Messages/Loading";
+import TheError from "../utility/dev/TheError";
+import { LargeErrorMessage } from "../UI/Messages/Error";
+import { LoadingMessage } from "../UI/Messages/Loading";
 import { words } from "../utility";
 import SimulatedException from "./SimulatedException";
 

@@ -52,7 +52,7 @@ export const
         input.onChange(valueToStore);
       },
 
-      handleBlur = () => {
+      handleBlur = (event : any) => {
         const
           newValue = clearFloatOnBlur(value),
           hasChanged = value !== newValue;
@@ -60,6 +60,8 @@ export const
         if (hasChanged) {
           updateValue(newValue);
         }
+
+        input.onBlur(event);
       },
 
       handleChange = ({ target: { value : targetValue } }: any) => {
@@ -92,11 +94,7 @@ export const
     }, [input.value]);
 
     if (noCurrency) {
-      return (
-        <div className="form-group-inline">
-          {inputComponent}
-        </div>
-      );
+      return inputComponent;
     }
 
     return (
