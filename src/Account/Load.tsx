@@ -12,7 +12,7 @@ type PropTypes = {
 import React from "react";
 import { connect } from "react-redux";
 import { words } from "../utility";
-import { LargeErrorMessage, LoadingMessage } from "../UI/Messages";
+import { LargeErrorMessage, LoadingMessage } from "../Messages";
 import { selectors } from "./reducer";
 import { fetchInitialInformation as fetchInitialInformationAction } from "./actions";
 

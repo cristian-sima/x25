@@ -5,7 +5,7 @@ type ErrorMessageProps = {
   readonly onRetry?: () => void;
 };
 import React from "react";
-import { words } from "../../utility";
+import { words } from "../utility";
 
 export const ErrorMessage = ({
   message,
