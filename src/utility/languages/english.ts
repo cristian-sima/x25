@@ -115,5 +115,7 @@ export const english = {
     10 : "November",
     11 : "December",
   },
+  MustAgree: "You must agree with this",
+
   getNumberTense: (value: number) => String(value),
 };

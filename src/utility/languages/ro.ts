@@ -111,5 +111,6 @@ export const
       10 : "Noiembrie",
       11 : "Decembrie",
     },
-    getNumberTense: (value: number) => String(value),
+    MustAgree      : "Trebuie să fiți de acord pentru a continua",
+    getNumberTense : (value: number) => String(value),
   };

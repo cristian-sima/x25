@@ -1,3 +1,8 @@
 {
-    "ignorePaths": ["./src/utility/languages/ro.ts"]
+    "ignorePaths": [
+        "./src/utility/languages/ro.ts"
+    ],
+    "words": [
+        "acord"
+    ]
 }
