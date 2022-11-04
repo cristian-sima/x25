@@ -4,6 +4,10 @@ import * as Immutable from "immutable";
 import { getAccountState } from "../config";
 import { isAdministratorAccount, noError } from "../utility";
 
+type AccountModifyAction= {
+  payload: Immutable.Map<string, any>
+}
+
 const initialState = Immutable.Map({
     error     : noError,
     fetched   : false,
@@ -33,6 +37,11 @@ const initialState = Immutable.Map({
     companies : payload.Companies,
   }),
   accountChangePassword = (state: any) => state.setIn(["info", "RequireChange"], false),
+  accountModify = (state: any, { payload } : AccountModifyAction) => (
+    state.update("info", (info : Immutable.Map<string, any>) => (
+      info.mergeDeep(payload)
+    ),
+    )),
   accountGaveConsent = (state: any) => state.setIn(["info", "HasToGiveConsent"], false),
 
   reducer = (state: any = initialState, action: Action) => {
@@ -48,6 +57,9 @@ const initialState = Immutable.Map({
 
       case "account/ACCOUNT_CHANGE_PASSWORD":
         return accountChangePassword(state);
+
+      case "account/MODIFY_DATA":
+        return accountModify(state, action);
 
       case "account/ACCOUNT_GAVE_CONSENT":
         return accountGaveConsent(state);
