@@ -13,6 +13,7 @@ const
     parseInt(String(value), 10) === value &&
     !isNaN(parseInt(String(value), 10))
   ),
+  // eslint-disable-next-line complexity
   validateNumberRange = ({ min, max, value, integer }: NumberRange) => {
     if (typeof value !== "number") {
       return false;
@@ -21,15 +22,30 @@ const
     const
       numeric = Number(value),
       hasMin = typeof min === "number",
-      hasMax = typeof max === "number";
+      hasMax = typeof max === "number",
+      isInteger = isInt(value),
+      parsedValue = parseFloat(value);
 
     return (
       (typeof value !== "undefined") &&
         (value !== "") &&
         !isNaN(value) &&
-        (!integer || (integer && isInt(value))) &&
-        (!hasMin || (typeof min === "number" && numeric >= min)) &&
-        (!hasMax || (typeof max === "number" && numeric <= max))
+        (!integer || (integer && isInteger)) &&
+        (
+          (
+            integer && (
+              (!hasMin || (typeof min === "number" && numeric >= min)) &&
+              (!hasMax || (typeof max === "number" && numeric <= max))
+            )
+          ) ||
+          (
+            !integer && (
+              (!hasMin || (typeof min === "number" && parsedValue >= min)) &&
+              (!hasMax || (typeof max === "number" && parsedValue <= max))
+            )
+          )
+
+        )
     );
   },
   getNumberRangeError = ({ min, max, integer } : ComponentsOfNumberVerification) => {

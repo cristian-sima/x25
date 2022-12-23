@@ -40,7 +40,7 @@ export const
           stopWaiting(value);
         }
       },
-      delayChange = ({ target: { value : newValue } } : { target : { value : string }}) => {
+      delayChange = ({ target: { value : newValue } } : any) => {
         clearTimeout(timeoutValue);
 
         if (value === "") {
@@ -62,6 +62,12 @@ export const
         }
       };
 
+    React.useEffect(() => {
+      if (props.value !== value) {
+        setValue(props.value);
+      }
+    }, [props.value]);
+
     return (
       <div className="delay-input">
         <input
@@ -75,7 +81,20 @@ export const
           tabIndex={props.tabIndex}
           value={value}
         />
-        {isWaiting ? <LoadingMessage className="loading-spinner d-inline-block" sm /> : null}
+        {isWaiting ? <LoadingMessage className="loading-spinner d-inline-block" sm /> : (
+          value === "" ? null : (
+            <i
+              className={`fa fa-times cursor-pointer
+               text-primary clear-value d-inline-block`}
+              onClick={() => {
+                props.change({
+                  target: {
+                    value: "",
+                  },
+                });
+              }} />
+          )
+        )}
       </div>
     );
   };
