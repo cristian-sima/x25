@@ -1,5 +1,5 @@
 {
-  "version": "17.3.13",
+  "version": "17.3.19",
   "name": "x25",
   "description": "x25",
   "types": "./dist/index.d.ts",
@@ -62,7 +62,7 @@
     }
   },
   "engines": {
-    "node": ">= 16.0.0"
+    "node": "^17.0.0"
   },
   "jest": {
     "transform": {

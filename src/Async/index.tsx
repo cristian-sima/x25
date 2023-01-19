@@ -1,7 +1,6 @@
 /* eslint-disable new-cap, react/prefer-stateless-function, react/require-optimization */
 import Loadable from "react-loadable";
 import * as React from "react";
-import { words } from "../utility";
 import RouteLoading from "./RouteLoading";
 import InitModule from "./InitModule";
 import { Loaded } from "./types";
@@ -15,7 +14,9 @@ import { Loaded } from "./types";
 // import { injectModals } from "../Modal/util";
 const timeout = 15000;
 
-export let ErrorBoundary = () => <div>{words.NoErrorPassed}</div>;
+export let ErrorBoundary = ({ children } : any) => (
+  children
+);
 // const injectPaginator = ({ key, itemsReducer, pagesReducer } : injectPaginatorTypes) => {
 //   injectReducer(`entities.${key}`, itemsReducer);
 //   injectReducer(`paginations.${key}`, pagesReducer);

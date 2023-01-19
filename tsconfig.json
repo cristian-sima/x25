@@ -1,6 +1,17 @@
 {
-  "exclude": ["./lib/*", "./node_modules/*", "./wiki/*", ".vscode/*", "conf", "script"],
-  "include": ["./src/**/*","./index.d.ts", "./node_modules"],
+  "exclude": [
+    "./lib/*",
+    "./node_modules/*",
+    "./wiki/*",
+    ".vscode/*",
+    "conf",
+    "script"
+  ],
+  "include": [
+    "./src/**/*",
+    "./index.d.ts",
+    "./node_modules"
+  ],
   "compilerOptions": {
     "allowJs": true,
     "noEmit": false,
@@ -14,18 +25,19 @@
     "outDir": "dist",
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "strict": true /* Enable all strict type-checking options. */,
-    "target": "es5",    
+    "target": "es5",
     "declaration": true,
     "baseUrl": "./",
     "paths": {
-      "react-loadable":["node_modules/@docusaurus/react-loadable"]
+      "react-loadable": [
+        "node_modules/@docusaurus/react-loadable"
+      ]
     },
     "types": [
       "jest",
       "jest-immutable-matchers"
     ]
     // Ensure that Babel can safely transpile files in the TypeScript project
- 
     /* Additional Checks */
     /* Advanced Options */
     /* Basic Options */

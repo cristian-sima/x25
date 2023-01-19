@@ -7,6 +7,7 @@ type CommonProps = {
   closeByEscape?: boolean;
   preventDispatchHideModal?: boolean;
   Footer?: any;
+  Header?: any;
   footerProps?: FooterProps;
   size?: "lg" | "sm" | "xl" | "";
 }

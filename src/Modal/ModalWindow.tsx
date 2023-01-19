@@ -6,7 +6,7 @@ import { ModalWindowProps } from "./types";
 const ModalWindow = (props : ModalWindowProps) => {
   const
     delay = 150,
-    { size = "", Footer } = props,
+    { size = "", Footer, Header } = props,
 
     [show, setShow] = useState(false),
     [waitingToClose, setWaitingToClose] = useState(false),
@@ -109,9 +109,15 @@ const ModalWindow = (props : ModalWindowProps) => {
       <div className={`modal-dialog modal-${size}`} ref={dialogRef} role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">
-              {props.title}
-            </h5>
+            {
+              typeof Header === "undefined" ? (
+                <h5 className="modal-title">
+                  {props.title}
+                </h5>
+              ) : (
+                <Header {...props} tryToClose={tryToClose} />
+              )
+            }
             <button
               aria-label="Close"
               className="btn btn-link"
