@@ -65,21 +65,21 @@ const ModalWindow = (props : ModalWindowProps) => {
 
   useEffect(() => {
     const keyPressed = (event : KeyboardEvent) => {
-      if (event.key === "Escape" && props.closeByEscape) {
+      if (event.key === "Escape" && !props.doNotCloseByEscape) {
         tryToClose();
       }
     };
 
-    if (props.closeByEscape) {
+    if (!props.doNotCloseByEscape) {
       document.addEventListener("keydown", keyPressed, false);
     }
 
     return () => {
-      if (props.closeByEscape) {
+      if (!props.doNotCloseByEscape) {
         document.removeEventListener("keydown", keyPressed, false);
       }
     };
-  }, [props.closeByEscape]);
+  }, [!props.doNotCloseByEscape]);
 
 
   useEffect(() => {
@@ -115,7 +115,7 @@ const ModalWindow = (props : ModalWindowProps) => {
                   {props.title}
                 </h5>
               ) : (
-                <Header {...props} tryToClose={tryToClose} />
+                <Header title={props.title} {...props.headerProps} tryToClose={tryToClose} />
               )
             }
             <button

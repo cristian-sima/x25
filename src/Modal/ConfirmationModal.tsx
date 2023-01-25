@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { notifyError } from "../actions";
 import { words } from "../utility";
 import { ConfirmationModalProps, FooterProps } from "./types";
-import { ModalWindow } from ".";
+import ModalWindow from "./ModalWindow";
 
 
 type ModalFooterProps = FooterProps & {
@@ -56,8 +56,8 @@ const ModalFooter = (props : ModalFooterProps) => {
               { valid, error } = isResponseValid(body);
 
             if (valid) {
-              tryToClose();
               onSuccess(body);
+              tryToClose();
             } else {
               endPerforming();
               showError(error);

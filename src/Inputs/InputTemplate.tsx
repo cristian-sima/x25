@@ -14,13 +14,13 @@ type InputTemplatePropTypes = {
   readonly tabIndex?: string;
   readonly left?: string;
   readonly right?: string;
-  readonly onRegisterRef?: (callback: (node: any) => void) => void;
+  readonly inputRef?: (callback: (node: any) => void) => void;
 };
 import React from "react";
 import classnames from "classnames";
 
 export const InputTemplate = ({
-  input, theType, label, onRegisterRef, autoFocus, inputClass, divClass,
+  input, theType, label, inputRef, autoFocus, inputClass, divClass,
   placeholder, left, tabIndex, right,
   meta: { submitting, touched, error },
 }: InputTemplatePropTypes) => {
@@ -48,7 +48,7 @@ export const InputTemplate = ({
           className={classForInput}
           disabled={submitting}
           id={input.name} placeholder={placeholder}
-          ref={onRegisterRef ? onRegisterRef : null}
+          ref={inputRef ? inputRef : null}
           tabIndex={tabIndex}
           type={theType}
         />
