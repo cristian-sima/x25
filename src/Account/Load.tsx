@@ -35,14 +35,7 @@ const mapStateToProps = (state: State) => ({
   }),
 
   LoadAccount = (props: PropTypes) => {
-    const {
-      children,
-      data,
-      isFetching,
-      shouldFetch,
-      hasError,
-      fetchInitialInformation,
-    } = props;
+    const { children, data, isFetching, shouldFetch, hasError, fetchInitialInformation } = props;
 
     React.useEffect(() => {
       if (shouldFetch) {

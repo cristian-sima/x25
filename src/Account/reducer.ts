@@ -20,13 +20,9 @@ const initialState = Immutable.Map({
     error    : noError,
     fetching : true,
   }),
-  fetchCurrentAccountRejected = (state: any, {
-    payload: {
-      error,
-    },
-  } : any) => state.merge({
-    error,
-    fetching: false,
+  fetchCurrentAccountRejected = (state: any) => state.merge({
+    error    : "Error",
+    fetching : false,
   }),
   fetchCurrentAccountFulfilled = (state: any, {
     payload,
@@ -50,7 +46,7 @@ const initialState = Immutable.Map({
         return fetchCurrentAccountPending(state);
 
       case "account/FETCH_INITIAL_INFORMATION/rejected":
-        return fetchCurrentAccountRejected(state, action);
+        return fetchCurrentAccountRejected(state);
 
       case "account/FETCH_INITIAL_INFORMATION/fulfilled":
         return fetchCurrentAccountFulfilled(state, action);
