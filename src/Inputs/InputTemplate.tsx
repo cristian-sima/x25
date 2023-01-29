@@ -11,6 +11,7 @@ type InputTemplatePropTypes = {
     error?: any;
     submitting: boolean;
   };
+  autoComplete?: string;
   readonly tabIndex?: string;
   readonly left?: string;
   readonly right?: string;
@@ -21,7 +22,7 @@ import classnames from "classnames";
 
 export const InputTemplate = ({
   input, theType, label, inputRef, autoFocus, inputClass, divClass,
-  placeholder, left, tabIndex, right,
+  placeholder, left, tabIndex, right, autoComplete,
   meta: { submitting, touched, error },
 }: InputTemplatePropTypes) => {
   const
@@ -43,7 +44,7 @@ export const InputTemplate = ({
         <input
           {...input}
           aria-label={label}
-          autoComplete={input.name}
+          autoComplete={autoComplete}
           autoFocus={autoFocus}
           className={classForInput}
           disabled={submitting}

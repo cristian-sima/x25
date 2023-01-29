@@ -17,9 +17,9 @@ export const firstToUppercase = (str: string): string => {
 };
 
 // This is ---> THIS IS
-export const toUpper = (str: string): string => str.toUpperCase();
+export const toUpper = (str: string): string => String(str ? str : "").toUpperCase();
 // This is ---> this is
-export const toLower = (str: string): string => str.toLowerCase();
+export const toLower = (str: string): string => String(str ? str : "").toLowerCase();
 export const formatBankAccount = (raw: string): string => {
   if (typeof raw === "undefined" || raw === "") {
     return "";

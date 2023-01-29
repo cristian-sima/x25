@@ -4,6 +4,7 @@ export type SimpleInputPropTypes = {
   readonly input: any;
   readonly theType?: "input" | "password";
   readonly tabIndex?: string;
+  autoComplete?: string;
   readonly label?: string;
   readonly inputRef?: (callback: (node: any) => void) => void;
 
@@ -19,12 +20,13 @@ import classnames from "classnames";
 
 export const SimpleInput = ({
   customClass, input, label, autoFocus, tabIndex, placeholder, theType, inputRef,
+  autoComplete,
   meta: { submitting, touched, error },
 }: SimpleInputPropTypes) => (
   <input
     {...input}
     aria-label={label}
-    autoComplete={input.name}
+    autoComplete={autoComplete}
     autoFocus={autoFocus}
     className={classnames(`form-control ${customClass || ""}`, {
       "is-invalid": touched && error,

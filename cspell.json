@@ -3,6 +3,7 @@
         "./src/utility/languages/ro.ts"
     ],
     "words": [
-        "acord"
+        "acord",
+        "sidesand"
     ]
 }

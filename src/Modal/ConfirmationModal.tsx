@@ -73,7 +73,11 @@ const ModalFooter = (props : ModalFooterProps) => {
 
     return (
       <div className="modal-footer">
-        <button className="btn btn-secondary me-1" onClick={props.tryToClose} type="button">
+        <button
+          className="btn btn-secondary me-1"
+          disabled={isPerforming}
+          onClick={props.tryToClose}
+          type="button">
           {cancelButtonLabel}
         </button>
         <button

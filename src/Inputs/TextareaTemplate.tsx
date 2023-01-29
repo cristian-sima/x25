@@ -5,6 +5,7 @@ type InputTemplatePropTypes = {
   readonly placeholder: string;
   readonly inputClass?: string;
   readonly tabIndex?: string;
+  disabled?: boolean;
   readonly meta: {
     touched: boolean;
     error?: any;

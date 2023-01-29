@@ -9,3 +9,11 @@ export * from "./mql";
 export * from "./validation";
 export * from "./words";
 export * from "./hooks";
+
+import { FORM_ERROR } from "final-form";
+
+export const
+  formError = (message : string) => ({
+    [FORM_ERROR]: message,
+  }),
+  toNumeric = (raw : any) => Number(String(raw));

@@ -5,6 +5,7 @@ type InputTemplatePropTypes = {
   readonly placeholder: string;
   readonly inputClass?: string;
   readonly tabIndex?: string;
+  disabled?: boolean;
   readonly rows?: string;
   readonly meta: {
     touched: boolean;
@@ -16,6 +17,7 @@ type InputTemplatePropTypes = {
 import React from "react";
 
 export const SimpleTextarea = ({
+  disabled,
   input, label, onRegisterRef, autoFocus, inputClass, placeholder, tabIndex, rows,
   meta: { submitting, touched, error },
 }: InputTemplatePropTypes) => {
@@ -30,7 +32,7 @@ export const SimpleTextarea = ({
       aria-label={label}
       autoFocus={autoFocus}
       className={classForInput}
-      disabled={submitting}
+      disabled={disabled || submitting}
       id={input.name}
       placeholder={placeholder}
       ref={onRegisterRef ? onRegisterRef : null}
