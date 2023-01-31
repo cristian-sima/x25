@@ -1,4 +1,6 @@
 /* eslint-disable max-len, no-duplicate-imports */
+import * as Immutable from "immutable";
+import { words } from "./words";
 import type { NormalizedResult } from "src/types";
 
 type Normalizr = (item: any) => any;
@@ -14,11 +16,8 @@ type Response = {
 type Error = {
   status: any;
 };
-import * as Immutable from "immutable";
-import { words } from "./words";
 
 const
-
   defaultNormalizr: Normalizr = (item) => Immutable.fromJS(item),
 
   defaultValue = () => ({

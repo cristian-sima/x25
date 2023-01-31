@@ -1,75 +1,104 @@
 /* eslint-disable import/no-named-as-default-member */
 /* eslint-disable max-len */
-import { createAction } from "@reduxjs/toolkit";
 import Immutable from "immutable";
 import { createSelector } from "reselect";
 import { noError } from "../utility";
-import createLoadGenericData, { LoaderOptions } from "./CreateLoad";
+import createLoadGenericData, { CreateGenericOptions } from "./LoaderRender";
 
 type State = Immutable.Map<string, any>;
 
-export const
+const
+  initialStatusState = Immutable.Map({
+    errorMessage : noError,
+    fetched      : false,
+    fetching     : true,
+  }),
   statusReducer = "status",
   initialState = Immutable.Map({
-    [statusReducer]: Immutable.Map({
-      errorMessage : noError,
-      fetched      : false,
-      fetching     : false,
-    }),
+    [statusReducer] : Immutable.Map(),
+    data            : Immutable.Map(),
   }),
-  pending = (state: State) => (
-    state.mergeIn([statusReducer], Immutable.Map({
-      errorMessage : noError,
-      fetched      : false,
-      fetching     : true,
-    }))
+  pending = (state: State, { meta : { arg } } : any) => (
+    state.mergeIn([statusReducer, arg], initialStatusState)
   ),
-  rejected = (state: State) => (
-    state.mergeDeepIn([statusReducer], Immutable.Map({
+  rejected = (state: State, { meta : { arg } } : any) => (
+    state.mergeDeepIn([statusReducer, arg], Immutable.Map({
       errorMessage : "Error",
       fetching     : false,
     }))
   ),
-  fulfilled = (state: State, { payload } : any) => (
-    state.mergeDeepIn(Immutable.Map({
-      data            : payload,
-      [statusReducer] : Immutable.Map({
-        errorMessage : noError,
-        fetching     : false,
-        fetched      : true,
-      }),
-    }))
+  setItem = (state: State, { payload } : any) => (
+    state.setIn(
+      ["data", String(payload.get("ID"))], payload,
+    )
   ),
-  createGenericLoader = ({ reducerName, url, normalizeResult } : LoaderOptions) => {
-    const reducer = (state: any = initialState, action: any) => {
+  deleteItemReducer = (state: State, { payload } : any) => state.deleteIn(
+    ["data", String(payload.get("ID"))],
+  );
+
+export const
+  createLoader = ({ key, url, normalizeResult } : CreateGenericOptions) => {
+    const reducer = (state: State = initialState, action: any) => {
         switch (action.type) {
-          case `${reducerName}/pending`:
-            return pending(state);
+          case `${key}/pending`:
+            return pending(state, action);
 
-          case `${reducerName}/rejected`:
-            return rejected(state);
+          case `${key}/rejected`:
+            return rejected(state, action);
 
-          case `${reducerName}/fulfilled`:
-            return state.mergeDeep(Immutable.Map({
-              [statusReducer]: Immutable.Map({
-                fetched  : true,
-                fetching : false,
-                error    : noError,
-              }),
-              "data": action.payload,
-            }));
+          case `${key}/fulfilled`:
+            return (
+              state.
+                setIn([statusReducer, action.meta.arg], (
+                  Immutable.Map({
+                    fetched  : true,
+                    fetching : false,
+                    error    : noError,
+                  })
+                )).
+                mergeDeepIn(["data"], action.payload)
+            );
 
-          case `${reducerName}/clear`:
+          case `${key}/clear-all`:
             return initialState;
+
+          case `${key}/add`:
+          case `${key}/modify`:
+            return setItem(state, action);
+
+          case `${key}/delete`:
+            return deleteItemReducer(state, action);
 
           default:
             return state;
         }
       },
-      isFetching = (state: State) => (state.getIn([reducerName, statusReducer, "fetching"]) || false) as boolean,
-      getFetchedSelector = (state: State) => (state.getIn([reducerName, statusReducer, "fetched"]) || false)as boolean,
-      getError = (state: State) => (
-        (state.getIn([reducerName, statusReducer, "errorMessage"]) || noError) as string
+      addItem = (payload: any) => ({
+        type: `${key}/add`,
+        payload,
+      }),
+      modifyItem = (payload: any) => ({
+        type: `${key}/modify`,
+        payload,
+      }),
+      deleteItem = (payload: any) => ({
+        type: `${key}/delete`,
+        payload,
+      }),
+      isFetching = (state: State, token : string) => (state.getIn([key, statusReducer, token, "fetching"]) || false) as boolean,
+      getFetchedSelector = (state: State, token : string) => (state.getIn([key, statusReducer, token, "fetched"]) || false)as boolean,
+      getError = (state: State, token : string) => (
+        (state.getIn([key, statusReducer, token, "errorMessage"]) || noError) as string
+      ),
+      getData = (state: State) => (
+        (state.getIn([key, "data"]) || Immutable.Map()) as Immutable.Map<string, any>
+      ),
+      getItem = createSelector(
+        getData,
+        (state : State, id : any) => String(id),
+        (data, id) => (
+          data.get(id)
+        ),
       ),
       shouldFetch = createSelector(
         isFetching,
@@ -89,9 +118,13 @@ export const
       hasError = createSelector(
         getError, (error) => error !== noError,
       ),
-      clearAction = createAction(`${reducerName}/clear`),
+      clearAllAction = () => ({
+        type: `${key}/clear-all`,
+      }),
       selectors = {
         shouldFetch,
+        getData,
+        getItem,
         isFetched,
         hasError,
         getError,
@@ -99,15 +132,19 @@ export const
       };
 
     return {
-      stateSelectors : selectors,
-      actions        : {
-        clear: clearAction,
+      key,
+      selectors,
+      actions: {
+        clearAllAction,
+        addItem,
+        modifyItem,
+        deleteItem,
       },
       Load: createLoadGenericData({
         url,
         normalizeResult,
         selectors,
-        reducerName,
+        key,
       }),
       reducer,
     };

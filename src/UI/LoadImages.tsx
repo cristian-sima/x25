@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { ErrorMessage, LoadingMessage } from "../Messages";
 
 type LoadImagesProps = {
-    children: any;
-    images: string[];
+  children: any;
+  images: string[];
 }
 
 const LoadImages = (props : LoadImagesProps) => {

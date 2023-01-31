@@ -2,10 +2,10 @@
 import React, { useEffect, useRef, useState } from "react";
 
 type CollapseProps = {
-    open?: boolean;
-    children: any;
-    contentClassName: string;
-  }
+  open?: boolean;
+  children: any;
+  contentClassName: string;
+}
 
 const Collapse = ({ open, children, contentClassName } : CollapseProps) => {
 

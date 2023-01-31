@@ -2,18 +2,19 @@ import React from "react";
 
 type PropTypes = {
   readonly children: any;
+  token: string;
 };
 
-import { useDispatch, useSelector } from "react-redux";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
 import superagent from "superagent";
-import { words } from "../utility";
 import { LargeErrorMessage, LoadingMessage } from "../Messages";
+import { words } from "../utility";
 
 export type CreateGenericOptions = {
-  url: string;
+  url: string | ((token: string) => any);
   normalizeResult: (response : any) => any;
-  reducerName: string;
+  key: string;
 }
 
 export type LoadGenericDataOptions = CreateGenericOptions & {
@@ -21,27 +22,29 @@ export type LoadGenericDataOptions = CreateGenericOptions & {
 }
 
 const
-  createLoadGenericData = ({ reducerName, url, selectors, normalizeResult }: LoadGenericDataOptions) => {
+  createLoadGenericData = ({ key, url, selectors, normalizeResult }: LoadGenericDataOptions) => {
     const
-      createAction = createAsyncThunk(reducerName, async () => {
+      createAction = createAsyncThunk(key, async (token : string) => {
         const
           response = await superagent.
-            get(url).
+            get(
+              typeof url === "string" ? url : url(token),
+            ).
             type("json");
 
         return normalizeResult(response);
       },
       ) as any,
-      Worker = (props: PropTypes) => {
+      LoaderRender = (props: PropTypes) => {
         const
-          { children } = props,
-          shouldFetch = useSelector(selectors.shouldFetch),
-          isFetching = useSelector(selectors.isFetching),
-          hasError = useSelector(selectors.hasError),
+          { children, token } = props,
+          shouldFetch = useSelector((state : any) => selectors.shouldFetch(state, token)),
+          isFetching = useSelector((state : any) => selectors.isFetching(state, token)),
+          hasError = useSelector((state : any) => selectors.hasError(state, token)),
 
           dispatch = useDispatch(),
           performFetch = () => {
-            dispatch(createAction());
+            dispatch(createAction(token));
           };
 
         React.useEffect(() => {
@@ -61,7 +64,7 @@ const
         return children;
       };
 
-    return Worker;
+    return LoaderRender;
   };
 
 export default createLoadGenericData;

@@ -1,5 +1,5 @@
-import type { Action } from "src/types";
 import Notifications from "react-notification-system-redux2";
+import type { Action } from "src/types";
 
 type NotificationOptions = {
   seconds?: number;
@@ -32,9 +32,9 @@ export const
   // captcha
 
   showCaptcha = (payload: {
-  id: string;
-  name: string;
-}): Action => ({
+    id: string;
+    name: string;
+  }): Action => ({
     type: "SHOW_CAPTCHA",
     payload,
   }),
@@ -43,5 +43,6 @@ export const
     payload,
   });
 
-export * from "./Modal/actions";
 export * from "./Account/actions";
+export * from "./Modal/actions";
+

@@ -1,21 +1,21 @@
 type DateInputPropTypes = {
-    readonly customClass?: any;
-    readonly input: any;
-    readonly meta: {
-      error?: string;
-      submitting: boolean;
-      touched: boolean;
-    };
-    readonly placeholder?: string;
-    readonly value?: string;
-    readonly tabIndex?: string;
-    readonly currency?: boolean;
-    readonly formatValue: (raw: string) => string;
-    readonly normalizeValue: (raw: string) => any;
-    readonly onBlur?: () => void;
-    readonly onChange?: (event: any) => void;
-    readonly onRegisterRef?: (callback: (node: any) => void) => void;
-  }
+  readonly customClass?: any;
+  readonly input: any;
+  readonly meta: {
+    error?: string;
+    submitting: boolean;
+    touched: boolean;
+  };
+  readonly placeholder?: string;
+  readonly value?: string;
+  readonly tabIndex?: string;
+  readonly currency?: boolean;
+  readonly formatValue: (raw: string) => string;
+  readonly normalizeValue: (raw: string) => any;
+  readonly onBlur?: () => void;
+  readonly onChange?: (event: any) => void;
+  readonly onRegisterRef?: (callback: (node: any) => void) => void;
+}
 import React from "react";
 import classnames from "classnames";
 import { formatDate, normalizeDate, words } from "../utility";

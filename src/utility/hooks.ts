@@ -2,10 +2,10 @@
 import { useEffect } from "react";
 
   type CheckClickOutsideMenu = {
-      menuRef: any;
-      buttonRef: any;
-      setIsOpen : (value : boolean) => any
-    }
+    menuRef: any;
+    buttonRef: any;
+    setIsOpen : (value : boolean) => any
+  }
 
 export const
   checkClickOutsideMenu = ({ menuRef, buttonRef, setIsOpen } : CheckClickOutsideMenu) => {

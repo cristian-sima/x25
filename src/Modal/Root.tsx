@@ -1,12 +1,12 @@
+import React from "react";
+import { connect } from "react-redux";
+import getComponent from "./getComponent";
+import { selectors } from "./reducer";
 import type { State } from "src/types";
 
 type ModalRootPropTypes = {
   readonly list: any;
 };
-import { connect } from "react-redux";
-import React from "react";
-import getComponent from "./getComponent";
-import { selectors } from "./reducer";
 
 const mapStateToProps = (state: State) => ({
   list: selectors.getModals(state),

@@ -1,25 +1,25 @@
 
 type NumericPropTypes = {
-     currency?: boolean;
-     optional?: boolean;
-     size?: number;
-     customClass?: any;
-     input: any;
-     label?: string;
-     meta: {
-      error?: string;
-      submitting: boolean;
-      touched: boolean;
-    };
-     tabIndex?: number;
-     placeholder?: string;
-     value?: string;
-     formatValue: (raw: any, optional?: boolean) => string;
-     normalizeValue: (raw: any) => any;
-     onBlur?: () => void;
-     onChange?: (event: any) => void;
-     onRegisterRef?: any;
+  currency?: boolean;
+  optional?: boolean;
+  size?: number;
+  customClass?: any;
+  input: any;
+  label?: string;
+  meta: {
+    error?: string;
+    submitting: boolean;
+    touched: boolean;
   };
+  tabIndex?: number;
+  placeholder?: string;
+  value?: string;
+  formatValue: (raw: any, optional?: boolean) => string;
+  normalizeValue: (raw: any) => any;
+  onBlur?: () => void;
+  onChange?: (event: any) => void;
+  onRegisterRef?: any;
+};
 
 import React from "react";
 import classnames from "classnames";

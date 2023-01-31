@@ -1,8 +1,8 @@
 /* eslint-disable no-magic-numbers */
 
 const numberFormat: any = new Intl.NumberFormat("ro", {
-  minimumFractionDigits: 2,
-}),
+    minimumFractionDigits: 2,
+  }),
   plainNumberFormat: any = new Intl.NumberFormat("ro"),
 
   replaceCharInString = ({
@@ -10,10 +10,10 @@ const numberFormat: any = new Intl.NumberFormat("ro", {
     oldChar,
     newChar,
   }: {
-  word: string;
-  oldChar: string;
-  newChar: string;
-}): string => {
+    word: string;
+    oldChar: string;
+    newChar: string;
+  }): string => {
     const regex = new RegExp(oldChar, "gu");
 
     return word.replace(regex, newChar);

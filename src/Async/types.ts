@@ -1,6 +1,6 @@
 // import * as React from "react";
-import type { State } from "src/types";
 import type { ModalsTypes } from "../Modal/types";
+import type { State } from "src/types";
 
 export type Reducer = (state: State, action: any) => any;
 

@@ -1,3 +1,9 @@
+import React from "react";
+import { connect } from "react-redux";
+import { LargeErrorMessage, LoadingMessage } from "../Messages";
+import { words } from "../utility";
+import { fetchInitialInformation as fetchInitialInformationAction } from "./actions";
+import { selectors } from "./reducer";
 import type { Dispatch, State } from "src/types";
 
 type PropTypes = {
@@ -9,12 +15,6 @@ type PropTypes = {
   readonly shouldFetch: any;
   readonly fetchInitialInformation: () => void;
 };
-import React from "react";
-import { connect } from "react-redux";
-import { words } from "../utility";
-import { LargeErrorMessage, LoadingMessage } from "../Messages";
-import { selectors } from "./reducer";
-import { fetchInitialInformation as fetchInitialInformationAction } from "./actions";
 
 const mapStateToProps = (state: State) => ({
     data        : selectors.getCurrentAccount(state),

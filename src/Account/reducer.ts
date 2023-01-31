@@ -1,8 +1,8 @@
-import type { Action, State } from "src/types";
 import { createSelector } from "reselect";
 import * as Immutable from "immutable";
 import { getAccountState } from "../config";
 import { isAdministratorAccount, noError } from "../utility";
+import type { Action, State } from "src/types";
 
 type AccountModifyAction= {
   payload: Immutable.Map<string, any>
