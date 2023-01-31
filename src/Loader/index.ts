@@ -4,7 +4,7 @@ import { createAction } from "@reduxjs/toolkit";
 import Immutable from "immutable";
 import { createSelector } from "reselect";
 import { noError } from "../utility";
-import createLoadGenericData, { CreateGenericOptions as LoaderOptions } from "./CreateLoad";
+import createLoadGenericData, { LoaderOptions } from "./CreateLoad";
 
 type State = Immutable.Map<string, any>;
 

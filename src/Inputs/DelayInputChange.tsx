@@ -1,8 +1,10 @@
+/* eslint-disable max-len */
 import React, { useState } from "react";
 
 type TypeInputPropTypes = {
   readonly change: (event: any) => void;
   readonly value: any;
+  autoFocus?: boolean;
   readonly tabIndex?: number;
   readonly delay?: number;
   readonly className?: string;
@@ -72,6 +74,7 @@ export const
       <div className="delay-input">
         <input
           autoComplete={props.autoComplete}
+          autoFocus={props.autoFocus}
           className={props.className}
           id={props.id}
           name={props.name}
@@ -81,7 +84,7 @@ export const
           tabIndex={props.tabIndex}
           value={value}
         />
-        {isWaiting ? <LoadingMessage className="loading-spinner d-inline-block" sm /> : (
+        {isWaiting ? <LoadingMessage className="spinner-border spinner-border-sm text-primary  d-inline-block" sm /> : (
           value === "" ? null : (
             <i
               className={`fa fa-times cursor-pointer
