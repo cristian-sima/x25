@@ -1,5 +1,5 @@
 {
-  "version": "17.3.37",
+  "version": "17.4.1",
   "name": "x25",
   "description": "x25",
   "types": "./dist/index.d.ts",
@@ -99,27 +99,32 @@
     "jest-immutable-matchers": "^3.0.0",
     "npm-check": "^6.0.1",
     "style-loader": "^3.3.1",
+    "node-sass": "^7.0.3",
+    "eslint-import-resolver-typescript": "^3.5.3",
     "ts-loader": "^9.4.1",
+    "jest": "^27.5.1",
+    "typescript": "^4.8.4",
     "webpack": "^5.74.0"
+  },
+  "overrides": {
+    "rc-tooltip": {
+      "react": "$react"
+    }
   },
   "dependencies": {
     "@docusaurus/react-loadable": "^5.5.2",
     "@reduxjs/toolkit": "^1.8.6",
     "classnames": "^2.3.2",
-    "eslint-import-resolver-typescript": "^3.5.3",
     "final-form": "^4.20.9",
     "immutable": "^4.1.0",
-    "jest": "^27.5.1",
     "moment": "^2.29.4",
-    "node-sass": "^7.0.3",
+    "rc-tooltip": "^5.3.1",
     "react": "^17.0.2",
     "react-final-form": "^6.5.9",
     "react-notification-system-redux2": "^3.0.4",
     "react-redux": "^8.0.4",
-    "react-simple-tooltip": "^2.6.3",
     "redux": "^4.2.0",
     "reselect": "^4.1.6",
-    "superagent": "^8.0.3",
-    "typescript": "^4.8.4"
+    "superagent": "^8.0.3"
   }
 }

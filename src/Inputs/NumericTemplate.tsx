@@ -26,12 +26,12 @@ type NumericPropTypes = {
   onRegisterRef?: any;
 };
 
-import React from "react";
 import classnames from "classnames";
+import React from "react";
 import { formatZeroValue } from "../utility";
 
 
-import { getFloatValueToStore, clearFloatOnBlur, isFloat, floatToEnglishComma } from "./common";
+import { clearFloatOnBlur, floatToEnglishComma, getFloatValueToStore, isFloat } from "./common";
 
 export const
   NumericTemplate = (props : NumericPropTypes) => {
@@ -91,7 +91,7 @@ export const
         "is-invalid": touched && error,
       })}>
         <label
-          className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
+          className={`${left ? left : "col-md-4 text-md-end"} form-control-label`}
           htmlFor={input.name}>
           {label}
         </label>

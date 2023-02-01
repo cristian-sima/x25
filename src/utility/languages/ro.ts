@@ -65,7 +65,7 @@ export const
       Hint    : "Sfat: Încercați să reîmprospătați pagina - apăsați tasta",
     },
     // validation
-    PleaseSelect          : "Te rog selecteaza",
+    PleaseSelect          : "Selectează o opțiune din listă",
     EnterValidPersonalID  : "Introduceți un ID personal valid",
     EnterValidFiscalID    : "Introduceți un ID fiscal valid",
     EnterValidBankAccount : "Introduceți un cont bancar valid",

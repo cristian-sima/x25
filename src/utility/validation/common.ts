@@ -3,9 +3,11 @@
 import { words } from "../words";
 import { isValidDateStamp, isValidEmail } from "./validate";
 
-import { Checker, CheckerWithOptions, ComponentsOfNumberVerification,
+import {
+  Checker, CheckerWithOptions, ComponentsOfNumberVerification,
   ComponentsOfStringTenseVerification, ComponentsOfStringVerification, FloatOptions,
-  MessageOption, NumberRange, OptionalOption, StringOptions } from "./types";
+  MessageOption, NumberRange, OptionalOption, StringOptions,
+} from "./types";
 
 const
   isInt = (value : number) => (
@@ -206,6 +208,7 @@ export const
 
     return error;
   },
+  validateNumericSelect = (value : any) => value === 0 ? words.PleaseSelect : undefined,
   validateID : CheckerWithOptions<MessageOption> = ({ message }) => (value) => {
     const
       notValid = !(

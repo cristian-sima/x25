@@ -17,8 +17,8 @@ type InputTemplatePropTypes = {
   readonly right?: string;
   readonly inputRef?: (callback: (node: any) => void) => void;
 };
-import React from "react";
 import classnames from "classnames";
+import React from "react";
 
 export const InputTemplate = ({
   input, theType, label, inputRef, autoFocus, inputClass, divClass,
@@ -36,7 +36,7 @@ export const InputTemplate = ({
       "is-invalid": touched && error,
     })}>
       <label
-        className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
+        className={`${left ? left : "col-md-4 text-md-end"} form-control-label`}
         htmlFor={input.name}>
         {label}
       </label>

@@ -29,7 +29,7 @@ const CustomSelect = (props: SelectMonthPropTypes) => {
   return (
     <div className="form-group row">
       <label
-        className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
+        className={`${left ? left : "col-md-4 text-md-end"} form-control-label`}
         htmlFor={customID}>
         {label}
       </label>

@@ -15,8 +15,8 @@ type InputTemplatePropTypes = {
   readonly right?: string;
   readonly onRegisterRef?: (callback: (node: any) => void) => void;
 };
-import React from "react";
 import classnames from "classnames";
+import React from "react";
 import { SimpleTextarea } from "./SimpleTextarea";
 
 export const TextareaTemplate = (props: InputTemplatePropTypes) => {
@@ -30,7 +30,7 @@ export const TextareaTemplate = (props: InputTemplatePropTypes) => {
       "is-invalid": touched && error,
     })}>
       <label
-        className={`${left ? left : "col-md-4"} text-md-right form-control-label`}
+        className={`${left ? left : "col-md-4"} text-md-end form-control-label`}
         htmlFor={input.name}>
         {label}
       </label>

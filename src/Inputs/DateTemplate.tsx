@@ -19,8 +19,8 @@ type DateInputPropTypes = {
   left?: string;
   label:string;
 }
-import React from "react";
 import classnames from "classnames";
+import React from "react";
 import { formatDate, normalizeDate, words } from "../utility";
 import { isValidDate } from "../utility/validation";
 
@@ -111,7 +111,7 @@ export const DateTemplate = (props : DateInputPropTypes) => {
     <div
       className={classnames("form-group row", { "is-invalid": touched && error })}>
       <label
-        className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
+        className={`${left ? left : "col-md-4 text-md-end"} form-control-label`}
         htmlFor={input.name}>
         {label}
       </label>

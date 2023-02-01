@@ -21,7 +21,7 @@ export const ErrorMessage = ({
           {message}
         </h5>
       </div>
-      <div className="col-3 col-sm-3 text-right">
+      <div className="col-3 col-sm-3 text-end">
         {typeof onRetry === "undefined" ? null : (
           <button className="btn btn-primary btn-sm" onClick={onRetry} type="button">
             <span className="hidden-sm-down">
@@ -54,7 +54,7 @@ export const LargeErrorMessage = ({
         <div className="mt-3 text-muted">
           {itemNotFound ? words.ErrorNeverExisted : details || words.ErrorConnection}
         </div>
-        <div className="text-right mt-3">
+        <div className="text-end mt-3">
           {typeof onRetry === "undefined" ? null : (
             <button className="btn btn-primary" onClick={onRetry} type="button">
               {words.TryAgain}

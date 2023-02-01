@@ -1,6 +1,8 @@
 import React from "react";
 
 type PropTypes = {
+  sm?: boolean;
+  keepShowingDataIfHasBeenFetched?: boolean;
   readonly children: any;
   token: string;
 };
@@ -8,7 +10,7 @@ type PropTypes = {
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import superagent from "superagent";
-import { LargeErrorMessage, LoadingMessage } from "../Messages";
+import { ErrorMessage, LargeErrorMessage, LoadingMessage } from "../Messages";
 import { words } from "../utility";
 
 export type CreateGenericOptions = {
@@ -26,11 +28,11 @@ const
     const
       createAction = createAsyncThunk(key, async (token : string) => {
         const
-          response = await superagent.
-            get(
-              typeof url === "string" ? url : url(token),
-            ).
-            type("json");
+          response = await (
+            superagent.
+              get(typeof url === "string" ? url : url(token)).
+              type("json")
+          );
 
         return normalizeResult(response);
       },
@@ -41,6 +43,9 @@ const
           shouldFetch = useSelector((state : any) => selectors.shouldFetch(state, token)),
           isFetching = useSelector((state : any) => selectors.isFetching(state, token)),
           hasError = useSelector((state : any) => selectors.hasError(state, token)),
+          hasBeenFetched = useSelector((state : any) => selectors.hasBeenFetched(state, token)),
+
+          doNotShowLoading = props.keepShowingDataIfHasBeenFetched && hasBeenFetched,
 
           dispatch = useDispatch(),
           performFetch = () => {
@@ -53,12 +58,18 @@ const
           }
         }, [shouldFetch, hasError, isFetching]);
 
-        if (hasError) {
-          return <LargeErrorMessage message={words.ThereWasAProblem} onRetry={performFetch} />;
+        if (!doNotShowLoading && hasError) {
+          return (
+            props.sm ? (
+              <ErrorMessage message={words.ThereWasAProblem} onRetry={performFetch} />
+            ) : (
+              <LargeErrorMessage message={words.ThereWasAProblem} onRetry={performFetch} />
+            )
+          );
         }
 
-        if (isFetching) {
-          return <LoadingMessage message={words.LoadingData} />;
+        if (!doNotShowLoading && isFetching) {
+          return <LoadingMessage message={words.LoadingData} sm={props.sm} />;
         }
 
         return children;

@@ -14,7 +14,6 @@ export {
   SimpleTextarea,
   CaptchaBox,
   LabelTemplate,
-  Tooltip,
 
   // business
   EmailInput,

@@ -14,15 +14,19 @@ type CaptchaPropTypes = {
   };
 };
 
-import React from "react";
 import classnames from "classnames";
-import Tooltip from "react-simple-tooltip";
+import Tooltip from "rc-tooltip";
+import React from "react";
 import { words } from "../utility";
 
 const InfoIcon = () => (
-  <div className="d-inline float-right">
-    <Tooltip content={words.CaptchaDescription}>
-      <i className="fa fa-info-circle fa-2x text-info pull-right" id="TooltipExample" />
+  <div className="d-inline float-end">
+    <Tooltip
+      arrowContent={<div className="rc-tooltip-arrow-inner" />}
+      destroyTooltipOnHide
+      overlay={words.CaptchaDescription}
+      placement="top">
+      <i className="fa fa-info-circle fa-2x text-info pull-end" id="TooltipExample" />
     </Tooltip>
   </div>
 );
@@ -37,7 +41,7 @@ export const CaptchaBox = (props: CaptchaPropTypes) => {
   return (
     <div className="form-group row">
       <label
-        className={`${left ? left : "col-md-4 text-md-right"} form-control-label`}
+        className={`${left ? left : "col-md-4 text-md-end"} form-control-label`}
         htmlFor={input.name}>
         {`${words.CaptchaVerify} `}
         <InfoIcon />
