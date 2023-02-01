@@ -19,7 +19,7 @@ const ModalWindow = (props : ModalWindowProps) => {
 
     dispatch = useDispatch(),
 
-    tryToClose = () => {
+    tryToClose = (cbTryToClose? : any) => {
       const
         closeModal = () => {
           if (!props.preventDispatchHideModal) {
@@ -28,6 +28,10 @@ const ModalWindow = (props : ModalWindowProps) => {
 
           if (typeof props.onClose === "function") {
             props.onClose();
+          }
+
+          if (typeof cbTryToClose === "function") {
+            cbTryToClose();
           }
         };
 
@@ -128,7 +132,9 @@ const ModalWindow = (props : ModalWindowProps) => {
             </button>
           </div>
           <div className="modal-body">
-            {props.children}
+            {
+              props.doNoPassTryToCloseToBody ? props.children : React.cloneElement(props.children, { tryToClose })
+            }
           </div>
           {
             typeof Footer === "undefined" ? null : (

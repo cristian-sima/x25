@@ -15,6 +15,7 @@ type CommonProps = {
 
 export type ModalWindowProps = CommonProps & {
   title: string;
+  doNoPassTryToCloseToBody?: boolean;
   children: JSX.Element;
 };
 
@@ -36,4 +37,5 @@ export type FooterProps = {
   readonly message: any;
   readonly request: () => Promise<any>;
   readonly onSuccess: (response: any) => void;
+  readonly beforeClosing?: (response: any) => void;
 }

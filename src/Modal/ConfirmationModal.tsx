@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { notifyError } from "../actions";
 import { words } from "../utility";
-import { ConfirmationModalProps, FooterProps } from "./types";
 import ModalWindow from "./ModalWindow";
+import { ConfirmationModalProps, FooterProps } from "./types";
 
 
 type ModalFooterProps = FooterProps & {
-  readonly tryToClose: () => any;
+  readonly tryToClose: (cb? : any) => any;
 }
 
 const ModalFooter = (props : ModalFooterProps) => {
@@ -44,7 +44,7 @@ const ModalFooter = (props : ModalFooterProps) => {
       },
 
       handleConfirmation = () => {
-        const { request, onSuccess, tryToClose } = props;
+        const { request, onSuccess, tryToClose, beforeClosing } = props;
 
         setIsPerforming(true);
 
@@ -55,9 +55,14 @@ const ModalFooter = (props : ModalFooterProps) => {
               { body } = theResponse,
               { valid, error } = isResponseValid(body);
 
+            if (typeof beforeClosing === "function") {
+              beforeClosing(body);
+            }
+
             if (valid) {
-              onSuccess(body);
-              tryToClose();
+              tryToClose(() => {
+                onSuccess(body);
+              });
             } else {
               endPerforming();
               showError(error);
@@ -100,6 +105,7 @@ const ModalFooter = (props : ModalFooterProps) => {
   },
   ConfirmationModal = (props : ConfirmationModalProps) => (
     <ModalWindow
+      doNoPassTryToCloseToBody
       {...props}
       Footer={ModalFooter}
       title={props.title ? props.title : "Confirmation"}>

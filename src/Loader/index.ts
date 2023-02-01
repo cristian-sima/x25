@@ -43,8 +43,8 @@ const
   setItem = (state: State, { payload } : any) => (
     state.setIn(findLocation(payload), payload.Data)
   ),
-  deleteItemReducer = (state: State, { payload } : any) => state.deleteIn(
-    state.deleteIn(findLocation(payload)),
+  deleteItemReducer = (state: State, { payload } : any) => (
+    state.deleteIn(findLocation(payload))
   ),
   clearToken = (state : State, { payload : { token } } : { payload : { token : string }}) => (
     state.mergeDeepIn([statusReducer, token], initialStatusState)
@@ -88,21 +88,21 @@ export const
             return state;
         }
       },
-      addItem = (payload: any, options : Options) => ({
+      addItem = (payload: any, options? : Options) => ({
         type    : `${key}/add`,
         payload : {
           ...options,
           Data: payload,
         },
       }),
-      modifyItem = (payload: any, options : Options) => ({
+      modifyItem = (payload: any, options? : Options) => ({
         type    : `${key}/modify`,
         payload : {
           ...options,
           Data: payload,
         },
       }),
-      deleteItem = (payload: any, options : Options) => ({
+      deleteItem = (payload: any, options? : Options) => ({
         type    : `${key}/delete`,
         payload : {
           ...options,
