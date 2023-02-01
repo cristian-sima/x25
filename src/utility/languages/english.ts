@@ -68,6 +68,7 @@ export const english = {
     Button : "Tell us",
     Hint   : "Tip: Try refreshing the page - press the key",
   },
+  Confirmation          : "Confirmation",
   // validation
   PleaseSelect          : "Please select",
   EnterValidPersonalID  : "Type a valid personal ID",

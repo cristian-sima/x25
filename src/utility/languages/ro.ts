@@ -64,6 +64,7 @@ export const
       Button  : "Spune-ne",
       Hint    : "Sfat: Încercați să reîmprospătați pagina - apăsați tasta",
     },
+    Confirmation          : "Cofirmare",
     // validation
     PleaseSelect          : "Selectează o opțiune din listă",
     EnterValidPersonalID  : "Introduceți un ID personal valid",

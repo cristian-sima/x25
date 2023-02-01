@@ -36,6 +36,6 @@ export type FooterProps = {
 
   readonly message: any;
   readonly request: () => Promise<any>;
-  readonly onSuccess: (response: any) => void;
-  readonly beforeClosing?: (response: any) => void;
+  readonly onSuccess?: (response: any) => void;
+  readonly onBeforeSuccessClosing?: (response: any) => void;
 }

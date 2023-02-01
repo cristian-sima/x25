@@ -44,7 +44,7 @@ const ModalFooter = (props : ModalFooterProps) => {
       },
 
       handleConfirmation = () => {
-        const { request, onSuccess, tryToClose, beforeClosing } = props;
+        const { request, onSuccess, tryToClose, onBeforeSuccessClosing } = props;
 
         setIsPerforming(true);
 
@@ -55,13 +55,15 @@ const ModalFooter = (props : ModalFooterProps) => {
               { body } = theResponse,
               { valid, error } = isResponseValid(body);
 
-            if (typeof beforeClosing === "function") {
-              beforeClosing(body);
+            if (typeof onBeforeSuccessClosing === "function") {
+              onBeforeSuccessClosing(body);
             }
 
             if (valid) {
               tryToClose(() => {
-                onSuccess(body);
+                if (typeof onSuccess === "function") {
+                  onSuccess(body);
+                }
               });
             } else {
               endPerforming();
@@ -108,7 +110,7 @@ const ModalFooter = (props : ModalFooterProps) => {
       doNoPassTryToCloseToBody
       {...props}
       Footer={ModalFooter}
-      title={props.title ? props.title : "Confirmation"}>
+      title={props.title ? props.title : words.Confirmation}>
       <div>
         {props.footerProps.message}
       </div>
