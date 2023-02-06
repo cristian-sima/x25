@@ -3,6 +3,8 @@ import * as React from "react";
 export type ModalsTypes = Record<string, React.ReactNode>;
 
 type CommonProps = {
+  isStack?: boolean;
+  isLastOne?: boolean;
   onClose?: () => any;
   doNotCloseByEscape?: boolean;
   preventDispatchHideModal?: boolean;

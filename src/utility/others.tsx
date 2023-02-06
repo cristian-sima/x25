@@ -28,4 +28,9 @@ export const
   delay = () => (new Promise((resolve) => {
     setTimeout(resolve);
   }) as Promise<any>),
-  showCheck = (value: boolean) => value ? <i className="fa fa-check text-success" /> : null;
+  showCheck = (value: boolean) => value ? <i className="fa fa-check text-success" /> : null,
+  tryToCloseModalDefault = (cb?: () => any) => {
+    if (typeof cb === "function") {
+      cb();
+    }
+  };

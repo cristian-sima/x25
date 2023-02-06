@@ -9,9 +9,4 @@ export const
       ...newModals,
     };
   },
-  getModal = (type: string) => all[type],
-  tryToCloseModalDefault = (cb?: () => any) => {
-    if (typeof cb === "function") {
-      cb();
-    }
-  };
+  getModal = (type: string) => all[type];

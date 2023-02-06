@@ -28,7 +28,7 @@ const initialState = Immutable.List(),
     }
   },
 
-  getModals = (state: State) => getModalsState(state) || initialState;
+  getModals = (state: State) => (getModalsState(state) || initialState) as Immutable.List<Immutable.Map<string, any>>;
 
 export const selectors = {
   getModals,
