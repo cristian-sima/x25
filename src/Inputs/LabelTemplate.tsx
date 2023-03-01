@@ -15,7 +15,7 @@ export const LabelTemplate = ({
   input, tabIndex, label, offset, meta: { submitting, touched, error },
 }: LabelTemplatePropTypes) => (
   <div className="container">
-    <div className="form-group row mb-1">
+    <div className="form-group mt-md-2 row mb-1">
       <div className={`${offset || ""} col custom-control custom-checkbox`}>
         <input
           {...input}

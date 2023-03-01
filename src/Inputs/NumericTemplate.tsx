@@ -77,7 +77,7 @@ export const
       warningClass = `${touched && error ? " is-invalid" : ""}`,
       customClass = `${inputClass ? ` ${inputClass}` : ""}`,
       classForInput = `form-control ${warningClass}${customClass}`,
-      classForDiv = `form-group row ${divClass ? divClass : ""}`;
+      classForDiv = `form-group mt-md-2 row ${divClass ? divClass : ""}`;
 
 
     React.useEffect(() => {

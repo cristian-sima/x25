@@ -26,7 +26,7 @@ export const TextareaTemplate = (props: InputTemplatePropTypes) => {
   } = props;
 
   return (
-    <div className={classnames("form-group row", {
+    <div className={classnames("form-group mt-md-2 row", {
       "is-invalid": touched && error,
     })}>
       <label

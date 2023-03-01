@@ -9,17 +9,28 @@ type State = Immutable.Map<string, any>;
 
 type Options = {
   location?: string;
+  doNotUseInLocationID?: boolean;
 }
 
 const
-  findLocation = (payload : { Data : any, location? : string}) => {
-    const { location, Data } = payload;
+  findLocation = (payload : { Data : any, location? : string, doNotUseInLocationID? : boolean }) => {
+    const { location, Data, doNotUseInLocationID } = payload,
+      getList = () => {
+        const theList = (
+          Immutable.
+            List(["data"]).
+            merge(Immutable.List(location ? String(location).split(",") : []))
+        );
 
-    return (Immutable.
-      List(["data"]).
-      merge(Immutable.List(location ? String(location).split(",") : [])).
-      push(String(Data.get("ID"))).
-      toJS());
+        if (doNotUseInLocationID) {
+          return theList;
+        }
+
+        return theList.
+          push(String(Data.get("ID")));
+      };
+
+    return getList().toJS();
   },
   initialStatusState = Immutable.Map({
     errorMessage : noError,

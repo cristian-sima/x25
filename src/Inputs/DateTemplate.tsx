@@ -109,7 +109,7 @@ export const DateTemplate = (props : DateInputPropTypes) => {
 
   return (
     <div
-      className={classnames("form-group row", { "is-invalid": touched && error })}>
+      className={classnames("form-group mt-md-2 row", { "is-invalid": touched && error })}>
       <label
         className={`${left ? left : "col-md-4 text-md-end"} form-control-label`}
         htmlFor={input.name}>
