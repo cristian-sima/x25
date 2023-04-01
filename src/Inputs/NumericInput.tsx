@@ -1,5 +1,6 @@
 
 type NumericPropTypes = {
+  autoFocus?: boolean;
   currency?: boolean;
   optional?: boolean;
   size?: number;
@@ -18,6 +19,7 @@ type NumericPropTypes = {
   normalizeValue: (raw: any) => any;
   onBlur?: () => void;
   onChange?: (event: any) => void;
+  onKeyDown?: (event: any) => void;
   onRegisterRef?: any;
 };
 
@@ -71,6 +73,7 @@ export const
       inputComponent = (
         <input
           aria-label={label}
+          autoFocus={props.autoFocus}
           className={classnames(`form-control ${customClass || ""}`, {
             "is-invalid": touched && error,
           })}
@@ -79,6 +82,7 @@ export const
           maxLength={size}
           onBlur={handleBlur}
           onChange={handleChange}
+          onKeyDown={props.onKeyDown}
           placeholder={placeholder || label}
           ref={onRegisterRef}
           tabIndex={tabIndex}

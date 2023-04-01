@@ -22,6 +22,7 @@ type NumericPropTypes = {
   formatValue: (raw: any, optional?: boolean) => string;
   normalizeValue: (raw: string | null) => any;
   onBlur?: () => void;
+  onKeyDown?: (event: any) => void;
   onChange?: (event: any) => void;
   onRegisterRef?: any;
 };
@@ -105,6 +106,7 @@ export const
             maxLength={size}
             onBlur={handleBlur}
             onChange={handleChange}
+            onKeyDown={props.onKeyDown}
             placeholder={placeholder}
             ref={onRegisterRef}
             tabIndex={tabIndex}
