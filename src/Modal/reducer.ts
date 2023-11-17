@@ -14,6 +14,15 @@ const initialState = Immutable.List(),
     props : Immutable.Map(modalProps),
   })),
   hideModal = (state: any) => state.pop(),
+  softHideModal = (state: any) => {
+    const lastPosition = -1;
+
+    return (
+      state.update(lastPosition, (lastMap: Immutable.Map<string, any>) => (
+        lastMap.set("pleaseClose", true)
+      ))
+    );
+  },
 
   reducer = (state: any = initialState, action: Action) => {
     switch (action.type) {
@@ -22,6 +31,9 @@ const initialState = Immutable.List(),
 
       case "HIDE_MODAL":
         return hideModal(state);
+
+      case "SOFT_HIDE_MODAL":
+        return softHideModal(state);
 
       default:
         return state;

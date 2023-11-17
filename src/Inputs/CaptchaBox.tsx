@@ -39,14 +39,14 @@ export const CaptchaBox = (props: CaptchaPropTypes) => {
   }
 
   return (
-    <div className="form-group row">
+    <div className="form-group row d-flex">
       <label
-        className={`${left ? left : "col-md-4 text-md-end"} form-control-label`}
+        className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label align-self-center`}
         htmlFor={input.name}>
         {`${words.CaptchaVerify} `}
         <InfoIcon />
       </label>
-      <div className={right ? right : "col-md-8"}>
+      <div className={right ? `${right} align-self-center` : "col-md-8 align-self-center"}>
         <div className="custom-class">
           <span className="custom-control-description text-muted">
             {words.CaptchaTypeNumbers}

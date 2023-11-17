@@ -1,8 +1,8 @@
 /* eslint-disable new-cap, react/prefer-stateless-function, react/require-optimization */
-import Loadable from "react-loadable";
 import * as React from "react";
-import RouteLoading from "./RouteLoading";
+import Loadable from "react-loadable";
 import InitModule from "./InitModule";
+import RouteLoading from "./RouteLoading";
 import { Loaded } from "./types";
 
 // type injectPaginatorTypes = {
@@ -17,6 +17,9 @@ const timeout = 15000;
 export let ErrorBoundary = ({ children } : any) => (
   children
 );
+
+export let AppLogo : any = null;
+
 // const injectPaginator = ({ key, itemsReducer, pagesReducer } : injectPaginatorTypes) => {
 //   injectReducer(`entities.${key}`, itemsReducer);
 //   injectReducer(`paginations.${key}`, pagesReducer);
@@ -55,6 +58,9 @@ export let ErrorBoundary = ({ children } : any) => (
 export const
   setErrorBoundary = (theError: any) => {
     ErrorBoundary = theError;
+  },
+  setAppLogo = (theLogo: any) => {
+    AppLogo = theLogo;
   },
   createAsyncRoute = (loader : any) => Loadable({
     loader,

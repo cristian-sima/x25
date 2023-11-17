@@ -1,8 +1,10 @@
 
 type NumericPropTypes = {
+  precision?: number;
   autoFocus?: boolean;
   currency?: boolean;
   optional?: boolean;
+  disabled?: boolean;
   size?: number;
   customClass?: any;
   input: any;
@@ -23,17 +25,18 @@ type NumericPropTypes = {
   onRegisterRef?: any;
 };
 
-import React from "react";
 import classnames from "classnames";
+import React from "react";
 import { formatZeroValue } from "../utility";
 
-import { getFloatValueToStore, clearFloatOnBlur, isFloat, floatToEnglishComma } from "./common";
+import { clearFloatOnBlur, floatToEnglishComma, getFloatValueToStore, isFloat } from "./common";
 
 export const
   NumericInput = (props : NumericPropTypes) => {
     const
       {
-        customClass, input, label, currency, tabIndex, onRegisterRef, formatValue = formatZeroValue,
+        precision = 2,
+        customClass, input, label, disabled, currency, tabIndex, onRegisterRef, formatValue = formatZeroValue,
         size, placeholder, meta: { submitting, touched, error },
       } = props,
 
@@ -56,7 +59,7 @@ export const
 
       handleBlur = (event : any) => {
         const
-          newValue = clearFloatOnBlur(value),
+          newValue = clearFloatOnBlur(value, precision),
           hasChanged = value !== newValue;
 
         if (hasChanged) {
@@ -77,8 +80,9 @@ export const
           className={classnames(`form-control ${customClass || ""}`, {
             "is-invalid": touched && error,
           })}
-          disabled={submitting}
+          disabled={submitting || disabled}
           id={input.name}
+          inputMode="decimal"
           maxLength={size}
           onBlur={handleBlur}
           onChange={handleChange}

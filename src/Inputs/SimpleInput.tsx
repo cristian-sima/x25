@@ -1,4 +1,5 @@
 export type SimpleInputPropTypes = {
+  readonly disabled?: boolean;
   readonly autoFocus?: boolean;
   readonly customClass?: any;
   readonly input: any;
@@ -15,12 +16,12 @@ export type SimpleInputPropTypes = {
   };
   readonly placeholder?: string;
 };
-import React from "react";
 import classnames from "classnames";
+import React from "react";
 
 export const SimpleInput = ({
   customClass, input, label, autoFocus, tabIndex, placeholder, theType, inputRef,
-  autoComplete,
+  autoComplete, disabled,
   meta: { submitting, touched, error },
 }: SimpleInputPropTypes) => (
   <input
@@ -30,7 +31,7 @@ export const SimpleInput = ({
     autoFocus={autoFocus}
     className={classnames(`form-control ${customClass || ""}`, {
       "is-invalid": touched && error,
-    })} disabled={submitting}
+    })} disabled={submitting || disabled}
     id={input.name}
     placeholder={placeholder || label}
     ref={inputRef ? inputRef : null}

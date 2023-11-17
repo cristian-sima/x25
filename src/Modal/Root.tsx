@@ -43,6 +43,7 @@ class ModalRoot extends React.Component<ModalRootPropTypes> {
         <Component
           doNotCloseByEscape={isTheLastOne}
           key={index}
+          pleaseClose={current.get("pleaseClose")}
           {...current.get("props").toJS()}
         />
       );

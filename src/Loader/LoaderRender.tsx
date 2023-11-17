@@ -2,15 +2,17 @@ import React from "react";
 
 type PropTypes = {
   sm?: boolean;
+  centerLoading?: boolean;
   keepShowingDataIfHasBeenFetched?: boolean;
-  readonly children: any;
   token: string;
+  readonly children: any;
 };
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import superagent from "superagent";
 import { ErrorMessage, LargeErrorMessage, LoadingMessage } from "../Messages";
+import CenterLoading from "../Messages/CenterLoading";
 import { words } from "../utility";
 
 export type CreateGenericOptions = {
@@ -68,7 +70,11 @@ const
           );
         }
 
-        if (!doNotShowLoading && isFetching) {
+        if (!doNotShowLoading && (isFetching || !hasBeenFetched)) {
+          if (props.centerLoading) {
+            return <CenterLoading />;
+          }
+
           return <LoadingMessage message={words.LoadingData} sm={props.sm} />;
         }
 

@@ -1,24 +1,26 @@
 
 type NumericPropTypes = {
-  optional?: boolean;
-  size?: number;
+  autoFocus?: boolean;
+  disabled?: boolean;
   customClass?: any;
   divClass?: any;
   input: any;
+  inputClass?: string;
   label?: string;
+  left?: string;
+  optional?: boolean;
+  precision?: number;
+  placeholder?: string;
+  right?: string;
+  size?: number;
+  tabIndex?: number;
+  type: string;
+  value?: string;
   meta: {
     error?: string;
     submitting: boolean;
     touched: boolean;
   };
-  placeholder?: string;
-  value?: string;
-  autoFocus?: boolean;
-  type: string;
-  inputClass?: string;
-  left?: string;
-  tabIndex?: number;
-  right?: string;
   formatValue: (raw: any, optional?: boolean) => string;
   normalizeValue: (raw: string | null) => any;
   onBlur?: () => void;
@@ -38,10 +40,11 @@ export const
   NumericTemplate = (props : NumericPropTypes) => {
     const
       {
+        precision = 2,
         input, right, tabIndex, divClass, label,
         onRegisterRef,
         meta: { submitting, touched, error }, formatValue = formatZeroValue,
-        type, autoFocus, inputClass, placeholder, left, size,
+        type, autoFocus, inputClass, placeholder, left, size, disabled,
       } = props,
 
       [value, setValue] = React.useState(props.input.value),
@@ -62,7 +65,7 @@ export const
 
       handleBlur = (event: any) => {
         const
-          newValue = clearFloatOnBlur(value),
+          newValue = clearFloatOnBlur(value, precision),
           hasChanged = value !== newValue;
 
         if (hasChanged) {
@@ -88,21 +91,22 @@ export const
     }, [input.value]);
 
     return (
-      <div className={classnames(classForDiv, {
+      <div className={classnames(`${classForDiv} d-flex`, {
         "is-invalid": touched && error,
       })}>
         <label
-          className={`${left ? left : "col-md-4 text-md-end"} form-control-label`}
+          className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label align-self-center`}
           htmlFor={input.name}>
           {label}
         </label>
-        <div className={right ? right : "col-md-8"}>
+        <div className={right ? `${right} align-self-center` : "col-md-8 align-self-center"}>
           <input
             aria-label={label}
             autoFocus={autoFocus}
             className={classForInput}
-            disabled={submitting}
+            disabled={submitting || disabled}
             id={input.name}
+            inputMode="decimal"
             maxLength={size}
             onBlur={handleBlur}
             onChange={handleChange}

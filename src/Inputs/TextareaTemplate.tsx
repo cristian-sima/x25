@@ -5,7 +5,7 @@ type InputTemplatePropTypes = {
   readonly placeholder: string;
   readonly inputClass?: string;
   readonly tabIndex?: string;
-  disabled?: boolean;
+  readonly disabled?: boolean;
   readonly meta: {
     touched: boolean;
     error?: any;
@@ -26,15 +26,15 @@ export const TextareaTemplate = (props: InputTemplatePropTypes) => {
   } = props;
 
   return (
-    <div className={classnames("form-group mt-md-2 row", {
+    <div className={classnames("form-group mt-md-2 row d-flex", {
       "is-invalid": touched && error,
     })}>
       <label
-        className={`${left ? left : "col-md-4"} text-md-end form-control-label`}
+        className={`${left ? `${left} align-self-center` : "col-md-4"} text-md-end form-control-label align-self-center`}
         htmlFor={input.name}>
         {label}
       </label>
-      <div className={right ? right : "col-md-8"}>
+      <div className={right ? `${right} align-self-center` : "col-md-8 align-self-center"}>
         <SimpleTextarea {...props} />
         <div className="invalid-feedback">
           {touched && error ? (

@@ -27,13 +27,13 @@ const CustomSelect = (props: SelectMonthPropTypes) => {
     customID = `custom-select-${input.name}${id || ""}`;
 
   return (
-    <div className="form-group row">
+    <div className="form-group row d-flex">
       <label
-        className={`${left ? left : "col-md-4 text-md-end"} form-control-label`}
+        className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label align-self-center`}
         htmlFor={customID}>
         {label}
       </label>
-      <div className={right ? right : "col-md-8"}>
+      <div className={right ? `${right} align-self-center` : "col-md-8 align-self-center"}>
         <Simple {...props} />
         <div className="invalid-feedback">
           {touched && error ? (

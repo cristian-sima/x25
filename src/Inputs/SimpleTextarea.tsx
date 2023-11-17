@@ -1,11 +1,11 @@
-type InputTemplatePropTypes = {
+type TextareaPropTypes = {
   readonly autoFocus?: boolean;
+  readonly disabled?: boolean;
   readonly input: any;
   readonly label: string;
   readonly placeholder: string;
   readonly inputClass?: string;
   readonly tabIndex?: string;
-  disabled?: boolean;
   readonly rows?: string;
   readonly meta: {
     touched: boolean;
@@ -20,7 +20,7 @@ export const SimpleTextarea = ({
   disabled,
   input, label, onRegisterRef, autoFocus, inputClass, placeholder, tabIndex, rows,
   meta: { submitting, touched, error },
-}: InputTemplatePropTypes) => {
+}: TextareaPropTypes) => {
   const
     warningClass = `${touched && error ? " is-invalid" : ""}`,
     customClass = `${inputClass ? ` ${inputClass}` : ""}`,

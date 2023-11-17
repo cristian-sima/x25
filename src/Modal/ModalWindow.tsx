@@ -103,6 +103,12 @@ const ModalWindow = (props : ModalWindowProps) => {
     clearTimeout(exitTimeout);
   });
 
+  useEffect(() => {
+    if (props.pleaseClose) {
+      tryToClose();
+    }
+  }, [props.pleaseClose]);
+
   return (
     <div
       className={`modal fade d-block ${show ? "show" : ""}`}
@@ -112,30 +118,38 @@ const ModalWindow = (props : ModalWindowProps) => {
       }}>
       <div className={`modal-dialog modal-${size}`} ref={dialogRef} role="document">
         <div className="modal-content">
-          <div className="modal-header">
-            {
-              typeof Header === "undefined" ? (
-                <h5 className="modal-title">
-                  {props.title}
-                </h5>
-              ) : (
-                <Header title={props.title} {...props.headerProps} tryToClose={tryToClose} />
-              )
-            }
-            <button
-              aria-label="Close"
-              className="btn btn-link"
-              data-dismiss="modal"
-              onClick={tryToClose}
-              type="button">
-              <i className="fa fa-times" />
-            </button>
-          </div>
-          <div className="modal-body">
-            {
-              props.doNoPassTryToCloseToBody ? props.children : React.cloneElement(props.children, { tryToClose })
-            }
-          </div>
+          {
+            props.customContent ? (
+              React.cloneElement(props.children, { tryToClose })
+            ) : (
+              <>
+                <div className="modal-header">
+                  {
+                    typeof Header === "undefined" ? (
+                      <h5 className="modal-title">
+                        {props.title}
+                      </h5>
+                    ) : (
+                      <Header title={props.title} {...props.headerProps} tryToClose={tryToClose} />
+                    )
+                  }
+                  <button
+                    aria-label="Close"
+                    className="btn btn-link"
+                    data-dismiss="modal"
+                    onClick={tryToClose}
+                    type="button">
+                    <i className="fa fa-times" />
+                  </button>
+                </div>
+                <div className="modal-body">
+                  {
+                    props.doNoPassTryToCloseToBody ? props.children : React.cloneElement(props.children, { tryToClose })
+                  }
+                </div>
+              </>
+            )
+          }
           {
             typeof Footer === "undefined" ? null : (
               <Footer {...props.footerProps} tryToClose={tryToClose} />

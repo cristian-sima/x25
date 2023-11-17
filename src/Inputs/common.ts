@@ -1,16 +1,16 @@
 /* eslint-disable require-unicode-regexp */
 
 const
-  floatToLocalComma = (raw) => String(raw).replace(".", ",");
+  floatToLocalComma = (raw: any) => String(raw).replace(".", ",");
 
 export const
-  floatToEnglishComma = (raw) => String(raw).replace(",", "."),
-  isFloat = (raw) => {
+  floatToEnglishComma = (raw: any) => String(raw).replace(",", "."),
+  isFloat = (raw: string) => {
     const floatRegex = /^-?\d+(?:[.]\d*?)?$/;
 
     return floatRegex.test(raw);
   },
-  getFloatValueToStore = (raw) => {
+  getFloatValueToStore = (raw: any) => {
     const
       parsedFloat = floatToEnglishComma(raw),
       parsedValue = parseFloat(parsedFloat),
@@ -22,20 +22,20 @@ export const
 
     return 0;
   },
-  clearFloatOnBlur = (value) => {
+  clearFloatOnBlur = (value: any, precision : number) => {
     const
       parts = floatToLocalComma(value).split(","),
       shouldRemoveComma = parts.length === 2 && (parts[1] === "" || Number(parts[1]) === 0),
-      shouldCutTo2Decimals = parts.length === 2 && parts[1].length > 2;
+      shouldCutToPrecision = parts.length === 2 && parts[1].length > precision;
 
     if (shouldRemoveComma) {
       return parts[0];
     }
 
-    if (shouldCutTo2Decimals) {
+    if (shouldCutToPrecision) {
       const
         [beforeDot] = parts,
-        afterDot = parts[1].substring(0, 2);
+        afterDot = parts[1].substring(0, precision);
 
       return `${beforeDot},${afterDot}`;
     }

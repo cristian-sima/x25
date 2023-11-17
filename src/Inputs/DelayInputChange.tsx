@@ -14,8 +14,6 @@ type TypeInputPropTypes = {
   readonly placeholder?: string;
 };
 
-import { LoadingMessage } from "../Messages";
-
 const delay = 700;
 
 export const
@@ -84,7 +82,7 @@ export const
           tabIndex={props.tabIndex}
           value={value}
         />
-        {isWaiting ? <LoadingMessage className="spinner-border spinner-border-sm text-primary  d-inline-block" sm /> : (
+        {isWaiting ? <div className="spinner-border spinner-border-sm text-primary  d-inline-block" /> : (
           value === "" ? null : (
             <i
               className={`fa fa-times cursor-pointer

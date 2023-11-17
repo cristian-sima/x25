@@ -18,16 +18,24 @@ export const LoadingMessage = ({
         return null;
       }
 
-      return message;
+      return (
+        <div className="font-weight-bold d-inline align-middle">
+          {message}
+        </div>
+      );
     };
 
   if (isSmall) {
     return (
-      <div className={`text-center ${className || ""} mb-1`}>
-        <div className="font-weight-bold d-inline align-middle">
+      <div className={`d-flex justify-content-center ${className || ""} mb-1`}>
+        <div className="align-self-center">
           {getMessage()}
         </div>
-        <div className="loading-sm d-inline-block align-middle"><div /><div /><div /><div /></div>
+        <div className="align-self-center">
+          <div className="spinner-border spinner-border-sm" role="status">
+            <span className="visually-hidden">{words.LoadingData}</span>
+          </div>
+        </div>
       </div>
     );
   }
@@ -37,7 +45,11 @@ export const LoadingMessage = ({
       <div className="spinner-border text-primary" role="status">
         <span className="sr-only">{words.LoadingData}</span>
       </div>
-      <div className="text-fancy mt-1">{message}</div>
+      {
+        message ? (
+          <div className="text-fancy mt-1">{message}</div>
+        ) : null
+      }
     </div>
   );
 };

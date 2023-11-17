@@ -3,6 +3,7 @@ import * as React from "react";
 export type ModalsTypes = Record<string, React.ReactNode>;
 
 type CommonProps = {
+  pleaseClose?: boolean;
   isStack?: boolean;
   isLastOne?: boolean;
   onClose?: () => any;
@@ -16,6 +17,7 @@ type CommonProps = {
 }
 
 export type ModalWindowProps = CommonProps & {
+  customContent?: boolean;
   title: string;
   doNoPassTryToCloseToBody?: boolean;
   children: JSX.Element;

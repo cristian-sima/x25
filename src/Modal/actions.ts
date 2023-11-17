@@ -1,5 +1,9 @@
 import type { Action } from "src/types";
 
-export const hideModal = (): Action => ({
-  type: "HIDE_MODAL",
-});
+export const
+  hideModal = (): Action => ({
+    type: "HIDE_MODAL",
+  }),
+  softHideModal = (): Action => ({
+    type: "SOFT_HIDE_MODAL",
+  });

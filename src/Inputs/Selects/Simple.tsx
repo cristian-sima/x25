@@ -16,13 +16,13 @@ type SelectMonthPropTypes = {
     submitting: boolean;
   };
 };
-import React from "react";
 import classnames from "classnames";
+import React from "react";
 import { words } from "../../utility";
 
 const SimpleCustomSelect = ({
   autoFocus, isImmutable, showEmptyOption, valueKey = "value", nameKey = "name",
-  data, tabIndex, input, id, inputClass,
+  data, tabIndex, input, id, inputClass, disabled,
   meta: { submitting, touched, error },
 }: SelectMonthPropTypes) => {
   const
@@ -36,7 +36,7 @@ const SimpleCustomSelect = ({
       {...input}
       autoFocus={autoFocus}
       className={theClasses}
-      disabled={submitting}
+      disabled={submitting || disabled}
       id={customID}
       tabIndex={tabIndex}>
       {showEmptyOption ? <option value="">{words.Select}</option> : null}

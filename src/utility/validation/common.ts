@@ -99,8 +99,9 @@ const
 // ----------- Checkers
 
 export const
-  validateEmail : CheckerWithOptions<OptionalOption> = ({ optional }) => (value : string) => {
+  validateEmail : CheckerWithOptions<OptionalOption> = ({ optional }) => (raw : string) => {
     const
+      value = typeof raw === "string" ? String(raw).trim() : raw,
       notValid = (
         optional && (
           typeof value !== "undefined" && value !== "" && !isValidEmail(value)
