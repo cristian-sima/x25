@@ -1,3 +1,4 @@
+import { describe, expect, test } from "vitest";
 import { firstToUppercase, toLower, toTitle, toUpper } from "./strings";
 
 // toTitle
@@ -27,7 +28,7 @@ import { firstToUppercase, toLower, toTitle, toUpper } from "./strings";
       output,
     } of tests) {
       describe(`Given the raw string "${input}"`, () => {
-        it(`should be transformed to "${output}"`, () => {
+        test(`should be transformed to "${output}"`, () => {
           expect(toTitle(input)).toEqual(output);
         });
       });
@@ -59,7 +60,7 @@ import { firstToUppercase, toLower, toTitle, toUpper } from "./strings";
       output,
     } of tests) {
       describe(`given "${input}"`, () => {
-        it(`should be transformed to "${output}"`, () => {
+        test(`should be transformed to "${output}"`, () => {
           expect(firstToUppercase(input)).toEqual(output);
         });
       });
@@ -87,7 +88,7 @@ import { firstToUppercase, toLower, toTitle, toUpper } from "./strings";
     output,
   } of tests) {
     describe(`given "${input}"`, () => {
-      it(`should be transformed to "${output}"`, () => {
+      test(`should be transformed to "${output}"`, () => {
         expect(toUpper(input)).toEqual(output);
       });
     });
@@ -114,7 +115,7 @@ import { firstToUppercase, toLower, toTitle, toUpper } from "./strings";
     output,
   } of tests) {
     describe(`given "${input}"`, () => {
-      it(`should be transformed to "${output}"`, () => {
+      test(`should be transformed to "${output}"`, () => {
         expect(toLower(input)).toEqual(output);
       });
     });

@@ -1,12 +1,9 @@
 
 import * as Immutable from "immutable";
-import * as matchers from "jest-immutable-matchers";
+import { describe, expect, test } from "vitest";
 import { normalizeArray } from "./normalize";
 
 describe("test util/normalize", () => {
-  beforeEach(() => {
-    expect.extend(matchers);
-  });
   const input = [
     {
       ID   : 1,
@@ -23,8 +20,8 @@ describe("test util/normalize", () => {
   describe("given an array", () => {
     const result = normalizeArray(input);
 
-    it("normalizes the entities", () => {
-      expect(result.entities).toEqualImmutable(Immutable.Map({
+    test("normalizes the entities", () => {
+      expect(result.entities).toEqual(Immutable.Map({
         "1": Immutable.Map({
           ID   : 1,
           Name : "BlaBla 1",
@@ -39,8 +36,8 @@ describe("test util/normalize", () => {
         }),
       }));
     });
-    it("normalizes the result", () => {
-      expect(result.result).toEqualImmutable(Immutable.List(["1", "2", "3"]));
+    test("normalizes the result", () => {
+      expect(result.result).toEqual(Immutable.List(["1", "2", "3"]));
     });
   });
 });

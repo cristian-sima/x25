@@ -33,10 +33,7 @@
         "node_modules/@docusaurus/react-loadable"
       ]
     },
-    "types": [
-      "jest",
-      "jest-immutable-matchers"
-    ]
+    "types": []
     // Ensure that Babel can safely transpile files in the TypeScript project
     /* Additional Checks */
     /* Advanced Options */
