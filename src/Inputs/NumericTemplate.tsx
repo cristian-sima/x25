@@ -1,32 +1,32 @@
 
 type NumericPropTypes = {
-  autoFocus?: boolean;
-  disabled?: boolean;
-  customClass?: any;
-  divClass?: any;
-  input: any;
-  inputClass?: string;
-  label?: string;
-  left?: string;
-  optional?: boolean;
-  precision?: number;
-  placeholder?: string;
-  right?: string;
-  size?: number;
-  tabIndex?: number;
-  type: string;
-  value?: string;
-  meta: {
+  readonly autoFocus?: boolean;
+  readonly disabled?: boolean;
+  readonly customClass?: any;
+  readonly divClass?: any;
+  readonly input: any;
+  readonly inputClass?: string;
+  readonly label?: string;
+  readonly left?: string;
+  readonly optional?: boolean;
+  readonly precision?: number;
+  readonly placeholder?: string;
+  readonly right?: string;
+  readonly size?: number;
+  readonly tabIndex?: number;
+  readonly type: string;
+  readonly value?: string;
+  readonly meta: {
     error?: string;
     submitting: boolean;
     touched: boolean;
   };
-  formatValue: (raw: any, optional?: boolean) => string;
-  normalizeValue: (raw: string | null) => any;
-  onBlur?: () => void;
-  onKeyDown?: (event: any) => void;
-  onChange?: (event: any) => void;
-  onRegisterRef?: any;
+  readonly formatValue: (raw: any, optional?: boolean) => string;
+  readonly normalizeValue: (raw: string | null) => any;
+  readonly onBlur?: () => void;
+  readonly onKeyDown?: (event: any) => void;
+  readonly onChange?: (event: any) => void;
+  readonly onRegisterRef?: any;
 };
 
 import classnames from "classnames";

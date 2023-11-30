@@ -1,7 +1,7 @@
 import React from "react";
 
 type NewFeatureProps = {
-  message?: string;
+  readonly message?: string;
 }
 
 const NewFeature = (props : NewFeatureProps) => (

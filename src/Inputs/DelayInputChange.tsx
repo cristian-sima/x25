@@ -4,7 +4,7 @@ import React, { useState } from "react";
 type TypeInputPropTypes = {
   readonly change: (event: any) => void;
   readonly value: any;
-  autoFocus?: boolean;
+  readonly autoFocus?: boolean;
   readonly tabIndex?: number;
   readonly delay?: number;
   readonly className?: string;

@@ -15,9 +15,9 @@ type DateInputPropTypes = {
   readonly onBlur?: () => void;
   readonly onChange?: (event: any) => void;
   readonly onRegisterRef?: (callback: (node: any) => void) => void;
-  right?: string;
-  left?: string;
-  label:string;
+  readonly right?: string;
+  readonly left?: string;
+  readonly label:string;
 }
 import classnames from "classnames";
 import React from "react";

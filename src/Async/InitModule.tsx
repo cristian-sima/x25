@@ -11,8 +11,8 @@ import { initModule } from "./util";
 
 
 type InitModuleProps = {
-  loaded: Loaded;
-  props: any;
+  readonly loaded: Loaded;
+  readonly props: any;
 }
 
 const InitModule = ({ loaded, props } : InitModuleProps) => {

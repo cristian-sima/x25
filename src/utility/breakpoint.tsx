@@ -5,8 +5,8 @@ import React, { useState, useEffect, createContext, useContext } from "react";
 // }
 
   type BreakpointProviderProps = {
-    children: any;
-    queries: any;
+    readonly children: any;
+    readonly queries: any;
   }
 
 export type Queries = {

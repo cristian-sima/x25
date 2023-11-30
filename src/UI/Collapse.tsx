@@ -2,9 +2,9 @@
 import React, { useEffect, useRef, useState } from "react";
 
 type CollapseProps = {
-  open?: boolean;
-  children: any;
-  contentClassName: string;
+  readonly open?: boolean;
+  readonly children: any;
+  readonly contentClassName: string;
 }
 
 const Collapse = ({ open, children, contentClassName } : CollapseProps) => {

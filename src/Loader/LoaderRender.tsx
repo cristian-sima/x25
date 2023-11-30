@@ -1,10 +1,10 @@
 import React from "react";
 
 type PropTypes = {
-  sm?: boolean;
-  centerLoading?: boolean;
-  keepShowingDataIfHasBeenFetched?: boolean;
-  token: string;
+  readonly sm?: boolean;
+  readonly centerLoading?: boolean;
+  readonly keepShowingDataIfHasBeenFetched?: boolean;
+  readonly token: string;
   readonly children: any;
 };
 

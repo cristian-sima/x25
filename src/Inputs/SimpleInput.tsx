@@ -5,7 +5,7 @@ export type SimpleInputPropTypes = {
   readonly input: any;
   readonly theType?: "input" | "password";
   readonly tabIndex?: string;
-  autoComplete?: string;
+  readonly autoComplete?: string;
   readonly label?: string;
   readonly inputRef?: (callback: (node: any) => void) => void;
 

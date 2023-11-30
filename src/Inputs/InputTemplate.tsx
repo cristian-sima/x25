@@ -12,7 +12,7 @@ type InputTemplatePropTypes = {
     error?: any;
     submitting: boolean;
   };
-  autoComplete?: string;
+  readonly autoComplete?: string;
   readonly tabIndex?: string;
   readonly left?: string;
   readonly right?: string;
