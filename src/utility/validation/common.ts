@@ -1,5 +1,6 @@
 /* eslint-disable no-undefined */
 
+import { toNumeric } from "../";
 import { words } from "../words";
 import { isValidDateStamp, isValidEmail } from "./validate";
 
@@ -8,6 +9,9 @@ import {
   ComponentsOfStringTenseVerification, ComponentsOfStringVerification, FloatOptions,
   MessageOption, NumberRange, OptionalOption, StringOptions,
 } from "./types";
+
+export const 
+  parseNumericExceptBlank = (value: any) => value === "" ? "" : toNumeric(value);
 
 const
   isInt = (value : number) => (
