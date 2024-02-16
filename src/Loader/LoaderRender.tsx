@@ -1,6 +1,7 @@
 import React from "react";
 
 type PropTypes = {
+  readonly silent?: boolean;
   readonly sm?: boolean;
   readonly centerLoading?: boolean;
   readonly keepShowingDataIfHasBeenFetched?: boolean;
@@ -17,8 +18,8 @@ import { words } from "../utility";
 
 export type CreateGenericOptions = {
   url: string | ((token: string) => any);
-  normalizeResult: (response : any) => any;
   key: string;
+  normalizeResult: (response : any) => any;
 }
 
 export type LoadGenericDataOptions = CreateGenericOptions & {
@@ -47,7 +48,7 @@ const
           hasError = useSelector((state : any) => selectors.hasError(state, token)),
           hasBeenFetched = useSelector((state : any) => selectors.hasBeenFetched(state, token)),
 
-          doNotShowLoading = props.keepShowingDataIfHasBeenFetched && hasBeenFetched,
+          doNotShowLoading = props.silent || props.keepShowingDataIfHasBeenFetched && hasBeenFetched,
 
           dispatch = useDispatch(),
           performFetch = () => {

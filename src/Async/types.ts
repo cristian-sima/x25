@@ -25,9 +25,9 @@ export type ModuleParts = {
   module: string;
   Component: any;
 
-  reducers: ReducersTypes;
-  modals: ModalsTypes;
-  paginators: PaginatorsTypes;
+  reducers?: ReducersTypes;
+  modals?: ModalsTypes;
+  paginators?: PaginatorsTypes;
 };
 
 export type Loaded = {

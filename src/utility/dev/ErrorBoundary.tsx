@@ -13,8 +13,8 @@ type ErrorBoundaryState = {
 };
 import React from "react";
 import { words } from "..";
-import type { ErrorType, InfoType } from "./types";
 import TheError from "./TheError";
+import type { ErrorType, InfoType } from "./types";
 
 const refreshKeyCode = 82,
   timeoutDelay = 200;
@@ -59,10 +59,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
         }, timeoutDelay);
       });
     };
-  }
-
-  shouldComponentUpdate () {
-    return true;
   }
 
   render () {

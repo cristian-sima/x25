@@ -2,6 +2,8 @@ import * as React from "react";
 
 export type ModalsTypes = Record<string, React.ReactNode>;
 
+export type Modals = Immutable.List<Immutable.Map<string, any>>;
+
 type CommonProps = {
   pleaseClose?: boolean;
   isStack?: boolean;

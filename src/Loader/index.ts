@@ -165,11 +165,11 @@ export const
       ),
       selectors = {
         shouldFetch,
-        getData,
-        hasBeenFetched,
         getItem,
         isFetched,
         hasError,
+        getData,
+        hasBeenFetched,
         getError,
         isFetching,
       };

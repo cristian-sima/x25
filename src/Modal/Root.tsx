@@ -1,55 +1,56 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
+import { propsAreEqualCreator } from "../utility/others";
 import getComponent from "./getComponent";
 import { selectors } from "./reducer";
-import type { State } from "src/types";
+import { Modals } from "./types";
 
-type ModalRootPropTypes = {
-  readonly list: any;
-};
+type RawModalRootProps = {
+  readonly list: Modals;
+}
 
-const mapStateToProps = (state: State) => ({
-  list: selectors.getModals(state),
-});
-
-class ModalRoot extends React.Component<ModalRootPropTypes> {
-
-  shouldComponentUpdate (nextProps: ModalRootPropTypes) {
-    return this.props.list !== nextProps.list;
-  }
-
-  render () {
-    const { list } = this.props;
-
+const   
+  propsAreEqual = propsAreEqualCreator([], ["list"]),
+  RawModalRoot = ({ list } : RawModalRootProps) => {
     if (list.size === 0) {
       return null;
     }
 
-    return list.map((current : any, index : number) => {
-      const
-        modalType = current.get("type"),
-        Component = getComponent(modalType),
-        isTheLastOne = index !== list.size - 1;
+    return  (
+      <>
+        {
+          list.map((current : any, index : number) => {
+            const
+              modalType = current.get("type"),
+              Component = getComponent(modalType),
+              isTheLastOne = index !== list.size - 1;
+      
+            if (typeof Component === "undefined") {
+              return (
+                <div key="no-modal">
+                  {`No MODAL component for the type [${modalType}] in Modal/components.jsx`}
+                </div>
+              );
+            }
+      
+            return (
+              <Component
+                doNotCloseByEscape={isTheLastOne}
+                key={index}
+                pleaseClose={current.get("pleaseClose")}
+                {...current.get("props").toJS()}
+              />
+            );
+          })
+        }
+      </>
+    );
+  },
+  InnerModalRoot = React.memo(RawModalRoot, propsAreEqual),
+  ModalRoot = () => {
+    const list = useSelector(selectors.getModals);
 
-      if (typeof Component === "undefined") {
-        return (
-          <div key="no-modal">
-            {`No MODAL component for the type [${modalType}] in Modal/components.jsx`}
-          </div>
-        );
-      }
+    return <InnerModalRoot list={list} />;
+  };
 
-      return (
-        <Component
-          doNotCloseByEscape={isTheLastOne}
-          key={index}
-          pleaseClose={current.get("pleaseClose")}
-          {...current.get("props").toJS()}
-        />
-      );
-    });
-  }
-
-}
-
-export default connect(mapStateToProps)(ModalRoot);
+export default ModalRoot;

@@ -1,8 +1,9 @@
 import * as Immutable from "immutable";
 import { getModalsState } from "../config";
+import { Modals } from "./types";
 import type { Action, State } from "src/types";
 
-const initialState = Immutable.List(),
+const initialState = Immutable.List<Immutable.Map<string, any>>(),
 
   showModal = (state: any, {
     payload: {
@@ -40,7 +41,7 @@ const initialState = Immutable.List(),
     }
   },
 
-  getModals = (state: State) => (getModalsState(state) || initialState) as Immutable.List<Immutable.Map<string, any>>;
+  getModals = (state: State) => (getModalsState(state) || initialState) as Modals;
 
 export const selectors = {
   getModals,

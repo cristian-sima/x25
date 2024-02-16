@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React from "react";
 import { ErrorMessage } from "../Messages";
-import { getModal } from "./util";
 import ModalWindow from "./ModalWindow";
+import { getModal } from "./util";
 
 const NothingSelected = () => (
     <ModalWindow onClose={() => {}} title="Not registered">
@@ -11,7 +11,7 @@ const NothingSelected = () => (
   ),
 
   /* eslint-disable complexity */
-  getComponent = (type: any): any => {
+  getComponent = (type: any): (props : any) => JSX.Element => {
     const AutoModal = getModal(type);
 
     if (AutoModal !== null) {

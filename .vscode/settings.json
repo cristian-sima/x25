@@ -56,5 +56,6 @@
         "package-lock.json": true,
         "dist": true,
         "conf": true
-    }
+    },
+    "cSpell.language": "en,ro-RO"
 }
