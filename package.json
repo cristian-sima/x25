@@ -1,5 +1,5 @@
 {
-  "version": "17.4.54",
+  "version": "17.4.55",
   "name": "x25",
   "description": "x25",
   "types": "./dist/index.d.ts",
