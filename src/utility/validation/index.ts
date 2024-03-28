@@ -9,8 +9,8 @@ export const extractErrorsFromCheckers = (checkers: Checkers) => (values: any) =
   const errors : Errors = {};
 
   for (const field in checkers) {
-  // @ts-expect-error It works
-    if (Object.hasOwn(checkers, field) && typeof field === "string") {
+    // eslint-disable-next-line prefer-object-has-own
+    if (Object.prototype.hasOwnProperty.call(checkers, field) && typeof field === "string") {
       const checker = checkers[field],
         error = checker(values[field], values, checkers);
 

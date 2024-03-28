@@ -36,6 +36,9 @@ const initialState = Immutable.List<Immutable.Map<string, any>>(),
       case "SOFT_HIDE_MODAL":
         return softHideModal(state);
 
+      case "CLEAR_MODALS":
+        return state.clear();
+
       default:
         return state;
     }

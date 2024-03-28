@@ -20,6 +20,7 @@ type NumericPropTypes = {
   readonly formatValue: (raw: any, optional?: boolean) => string;
   readonly normalizeValue: (raw: any) => any;
   readonly onBlur?: () => void;
+  readonly onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   readonly onChange?: (event: any) => void;
   readonly onKeyDown?: (event: any) => void;
   readonly onRegisterRef?: any;
@@ -73,6 +74,13 @@ export const
         updateValue(targetValue);
       },
 
+      handleFocus = (event : React.FocusEvent<HTMLInputElement>) => {
+        props.input.onFocus(event);
+        if (typeof props.onFocus === "function") {
+          props.onFocus(event);
+        }
+      },
+
       inputComponent = (
         <input
           aria-label={label}
@@ -86,6 +94,7 @@ export const
           maxLength={size}
           onBlur={handleBlur}
           onChange={handleChange}
+          onFocus={handleFocus}
           onKeyDown={props.onKeyDown}
           placeholder={placeholder || label}
           ref={onRegisterRef}

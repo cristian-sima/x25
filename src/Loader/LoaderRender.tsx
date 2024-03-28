@@ -19,7 +19,7 @@ import { words } from "../utility";
 export type CreateGenericOptions = {
   url: string | ((token: string) => any);
   key: string;
-  normalizeResult: (response : any) => any;
+  normalizeResult: (response : any, token : string) => any;
 }
 
 export type LoadGenericDataOptions = CreateGenericOptions & {
@@ -37,7 +37,7 @@ const
               type("json")
           );
 
-        return normalizeResult(response);
+        return normalizeResult(response, token);
       },
       ) as any,
       LoaderRender = (props: PropTypes) => {

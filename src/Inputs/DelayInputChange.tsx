@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 
 type TypeInputPropTypes = {
-  readonly change: (event: any) => void;
   readonly value: any;
   readonly autoFocus?: boolean;
   readonly tabIndex?: number;
@@ -10,8 +9,10 @@ type TypeInputPropTypes = {
   readonly className?: string;
   readonly id?: string;
   readonly autoComplete?: string;
+  readonly inputRef?: React.RefObject<HTMLInputElement>;
   readonly name?: string;
   readonly placeholder?: string;
+  readonly change: (event: any) => void;
 };
 
 const delay = 700;
@@ -79,6 +80,7 @@ export const
           onChange={delayChange}
           onKeyPress={handleKeyPressed}
           placeholder={props.placeholder}
+          ref={props.inputRef}
           tabIndex={props.tabIndex}
           value={value}
         />
