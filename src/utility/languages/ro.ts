@@ -10,8 +10,8 @@ export const
     LoadingData : "Se încarcă...",
     LoadMore    : "Încarcă mai mult",
 
-    IfThisIsErrorPersist        : "Dacă eroarea persistă, vă rugăm să navigați la ",
-    ThisPage                    : "această pagină",
+    IfThisIsErrorPersist        : "Dacă eroarea persistă, vă ",
+    ThisPage                    : "dați click aici pentru actualizare",
     PleaseWait                  : "Vă rugăm asteptați...",
     TryAgain                    : "Încearcă din nou",
     ThereWasAProblem            : "A apărut o problemă. Încercați din nou",

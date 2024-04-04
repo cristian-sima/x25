@@ -56,14 +56,19 @@ export const LargeErrorMessage = ({
         </div>
         <div className="text-end mt-3">
           {typeof onRetry === "undefined" ? null : (
-            <button className="btn btn-primary" onClick={onRetry} type="button">
+            <button className="btn btn-primary btn-sm" onClick={onRetry} type="button">
               {words.TryAgain}
             </button>
           )}
         </div>
         <div className="text-center mt-3 border-top pt-2 text-muted small">
           {words.IfThisIsErrorPersist}
-          <a href="/"> {words.ThisPage}</a>
+          <button 
+            className="btn btn-link"
+            onClick={()=> window.location.reload()}
+            type="button">
+            {words.ThisPage}
+          </button>
         </div>
       </div>
     </div>
