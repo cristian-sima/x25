@@ -15,7 +15,7 @@ const
   autoDismissDelay = 6,
   createNotification : CreateNotification = (level) => (title, options) => Notifications.show({
     title,
-    position    : "br",
+    position    : "bl",
     autoDismiss : options?.persistent ? 0 : (options?.seconds ? options.seconds : autoDismissDelay),
     ...options,
   }, level);
