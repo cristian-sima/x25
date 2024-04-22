@@ -23,7 +23,7 @@ export const ErrorMessage = ({
       </div>
       <div className="col-3 col-sm-3 text-end">
         {typeof onRetry === "undefined" ? null : (
-          <button className="btn btn-primary btn-sm" onClick={onRetry} type="button">
+          <button className="btn btn-info btn-sm" onClick={() => window.location.reload()} type="button">
             <span className="hidden-sm-down">
               {words.TryAgain}
             </span>
@@ -56,7 +56,7 @@ export const LargeErrorMessage = ({
         </div>
         <div className="text-end mt-3">
           {typeof onRetry === "undefined" ? null : (
-            <button className="btn btn-primary btn-sm" onClick={onRetry} type="button">
+            <button className="btn btn-primary btn-sm" onClick={() => window.location.reload()} type="button">
               {words.TryAgain}
             </button>
           )}

@@ -45,7 +45,7 @@ export const
     CaptchaVerify               : "Verificare",
     DateFormat,
     ErrorNeverExisted           : "Este posibil să fi fost șters sau să nu fi existat niciodată",
-    ErrorConnection             : "Se pare că există o problemă cu serverul dvs. sau conexiunea dvs. la internet a fost întreruptă.",
+    ErrorConnection             : "Există o problemă cu conexiunea sau folosești o versiune veche a aplicației",
     Sentry                      : {
       TellUs: {
         title          : "Se pare că avem o problemă",
