@@ -32,13 +32,21 @@ const
                 </div>
               );
             }
+
+            const theProps = (
+              current?.hasIn(["props", "immutableProps"]) ? ({
+                modalProps: current.get("props"), 
+              }) : (
+                current.get("props").toJS()
+              )
+            );
       
             return (
               <Component
                 doNotCloseByEscape={isTheLastOne}
                 key={index}
                 pleaseClose={current.get("pleaseClose")}
-                {...current.get("props").toJS()}
+                {...theProps}
               />
             );
           })
