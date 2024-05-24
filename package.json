@@ -1,5 +1,5 @@
 {
-  "version": "17.4.69",
+  "version": "17.5.4",
   "name": "x25",
   "description": "x25",
   "types": "./dist/index.d.ts",
@@ -120,6 +120,7 @@
     "redux": "^4.2.1",
     "reselect": "^4.1.8",
     "superagent": "^8.1.2",
-    "vitest": "^0.34.6"
+    "vitest": "^1.4.0",
+    "x25": "^17.4.70"
   }
 }

@@ -1,28 +1,27 @@
+
+import classnames from "classnames";
+import React from "react";
+import { formatDate, normalizeDate, words } from "../utility";
+import { isValidDate } from "../utility/validation";
+import { MetaProps } from "src/types";
+
 type DateInputPropTypes = {
-  readonly customClass?: any;
-  readonly input: any;
-  readonly meta: {
-    error?: string;
-    submitting: boolean;
-    touched: boolean;
-  };
-  readonly placeholder?: string;
-  readonly value?: string;
-  readonly tabIndex?: string;
   readonly currency?: boolean;
+  readonly customClass?: any;
+  readonly field: any;
+  readonly label:string;
+  readonly left?: string;
+  readonly meta: MetaProps;
+  readonly placeholder?: string;
+  readonly right?: string;
+  readonly tabIndex?: string;
+  readonly value?: string;
   readonly formatValue: (raw: string) => string;
   readonly normalizeValue: (raw: string) => any;
   readonly onBlur?: () => void;
   readonly onChange?: (event: any) => void;
   readonly onRegisterRef?: (callback: (node: any) => void) => void;
-  readonly right?: string;
-  readonly left?: string;
-  readonly label:string;
 }
-import classnames from "classnames";
-import React from "react";
-import { formatDate, normalizeDate, words } from "../utility";
-import { isValidDate } from "../utility/validation";
 
 const
   addZeroIfNeeded = (raw : string) => {
@@ -74,10 +73,10 @@ const
 export const DateTemplate = (props : DateInputPropTypes) => {
   const
 
-    { customClass, input, onRegisterRef, tabIndex, placeholder,
-      meta: { submitting, touched, error }, right, left, label } = props,
+    { customClass, field = {}, onRegisterRef, tabIndex, placeholder,
+      meta = {} as MetaProps, right, left, label } = props,
 
-    [value, setValue] = React.useState(input.value),
+    [value, setValue] = React.useState(field.value),
 
     valueToShow = formatRawDate(value),
 
@@ -86,7 +85,7 @@ export const DateTemplate = (props : DateInputPropTypes) => {
       const normalizedValue = normalizeRawDate(addZeroIfNeeded(targetValue));
 
       setValue(targetValue);
-      props.input.onChange(normalizedValue);
+      field.onChange(normalizedValue);
 
     },
 
@@ -100,7 +99,7 @@ export const DateTemplate = (props : DateInputPropTypes) => {
         updateValue(newValue);
       }
 
-      input.onBlur(event);
+      field.onBlur(event);
     },
 
     handleChange = ({ target: { value : targetValue } }: any) => {
@@ -109,21 +108,21 @@ export const DateTemplate = (props : DateInputPropTypes) => {
 
   return (
     <div
-      className={classnames("form-group mt-md-2 row d-flex", { "is-invalid": touched && error })}>
+      className={classnames("form-group mt-md-2 row d-flex", { "is-invalid": meta.touched && meta.error })}>
       <label
         className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label`}
-        htmlFor={input.name}>
+        htmlFor={field.name}>
         {label}
       </label>
       <div className={right ? `${right} align-self-center` : "col-md-8"}>
         <input
-          {...input}
+          {...field}
           aria-label={label}
           className={classnames(`form-control ${customClass || ""}`, {
-            "is-invalid": touched && error,
+            "is-invalid": meta.touched && meta.error,
           })}
-          disabled={submitting}
-          id={input.name}
+          disabled={meta.submitting}
+          id={field.name}
           onBlur={handleBlur}
           onChange={handleChange}
           placeholder={placeholder || words.DateFormat}
@@ -134,9 +133,9 @@ export const DateTemplate = (props : DateInputPropTypes) => {
         />
         <div
           className="invalid-feedback">
-          {touched && error ? (
+          {meta.touched && meta.error ? (
             <span>
-              {error}
+              {meta.error}
             </span>
           ) : null}
         </div>

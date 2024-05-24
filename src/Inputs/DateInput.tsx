@@ -1,25 +1,24 @@
+
+import classnames from "classnames";
+import React from "react";
+import { formatDate, normalizeDate, words } from "../utility";
+import { isValidDate } from "../utility/validation";
+import { MetaProps } from "src/types";
+
 type DateInputPropTypes = {
-  readonly customClass?: any;
-  readonly input: any;
-  readonly meta: {
-    error?: string;
-    submitting: boolean;
-    touched: boolean;
-  };
-  readonly placeholder?: string;
-  readonly value?: string;
-  readonly tabIndex?: string;
   readonly currency?: boolean;
+  readonly customClass?: any;
+  readonly field: any;
+  readonly meta: MetaProps;
+  readonly placeholder?: string;
+  readonly tabIndex?: string;
+  readonly value?: string;
   readonly formatValue: (raw: string) => string;
   readonly normalizeValue: (raw: string) => any;
   readonly onBlur?: () => void;
   readonly onChange?: (event: any) => void;
   readonly onRegisterRef?: (callback: (node: any) => void) => void;
 }
-import React from "react";
-import classnames from "classnames";
-import { formatDate, normalizeDate, words } from "../utility";
-import { isValidDate } from "../utility/validation";
 
 const
   addZeroIfNeeded = (raw : string) => {
@@ -71,10 +70,10 @@ const
 export const DateInput = (props : DateInputPropTypes) => {
   const
 
-    { customClass, input, onRegisterRef, tabIndex, placeholder,
-      meta: { submitting, touched, error } } = props,
+    { customClass, field = {}, onRegisterRef, tabIndex, placeholder,
+      meta = {} as MetaProps } = props,
 
-    [value, setValue] = React.useState(input.value),
+    [value, setValue] = React.useState(field.value),
 
     valueToShow = formatRawDate(value),
 
@@ -83,7 +82,7 @@ export const DateInput = (props : DateInputPropTypes) => {
       const normalizedValue = normalizeRawDate(addZeroIfNeeded(targetValue));
 
       setValue(targetValue);
-      props.input.onChange(normalizedValue);
+      field.onChange(normalizedValue);
 
     },
 
@@ -97,7 +96,7 @@ export const DateInput = (props : DateInputPropTypes) => {
         updateValue(newValue);
       }
 
-      input.onBlur(event);
+      field.onBlur(event);
     },
 
     handleChange = ({ target: { value : targetValue } }: any) => {
@@ -106,12 +105,12 @@ export const DateInput = (props : DateInputPropTypes) => {
 
   return (
     <input
-      {...input}
+      {...field}
       className={classnames(`form-control ${customClass || ""}`, {
-        "is-invalid": touched && error,
+        "is-invalid": meta.touched && meta.error,
       })}
-      disabled={submitting}
-      id={input.name}
+      disabled={meta.submitting}
+      id={field.name}
       onBlur={handleBlur}
       onChange={handleChange}
       placeholder={placeholder || words.DateFormat}

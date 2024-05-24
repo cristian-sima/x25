@@ -1,23 +1,21 @@
-type CaptchaPropTypes = {
-  readonly id: string;
-
-  readonly tabIndex?: string;
-  readonly input?: any;
-  readonly label?: string;
-  readonly autoFocus?: boolean;
-  readonly left?: string;
-  readonly right?: string;
-  readonly meta?: {
-    touched: boolean;
-    error?: any;
-    submitting: boolean;
-  };
-};
 
 import classnames from "classnames";
 import Tooltip from "rc-tooltip";
 import React from "react";
 import { words } from "../utility";
+import { MetaProps } from "src/types";
+
+type CaptchaPropTypes = {
+  readonly id: string;
+  readonly tabIndex?: string;
+  readonly field?: any;
+  readonly label?: string;
+  readonly autoFocus?: boolean;
+  readonly left?: string;
+  readonly right?: string;
+  readonly meta?: MetaProps;
+};
+
 
 const InfoIcon = () => (
   <div className="d-inline float-end">
@@ -32,7 +30,7 @@ const InfoIcon = () => (
 );
 
 export const CaptchaBox = (props: CaptchaPropTypes) => {
-  const { autoFocus, id, input, tabIndex, label, left, right, meta } = props;
+  const { autoFocus, id, field, tabIndex, label, left, right,  meta = {} as MetaProps } = props;
 
   if (typeof id === "undefined" || id === "") {
     return null;
@@ -42,7 +40,7 @@ export const CaptchaBox = (props: CaptchaPropTypes) => {
     <div className="form-group row d-flex">
       <label
         className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label align-self-center`}
-        htmlFor={input.name}>
+        htmlFor={field.name}>
         {`${words.CaptchaVerify} `}
         <InfoIcon />
       </label>
@@ -56,11 +54,14 @@ export const CaptchaBox = (props: CaptchaPropTypes) => {
           </div>
         </div>
         <input
-          {...input} aria-label={label} autoFocus={autoFocus} className={classnames("form-control", {
+          {...field} 
+          aria-label={label} 
+          autoFocus={autoFocus} 
+          className={classnames("form-control", {
             "is-invalid": meta?.touched && meta?.error,
           })}
           disabled={meta?.submitting}
-          id={input.name}
+          id={field.name}
           placeholder={words.CaptchaTypeNumbers}
           tabIndex={tabIndex}
         />

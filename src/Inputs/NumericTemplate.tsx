@@ -1,53 +1,48 @@
 
 type NumericPropTypes = {
   readonly autoFocus?: boolean;
-  readonly disabled?: boolean;
   readonly customClass?: any;
+  readonly disabled?: boolean;
   readonly divClass?: any;
-  readonly input: any;
+  readonly field: any;
   readonly inputClass?: string;
   readonly label?: string;
   readonly left?: string;
+  readonly meta: MetaProps;
+  readonly onRegisterRef?: any;
   readonly optional?: boolean;
-  readonly precision?: number;
   readonly placeholder?: string;
+  readonly precision?: number;
   readonly right?: string;
   readonly size?: number;
   readonly tabIndex?: number;
   readonly type: string;
   readonly value?: string;
-  readonly meta: {
-    error?: string;
-    submitting: boolean;
-    touched: boolean;
-  };
   readonly formatValue: (raw: any, optional?: boolean) => string;
   readonly normalizeValue: (raw: string | null) => any;
   readonly onBlur?: () => void;
-  readonly onKeyDown?: (event: any) => void;
   readonly onChange?: (event: any) => void;
-  readonly onRegisterRef?: any;
+  readonly onKeyDown?: (event: any) => void;
 };
 
 import classnames from "classnames";
 import React from "react";
 import { formatZeroValue } from "../utility";
-
-
 import { clearFloatOnBlur, floatToEnglishComma, getFloatValueToStore, isFloat } from "./common";
+import { MetaProps } from "src/types";
 
 export const
   NumericTemplate = (props : NumericPropTypes) => {
     const
       {
         precision = 2,
-        input, right, tabIndex, divClass, label,
+        field = {}, right, tabIndex, divClass, label,
         onRegisterRef,
-        meta: { submitting, touched, error }, formatValue = formatZeroValue,
+        meta: { submitting, touched, error } = {}, formatValue = formatZeroValue,
         type, autoFocus, inputClass, placeholder, left, size, disabled,
       } = props,
 
-      [value, setValue] = React.useState(props.input.value),
+      [value, setValue] = React.useState(props.field.value || ""),
 
       valueToShow = formatValue(value, props.optional),
 
@@ -60,7 +55,7 @@ export const
           valueToStore = getFloatValueToStore(targetValue);
         }
 
-        input.onChange(valueToStore);
+        field.onChange(valueToStore);
       },
 
       handleBlur = (event: any) => {
@@ -72,7 +67,7 @@ export const
           updateValue(newValue);
         }
 
-        input.onBlur(event);
+        field.onBlur(event);
       },
 
       handleChange = ({ target: { value : targetValue } }: any) => {
@@ -85,10 +80,10 @@ export const
 
 
     React.useEffect(() => {
-      if (isFloat(input.value) || input.value === "") {
-        updateValue(input.value);
+      if (isFloat(field.value) || field.value === "") {
+        updateValue(field.value);
       }
-    }, [input.value]);
+    }, [field.value]);
 
     return (
       <div className={classnames(`${classForDiv} d-flex`, {
@@ -96,7 +91,7 @@ export const
       })}>
         <label
           className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label align-self-center`}
-          htmlFor={input.name}>
+          htmlFor={field.name}>
           {label}
         </label>
         <div className={right ? `${right} align-self-center` : "col-md-8 align-self-center"}>
@@ -105,7 +100,7 @@ export const
             autoFocus={autoFocus}
             className={classForInput}
             disabled={submitting || disabled}
-            id={input.name}
+            id={field.name}
             inputMode="decimal"
             maxLength={size}
             onBlur={handleBlur}

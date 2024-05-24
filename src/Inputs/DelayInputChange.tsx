@@ -2,16 +2,16 @@
 import React, { useState } from "react";
 
 type TypeInputPropTypes = {
-  readonly value: any;
-  readonly autoFocus?: boolean;
-  readonly tabIndex?: number;
-  readonly delay?: number;
-  readonly className?: string;
-  readonly id?: string;
   readonly autoComplete?: string;
+  readonly autoFocus?: boolean;
+  readonly className?: string;
+  readonly delay?: number;
+  readonly id?: string;
   readonly inputRef?: React.RefObject<HTMLInputElement>;
   readonly name?: string;
   readonly placeholder?: string;
+  readonly tabIndex?: number;
+  readonly value: any;
   readonly change: (event: any) => void;
 };
 

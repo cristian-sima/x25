@@ -22,7 +22,7 @@ export const
 
     return 0;
   },
-  clearFloatOnBlur = (value: any, precision : number) => {
+  clearFloatOnBlur = (value: any, precision : number) : string  => {
     const
       parts = floatToLocalComma(value).split(","),
       shouldRemoveComma = parts.length === 2 && (parts[1] === "" || Number(parts[1]) === 0),

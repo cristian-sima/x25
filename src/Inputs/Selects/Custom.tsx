@@ -1,6 +1,11 @@
+
+import React from "react";
+import Simple from "./Simple";
+import { MetaProps } from "src/types";
+
 type SelectMonthPropTypes = {
   readonly disabled: boolean;
-  readonly input: any;
+  readonly field: any;
   readonly valueKey?: string;
   readonly nameKey?: string;
   readonly label?: string;
@@ -12,19 +17,13 @@ type SelectMonthPropTypes = {
   readonly right?: string;
   readonly id?: string;
   readonly data: any;
-  readonly meta: {
-    touched: boolean;
-    error?: any;
-    submitting: boolean;
-  };
+  readonly meta: MetaProps;
 };
-import React from "react";
-import Simple from "./Simple";
 
 const CustomSelect = (props: SelectMonthPropTypes) => {
   const
-    { input, meta: { touched, error }, left, right, label, id } = props,
-    customID = `custom-select-${input.name}${id || ""}`;
+    { field = {}, meta = {} as MetaProps, left, right, label, id } = props,
+    customID = `custom-select-${field.name}${id || ""}`;
 
   return (
     <div className="form-group row d-flex">
@@ -36,9 +35,9 @@ const CustomSelect = (props: SelectMonthPropTypes) => {
       <div className={right ? `${right} align-self-center` : "col-md-8 align-self-center"}>
         <Simple {...props} />
         <div className="invalid-feedback">
-          {touched && error ? (
+          {meta.touched && meta.error ? (
             <span>
-              {error}
+              {meta.error}
             </span>
           ) : null}
         </div>

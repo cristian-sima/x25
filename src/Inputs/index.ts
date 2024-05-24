@@ -1,4 +1,3 @@
-export * from "./Business";
 export * from "./CaptchaBox";
 export * from "./DateInput";
 export * from "./DateTemplate";

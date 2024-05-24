@@ -20,3 +20,8 @@ export type NormalizedResult = {
   entities: MapType<string, any>;
   result: ListType<string>;
 };
+export type MetaProps = {
+  touched: boolean;
+  error?: any;
+  submitting: boolean;
+};
