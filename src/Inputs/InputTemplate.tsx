@@ -9,7 +9,7 @@ type InputTemplatePropTypes = {
   readonly autoFocus?: boolean;
   readonly disabled?: boolean;
   readonly divClass?: string;
-  readonly field: any;
+  readonly input: any;
   readonly inputClass?: string;
   readonly label: string;
   readonly left?: string;
@@ -24,7 +24,7 @@ type InputTemplatePropTypes = {
 export const InputTemplate = (props: InputTemplatePropTypes) => {
   const
     {
-      field = {}, theType, label, inputRef, autoFocus, inputClass, divClass,
+      input = {}, theType, label, inputRef, autoFocus, inputClass, divClass,
       placeholder, left, tabIndex, right, autoComplete, disabled,
       meta: { submitting, touched, error } = {},
     } = props,
@@ -39,18 +39,18 @@ export const InputTemplate = (props: InputTemplatePropTypes) => {
     })}>
       <label
         className={`${left ? left : "col-md-4 text-md-end"} form-control-label align-self-center`}
-        htmlFor={field.name}>
+        htmlFor={input.name}>
         {label}
       </label>
       <div className={`${right ? right : "col-md-8"} align-self-center`}>
         <input
-          {...field}
+          {...input}
           aria-label={label}
           autoComplete={autoComplete}
           autoFocus={autoFocus}
           className={classForInput}
           disabled={submitting || disabled}
-          id={field.name} placeholder={placeholder}
+          id={input.name} placeholder={placeholder}
           ref={inputRef ? inputRef : null}
           tabIndex={tabIndex}
           type={theType}

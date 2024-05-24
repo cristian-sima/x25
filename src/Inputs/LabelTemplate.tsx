@@ -3,7 +3,7 @@ import React from "react";
 import { MetaProps } from "src/types";
 
 type LabelTemplatePropTypes = {
-  readonly field: any;
+  readonly input: any;
   readonly label: string;
   readonly tabIndex?: string;
   readonly offset?: string;
@@ -12,7 +12,7 @@ type LabelTemplatePropTypes = {
 
 export const LabelTemplate = (props: LabelTemplatePropTypes) => {
   const {
-    field = {}, tabIndex, label, offset, meta: { submitting, touched, error } = {},
+    input = {}, tabIndex, label, offset, meta: { submitting, touched, error } = {},
   } = props;
   
   return (
@@ -20,16 +20,16 @@ export const LabelTemplate = (props: LabelTemplatePropTypes) => {
       <div className="form-group mt-md-2 row mb-1">
         <div className={`${offset || ""} col custom-control custom-checkbox`}>
           <input
-            {...field}
+            {...input}
             aria-label={label}
             className="custom-control-input"
             disabled={submitting}
-            id={field.name}
+            id={input.name}
             tabIndex={tabIndex}
             type="checkbox" />
           <label
             className="custom-control-label"
-            htmlFor={field.name}>
+            htmlFor={input.name}>
             {label}
           </label>
           <div className="invalid-feedback">

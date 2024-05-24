@@ -11,7 +11,7 @@ type NumericPropTypes = {
   readonly currency?: boolean;
   readonly customClass?: any;
   readonly disabled?: boolean;
-  readonly field: any;
+  readonly input: any;
   readonly label?: string;
   readonly meta: any;
   readonly onRegisterRef?: any;
@@ -21,11 +21,10 @@ type NumericPropTypes = {
   readonly size?: number;
   readonly tabIndex?: number;
   readonly value?: string;
-  readonly form: any;
-  readonly formatValue: (raw: any, optional?: boolean) => string;
+  readonly form: any;  readonly formatValue: (raw: any, optional?: boolean) => string;
   readonly normalizeValue: (raw: any) => any;
   readonly onBlur?: () => void;
-  readonly onChange?: (event: any) => void;
+  readonly onChange: (event: any) => void;
   readonly onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   readonly onKeyDown?: (event: any) => void;
 };
@@ -34,12 +33,12 @@ export const
   NumericInput = (props : NumericPropTypes) => {
     const
       {
-        precision = 2, form,
-        customClass, field, label, disabled, currency, tabIndex, onRegisterRef, formatValue = formatZeroValue,
+        precision = 2,
+        customClass, input, label, disabled, currency, tabIndex, onRegisterRef, formatValue = formatZeroValue,
         size, placeholder, meta: { submitting, touched, error } = {},
       } = props,
 
-      [value, setValue] = React.useState(field.value || ""),
+      [value, setValue] = React.useState(input.value || ""),
 
       noCurrency = (typeof currency === "undefined" || currency === false),
       valueToShow = formatValue(value, props.optional),
@@ -53,7 +52,7 @@ export const
           valueToStore = getFloatValueToStore(targetValue);
         }
 
-        form.setFieldValue(valueToStore);
+        input.onChange(valueToStore);
       },
 
       handleBlur = ({ target: { value: targetValue } } : any) => {
@@ -65,8 +64,8 @@ export const
           updateValue(newValue);
         }
 
-        if (typeof field.onBlur === "function") {
-          field.onBlur(targetValue);
+        if (typeof input.onBlur === "function") {
+          input.onBlur(targetValue);
         }
       },
 
@@ -75,8 +74,8 @@ export const
       },
 
       handleFocus = (event : React.FocusEvent<HTMLInputElement>) => {
-        if (typeof field.onFocus === "function") {
-          field.onFocus(event);
+        if (typeof input.onFocus === "function") {
+          input.onFocus(event);
         }
 
         if (typeof props.onFocus === "function") {
@@ -92,7 +91,7 @@ export const
             "is-invalid": touched && error,
           })}
           disabled={submitting || disabled}
-          id={field.name}
+          id={input.name}
           inputMode="decimal"
           maxLength={size}
           onBlur={handleBlur}
@@ -108,10 +107,10 @@ export const
       );
 
     React.useEffect(() => {
-      if (isFloat(field.value) || field.value === "") {
-        updateValue(field.value);
+      if (isFloat(input.value) || input.value === "") {
+        updateValue(input.value);
       }
-    }, [field.value]);
+    }, [input.value]);
 
     if (noCurrency) {
       return inputComponent;

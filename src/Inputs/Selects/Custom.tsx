@@ -5,7 +5,7 @@ import { MetaProps } from "src/types";
 
 type SelectMonthPropTypes = {
   readonly disabled: boolean;
-  readonly field: any;
+  readonly input: any;
   readonly valueKey?: string;
   readonly nameKey?: string;
   readonly label?: string;
@@ -22,8 +22,8 @@ type SelectMonthPropTypes = {
 
 const CustomSelect = (props: SelectMonthPropTypes) => {
   const
-    { field = {}, meta = {} as MetaProps, left, right, label, id } = props,
-    customID = `custom-select-${field.name}${id || ""}`;
+    { input = {}, meta = {} as MetaProps, left, right, label, id } = props,
+    customID = `custom-select-${input.name}${id || ""}`;
 
   return (
     <div className="form-group row d-flex">

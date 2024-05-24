@@ -5,7 +5,7 @@ import { MetaProps } from "src/types";
 type TextareaPropTypes = {
   readonly autoFocus?: boolean;
   readonly disabled?: boolean;
-  readonly field: any;
+  readonly input: any;
   readonly inputClass?: string;
   readonly label: string;
   readonly meta: MetaProps;
@@ -19,7 +19,7 @@ export const SimpleTextarea = (props: TextareaPropTypes) => {
   const
     {
       disabled,
-      field = {}, label, onRegisterRef, autoFocus, inputClass, placeholder, tabIndex, rows,
+      input = {}, label, onRegisterRef, autoFocus, inputClass, placeholder, tabIndex, rows,
       meta: { submitting, touched, error } = {},
     } = props,
     warningClass = `${touched && error ? " is-invalid" : ""}`,
@@ -28,12 +28,12 @@ export const SimpleTextarea = (props: TextareaPropTypes) => {
 
   return (
     <textarea
-      {...field}
+      {...input}
       aria-label={label}
       autoFocus={autoFocus}
       className={classForInput}
       disabled={disabled || submitting}
-      id={field.name}
+      id={input.name}
       placeholder={placeholder}
       ref={onRegisterRef ? onRegisterRef : null}
       rows={rows}

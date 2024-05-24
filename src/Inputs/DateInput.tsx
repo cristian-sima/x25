@@ -8,7 +8,7 @@ import { MetaProps } from "src/types";
 type DateInputPropTypes = {
   readonly currency?: boolean;
   readonly customClass?: any;
-  readonly field: any;
+  readonly input: any;
   readonly meta: MetaProps;
   readonly placeholder?: string;
   readonly tabIndex?: string;
@@ -70,10 +70,10 @@ const
 export const DateInput = (props : DateInputPropTypes) => {
   const
 
-    { customClass, field = {}, onRegisterRef, tabIndex, placeholder,
+    { customClass, input = {}, onRegisterRef, tabIndex, placeholder,
       meta = {} as MetaProps } = props,
 
-    [value, setValue] = React.useState(field.value),
+    [value, setValue] = React.useState(input.value),
 
     valueToShow = formatRawDate(value),
 
@@ -82,7 +82,7 @@ export const DateInput = (props : DateInputPropTypes) => {
       const normalizedValue = normalizeRawDate(addZeroIfNeeded(targetValue));
 
       setValue(targetValue);
-      field.onChange(normalizedValue);
+      input.onChange(normalizedValue);
 
     },
 
@@ -96,7 +96,7 @@ export const DateInput = (props : DateInputPropTypes) => {
         updateValue(newValue);
       }
 
-      field.onBlur(event);
+      input.onBlur(event);
     },
 
     handleChange = ({ target: { value : targetValue } }: any) => {
@@ -105,12 +105,12 @@ export const DateInput = (props : DateInputPropTypes) => {
 
   return (
     <input
-      {...field}
+      {...input}
       className={classnames(`form-control ${customClass || ""}`, {
         "is-invalid": meta.touched && meta.error,
       })}
       disabled={meta.submitting}
-      id={field.name}
+      id={input.name}
       onBlur={handleBlur}
       onChange={handleChange}
       placeholder={placeholder || words.DateFormat}

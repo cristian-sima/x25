@@ -7,7 +7,7 @@ import { MetaProps } from "src/types";
 type InputTemplatePropTypes = {
   readonly autoFocus?: boolean;
   readonly disabled?: boolean;
-  readonly field: any;
+  readonly input: any;
   readonly inputClass?: string;
   readonly label: string;
   readonly left?: string;
@@ -21,7 +21,7 @@ type InputTemplatePropTypes = {
 export const TextareaTemplate = (props: InputTemplatePropTypes) => {
   const
     {
-      field = {}, label, left, right,
+      input = {}, label, left, right,
       meta: { touched, error } = {},
     } = props;
 
@@ -31,7 +31,7 @@ export const TextareaTemplate = (props: InputTemplatePropTypes) => {
     })}>
       <label
         className={`${left ? `${left} align-self-center` : "col-md-4"} text-md-end form-control-label align-self-center`}
-        htmlFor={field.name}>
+        htmlFor={input.name}>
         {label}
       </label>
       <div className={right ? `${right} align-self-center` : "col-md-8 align-self-center"}>

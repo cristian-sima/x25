@@ -1,6 +1,6 @@
 type SelectMonthPropTypes = {
   readonly disabled: boolean;
-  readonly field: any;
+  readonly input: any;
   readonly autoFocus?: boolean;
   readonly valueKey?: string;
   readonly nameKey?: string;
@@ -21,17 +21,17 @@ const SimpleCustomSelect = (props: SelectMonthPropTypes) => {
   const
     {
       autoFocus, isImmutable, showEmptyOption, valueKey = "value", nameKey = "name",
-      data, tabIndex, field = {}, id, inputClass, disabled,
+      data, tabIndex, input = {}, id, inputClass, disabled,
       meta : { touched, error, submitting } = {},
     } = props,
     theClasses = classnames(`custom-select ${inputClass || ""}`, {
       "is-invalid": touched && error,
     }),
-    customID = `custom-select-${field.name}${id || ""}`;
+    customID = `custom-select-${input.name}${id || ""}`;
 
   return (
     <select
-      {...field}
+      {...input}
       autoFocus={autoFocus}
       className={theClasses}
       disabled={submitting || disabled}

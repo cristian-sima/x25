@@ -4,7 +4,7 @@ type NumericPropTypes = {
   readonly customClass?: any;
   readonly disabled?: boolean;
   readonly divClass?: any;
-  readonly field: any;
+  readonly input: any;
   readonly inputClass?: string;
   readonly label?: string;
   readonly left?: string;
@@ -36,13 +36,13 @@ export const
     const
       {
         precision = 2,
-        field = {}, right, tabIndex, divClass, label,
+        input = {}, right, tabIndex, divClass, label,
         onRegisterRef,
         meta: { submitting, touched, error } = {}, formatValue = formatZeroValue,
         type, autoFocus, inputClass, placeholder, left, size, disabled,
       } = props,
 
-      [value, setValue] = React.useState(props.field.value || ""),
+      [value, setValue] = React.useState(props.input.value || ""),
 
       valueToShow = formatValue(value, props.optional),
 
@@ -55,7 +55,7 @@ export const
           valueToStore = getFloatValueToStore(targetValue);
         }
 
-        field.onChange(valueToStore);
+        input.onChange(valueToStore);
       },
 
       handleBlur = (event: any) => {
@@ -67,7 +67,7 @@ export const
           updateValue(newValue);
         }
 
-        field.onBlur(event);
+        input.onBlur(event);
       },
 
       handleChange = ({ target: { value : targetValue } }: any) => {
@@ -80,10 +80,10 @@ export const
 
 
     React.useEffect(() => {
-      if (isFloat(field.value) || field.value === "") {
-        updateValue(field.value);
+      if (isFloat(input.value) || input.value === "") {
+        updateValue(input.value);
       }
-    }, [field.value]);
+    }, [input.value]);
 
     return (
       <div className={classnames(`${classForDiv} d-flex`, {
@@ -91,7 +91,7 @@ export const
       })}>
         <label
           className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label align-self-center`}
-          htmlFor={field.name}>
+          htmlFor={input.name}>
           {label}
         </label>
         <div className={right ? `${right} align-self-center` : "col-md-8 align-self-center"}>
@@ -100,7 +100,7 @@ export const
             autoFocus={autoFocus}
             className={classForInput}
             disabled={submitting || disabled}
-            id={field.name}
+            id={input.name}
             inputMode="decimal"
             maxLength={size}
             onBlur={handleBlur}

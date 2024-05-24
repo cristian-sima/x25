@@ -8,7 +8,7 @@ import { MetaProps } from "src/types";
 type DateInputPropTypes = {
   readonly currency?: boolean;
   readonly customClass?: any;
-  readonly field: any;
+  readonly input: any;
   readonly label:string;
   readonly left?: string;
   readonly meta: MetaProps;
@@ -73,10 +73,10 @@ const
 export const DateTemplate = (props : DateInputPropTypes) => {
   const
 
-    { customClass, field = {}, onRegisterRef, tabIndex, placeholder,
+    { customClass, input = {}, onRegisterRef, tabIndex, placeholder,
       meta = {} as MetaProps, right, left, label } = props,
 
-    [value, setValue] = React.useState(field.value),
+    [value, setValue] = React.useState(input.value),
 
     valueToShow = formatRawDate(value),
 
@@ -85,7 +85,7 @@ export const DateTemplate = (props : DateInputPropTypes) => {
       const normalizedValue = normalizeRawDate(addZeroIfNeeded(targetValue));
 
       setValue(targetValue);
-      field.onChange(normalizedValue);
+      input.onChange(normalizedValue);
 
     },
 
@@ -99,7 +99,7 @@ export const DateTemplate = (props : DateInputPropTypes) => {
         updateValue(newValue);
       }
 
-      field.onBlur(event);
+      input.onBlur(event);
     },
 
     handleChange = ({ target: { value : targetValue } }: any) => {
@@ -111,18 +111,18 @@ export const DateTemplate = (props : DateInputPropTypes) => {
       className={classnames("form-group mt-md-2 row d-flex", { "is-invalid": meta.touched && meta.error })}>
       <label
         className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label`}
-        htmlFor={field.name}>
+        htmlFor={input.name}>
         {label}
       </label>
       <div className={right ? `${right} align-self-center` : "col-md-8"}>
         <input
-          {...field}
+          {...input}
           aria-label={label}
           className={classnames(`form-control ${customClass || ""}`, {
             "is-invalid": meta.touched && meta.error,
           })}
           disabled={meta.submitting}
-          id={field.name}
+          id={input.name}
           onBlur={handleBlur}
           onChange={handleChange}
           placeholder={placeholder || words.DateFormat}

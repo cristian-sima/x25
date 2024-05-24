@@ -8,7 +8,7 @@ export type SimpleInputPropTypes = {
   readonly autoFocus?: boolean;
   readonly customClass?: any;
   readonly disabled?: boolean;
-  readonly field: any;
+  readonly input: any;
   readonly label?: string;
   readonly meta: MetaProps;
   readonly placeholder?: string;
@@ -19,21 +19,21 @@ export type SimpleInputPropTypes = {
 
 export const SimpleInput = (props : SimpleInputPropTypes) => {
   const {
-    customClass, field = {}, label, autoFocus, tabIndex, placeholder, theType, inputRef,
+    customClass, input = {}, label, autoFocus, tabIndex, placeholder, theType, inputRef,
     autoComplete, disabled,
     meta: { submitting, touched, error } = {},
   } = props;
 
   return (
     <input
-      {...field}
+      {...input}
       aria-label={label}
       autoComplete={autoComplete}
       autoFocus={autoFocus}
       className={classnames(`form-control ${customClass || ""}`, {
         "is-invalid": touched && error,
       })} disabled={submitting || disabled}
-      id={field.name}
+      id={input.name}
       placeholder={placeholder || label}
       ref={inputRef ? inputRef : null}
       tabIndex={tabIndex}
