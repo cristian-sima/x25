@@ -8,6 +8,12 @@ export const english = {
   LoadingData : "Loading data...",
   LoadMore    : "Load more",
 
+  UpdateTitle            : "Update available",
+  UpdateDescriptionLine1 : "The app is constantly receiving updates in order to improve its functions",
+  UpdateDescriptionLine2 : "In order to continue",
+  UpdateDescriptionLine3 : "you must click the blue button",
+  UpdateButton           : "Update app",
+
   ThisPage                    : "If this error persists, please navigate to",
   IfThisIsErrorPersist        : "this page",
   PleaseWait                  : "Please wait...",

@@ -30,7 +30,7 @@ type NumericPropTypes = {
 };
 
 export const
-  NumericInput = (props : NumericPropTypes) => {
+  OldNumericInput = (props : NumericPropTypes) => {
     const
       {
         precision = 2,

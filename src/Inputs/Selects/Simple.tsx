@@ -17,7 +17,7 @@ import React from "react";
 import { words } from "../../utility";
 import { MetaProps } from "src/types";
 
-const SimpleCustomSelect = (props: SelectMonthPropTypes) => {
+const OldSimpleCustomSelect = (props: SelectMonthPropTypes) => {
   const
     {
       autoFocus, isImmutable, showEmptyOption, valueKey = "value", nameKey = "name",
@@ -60,4 +60,4 @@ const SimpleCustomSelect = (props: SelectMonthPropTypes) => {
   );
 };
 
-export default SimpleCustomSelect;
+export default OldSimpleCustomSelect;

@@ -32,7 +32,7 @@ import { clearFloatOnBlur, floatToEnglishComma, getFloatValueToStore, isFloat } 
 import { MetaProps } from "src/types";
 
 export const
-  NumericTemplate = (props : NumericPropTypes) => {
+  OldNumericTemplate = (props : NumericPropTypes) => {
     const
       {
         precision = 2,

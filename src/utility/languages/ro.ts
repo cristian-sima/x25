@@ -9,6 +9,12 @@ export const
     Of          : "din",
     LoadingData : "Se încarcă...",
     LoadMore    : "Încarcă mai mult",
+    
+    UpdateTitle            : "Actualizare disponibilă",
+    UpdateDescriptionLine1 : "Aplicația primește modificări constant pentru îmbunătățirea funcțiilor",
+    UpdateDescriptionLine2 : "Pentru a continua",
+    UpdateDescriptionLine3 : "trebuie să apeși butonul albastru de mai jos",
+    UpdateButton           : "Actualizează aplicația",
 
     IfThisIsErrorPersist        : "Dacă eroarea persistă, vă ",
     ThisPage                    : "dați click aici pentru actualizare",

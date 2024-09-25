@@ -29,7 +29,7 @@ const InfoIcon = () => (
   </div>
 );
 
-export const CaptchaBox = (props: CaptchaPropTypes) => {
+export const OldCaptchaBox = (props: CaptchaPropTypes) => {
   const { autoFocus, id, field, tabIndex, label, left, right,  meta = {} as MetaProps } = props;
 
   if (typeof id === "undefined" || id === "") {

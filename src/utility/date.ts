@@ -2,23 +2,37 @@ type MonthAndYear = {
   year: string;
   month: string;
 };
+import moment from "moment";
 import { isValidDate } from "./validation/validate";
 
 const ten = 10;
 
-export const getPreviousMonth = (year: string, month: string) => {
-  if (month === "0") {
-    return {
-      previousMonth : "11",
-      previousYear  : String(Number(year) - 1),
-    };
-  }
+export const 
+  pattern = "y-MM-DDTHH:mm:ss",
+  golangDateToMoment = (input : string) => moment(String(input).replace("Z", ""), pattern, "Europe/Bucharest"),
 
-  return {
-    previousMonth : String(Number(month) - 1),
-    previousYear  : String(year),
+  dateToGoFormat = (theValue : Date | string) => {
+    const theMoment = moment(theValue);
+
+    if (theMoment.isValid()) {
+      return `${theMoment.format("y-MM-DDTHH:mm:ss")}Z`;
+    }
+
+    return "";
+  },
+  getPreviousMonth = (year: string, month: string) => {
+    if (month === "0") {
+      return {
+        previousMonth : "11",
+        previousYear  : String(Number(year) - 1),
+      };
+    }
+
+    return {
+      previousMonth : String(Number(month) - 1),
+      previousYear  : String(year),
+    };
   };
-};
 export const getLastMonthAndYear = (): MonthAndYear => {
   const currentDate = new Date(),
     currentYear = String(currentDate.getFullYear()),

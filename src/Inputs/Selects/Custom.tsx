@@ -20,7 +20,7 @@ type SelectMonthPropTypes = {
   readonly meta: MetaProps;
 };
 
-const CustomSelect = (props: SelectMonthPropTypes) => {
+const OldCustomSelect = (props: SelectMonthPropTypes) => {
   const
     { input = {}, meta = {} as MetaProps, left, right, label, id } = props,
     customID = `custom-select-${input.name}${id || ""}`;
@@ -46,4 +46,4 @@ const CustomSelect = (props: SelectMonthPropTypes) => {
   );
 };
 
-export default CustomSelect;
+export default OldCustomSelect;

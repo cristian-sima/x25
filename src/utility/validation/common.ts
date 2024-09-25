@@ -213,7 +213,7 @@ export const
 
     return error;
   },
-  validateNumericSelect = (value : any) => value === 0 ? words.PleaseSelect : undefined,
+  validateNumericSelect = (value : any) => (value === "" || value === 0) ? words.PleaseSelect : undefined,
   validateID : CheckerWithOptions<MessageOption> = ({ message }) => (value) => {
     const
       notValid = !(

@@ -17,7 +17,7 @@ export type SimpleInputPropTypes = {
   readonly inputRef?: (callback: (node: any) => void) => void;
 };
 
-export const SimpleInput = (props : SimpleInputPropTypes) => {
+export const OldSimpleInput = (props : SimpleInputPropTypes) => {
   const {
     customClass, input = {}, label, autoFocus, tabIndex, placeholder, theType, inputRef,
     autoComplete, disabled,

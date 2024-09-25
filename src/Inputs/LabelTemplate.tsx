@@ -10,7 +10,7 @@ type LabelTemplatePropTypes = {
   readonly meta: MetaProps;
 };
 
-export const LabelTemplate = (props: LabelTemplatePropTypes) => {
+export const OldLabelTemplate = (props: LabelTemplatePropTypes) => {
   const {
     input = {}, tabIndex, label, offset, meta: { submitting, touched, error } = {},
   } = props;

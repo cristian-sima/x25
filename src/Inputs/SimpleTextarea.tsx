@@ -15,7 +15,7 @@ type TextareaPropTypes = {
   readonly onRegisterRef?: (callback: (node: any) => void) => void;
 };
 
-export const SimpleTextarea = (props: TextareaPropTypes) => {
+export const OldSimpleTextarea = (props: TextareaPropTypes) => {
   const
     {
       disabled,

@@ -1,9 +1,9 @@
 
 import classnames from "classnames";
 import React from "react";
+import { MetaProps } from "../types";
 import { formatDate, normalizeDate, words } from "../utility";
 import { isValidDate } from "../utility/validation";
-import { MetaProps } from "src/types";
 
 type DateInputPropTypes = {
   readonly currency?: boolean;
@@ -67,7 +67,7 @@ const
     return "";
   };
 
-export const DateInput = (props : DateInputPropTypes) => {
+export const OldDateInput = (props : DateInputPropTypes) => {
   const
 
     { customClass, input = {}, onRegisterRef, tabIndex, placeholder,

@@ -5,11 +5,11 @@ type LoadingPropTypes = {
   readonly retry: () => any;
 };
 import React from "react";
-import TheError from "../utility/dev/TheError";
-import { LargeErrorMessage } from "../Messages/Error";
 import { LoadingMessage } from "../Messages/Loading";
 import { words } from "../utility";
+import TheError from "../utility/dev/TheError";
 import SimulatedException from "./SimulatedException";
+import { UpdateApplicationMessage } from "src/Messages/Update";
 
 const
   RouteLoading = ({ error : theError, retry, pastDelay, timedOut }: LoadingPropTypes) => {
@@ -17,10 +17,7 @@ const
 
       if (theError.name === "ChunkLoadError") {
         return (
-          <LargeErrorMessage
-            message={words.ThereWasAProblem}
-            onRetry={retry}
-          />
+          <UpdateApplicationMessage />
         );
       }
 

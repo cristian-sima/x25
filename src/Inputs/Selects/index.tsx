@@ -1,23 +1,24 @@
-import { Field } from "react-final-form";
 import React from "react";
-import { months, years, normalizeSelectNumeric } from "../../utility";
-import CustomSelect from "./Custom";
-import SimpleCustomSelect from "./Simple";
+import { Field } from "react-final-form";
+import { months, normalizeSelectNumeric, years } from "../../utility";
+import OldCustomSelect from "./Custom";
+import OldSimpleCustomSelect from "./Simple";
 
 const
   SelectMonth = (props: any) => (
     <Field
       {...props}
-      component={props.simple ? SimpleCustomSelect : CustomSelect}
+      component={props.simple ? OldSimpleCustomSelect : OldCustomSelect}
       data={months} normalize={normalizeSelectNumeric}
     />
   ),
   SelectYear = (props: any) => (
     <Field
       {...props}
-      component={props.simple ? SimpleCustomSelect : CustomSelect}
+      component={props.simple ? OldSimpleCustomSelect : OldCustomSelect}
       data={years}
       normalize={normalizeSelectNumeric} />
   );
 
-export { SelectMonth, SelectYear, CustomSelect, SimpleCustomSelect };
+export { OldCustomSelect as CustomSelect, SelectMonth, SelectYear, OldSimpleCustomSelect as SimpleCustomSelect };
+

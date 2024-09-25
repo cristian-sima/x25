@@ -1,7 +1,7 @@
 
 import classnames from "classnames";
 import React from "react";
-import { SimpleTextarea } from "./SimpleTextarea";
+import { OldSimpleTextarea } from "./SimpleTextarea";
 import { MetaProps } from "src/types";
 
 type InputTemplatePropTypes = {
@@ -18,7 +18,7 @@ type InputTemplatePropTypes = {
   readonly onRegisterRef?: (callback: (node: any) => void) => void;
 };
 
-export const TextareaTemplate = (props: InputTemplatePropTypes) => {
+export const OldTextareaTemplate = (props: InputTemplatePropTypes) => {
   const
     {
       input = {}, label, left, right,
@@ -35,7 +35,7 @@ export const TextareaTemplate = (props: InputTemplatePropTypes) => {
         {label}
       </label>
       <div className={right ? `${right} align-self-center` : "col-md-8 align-self-center"}>
-        <SimpleTextarea {...props} />
+        <OldSimpleTextarea {...props} />
         <div className="invalid-feedback">
           {touched && error ? (
             <span>

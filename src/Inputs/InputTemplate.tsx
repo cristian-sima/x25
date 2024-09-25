@@ -21,7 +21,7 @@ type InputTemplatePropTypes = {
   readonly inputRef?: (callback: (node: any) => void) => void;
 };
 
-export const InputTemplate = (props: InputTemplatePropTypes) => {
+export const OldInputTemplate = (props: InputTemplatePropTypes) => {
   const
     {
       input = {}, theType, label, inputRef, autoFocus, inputClass, divClass,
