@@ -1,11 +1,11 @@
 import Immutable from "immutable";
 import React from "react";
 import { ImmutableForm } from "react-immutable-form";
-import { useOnServerFailed, useOnSubmitWithDispatch } from "react-immutable-form-with-bootstrap";
+import { formUtils } from "react-immutable-form-with-bootstrap";
 import { onSubmitImmutableFormFunc } from "react-immutable-form/types";
+import { PaymentBankTransferConfirmForm } from "../../core/types";
 import BankTransferNumberField from "./BankTransferNumberField";
 import validate from "./validate";
-import { PaymentBankTransferConfirmForm } from "src/Payment/core/types";
   
 type BankTransferFormProps = {
   readonly buttonLabel: string;
@@ -17,8 +17,8 @@ const
   BankTransferForm = (props : BankTransferFormProps) => {
     const
       { buttonLabel, initialValues, onSubmit } = props,
-      onSubmitError = useOnSubmitWithDispatch(),
-      onServerFailed = useOnServerFailed();
+      onSubmitError = formUtils.useOnSubmitWithDispatch(),
+      onServerFailed = formUtils.useOnServerFailed();
   
     return (
       <ImmutableForm<PaymentBankTransferConfirmForm>

@@ -4,9 +4,9 @@ import React from "react";
 import { ImmutableFormError } from "react-immutable-form";
 import { onSubmitImmutableFormFunc } from "react-immutable-form/types";
 import { useDispatch } from "react-redux";
-import { paymentShowBankTransferDoneAction } from "Sidenote/_Payment/core/actions";
-import { PaymentBankTransferConfirmForm } from "Sidenote/_Payment/core/types";
 import superagent from "superagent";
+import { paymentShowBankTransferDoneAction } from "../../core/actions";
+import { PaymentBankTransferConfirmForm } from "../../core/types";
 import BankTransferForm from "./BankTransferForm";
 import { hideModal } from "src/actions";
 
