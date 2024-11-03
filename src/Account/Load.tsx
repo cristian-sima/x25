@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { LargeErrorMessage, LoadingMessage } from "../Messages";
+import type { Dispatch, State } from "../types";
 import { words } from "../utility";
 import { fetchInitialInformation as fetchInitialInformationAction } from "./actions";
 import { selectors } from "./reducer";
-import type { Dispatch, State } from "src/types";
 
 type PropTypes = {
   readonly appName: string;

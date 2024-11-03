@@ -1,10 +1,12 @@
 import React from "react";
 import { Field } from "react-final-form";
-import { months, normalizeSelectNumeric, years } from "../../utility";
+import { normalize, words } from "../../";
 import OldCustomSelect from "./Custom";
 import OldSimpleCustomSelect from "./Simple";
 
 const
+  { normalizeSelectNumeric } = normalize,
+  { years, months  } = words,
   SelectMonth = (props: any) => (
     <Field
       {...props}

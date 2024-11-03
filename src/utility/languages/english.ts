@@ -1,5 +1,4 @@
-
-export const DateFormat = "DD.MM.YEAR";
+import { DateFormat } from "./date";
 
 export const english = {
   Showing     : "Showing",

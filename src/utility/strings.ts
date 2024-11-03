@@ -20,25 +20,3 @@ export const firstToUppercase = (str: string): string => {
 export const toUpper = (str: string): string => String(str ? str : "").toUpperCase();
 // This is ---> this is
 export const toLower = (str: string): string => String(str ? str : "").toLowerCase();
-export const formatBankAccount = (raw: string): string => {
-  if (typeof raw === "undefined" || raw === "") {
-    return "";
-  }
-
-  let output = "";
-  const nrOfCharsPerGroup = 4,
-    withoutSpaces = raw.replace(/ /gu, "");
-
-  for (let index = 0; index < withoutSpaces.length; index += 1) {
-    const currentChar = withoutSpaces.charAt(index);
-
-    if (output !== "" && index % nrOfCharsPerGroup === 0) {
-      output += " ";
-    }
-
-    output += currentChar;
-  }
-
-  return output;
-};
-

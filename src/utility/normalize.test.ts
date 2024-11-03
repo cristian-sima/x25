@@ -1,7 +1,7 @@
 
 import * as Immutable from "immutable";
 import { describe, expect, test } from "vitest";
-import { normalizeArray } from "./normalize";
+import { normalize } from "../";
 
 describe("test util/normalize", () => {
   const input = [
@@ -18,7 +18,7 @@ describe("test util/normalize", () => {
   ];
 
   describe("given an array", () => {
-    const result = normalizeArray(input);
+    const result = normalize.normalizeArray(input);
 
     test("normalizes the entities", () => {
       expect(result.entities).toEqual(Immutable.Map({

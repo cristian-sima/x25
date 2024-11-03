@@ -1,4 +1,4 @@
-export type CommonJSON = {
+type CommonJSON = {
   readonly height?: number;
   readonly divClass? : string  
 }

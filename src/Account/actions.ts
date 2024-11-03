@@ -1,9 +1,11 @@
-import agent from "superagent";
-import * as Immutable from "immutable";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { noError, normalizeArrayByField, normalizeArray } from "../utility";
+import * as Immutable from "immutable";
+import agent from "superagent";
+import { normalize } from "../";
+import { noError } from "../utility";
 
 const
+  { normalizeArrayByField, normalizeArray } = normalize,
   normalizeInitialInformation = (info: any) => {
     const { Account, IsConnected, Counties, Companies } = info;
 

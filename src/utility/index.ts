@@ -1,7 +1,6 @@
 export * from "./calendar";
 export * from "./date";
 export * from "./hooks";
-export * from "./normalize";
 export * from "./numbers";
 export * from "./numeric";
 export * from "./others";
