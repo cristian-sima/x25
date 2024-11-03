@@ -19,7 +19,7 @@
     "check:npm-check": "npm-check -u -i \"{rc-tooltip,react,react-dom}\" --specials=bin,eslint,babel,webpack",
     "depcheck": "depcheck --ignores=@docusaurus/react-loadable,webpack-cli,@hot-loader/react-dom --ignore-patterns=server,node_modules,tmp,fonts",
     "check:global": "npm-check -gu",
-    "clean-dist": "trash \"dist/**/*.test.*\"",
+    "clean-dist": "trash \"./**/*.test.*\"",
     "ts:check": "tsc --noEmit",
     "ts": "tsc --declaration"
   },
