@@ -1,0 +1,48 @@
+.json-object {
+    .string {
+        color: #50a14f;
+        font-weight: 400;
+    }
+
+    .number {
+        font-weight: bold;
+        color: #986801;
+    }
+
+    .boolean {
+        font-weight: bold;
+        color: #0184bc;
+    }
+
+    .null {
+        font-weight: bold;
+        color: #0184bc;
+    }
+
+    .key {
+        color: #e45649;
+    }
+}
+
+[data-bs-theme="dark"] {
+    .string {
+        color: #f1fa76;
+        font-weight: 400;
+    }
+
+    .number {
+        color: #bd93ec;
+    }
+
+    .boolean {
+        color: #bd93ec;
+    }
+
+    .null {
+        color: magenta;
+    }
+
+    .key {
+        color: #72e9fd
+    }
+}

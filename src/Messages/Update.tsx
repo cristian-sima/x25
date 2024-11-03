@@ -1,5 +1,5 @@
 import React from "react";
-import { words } from "src/utility";
+import { words } from "../utility";
 
 export const UpdateApplicationMessage = () => (
   <div className="container mt-5">

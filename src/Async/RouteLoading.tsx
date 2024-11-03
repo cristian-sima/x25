@@ -6,10 +6,10 @@ type LoadingPropTypes = {
 };
 import React from "react";
 import { LoadingMessage } from "../Messages/Loading";
+import { UpdateApplicationMessage } from "../Messages/Update";
 import { words } from "../utility";
 import TheError from "../utility/dev/TheError";
 import SimulatedException from "./SimulatedException";
-import { UpdateApplicationMessage } from "src/Messages/Update";
 
 const
   RouteLoading = ({ error : theError, retry, pastDelay, timedOut }: LoadingPropTypes) => {

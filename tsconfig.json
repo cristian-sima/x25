@@ -25,7 +25,7 @@
     "outDir": "dist",
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "strict": true /* Enable all strict type-checking options. */,
-    "target": "es5",
+    "target": "es6",
     "declaration": true,
     "baseUrl": "./",
     "paths": {
