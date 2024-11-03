@@ -1,9 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 import Notifications from "react-notification-system-redux2";
+import { connect } from "react-redux";
 import ModalRoot from "../Modal/Root";
-import { getNotificationState } from "../config";
 import { deleteNotification } from "../actions";
+import { getNotificationState } from "../config";
 import type { Dispatch, State } from "src/types";
 
 const

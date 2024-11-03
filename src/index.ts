@@ -11,7 +11,6 @@ export { default as JSONSyntaxFromText } from "./Developer/JSONSyntaxFromText";
 export { default as normalize } from "./utility/normalize";
 export { default as words } from "./utility/words";
 
-// Payment 
 export { default as paymentUtils } from "./Payment/index";
 export { default as Payment } from "./Payment/Pieces/Payment";
 

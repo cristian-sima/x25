@@ -1,8 +1,6 @@
 /* eslint-disable react/no-danger */
 /* eslint-disable no-magic-numbers */
 
-import "./json.scss";
-
 import React from "react";
 import { InnerTextProps } from "./types";
 import { getJSONTags } from "./util";

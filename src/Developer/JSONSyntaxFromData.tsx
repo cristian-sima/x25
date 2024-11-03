@@ -1,5 +1,4 @@
 
-import "./json.scss";
 
 import React from "react";
 import JSONSyntaxFromText from "./JSONSyntaxFromText";
