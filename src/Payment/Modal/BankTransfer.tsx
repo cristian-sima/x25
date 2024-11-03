@@ -1,12 +1,12 @@
 
 
 import React, { useState } from "react";
+import { ModalWindow } from "../../Modal";
+import { numberToLocale } from "../../utility";
 import { SIDEWORK_APPLICATION } from "../core/codes";
 import { sideworkCompanyInfo as info } from "../core/util/info";
 import { getDetails } from "../core/util/util";
 import BankTransferFormWrapper from "../Pieces/BankTransferForm/BankTransferFormWrapper";
-import { numberToLocale } from "src/utility";
-import { ModalWindow } from "src/Modal";
 
 
 type PaymentBankTransferProps = {

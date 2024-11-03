@@ -1,7 +1,7 @@
 
 
 import React from "react";
-import { ModalWindow } from "src/Modal";
+import { ModalWindow } from "../../Modal";
 
 const PaymentBankTransferDoneModal = () => (
   <ModalWindow title="Totul e în regulă!">

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from "react";
-import { config } from "src/config";
-import { LoadingMessage } from "src/Messages";
+import { config } from "../../config";
+import { LoadingMessage } from "../../Messages";
 
 type MobilPayFormProp = {
   readonly envKey: string;

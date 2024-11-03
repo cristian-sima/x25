@@ -1,6 +1,6 @@
 
 
-import { createModal } from "src/utility";
+import { createModal } from "../../utility";
 
 export const paymentPayUsingBankTransferModalAction = (
   (application : string, options : any) : any => (

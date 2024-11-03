@@ -5,10 +5,10 @@ import { ImmutableFormError } from "react-immutable-form";
 import { onSubmitImmutableFormFunc } from "react-immutable-form/types";
 import { useDispatch } from "react-redux";
 import superagent from "superagent";
+import { hideModal } from "../../../actions";
 import { paymentShowBankTransferDoneAction } from "../../core/actions";
 import { PaymentBankTransferConfirmForm } from "../../core/types";
 import BankTransferForm from "./BankTransferForm";
-import { hideModal } from "src/actions";
 
 type BankTransferFormWrapperProps = {
   readonly details: string;

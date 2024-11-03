@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
 import Immutable from "immutable";
-import { validateString } from "src/utility";
+import { validateString } from "../../../utility";
 
 const
   TransferNumber = validateString({
