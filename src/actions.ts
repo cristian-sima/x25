@@ -1,33 +1,32 @@
-import Notifications from "react-notification-system-redux2";
+import { toast } from "react-toastify";
 import type { Action } from "src/types";
 
 type NotificationOptions = {
   seconds?: number;
   persistent?: boolean;
-  position?: "tr" | "tl" | "tc" | "br" | "bl" | "bc";
 }
-
-type CreateNotification = (
-  (level : string) => (title : string | JSX.Element, options?: NotificationOptions) => Action
-);
 
 const
   autoDismissDelay = 6,
-  createNotification : CreateNotification = (level) => (title, options) => Notifications.show({
-    title,
-    position    : "bc",
-    autoDismiss : options?.persistent ? 0 : (options?.seconds ? options.seconds : autoDismissDelay),
-    ...options,
-  }, level);
+  toMs = (sec: number) => sec * 1000,
+  createNotification = (level: "success" | "warning" | "error") =>
+    (title: string | JSX.Element, options?: NotificationOptions) => {
+      const autoClose = options?.persistent ? false : toMs(options?.seconds ?? autoDismissDelay);
+
+      toast(title, {
+        type: level,
+        position: "bottom-center",
+        autoClose,
+      });
+
+      // Return a no-op action for Redux dispatch compatibility
+      return { type: "NOTIFICATION_SHOWN" } as Action;
+    };
 
 export const
   notify = createNotification("success"),
   notifyWarning = createNotification("warning"),
   notifyError = createNotification("error"),
-  deleteNotification = (position: number): Action => ({
-    type    : "DELETE_NOTIFICATION",
-    payload : position,
-  }),
 
   // captcha
 

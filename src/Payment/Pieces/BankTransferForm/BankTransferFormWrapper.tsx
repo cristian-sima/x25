@@ -2,7 +2,7 @@
 import Immutable from "immutable";
 import React from "react";
 import { ImmutableFormError } from "react-immutable-form";
-import { onSubmitImmutableFormFunc } from "react-immutable-form/types";
+import type { onSubmitImmutableFormFunc } from "react-immutable-form/types";
 import { useDispatch } from "react-redux";
 import superagent from "superagent";
 import { hideModal } from "../../../actions";

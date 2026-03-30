@@ -2,7 +2,7 @@ import Immutable from "immutable";
 import React from "react";
 import { ImmutableForm } from "react-immutable-form";
 import { formUtils } from "react-immutable-form-with-bootstrap";
-import { onSubmitImmutableFormFunc } from "react-immutable-form/types";
+import type { onSubmitImmutableFormFunc } from "react-immutable-form/types";
 import { PaymentBankTransferConfirmForm } from "../../core/types";
 import BankTransferNumberField from "./BankTransferNumberField";
 import validate from "./validate";

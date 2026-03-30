@@ -14,6 +14,5 @@ export const
   },
   getAccountState = getReducerState("account"),
   getModulesState = getReducerState("module"),
-  getModalsState = getReducerState("modal"),
-  getNotificationState = getReducerState("notifications");
+  getModalsState = getReducerState("modal");
 
