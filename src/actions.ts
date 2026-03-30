@@ -8,14 +8,15 @@ type NotificationOptions = {
 
 const
   autoDismissDelay = 6,
-  toMs = (sec: number) => sec * 1000,
+  msPerSecond = 1000,
+  toMs = (sec: number) => sec * msPerSecond,
   createNotification = (level: "success" | "warning" | "error") =>
     (title: string | JSX.Element, options?: NotificationOptions) => {
       const autoClose = options?.persistent ? false : toMs(options?.seconds ?? autoDismissDelay);
 
       toast(title, {
-        type: level,
-        position: "bottom-center",
+        type     : level,
+        position : "bottom-center",
         autoClose,
       });
 

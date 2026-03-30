@@ -1,5 +1,5 @@
 {
-  "version": "18.1.0",
+  "version": "18.2.0",
   "name": "x25",
   "type": "module",
   "description": "x25",
@@ -38,7 +38,7 @@
     "intern-test": "vitest",
     "check": "node script/check & npm run depcheck & npm run check:npm-check",
     "check:npm-check": "npm-check -u -i \"{rc-tooltip,react,react-dom}\" --specials=bin,eslint,babel,webpack",
-    "depcheck": "depcheck --ignores=@docusaurus/react-loadable,webpack-cli,@hot-loader/react-dom --ignore-patterns=server,node_modules,tmp,fonts",
+    "depcheck": "depcheck --ignores=webpack-cli --ignore-patterns=server,node_modules,tmp,fonts",
     "check:global": "npm-check -gu",
     "clean-dist": "trash \"./**/*.test.*\"",
     "ts:check": "tsc --noEmit",
@@ -136,7 +136,6 @@
     }
   },
   "dependencies": {
-    "@docusaurus/react-loadable": "^5.5.2",
     "@reduxjs/toolkit": "^2.11.2",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",

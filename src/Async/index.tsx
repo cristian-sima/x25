@@ -1,18 +1,12 @@
 /* eslint-disable new-cap, react/prefer-stateless-function, react/require-optimization */
 import * as React from "react";
-import Loadable from "react-loadable";
+import { LoadingMessage } from "../Messages/Loading";
+import { UpdateApplicationMessage } from "../Messages/Update";
+import { words } from "../utility";
+import TheError from "../utility/dev/TheError";
 import InitModule from "./InitModule";
-import RouteLoading from "./RouteLoading";
-import { Loaded } from "./types";
-
-// type injectPaginatorTypes = {
-//   key: string,
-//   itemsReducer: any;
-//   pagesReducer: any;
-// };
-// import { injectReducer } from "redux-injector";
-// import { injectModals } from "../Modal/util";
-const timeout = 15000;
+import SimulatedException from "./SimulatedException";
+import type { Loaded } from "./types";
 
 export let ErrorBoundary = ({ children } : any) => (
   children
@@ -20,41 +14,51 @@ export let ErrorBoundary = ({ children } : any) => (
 
 export let AppLogo : any = null;
 
-// const injectPaginator = ({ key, itemsReducer, pagesReducer } : injectPaginatorTypes) => {
-//   injectReducer(`entities.${key}`, itemsReducer);
-//   injectReducer(`paginations.${key}`, pagesReducer);
-// };
-// const renderWithReducer = (route, props) => {
-//   const { Component, reducers, modals, paginators } = route.default;
-//
-//   if (reducers) {
-//     if (Array.isArray(reducers)) {
-//       for (const { key, func } of reducers) {
-//         injectReducer(key, func);
-//       }
-//     } else {
-//       const { key, func } = reducers;
-//
-//       injectReducer(key, func);
-//     }
-//   }
-//
-//   if (modals) {
-//     injectModals(modals);
-//   }
-//
-//   if (paginators) {
-//     if (Array.isArray(paginators)) {
-//       for (const paginator of paginators) {
-//         injectPaginator(paginator);
-//       }
-//     } else {
-//       injectPaginator(paginators);
-//     }
-//   }
-//
-//   return <Component {...props} />;
-// };
+type AsyncErrorBoundaryState = {
+  error: Error | null;
+};
+
+class AsyncErrorBoundary extends React.Component<
+{ children: React.ReactNode },
+AsyncErrorBoundaryState
+> {
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+
+  state: AsyncErrorBoundaryState = { error: null };
+
+  render() {
+    const { error } = this.state;
+
+    if (error) {
+      if (error.name === "ChunkLoadError") {
+        return <UpdateApplicationMessage />;
+      }
+
+      // eslint-disable-next-line no-undef
+      if (process.env.NODE_ENV === "development") {
+        return (
+          <TheError
+            error={error}
+            refresh={() => this.setState({ error: null })}
+          />
+        );
+      }
+
+      throw new SimulatedException(error);
+    }
+
+    return this.props.children;
+  }
+}
+
+const LoadingFallback = () => (
+  <div className="mt-3">
+    <LoadingMessage message={words.PleaseWait} />
+  </div>
+);
+
 export const
   setErrorBoundary = (theError: any) => {
     ErrorBoundary = theError;
@@ -62,11 +66,23 @@ export const
   setAppLogo = (theLogo: any) => {
     AppLogo = theLogo;
   },
-  createAsyncRoute = (loader : any) => Loadable({
-    loader,
-    loading : RouteLoading,
-    render  : (loaded : Loaded, props : any) => (
-      <InitModule loaded={loaded} props={props} />
-    ),
-    timeout,
-  });
+  createAsyncRoute = (loader : () => Promise<Loaded>) => {
+    const LazyComponent = React.lazy(() =>
+        loader().then((loaded) => ({
+          // eslint-disable-next-line func-name-matching
+          default: function AsyncRouteInit(props : any) {
+            return <InitModule loaded={loaded} props={props} />;
+          },
+        })),
+      ),
+
+      AsyncRoute = (props : any) => (
+        <AsyncErrorBoundary>
+          <React.Suspense fallback={<LoadingFallback />}>
+            <LazyComponent {...props} />
+          </React.Suspense>
+        </AsyncErrorBoundary>
+      );
+
+    return AsyncRoute;
+  };
