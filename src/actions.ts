@@ -16,7 +16,7 @@ const
 
       toast(title, {
         type     : level,
-        position : "bottom-center",
+        position : "top-center",
         autoClose,
       });
 
