@@ -24,7 +24,7 @@ const OldSimpleCustomSelect = (props: SelectMonthPropTypes) => {
       data, tabIndex, input = {}, id, inputClass, disabled,
       meta : { touched, error, submitting } = {},
     } = props,
-    theClasses = classnames(`custom-select ${inputClass || ""}`, {
+    theClasses = classnames(`form-select ${inputClass || ""}`, {
       "is-invalid": touched && error,
     }),
     customID = `custom-select-${input.name}${id || ""}`;

@@ -37,7 +37,7 @@ export const OldCaptchaBox = (props: CaptchaPropTypes) => {
   }
 
   return (
-    <div className="form-group row d-flex">
+    <div className="row d-flex">
       <label
         className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label align-self-center`}
         htmlFor={field.name}>
@@ -46,7 +46,7 @@ export const OldCaptchaBox = (props: CaptchaPropTypes) => {
       </label>
       <div className={right ? `${right} align-self-center` : "col-md-8 align-self-center"}>
         <div className="custom-class">
-          <span className="custom-control-description text-muted">
+          <span className="text-muted">
             {words.CaptchaTypeNumbers}
           </span>
           <div className="text-center my-1">

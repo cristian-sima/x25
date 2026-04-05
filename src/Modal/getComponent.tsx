@@ -11,7 +11,7 @@ const NothingSelected = () => (
   ),
 
   /* eslint-disable complexity */
-  getComponent = (type: any): (props : any) => JSX.Element => {
+  getComponent = (type: any): (props : any) => React.JSX.Element => {
     const AutoModal = getModal(type);
 
     if (AutoModal !== null) {

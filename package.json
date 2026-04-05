@@ -1,5 +1,5 @@
 {
-  "version": "18.2.6",
+  "version": "19.1.4",
   "name": "x25",
   "type": "module",
   "description": "x25",
@@ -137,23 +137,22 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
-    "@types/react": "^18.3.28",
-    "@types/react-dom": "^18.3.7",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "classnames": "^2.3.2",
     "final-form": "^5.0.0",
     "immutable": "^4.3.4",
-    "moment": "^2.29.4",
+    "date-fns": "^4.1.0",
     "rc-tooltip": "^5.3.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-final-form": "^7.0.0",
-    "react-immutable-form": "^1.1.11",
-    "react-immutable-form-with-bootstrap": "^1.0.13",
+    "react-immutable-form": "^19.0.0",
+    "react-immutable-form-with-bootstrap": "^19.0.0",
     "react-redux": "^9.2.0",
     "react-toastify": "^11.0.5",
     "redux": "^5.0.1",
     "reselect": "^5.1.1",
-    "superagent": "^8.1.2",
-    "x25": "^17.4.70"
+    "superagent": "^8.1.2"
   }
 }

@@ -26,7 +26,7 @@ const OldCustomSelect = (props: SelectMonthPropTypes) => {
     customID = `custom-select-${input.name}${id || ""}`;
 
   return (
-    <div className="form-group row d-flex">
+    <div className="row d-flex">
       <label
         className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label align-self-center`}
         htmlFor={customID}>

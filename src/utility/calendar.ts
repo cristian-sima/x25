@@ -1,4 +1,5 @@
-import moment from "moment";
+import { format } from "date-fns";
+import { ro } from "date-fns/locale";
 import { toTitle } from "./strings";
 
 const now = new Date(),
@@ -20,4 +21,4 @@ export const
   monthYearToDate = (data: { Year: string; Month: string;}) => ({ ...data,
     Date: newDate(data.Year, data.Month),
   }),
-  getMonthName = (data: Date) => toTitle(moment.months(data.getMonth()));
+  getMonthName = (data: Date) => toTitle(format(data, "LLLL", { locale: ro }));

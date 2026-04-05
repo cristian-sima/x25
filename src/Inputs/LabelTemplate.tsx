@@ -17,18 +17,18 @@ export const OldLabelTemplate = (props: LabelTemplatePropTypes) => {
   
   return (
     <div className="container">
-      <div className="form-group mt-md-2 row mb-1">
-        <div className={`${offset || ""} col custom-control custom-checkbox`}>
+      <div className="mt-md-2 row mb-1">
+        <div className={`${offset || ""} col form-check`}>
           <input
             {...input}
             aria-label={label}
-            className="custom-control-input"
+            className="form-check-input"
             disabled={submitting}
             id={input.name}
             tabIndex={tabIndex}
             type="checkbox" />
           <label
-            className="custom-control-label"
+            className="form-check-label"
             htmlFor={input.name}>
             {label}
           </label>

@@ -22,12 +22,12 @@ export type ModalWindowProps = CommonProps & {
   customContent?: boolean;
   title: string;
   doNoPassTryToCloseToBody?: boolean;
-  children: JSX.Element;
+  children: React.JSX.Element;
 };
 
 export type ConfirmationModalProps = CommonProps & {
   title?: string;
-  children?: JSX.Element;
+  children?: React.JSX.Element;
   footerProps: FooterProps
 }
 

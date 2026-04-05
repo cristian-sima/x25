@@ -31,7 +31,7 @@ export const OldInputTemplate = (props: InputTemplatePropTypes) => {
     warningClass = `${touched && error ? " is-invalid" : ""}`,
     customClass = `${inputClass ? ` ${inputClass}` : ""}`,
     classForInput = `form-control ${warningClass}${customClass}`,
-    classForDiv = `form-group row mt-md-2 ${divClass ? divClass : ""}`;
+    classForDiv = `row mt-md-2 ${divClass ? divClass : ""}`;
 
   return (
     <div className={classnames(`${classForDiv} d-flex`, {

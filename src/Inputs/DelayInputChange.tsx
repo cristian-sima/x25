@@ -7,7 +7,7 @@ type TypeInputPropTypes = {
   readonly className?: string;
   readonly delay?: number;
   readonly id?: string;
-  readonly inputRef?: React.RefObject<HTMLInputElement>;
+  readonly inputRef?: React.RefObject<HTMLInputElement | null>;
   readonly name?: string;
   readonly placeholder?: string;
   readonly tabIndex?: number;

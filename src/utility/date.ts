@@ -2,20 +2,25 @@ type MonthAndYear = {
   year: string;
   month: string;
 };
-import moment from "moment";
+import { format, isValid, parse } from "date-fns";
 import { isValidDate } from "./validation/validate";
 
-const ten = 10;
+const ten = 10,
+  golangPattern = "y-MM-dd'T'HH:mm:ss";
 
-export const 
+export const
   pattern = "y-MM-DDTHH:mm:ss",
-  golangDateToMoment = (input : string) => moment(String(input).replace("Z", ""), pattern, "Europe/Bucharest"),
+  golangDateToMoment = (input : string) : Date => {
+    const [cleaned] = String(input).replace("Z", "").split(".");
+
+    return parse(cleaned, golangPattern, new Date());
+  },
 
   dateToGoFormat = (theValue : Date | string) => {
-    const theMoment = moment(theValue);
+    const date = theValue instanceof Date ? theValue : new Date(theValue);
 
-    if (theMoment.isValid()) {
-      return `${theMoment.format("y-MM-DDTHH:mm:ss")}Z`;
+    if (isValid(date) && !isNaN(date.getTime())) {
+      return `${format(date, golangPattern)}Z`;
     }
 
     return "";

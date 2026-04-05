@@ -136,7 +136,7 @@ const ModalWindow = (props : ModalWindowProps) => {
                   <button
                     aria-label="Close"
                     className="btn btn-link"
-                    data-dismiss="modal"
+                    data-bs-dismiss="modal"
                     onClick={tryToClose}
                     type="button">
                     <i className="fa fa-times" />

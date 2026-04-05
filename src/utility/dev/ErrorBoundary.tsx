@@ -16,6 +16,12 @@ import { words } from "..";
 import TheError from "./TheError";
 import type { ErrorType, InfoType } from "./types";
 
+let onCaptureError: ((error: any) => void) | null = null;
+
+export const setOnCaptureError = (cb: (error: any) => void) => {
+  onCaptureError = cb;
+};
+
 const refreshKeyCode = 82,
   timeoutDelay = 200;
 
@@ -28,6 +34,10 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
       error,
       info,
     });
+
+    if (onCaptureError) {
+      onCaptureError(error);
+    }
   }
 
   constructor (props: ErrorBoundaryProps) {

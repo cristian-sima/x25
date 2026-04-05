@@ -119,11 +119,9 @@ export const
     return (
       <div className="input-group">
         {inputComponent}
-        <div className="input-group-append">
-          <span className="input-group-text">
-            {currency}
-          </span>
-        </div>
+        <span className="input-group-text">
+          {currency}
+        </span>
       </div>
     );
   };

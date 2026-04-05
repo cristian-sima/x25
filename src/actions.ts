@@ -11,7 +11,7 @@ const
   msPerSecond = 1000,
   toMs = (sec: number) => sec * msPerSecond,
   createNotification = (level: "success" | "warning" | "error") =>
-    (title: string | JSX.Element, options?: NotificationOptions) => {
+    (title: string | React.JSX.Element, options?: NotificationOptions) => {
       const autoClose = options?.persistent ? false : toMs(options?.seconds ?? autoDismissDelay);
 
       toast(title, {

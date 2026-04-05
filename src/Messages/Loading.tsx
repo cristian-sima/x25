@@ -19,7 +19,7 @@ export const LoadingMessage = ({
       }
 
       return (
-        <div className="font-weight-bold d-inline align-middle">
+        <div className="fw-bold d-inline align-middle">
           {message}
         </div>
       );

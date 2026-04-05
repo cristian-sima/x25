@@ -108,7 +108,7 @@ export const OldDateTemplate = (props : DateInputPropTypes) => {
 
   return (
     <div
-      className={classnames("form-group mt-md-2 row d-flex", { "is-invalid": meta.touched && meta.error })}>
+      className={classnames("mt-md-2 row d-flex", { "is-invalid": meta.touched && meta.error })}>
       <label
         className={`${left ? `${left} align-self-center` : "col-md-4 text-md-end"} form-control-label`}
         htmlFor={input.name}>
