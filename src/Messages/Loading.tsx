@@ -43,7 +43,7 @@ export const LoadingMessage = ({
   return (
     <div className={`text-center my-4 ${className || ""}`}>
       <div className="spinner-border text-primary" role="status">
-        <span className="sr-only">{words.LoadingData}</span>
+        <span className="visually-hidden">{words.LoadingData}</span>
       </div>
       {
         message ? (
