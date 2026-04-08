@@ -68,7 +68,20 @@ export const
   },
   createAsyncRoute = (loader : () => Promise<Loaded>) => {
     const LazyComponent = React.lazy(() =>
-        loader().then((loaded) => ({
+        loader().catch(() => {
+          // Chunk failed to load — likely a stale version after deploy.
+          // Auto-reload once to get new HTML with correct chunk references.
+          const key = "chunk_reload_count",
+            count = Number(sessionStorage.getItem(key) || "0");
+
+          if (count < 1) {
+            sessionStorage.setItem(key, String(count + 1));
+            window.location.reload();
+          }
+
+          // Already reloaded once and still failing — show update message
+          return new Promise<never>(() => {});
+        }).then((loaded) => ({
           // eslint-disable-next-line func-name-matching
           default: function AsyncRouteInit(props : any) {
             return <InitModule loaded={loaded} props={props} />;
