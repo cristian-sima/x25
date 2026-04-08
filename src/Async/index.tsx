@@ -81,6 +81,11 @@ export const
 
           // Already reloaded once and still failing — show update message
           return new Promise<never>(() => {});
+        }).then((loaded) => {
+          // Chunk loaded successfully — reset the reload counter
+          sessionStorage.removeItem("chunk_reload_count");
+
+          return loaded;
         }).then((loaded) => ({
           // eslint-disable-next-line func-name-matching
           default: function AsyncRouteInit(props : any) {
