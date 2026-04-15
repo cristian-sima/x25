@@ -10,7 +10,9 @@ type CommonProps = {
   isLastOne?: boolean;
   onClose?: () => any;
   doNotCloseByEscape?: boolean;
+  doNotCloseByBack?: boolean;
   preventDispatchHideModal?: boolean;
+  stackIndex?: number;
   Footer?: any;
   Header?: any;
   footerProps?: FooterProps;
