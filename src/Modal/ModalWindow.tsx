@@ -10,6 +10,10 @@ const
   EXIT_DELAY = 150,
   BASE_Z_INDEX = 1055,
   Z_INDEX_STEP = 20,
+  modalMountStack : HTMLDivElement[] = [],
+  isTopModal = (node : HTMLDivElement | null) => (
+    node !== null && modalMountStack[modalMountStack.length - 1] === node
+  ),
   FOCUSABLE_SELECTOR = [
     "a[href]",
     "button:not([disabled])",
@@ -77,6 +81,12 @@ const
     }, [dispatch]);
 
     useEffect(() => {
+      const dialogNode = dialogRef.current;
+
+      if (dialogNode) {
+        modalMountStack.push(dialogNode);
+      }
+
       previousFocusRef.current = document.activeElement as HTMLElement | null;
 
       enterTimeoutRef.current = window.setTimeout(() => {
@@ -99,6 +109,15 @@ const
         }
         if (exitTimeoutRef.current) {
           window.clearTimeout(exitTimeoutRef.current);
+        }
+
+        if (dialogNode) {
+          const idx = modalMountStack.indexOf(dialogNode);
+
+          // eslint-disable-next-line no-magic-numbers
+          if (idx >= 0) {
+            modalMountStack.splice(idx, 1);
+          }
         }
 
         const previous = previousFocusRef.current;
@@ -149,6 +168,10 @@ const
 
     useEffect(() => {
       const handleKeyDown = (event : KeyboardEvent) => {
+        if (!isTopModal(dialogRef.current)) {
+          return;
+        }
+
         if (event.key === "Escape" && !propsRef.current.doNotCloseByEscape) {
           tryToClose();
 
