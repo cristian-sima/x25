@@ -29,7 +29,7 @@ const
     return (
       <>
         <div className="d-print-none">
-          <ToastContainer closeOnClick position="bottom-right" theme={theme} />
+          <ToastContainer closeOnClick newestOnTop position="bottom-right" theme={theme} />
         </div>
         <ModalRoot />
       </>
