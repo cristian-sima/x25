@@ -63,12 +63,12 @@ export const normalizeFloat = (raw: string): number => {
   }
 
   const result = Number(value),
-    truncateTo = (unRouned: number, nrOfDecimals = 2): number => {
-      const parts = String(unRouned).split(".");
+    truncateTo = (unRounded: number, nrOfDecimals = 2): number => {
+      const parts = String(unRounded).split(".");
 
       if (parts.length !== 2) {
       // ex. 12
-        return unRouned;
+        return unRounded;
       }
 
       const newDecimals = parts[1].slice(0, nrOfDecimals),
