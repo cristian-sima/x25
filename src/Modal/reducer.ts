@@ -16,6 +16,10 @@ const initialState = Immutable.List<Immutable.Map<string, any>>(),
   })),
   hideModal = (state: any) => state.pop(),
   softHideModal = (state: any) => {
+    if (state.isEmpty()) {
+      return state;
+    }
+
     const lastPosition = -1;
 
     return (
