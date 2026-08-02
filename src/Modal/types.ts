@@ -17,7 +17,7 @@ type CommonProps = {
   Header?: any;
   footerProps?: FooterProps;
   headerProps?: any;
-  size?: "lg" | "sm" | "xl" | "";
+  size?: "lg" | "sm" | "xl" | "fullscreen" | "";
 }
 
 export type ModalWindowProps = CommonProps & {
