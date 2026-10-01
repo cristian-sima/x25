@@ -1,8 +1,19 @@
 import classnames from "classnames";
-import React, { useCallback, useEffect, useId, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
 import { hideModal } from "./actions";
+import { FOCUSABLE_SELECTOR, trapFocus } from "./focusTrap";
+import GlobalModalContext from "./GlobalModalContext";
+import {
+  isModalHistoryEntryCurrent,
+  isTopModalWindow,
+  popModalHistoryEntry,
+  pushModalHistoryEntry,
+  registerModalWindow,
+  setModalWindowGlobal,
+  unregisterModalWindow,
+} from "./modalStack";
 import { ModalWindowProps } from "./types";
 
 const
@@ -10,18 +21,6 @@ const
   EXIT_DELAY = 150,
   BASE_Z_INDEX = 1055,
   Z_INDEX_STEP = 20,
-  modalMountStack : HTMLDivElement[] = [],
-  isTopModal = (node : HTMLDivElement | null) => (
-    node !== null && modalMountStack[modalMountStack.length - 1] === node
-  ),
-  FOCUSABLE_SELECTOR = [
-    "a[href]",
-    "button:not([disabled])",
-    "input:not([disabled])",
-    "select:not([disabled])",
-    "textarea:not([disabled])",
-    "[tabindex]:not([tabindex=\"-1\"])",
-  ].join(", "),
 
   ModalWindow = (props : ModalWindowProps) => {
     const {
@@ -31,7 +30,7 @@ const
         stackIndex = 0,
       } = props,
 
-    
+
       [show, setShow] = useState(false),
 
       bodyRef = useRef<HTMLDivElement>(null),
@@ -39,11 +38,14 @@ const
       enterTimeoutRef = useRef<number>(0),
       exitTimeoutRef = useRef<number>(0),
       isClosingRef = useRef(false),
+      isClosedByBackRef = useRef(false),
       previousFocusRef = useRef<HTMLElement | null>(null),
       mouseDownTargetRef = useRef<EventTarget | null>(null),
       propsRef = useRef(props),
 
       titleId = useId(),
+
+      isGlobalContext = useContext(GlobalModalContext),
 
       dispatch = useDispatch();
 
@@ -66,9 +68,11 @@ const
       setShow(false);
 
       exitTimeoutRef.current = window.setTimeout(() => {
-        const latest = propsRef.current;
+        const
+          latest = propsRef.current,
+          shouldHideModal = isGlobalContext && !latest.preventDispatchHideModal;
 
-        if (!latest.preventDispatchHideModal) {
+        if (shouldHideModal) {
           dispatch(hideModal());
         }
         if (typeof latest.onClose === "function") {
@@ -78,13 +82,35 @@ const
           cb();
         }
       }, EXIT_DELAY);
-    }, [dispatch]);
+    }, [dispatch, isGlobalContext]);
 
     useEffect(() => {
-      const dialogNode = dialogRef.current;
+      const
+        dialogNode = dialogRef.current,
+        isLocal = !isGlobalContext || Boolean(propsRef.current.preventDispatchHideModal),
+        handleBack = () => {
+          const isBlocked = isClosingRef.current || Boolean(propsRef.current.doNotCloseByBack);
+
+          if (isBlocked) {
+            return false;
+          }
+
+          isClosedByBackRef.current = true;
+          tryToClose();
+
+          return true;
+        };
 
       if (dialogNode) {
-        modalMountStack.push(dialogNode);
+        registerModalWindow(dialogNode, handleBack);
+
+        if (!isLocal) {
+          setModalWindowGlobal(dialogNode);
+        }
+      }
+
+      if (isLocal) {
+        pushModalHistoryEntry();
       }
 
       previousFocusRef.current = document.activeElement as HTMLElement | null;
@@ -112,12 +138,13 @@ const
         }
 
         if (dialogNode) {
-          const idx = modalMountStack.indexOf(dialogNode);
+          unregisterModalWindow(dialogNode);
+        }
 
-          // eslint-disable-next-line no-magic-numbers
-          if (idx >= 0) {
-            modalMountStack.splice(idx, 1);
-          }
+        const shouldPopHistory = isLocal && !isClosedByBackRef.current;
+
+        if (shouldPopHistory && isModalHistoryEntryCurrent()) {
+          popModalHistoryEntry();
         }
 
         const previous = previousFocusRef.current;
@@ -128,7 +155,7 @@ const
           }, 0);
         }
       };
-    }, []);
+    }, [isGlobalContext, tryToClose]);
 
     useEffect(() => {
       const handleMouseDown = (event : MouseEvent) => {
@@ -168,7 +195,7 @@ const
 
     useEffect(() => {
       const handleKeyDown = (event : KeyboardEvent) => {
-        if (!isTopModal(dialogRef.current)) {
+        if (!isTopModalWindow(dialogRef.current)) {
           return;
         }
 
@@ -179,29 +206,7 @@ const
         }
 
         if (event.key === "Tab" && dialogRef.current) {
-          const focusable = Array.from(
-            dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
-          );
-
-          if (focusable.length === 0) {
-            event.preventDefault();
-            dialogRef.current.focus();
-
-            return;
-          }
-
-          const
-            [first] = focusable,
-            last = focusable[focusable.length - 1],
-            active = document.activeElement;
-
-          if (event.shiftKey && active === first) {
-            event.preventDefault();
-            last.focus();
-          } else if (!event.shiftKey && active === last) {
-            event.preventDefault();
-            first.focus();
-          }
+          trapFocus(event, dialogRef.current);
         }
       };
 
@@ -223,66 +228,68 @@ const
       dialogClass = classnames("modal-dialog", { [`modal-${size}`]: size });
 
     return createPortal(
-      <div
-        aria-labelledby={titleId}
-        aria-modal="true"
-        className={classnames("modal", "fade", "d-block", { show })}
-        ref={bodyRef}
-        role="dialog"
-        style={{
-          background: "rgb(0 0 0 / 45%)",
-          zIndex,
-        }}>
+      <GlobalModalContext.Provider value={false}>
         <div
-          className={dialogClass}
-          ref={dialogRef}
-          role="document"
-          tabIndex={-1}>
-          <div className="modal-content">
-            {
-              props.customContent ? (
-                React.cloneElement(props.children, { tryToClose })
-              ) : (
-                <>
-                  <div className="modal-header">
-                    {
-                      typeof Header === "undefined" ? (
-                        <h5 className="modal-title" id={titleId}>
-                          {props.title}
-                        </h5>
-                      ) : (
-                        <Header
-                          {...props.headerProps}
-                          title={props.title}
-                          titleId={titleId}
-                          tryToClose={tryToClose}
-                        />
-                      )
-                    }
-                    <button
-                      aria-label="Close"
-                      className="btn btn-link"
-                      onClick={() => tryToClose()}
-                      type="button">
-                      <i aria-hidden="true" className="fa fa-times" />
-                    </button>
-                  </div>
-                  <div className="modal-body">
-                    {
-                      props.doNoPassTryToCloseToBody ? props.children : React.cloneElement(props.children, { tryToClose })
-                    }
-                  </div>
-                </>
-              )
-            }
-            {
-              typeof Footer === "undefined" ? null : (
-                <Footer {...props.footerProps} tryToClose={tryToClose} />
-              )
-            }
+          aria-labelledby={titleId}
+          aria-modal="true"
+          className={classnames("modal", "fade", "d-block", { show })}
+          ref={bodyRef}
+          role="dialog"
+          style={{
+            background: "rgb(0 0 0 / 45%)",
+            zIndex,
+          }}>
+          <div
+            className={dialogClass}
+            ref={dialogRef}
+            role="document"
+            tabIndex={-1}>
+            <div className="modal-content">
+              {
+                props.customContent ? (
+                  React.cloneElement(props.children, { tryToClose })
+                ) : (
+                  <>
+                    <div className="modal-header">
+                      {
+                        typeof Header === "undefined" ? (
+                          <h5 className="modal-title" id={titleId}>
+                            {props.title}
+                          </h5>
+                        ) : (
+                          <Header
+                            {...props.headerProps}
+                            title={props.title}
+                            titleId={titleId}
+                            tryToClose={tryToClose}
+                          />
+                        )
+                      }
+                      <button
+                        aria-label="Close"
+                        className="btn btn-link ms-auto"
+                        onClick={() => tryToClose()}
+                        type="button">
+                        <i aria-hidden="true" className="fa fa-times" />
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      {
+                        props.doNoPassTryToCloseToBody ? props.children : React.cloneElement(props.children, { tryToClose })
+                      }
+                    </div>
+                  </>
+                )
+              }
+              {
+                typeof Footer === "undefined" ? null : (
+                  <Footer {...props.footerProps} tryToClose={tryToClose} />
+                )
+              }
+            </div>
           </div>
         </div>
-      </div>,
+      </GlobalModalContext.Provider>,
       document.body,
     );
   };

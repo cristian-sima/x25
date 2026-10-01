@@ -1,36 +1,34 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { propsAreEqualCreator } from "../utility/others";
-import { softHideModal } from "./actions";
+import GlobalModalContext from "./GlobalModalContext";
 import getComponent from "./getComponent";
+import {
+  closeTopModalWindowByBack,
+  consumeSkippedPopstate,
+  hasMountedModalWindow,
+  isTopModalWindowGlobal,
+  popModalHistoryEntry,
+  pushModalHistoryEntry,
+} from "./modalStack";
 import { selectors } from "./reducer";
 import { Modals } from "./types";
 
 const getTopModalProp = (list : Modals, key : string) : any => {
-    if (list.size === 0) {
-      return null;
-    }
-
-    const
-      top : any = list.last(),
-      topProps = top?.get("props");
-
-    if (topProps && typeof topProps.get === "function") {
-      return topProps.get(key);
-    }
-
+  if (list.size === 0) {
     return null;
-  },
+  }
 
-  isTopAlreadyClosing = (list : Modals) : boolean => {
-    if (list.size === 0) {
-      return false;
-    }
+  const
+    top : any = list.last(),
+    topProps = top?.get("props");
 
-    const top : any = list.last();
+  if (topProps && typeof topProps.get === "function") {
+    return topProps.get(key);
+  }
 
-    return Boolean(top?.get("pleaseClose"));
-  };
+  return null;
+};
 
 type RawModalRootProps = {
   readonly list: Modals;
@@ -69,13 +67,14 @@ const
             );
 
             return (
-              <Component
-                doNotCloseByEscape={isTheLastOne}
-                key={index}
-                pleaseClose={current.get("pleaseClose")}
-                stackIndex={index}
-                {...theProps}
-              />
+              <GlobalModalContext.Provider key={index} value>
+                <Component
+                  doNotCloseByEscape={isTheLastOne}
+                  pleaseClose={current.get("pleaseClose")}
+                  stackIndex={index}
+                  {...theProps}
+                />
+              </GlobalModalContext.Provider>
             );
           })
         }
@@ -86,10 +85,8 @@ const
   ModalRoot = () => {
     const
       list = useSelector(selectors.getModals),
-      dispatch = useDispatch(),
       hasModals = list.size > 0,
       prevSizeRef = React.useRef(0),
-      skipCountRef = React.useRef(0),
       decreaseFromPopstateRef = React.useRef(0),
       listRef = React.useRef(list);
 
@@ -104,7 +101,7 @@ const
         const toPush = currentSize - prev;
 
         for (let idx = 0; idx < toPush; idx += 1) {
-          window.history.pushState({ x25Modal: true }, "");
+          pushModalHistoryEntry();
         }
       } else if (currentSize < prev) {
         let toPop = prev - currentSize;
@@ -117,8 +114,7 @@ const
         }
 
         for (let idx = 0; idx < toPop; idx += 1) {
-          skipCountRef.current += 1;
-          window.history.back();
+          popModalHistoryEntry();
         }
       }
 
@@ -127,32 +123,27 @@ const
 
     React.useEffect(() => {
       const handlePopState = () => {
-        if (skipCountRef.current > 0) {
-          skipCountRef.current -= 1;
+        if (consumeSkippedPopstate()) {
+          return;
+        }
+
+        if (!hasMountedModalWindow()) {
+          return;
+        }
+
+        const
+          isTopGlobal = isTopModalWindowGlobal(),
+          isBlockedByList = isTopGlobal && Boolean(getTopModalProp(listRef.current, "doNotCloseByBack"));
+
+        if (isBlockedByList || !closeTopModalWindowByBack()) {
+          pushModalHistoryEntry();
 
           return;
         }
 
-        const currentList = listRef.current;
-
-        if (currentList.size === 0) {
-          return;
+        if (isTopGlobal) {
+          decreaseFromPopstateRef.current += 1;
         }
-
-        if (getTopModalProp(currentList, "doNotCloseByBack")) {
-          window.history.pushState({ x25Modal: true }, "");
-
-          return;
-        }
-
-        if (isTopAlreadyClosing(currentList)) {
-          window.history.pushState({ x25Modal: true }, "");
-
-          return;
-        }
-
-        decreaseFromPopstateRef.current += 1;
-        dispatch(softHideModal());
       };
 
       window.addEventListener("popstate", handlePopState);
@@ -160,7 +151,7 @@ const
       return () => {
         window.removeEventListener("popstate", handlePopState);
       };
-    }, [dispatch]);
+    }, []);
 
     React.useEffect(() => {
       if (hasModals) {
