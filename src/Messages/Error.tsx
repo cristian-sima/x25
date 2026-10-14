@@ -4,6 +4,7 @@ type ErrorMessageProps = {
   readonly itemNotFound?: boolean;
   readonly onRetry?: () => void;
 };
+import { RefreshCw, TriangleAlert } from "lucide-react";
 import React from "react";
 import { words } from "../utility";
 
@@ -14,7 +15,7 @@ export const ErrorMessage = ({
   <div className="container alert alert-warning">
     <div className="row">
       <div className="col-2 col-sm-1">
-        <i className="fa fa-exclamation-triangle fa-2x" />
+        <TriangleAlert size={32} />
       </div>
       <div className="col-7 col-sm-8">
         <h5>
@@ -28,7 +29,7 @@ export const ErrorMessage = ({
               {words.TryAgain}
             </span>
             <span className="visible-up d-md-none">
-              <i className="fa fa-refresh" />
+              <RefreshCw size={16} />
             </span>
           </button>
         )}
@@ -46,7 +47,7 @@ export const LargeErrorMessage = ({
   <div className="container mt-5">
     <div className="row">
       <div className="offset-md-1 offset-xl-2 col-md-2 col-xl-1 text-warning text-center">
-        <i className="fa fa-exclamation-triangle fa-5x" />
+        <TriangleAlert size={80} />
       </div>
       <div className="col-md-8 col-xl-5">
         <h3>

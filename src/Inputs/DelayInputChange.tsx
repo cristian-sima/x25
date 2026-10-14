@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+import { X } from "lucide-react";
 import React, { useState } from "react";
 
 type TypeInputPropTypes = {
@@ -86,16 +87,16 @@ export const
         />
         {isWaiting ? <div className="spinner-border spinner-border-sm text-primary  d-inline-block" /> : (
           value === "" ? null : (
-            <i
-              className={`fa fa-times cursor-pointer
-               text-primary clear-value d-inline-block`}
+            <X
+              className="cursor-pointer text-primary clear-value d-inline-block"
               onClick={() => {
                 props.change({
                   target: {
                     value: "",
                   },
                 });
-              }} />
+              }}
+              size={14} />
           )
         )}
       </div>
