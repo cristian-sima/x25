@@ -270,6 +270,7 @@ const
                         className="btn btn-link ms-auto"
                         onClick={() => tryToClose()}
                         type="button">
+                        <span className="me-1">{"Închide"}</span>
                         <i aria-hidden="true" className="fa fa-times" />
                       </button>
                     </div>
